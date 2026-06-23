@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CheatGuys! - Galer&iacute;a</title>
+    <link rel="icon" type="image/png" href="assets/favicon.webp">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/galeria.css">
+</head>
+<body class="gallery-page">
+
+    <!-- Audio de fondo compartido con la pagina principal -->
+    <audio id="bgMusicPage" src="https://files.catbox.moe/z2ivpr.mp3" loop></audio>
+
+    <!-- =========================================
+         BARRA LATERAL COLAPSABLE
+         ========================================= -->
+    <button id="sidebarToggle" class="cg-sidebar-toggle" onclick="toggleSidebar()" aria-label="Abrir/cerrar menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav id="sidebarNav" class="cg-sidebar" aria-label="Menu principal">
+        <div class="cg-sidebar-header">
+            <span class="cg-sidebar-logo">CHEATGUYS!</span>
+        </div>
+
+        <a href="index.html" class="cg-sidebar-link">
+            <span class="cg-sidebar-icon cg-icon-home" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">Inicio</span>
+        </a>
+        <a href="#" class="cg-sidebar-link" onclick="alert('Secci&oacute;n en construcci&oacute;n... &#128736;&#65039;')">
+            <span class="cg-sidebar-icon cg-icon-about" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">&iquest;Qui&eacute;nes somos?</span>
+        </a>
+        <a href="#" class="cg-sidebar-link" onclick="alert('Secci&oacute;n en construcci&oacute;n... &#128736;&#65039;')">
+            <span class="cg-sidebar-icon cg-icon-cheatguys" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">&iquest;Qu&eacute; es CheatGuys!?</span>
+        </a>
+        <a href="minijuego.html" class="cg-sidebar-link">
+            <span class="cg-sidebar-icon cg-icon-minigame" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">Minijuego</span>
+        </a>
+        <a href="galeria.html" class="cg-sidebar-link active">
+            <span class="cg-sidebar-icon cg-icon-gallery" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">Galer&iacute;a</span>
+        </a>
+    </nav>
+
+    <div class="volume-control-wrapper gallery-volume-control" aria-label="Control de musica">
+        <button id="musicToggleBtn" title="Musica ON/OFF" onclick="toggleMusic()" aria-label="Activar o desactivar musica">&#9835;</button>
+        <span class="vol-icon" aria-hidden="true">&#128266;</span>
+        <input type="range" id="pageVolumeSlider" min="0" max="1" step="0.01" value="0.4" title="Control de Volumen" aria-label="Volumen de musica">
+    </div>
+
+    <!-- =========================================
+         CONTENIDO PRINCIPAL
+         ========================================= -->
+    <main id="mainContent" class="gallery-main">
+        <header class="gallery-header">
+            <h1 class="gallery-title">GALER&Iacute;A <span class="cursor-blink">█</span></h1>
+            <p class="gallery-subtitle">ARCHIVO_VISUAL // CHEATGUYS!</p>
+        </header>
+
+        <div class="char-selector" aria-label="Selector de personaje">
+            <button class="char-select-btn active" data-character="akane" onclick="seleccionarPersonaje('akane')" aria-label="Akane">
+                <img src="assets/icon-akane.webp" alt="Akane" loading="lazy">
+            </button>
+            <button class="char-select-btn" data-character="rika" onclick="seleccionarPersonaje('rika')" aria-label="Rika">
+                <img src="assets/icon-rika.webp" alt="Rika" loading="lazy">
+            </button>
+            <button class="char-select-btn" data-character="momo" onclick="seleccionarPersonaje('momo')" aria-label="Momo">
+                <img src="assets/icon-momo.webp" alt="Momo" loading="lazy">
+            </button>
+            <button class="char-select-btn" data-character="jun" onclick="seleccionarPersonaje('jun')" aria-label="Jun">
+                <img src="assets/icon-jun.webp" alt="Jun" loading="lazy">
+            </button>
+        </div>
+
+        <section class="carousel-section">
+            <h2 class="carousel-title">VESTIMENTAS</h2>
+            <div class="carousel-row">
+                <button class="carousel-arrow carousel-arrow-left" onclick="moverCarrusel('clothes', -1, true)" aria-label="Anterior">&#9664;</button>
+                <div class="carousel-window">
+                    <div id="track-clothes" class="carousel-track" aria-live="polite"></div>
+                </div>
+                <button class="carousel-arrow carousel-arrow-right" onclick="moverCarrusel('clothes', 1, true)" aria-label="Siguiente">&#9654;</button>
+            </div>
+        </section>
+
+        <section class="carousel-section">
+            <h2 class="carousel-title">TURNAROUNDS</h2>
+            <div class="carousel-row">
+                <button class="carousel-arrow carousel-arrow-left" onclick="moverCarrusel('thurn', -1, true)" aria-label="Anterior">&#9664;</button>
+                <div class="carousel-window">
+                    <div id="track-thurn" class="carousel-track" aria-live="polite"></div>
+                </div>
+                <button class="carousel-arrow carousel-arrow-right" onclick="moverCarrusel('thurn', 1, true)" aria-label="Siguiente">&#9654;</button>
+            </div>
+        </section>
+
+        <section class="carousel-section">
+            <h2 class="carousel-title">BOCETOS</h2>
+            <div class="carousel-row">
+                <button class="carousel-arrow carousel-arrow-left" onclick="moverCarrusel('sketch', -1, true)" aria-label="Anterior">&#9664;</button>
+                <div class="carousel-window">
+                    <div id="track-sketch" class="carousel-track" aria-live="polite"></div>
+                </div>
+                <button class="carousel-arrow carousel-arrow-right" onclick="moverCarrusel('sketch', 1, true)" aria-label="Siguiente">&#9654;</button>
+            </div>
+        </section>
+
+        <footer class="gallery-footer">
+            <img loading="lazy" src="assets/logo-studio-blanco.webp" alt="Infinity Brothers Logo" class="gallery-footer-logo">
+            <p>CheatGuys! is a series owned by Infinity Brothers Studios TM. All artwork, descriptions, documents, characters, and story are the property of the studio and are protected by copyright.</p>
+            <p>CheatGuys! &copy; 2026 Infinity Brothers Studios TM. All rights reserved.</p>
+        </footer>
+    </main>
+
+    <button class="arcade-trigger-btn gallery-arcade-trigger" onclick="window.location.href='minijuego.html'" title="Insert Coin...">
+        <img src="assets/arcade-controller.webp" alt="Arcade Controller">
+    </button>
+
+    <!-- =========================================
+         MODAL RETRO
+         ========================================= -->
+    <div id="galleryModal" class="gallery-modal" onclick="cerrarModalGaleria(event)" aria-hidden="true">
+        <div class="gallery-modal-box" onclick="event.stopPropagation()" role="dialog" aria-modal="true" aria-label="Imagen de galeria">
+            <div class="gallery-modal-header">
+                <h2 id="galleryModalTitle" class="gallery-modal-title">IMAGE_VIEWER <span class="cursor-blink">█</span></h2>
+                <button class="gallery-modal-close" onclick="cerrarModalGaleria()">[X]</button>
+            </div>
+            <div class="gallery-modal-body">
+                <img id="galleryModalImg" alt="" class="gallery-modal-img">
+            </div>
+        </div>
+    </div>
+
+    <script src="js/galeria-logic.js"></script>
+</body>
+</html>

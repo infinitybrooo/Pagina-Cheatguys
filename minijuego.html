@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CheatGuys! - Minijuego</title>
+    <link rel="icon" type="image/png" href="assets/favicon.webp">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/galeria.css">
+</head>
+<body class="arcade-page">
+
+    <audio id="bgMusicArcade" src="https://files.catbox.moe/f9s1n5.mp3" loop></audio>
+    <audio id="bgMusicSuddenDeath" src="https://files.catbox.moe/m3s1wy.mp3" loop></audio>
+    <audio id="bgMusicGameOver" src="https://files.catbox.moe/m0weel.mp3"></audio>
+
+    <button id="sidebarToggle" class="cg-sidebar-toggle" onclick="toggleSidebar()" aria-label="Abrir/cerrar menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav id="sidebarNav" class="cg-sidebar" aria-label="Menu principal">
+        <div class="cg-sidebar-header">
+            <span class="cg-sidebar-logo">CHEATGUYS!</span>
+        </div>
+
+        <a href="index.html" class="cg-sidebar-link">
+            <span class="cg-sidebar-icon cg-icon-home" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">Inicio</span>
+        </a>
+        <a href="#" class="cg-sidebar-link" onclick="alert('Secci&oacute;n en construcci&oacute;n... &#128736;&#65039;')">
+            <span class="cg-sidebar-icon cg-icon-about" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">&iquest;Qui&eacute;nes somos?</span>
+        </a>
+        <a href="#" class="cg-sidebar-link" onclick="alert('Secci&oacute;n en construcci&oacute;n... &#128736;&#65039;')">
+            <span class="cg-sidebar-icon cg-icon-cheatguys" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">&iquest;Qu&eacute; es CheatGuys!?</span>
+        </a>
+        <a href="minijuego.html" class="cg-sidebar-link active">
+            <span class="cg-sidebar-icon cg-icon-minigame" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">Minijuego</span>
+        </a>
+        <a href="galeria.html" class="cg-sidebar-link">
+            <span class="cg-sidebar-icon cg-icon-gallery" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">Galer&iacute;a</span>
+        </a>
+    </nav>
+
+    <div class="arcade-volume-control">
+        <span class="arcade-volume-label">VOL</span>
+        <input type="range" id="arcadeVolumeSlider" min="0" max="1" step="0.01" value="0.45" title="Control de volumen arcade">
+    </div>
+
+    <div id="arcadeContainer" class="arcade-overlay">
+        <button class="arcade-close-master" onclick="cerrarArcade()" title="Volver al lobby">[X]</button>
+
+        <div id="arcadeStartScreen" class="arcade-screen active">
+            <h1 class="arcade-title">ARCADE STAGE</h1>
+            <img loading="lazy" src="assets/arcade-start-akane.webp" alt="Demon Akane" class="arcade-img-start glitch-effect">
+            <p class="arcade-text">&iquest;Crees que puedas superar la m&aacute;xima puntuaci&oacute;n de la Demonio del Arcade?<br>&iexcl;Int&eacute;ntalo!... Si te atreves...</p>
+            <div class="arcade-buttons-wrapper">
+                <button class="arcade-btn" onclick="iniciarJuegoArcade()">[ INICIAR_JUEGO ]</button>
+            </div>
+        </div>
+
+        <div id="arcadeGameScreen" class="arcade-screen">
+            <div class="arcade-game-container">
+                <div class="scoreboard">
+                    <span id="currentScore">SCORE: 0</span>
+                    <div id="livesDisplay" class="hearts-box"></div>
+                    <span>AKANE: 95400</span>
+                </div>
+                <div class="canvas-container">
+                    <canvas id="spaceInvadersCanvas" width="400" height="500"></canvas>
+                </div>
+                <div class="mobile-controls">
+                    <button class="m-btn" oncontextmenu="return false;" ontouchstart="event.preventDefault(); mueveI(true)" ontouchend="event.preventDefault(); mueveI(false)" ontouchcancel="mueveI(false)" onmousedown="mueveI(true)" onmouseup="mueveI(false)" onmouseleave="mueveI(false)">&#9664;</button>
+                    <button class="m-btn m-btn-shoot" oncontextmenu="return false;" ontouchstart="disparaTouch(event)" onmousedown="disparaTouch(event)">[ FIRE ]</button>
+                    <button class="m-btn" oncontextmenu="return false;" ontouchstart="event.preventDefault(); mueveD(true)" ontouchend="event.preventDefault(); mueveD(false)" ontouchcancel="mueveD(false)" onmousedown="mueveD(true)" onmouseup="mueveD(false)" onmouseleave="mueveD(false)">&#9654;</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="arcadeGameOverScreen" class="arcade-screen">
+            <h1 class="arcade-title game-over-title">GAME OVER</h1>
+            <img loading="lazy" src="assets/arcade-gameover-rika.webp" alt="Defeat - Rika" class="game-over-img glitch-effect">
+            <p class="arcade-text arcade-final-score" id="finalScoreText">PUNTUACI&Oacute;N FINAL: 0</p>
+            <p class="arcade-text arcade-game-over-copy">La Demonio del Arcade sigue invicta.</p>
+            <div class="arcade-buttons-wrapper">
+                <button class="arcade-btn" onclick="iniciarJuegoArcade()">[ &iquest;OTRA FICHA? ]</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/galeria-logic.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
