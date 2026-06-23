@@ -151,7 +151,7 @@ p.subtitle { font-family: 'VT323', monospace; color: #d3d3d3; font-size: 24px; m
 
 /* Mitsuki Components */
 .mitsuki-trigger-container { position: fixed; left: 18px; bottom: 22px; z-index: 99999; display: flex; flex-direction: column; align-items: center; gap: 4px; width: 96px; margin: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-.mitsuki-trigger-btn { width: 78px; height: auto; image-rendering: pixelated; filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.8)); transition: transform 0.15s; -webkit-tap-highlight-color: transparent; animation: mitsuki-warn-pulse 2s ease-in-out infinite; }
+.mitsuki-trigger-btn { width: 78px; max-width: 65px; height: auto; image-rendering: pixelated; filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.8)); transition: transform 0.15s; -webkit-tap-highlight-color: transparent; animation: mitsuki-warn-pulse 2s ease-in-out infinite; box-sizing: border-box; }
 .mitsuki-trigger-btn:hover { transform: scale(1.08) rotate(-3deg); }
 .mitsuki-trigger-btn:active { transform: scale(0.95); }
 .mitsuki-trigger-label { display: block; width: 100%; font-family: 'VT323', monospace; font-size: 16px; line-height: 1; color: #fff; text-align: center; text-shadow: 2px 2px 0 #000, 0 0 8px #ff0044; background: rgba(5,0,10,0.88); border: 2px solid #ff0044; box-shadow: 3px 3px 0 rgba(0,0,0,0.85); padding: 4px 3px; }
@@ -251,6 +251,7 @@ p.subtitle { font-family: 'VT323', monospace; color: #d3d3d3; font-size: 24px; m
     box-shadow: 4px 4px 0px rgba(0,0,0,0.8);
     transition: border-color 0.15s, box-shadow 0.15s;
     backdrop-filter: blur(4px);
+    max-height: fit-content;
 }
 .volume-control-wrapper:hover { border-color: #fff; box-shadow: 0 0 12px rgba(138,43,226,0.5); }
 .vol-icon { font-size: 18px; filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5)); }
@@ -271,6 +272,11 @@ p.subtitle { font-family: 'VT323', monospace; color: #d3d3d3; font-size: 24px; m
 #pageVolumeSlider::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: var(--akane-color); cursor: pointer; border: 2px solid #fff; box-shadow: 2px 2px 0px rgba(0,0,0,0.5); }
 
 /* Component Media Queries */
+@media (max-width: 600px) {
+    #pageVolumeSlider { height: 70px; }
+    .volume-control-wrapper { max-height: 120px; padding: 8px 6px; gap: 6px; }
+}
+
 @media (max-width: 400px) {
     .arcade-title { font-size: 38px; }
     .arcade-btn { font-size: 22px; padding: 10px; }
