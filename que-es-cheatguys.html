@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CheatGuys! - &iquest;Qu&eacute; es CheatGuys!?</title>
+    <link rel="icon" type="image/png" href="assets/favicon.webp">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/galeria.css">
+    <link rel="stylesheet" href="css/que-es-cheatguys.css">
+</head>
+<body class="cheatguys-info-page">
+
+    <audio id="bgMusicPage" src="https://files.catbox.moe/z2ivpr.mp3" loop></audio>
+
+    <button id="sidebarToggle" class="cg-sidebar-toggle" onclick="toggleSidebar()" aria-label="Abrir/cerrar menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav id="sidebarNav" class="cg-sidebar" aria-label="Menu principal">
+        <div class="cg-sidebar-header">
+            <span class="cg-sidebar-logo">CHEATGUYS!</span>
+        </div>
+
+        <a href="index.html" class="cg-sidebar-link">
+            <span class="cg-sidebar-icon cg-icon-home" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">Inicio</span>
+        </a>
+        <a href="#" class="cg-sidebar-link" onclick="alert('Secci&oacute;n en construcci&oacute;n... &#128736;&#65039;')">
+            <span class="cg-sidebar-icon cg-icon-about" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">&iquest;Qui&eacute;nes somos?</span>
+        </a>
+        <a href="que-es-cheatguys.html" class="cg-sidebar-link active">
+            <span class="cg-sidebar-icon cg-icon-cheatguys" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">&iquest;Qu&eacute; es CheatGuys!?</span>
+        </a>
+        <a href="minijuego.html" class="cg-sidebar-link">
+            <span class="cg-sidebar-icon cg-icon-minigame" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">Minijuego</span>
+        </a>
+        <a href="galeria.html" class="cg-sidebar-link">
+            <span class="cg-sidebar-icon cg-icon-gallery" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">Galer&iacute;a</span>
+        </a>
+
+        <div class="cg-sidebar-audio" aria-label="Control de musica">
+            <button id="musicToggleBtn" class="cg-audio-toggle" title="Musica ON/OFF" onclick="toggleMusic()" aria-label="Activar o desactivar musica" aria-pressed="true">&#9835;</button>
+            <label class="cg-audio-slider-label" for="pageVolumeSlider">VOL</label>
+            <input type="range" id="pageVolumeSlider" min="0" max="1" step="0.01" value="0.4" title="Control de Volumen" aria-label="Volumen de musica">
+        </div>
+    </nav>
+
+    <div class="info-scroll-meter" aria-hidden="true"><span id="infoScrollMeter"></span></div>
+
+    <main id="mainContent" class="info-main">
+        <section class="info-hero cg-info-reveal">
+            <div class="info-hero-copy">
+                <p class="info-system-line">LORE_FILE_LOADED // CHAOS_LEVEL: 99%</p>
+                <h1>&iquest;QU&Eacute; ES CHEATGUYS!? <span class="cursor-blink">█</span></h1>
+                <p class="info-hero-lead">
+                    Una comedia animada sobre una chica con ansiedad social que intenta hacer amigos de la forma
+                    m&aacute;s l&oacute;gica y menos l&oacute;gica posible: formando una banda de rock.
+                </p>
+                <div class="info-hero-actions" aria-label="Accesos de seccion">
+                    <a href="#premisa" class="info-btn">[ PREMISA ]</a>
+                    <a href="#neoteno" class="info-btn info-btn-alt">[ NEO_TENO ]</a>
+                </div>
+            </div>
+
+            <button class="info-hero-media info-image-card" type="button" data-full="assets/images/cheatguys-info/info-team-stack.webp" data-title="PARTY_FORMATION.PNG">
+                <img src="assets/images/cheatguys-info/info-team-stack.webp" alt="Equipo principal de CheatGuys!" loading="eager">
+                <span class="info-img-tag">PARTY_FORMATION.PNG</span>
+            </button>
+        </section>
+
+        <section id="premisa" class="info-section info-split cg-info-reveal">
+            <article class="info-copy-card">
+                <span class="info-card-index">01</span>
+                <h2>Premisa desbloqueada</h2>
+                <p>
+                    Akane Hoshizora solo quer&iacute;a sobrevivir su &uacute;ltimo a&ntilde;o de secundaria, jugar videojuegos,
+                    tocar guitarra y no tener que hablar con demasiada gente.
+                </p>
+                <p>
+                    Su plan para hacer amigos sali&oacute; demasiado bien: sus carteles mal hechos atrajeron a adolescentes
+                    intensos, raros y completamente incompatibles.
+                </p>
+                <p class="info-punchline">
+                    Resultado: una banda, un garaje invadido, demasiadas emociones desbloqueadas y cero puntos en
+                    habilidades sociales.
+                </p>
+            </article>
+
+            <button class="info-image-card info-tall-card" type="button" data-full="assets/images/cheatguys-info/info-akane-guitar.webp" data-title="AKANE_SOCIAL_SURVIVAL.EXE">
+                <img src="assets/images/cheatguys-info/info-akane-guitar.webp" alt="Akane tocando guitarra" loading="lazy">
+                <span class="info-img-tag">AKANE_SOCIAL_SURVIVAL.EXE</span>
+            </button>
+        </section>
+
+        <section class="info-section cg-info-reveal">
+            <div class="info-section-heading">
+                <h2>La f&oacute;rmula CheatGuys!</h2>
+                <p>Comedia absurda, m&uacute;sica, ansiedad adolescente y coraz&oacute;n DIY.</p>
+            </div>
+
+            <div class="info-feature-grid">
+                <article class="info-feature-card">
+                    <span class="info-feature-icon">01</span>
+                    <h3>Comedia absurda</h3>
+                    <p>Ensayos ca&oacute;ticos, reacciones exageradas, decisiones terribles y humor meta con alma de cartoon.</p>
+                </article>
+                <article class="info-feature-card">
+                    <span class="info-feature-icon">02</span>
+                    <h3>Banda escolar</h3>
+                    <p>Una banda que intenta sonar bien mientras aprende a convivir sin explotar emocionalmente.</p>
+                </article>
+                <article class="info-feature-card">
+                    <span class="info-feature-icon">03</span>
+                    <h3>Anime con picante</h3>
+                    <p>Est&eacute;tica 2000s, HUDs mentales, chiptune, J-Rock y caos mexicano con neones saturados.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="info-section info-chaos-band cg-info-reveal">
+            <button class="info-image-card" type="button" data-full="assets/images/cheatguys-info/info-band-chaos.webp" data-title="FRIENDSHIP_GLITCH.JPG">
+                <img src="assets/images/cheatguys-info/info-band-chaos.webp" alt="Banda de CheatGuys! en caos divertido" loading="lazy">
+                <span class="info-img-tag">FRIENDSHIP_GLITCH.JPG</span>
+            </button>
+
+            <div class="info-chaos-copy">
+                <span class="info-card-index">02</span>
+                <h2>Una amistad mal calibrada</h2>
+                <p>
+                    CheatGuys! habla de crecer cuando no encajas, fallar en p&uacute;blico, hacer arte con pocos recursos
+                    y descubrir que la amistad no siempre se ve bonita.
+                </p>
+                <p>
+                    A veces suena desafinada, grita mucho, ocupa tu sill&oacute;n favorito y aun as&iacute; termina siendo justo
+                    lo que necesitabas.
+                </p>
+            </div>
+        </section>
+
+        <section id="neoteno" class="info-section info-neoteno cg-info-reveal">
+            <div class="info-section-heading">
+                <h2>Neo Teno: el mapa del desastre</h2>
+                <p>Donde el manga, el mariachi, el karaoke y los tianguis tecnol&oacute;gicos conviven en hora pico.</p>
+            </div>
+
+            <div class="info-neoteno-layout">
+                <article class="info-copy-card">
+                    <span class="info-card-index">03</span>
+                    <h3>M&eacute;xico niponizado</h3>
+                    <p>
+                        La historia ocurre en una versi&oacute;n alternativa del Valle de M&eacute;xico donde Jap&oacute;n y M&eacute;xico
+                        se mezclaron hasta crear una ciudad multicolor, intensa y profundamente rara.
+                    </p>
+                    <ul class="info-pixel-list">
+                        <li>Templos sinto&iacute;stas junto a puestos de tamales.</li>
+                        <li>Trenes bala pasando frente a mercados de artesan&iacute;as.</li>
+                        <li>Pantallas LED anunciando tacos, karaoke y bandas escolares.</li>
+                        <li>Arcades clandestinos con olor a fritura y gloria digital.</li>
+                    </ul>
+                </article>
+
+                <button class="info-image-card info-wide-card" type="button" data-full="assets/images/cheatguys-info/info-garage-show.webp" data-title="GARAGE_SHOW_BUILD_01.WEBP">
+                    <img src="assets/images/cheatguys-info/info-garage-show.webp" alt="Presentacion caotica de CheatGuys!" loading="lazy">
+                    <span class="info-img-tag">GARAGE_SHOW_BUILD_01.WEBP</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="info-section info-final cg-info-reveal">
+            <button class="info-image-card info-final-img" type="button" data-full="assets/images/cheatguys-info/info-akane-chibi.webp" data-title="AKANE_INTERNAL_HUD.PNG">
+                <img src="assets/images/cheatguys-info/info-akane-chibi.webp" alt="Akane estilo chibi" loading="lazy">
+                <span class="info-img-tag">AKANE_INTERNAL_HUD.PNG</span>
+            </button>
+
+            <article class="info-final-copy">
+                <h2>No es otro anime de banda.</h2>
+                <p>
+                    Es una historia ruidosa, colorida y emocionalmente honesta sobre adolescentes raros tratando
+                    de funcionar juntos.
+                </p>
+                <p>
+                    Nadie es perfecto, nadie sabe muy bien qu&eacute; est&aacute; haciendo y aun as&iacute; todos siguen tocando.
+                </p>
+                <strong>0 PERFECCI&Oacute;N. +100 EMOCI&Oacute;N.</strong>
+            </article>
+        </section>
+
+        <footer class="gallery-footer info-footer">
+            <img loading="lazy" src="assets/logo-studio-blanco.webp" alt="Infinity Brothers Logo" class="gallery-footer-logo">
+            <p>CheatGuys! is a series owned by Infinity Brothers Studios TM. All artwork, descriptions, documents, characters, and story are the property of the studio and are protected by copyright.</p>
+            <p>CheatGuys! &copy; 2026 Infinity Brothers Studios TM. All rights reserved.</p>
+        </footer>
+    </main>
+
+    <div id="infoImageModal" class="info-image-modal" onclick="cerrarInfoImageModal(event)" aria-hidden="true">
+        <div class="info-image-modal-box" onclick="event.stopPropagation()" role="dialog" aria-modal="true" aria-label="Imagen de CheatGuys">
+            <div class="info-image-modal-header">
+                <h2 id="infoImageModalTitle">IMAGE_VIEWER <span class="cursor-blink">█</span></h2>
+                <button class="info-modal-close" onclick="cerrarInfoImageModal()">[X]</button>
+            </div>
+            <div class="info-image-modal-body">
+                <img id="infoImageModalImg" alt="" class="info-image-modal-img">
+            </div>
+        </div>
+    </div>
+
+    <script src="js/audio-global.js"></script>
+    <script src="js/galeria-logic.js"></script>
+    <script src="js/que-es-cheatguys.js"></script>
+</body>
+</html>
