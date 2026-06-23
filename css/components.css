@@ -254,6 +254,7 @@ p.subtitle { font-family: 'VT323', monospace; color: #d3d3d3; font-size: 24px; m
     backdrop-filter: blur(4px);
     max-height: 140px;
     box-sizing: border-box;
+    overflow: hidden;
 }
 .volume-control-wrapper:hover { border-color: #fff; box-shadow: 0 0 12px rgba(138,43,226,0.5); }
 .vol-icon { font-size: 18px; filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5)); }
@@ -264,6 +265,10 @@ p.subtitle { font-family: 'VT323', monospace; color: #d3d3d3; font-size: 24px; m
     direction: rtl;
     width: 6px;
     height: 90px;
+    max-height: 90px;
+    display: block;
+    flex: 0 0 auto;
+    margin: 0;
     background: #333;
     border-radius: 3px;
     outline: none;
@@ -282,8 +287,8 @@ p.subtitle { font-family: 'VT323', monospace; color: #d3d3d3; font-size: 24px; m
 
     .volume-control-wrapper {
         right: 10px;
-        bottom: 86px;
-        max-height: 118px;
+        bottom: 112px;
+        max-height: 112px;
         padding: 6px 5px;
         gap: 4px;
     }

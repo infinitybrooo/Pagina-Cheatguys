@@ -739,6 +739,8 @@ body.gallery-page .volume-control-wrapper {
     box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.82), 0 0 12px var(--character-shadow);
     backdrop-filter: blur(4px);
     transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 body.gallery-page .volume-control-wrapper:hover {
@@ -780,6 +782,10 @@ body.gallery-page #pageVolumeSlider {
     direction: rtl;
     width: 7px;
     height: 90px;
+    max-height: 90px;
+    display: block;
+    flex: 0 0 auto;
+    margin: 0;
     cursor: pointer;
     accent-color: var(--character-accent);
 }
@@ -1082,10 +1088,11 @@ body.arcade-page {
     body.gallery-page .volume-control-wrapper {
         right: 10px;
         top: auto;
-        bottom: 84px;
+        bottom: 112px;
         transform: none;
         padding: 9px 7px;
         gap: 7px;
+        max-height: 112px;
     }
 
     body.gallery-page #musicToggleBtn {
@@ -1094,6 +1101,7 @@ body.arcade-page {
 
     body.gallery-page #pageVolumeSlider {
         height: 58px;
+        max-height: 58px;
     }
 
     .arcade-volume-control input {
