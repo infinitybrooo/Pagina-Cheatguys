@@ -366,3 +366,504 @@ p.subtitle { font-family: 'VT323', monospace; color: #d3d3d3; font-size: 24px; m
     .scoreboard { font-size: 18px; }
     .m-btn { padding: 10px; font-size: 24px; }
 }
+
+/* =========================================
+   VISUAL REFRESH 2026 - Lobby, modals, secrets and arcade
+   ========================================= */
+
+.loading-overlay {
+    background:
+        radial-gradient(circle at 50% 38%, rgba(255, 105, 180, 0.18), transparent 32%),
+        linear-gradient(rgba(0, 255, 255, 0.06) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255, 105, 180, 0.05) 2px, transparent 2px),
+        #05000a;
+    background-size: auto, 28px 28px, 28px 28px, auto;
+}
+
+.loading-text {
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.62);
+    border: 2px solid var(--neon-cyan);
+    box-shadow: 5px 5px 0 rgba(0,0,0,0.86), 0 0 18px rgba(0,255,255,0.3);
+}
+
+.loading-icons-wrapper .load-dot {
+    width: 56px;
+    height: 56px;
+    animation-duration: 0.64s;
+}
+
+.menu-box,
+.music-card,
+.link-btn,
+.modal-box,
+.mitsuki-vn-screen,
+.arcade-game-container,
+.gallery-footer,
+.footer {
+    border-radius: 6px;
+}
+
+.menu-box,
+.music-card {
+    background:
+        linear-gradient(rgba(0, 255, 255, 0.04) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255, 105, 180, 0.04) 2px, transparent 2px),
+        rgba(10, 5, 20, 0.88);
+    background-size: 24px 24px, 24px 24px, auto;
+    box-shadow: 8px 8px 0 rgba(0,0,0,0.82), inset 0 0 18px rgba(0,255,255,0.07);
+    isolation: isolate;
+}
+
+.menu-box::before,
+.music-card::before,
+.modal-box::before,
+.mitsuki-vn-screen::before,
+.arcade-game-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.1) 42%, transparent 62%);
+    transform: translateX(-135%);
+    animation: cg-card-scan 6.2s linear infinite;
+}
+
+.menu-box > *,
+.music-card > *,
+.modal-box > *,
+.mitsuki-vn-screen > *,
+.arcade-game-container > * {
+    position: relative;
+    z-index: 1;
+}
+
+.menu-box:hover,
+.music-card:hover {
+    transform: translate(4px, -4px);
+    box-shadow: -6px 6px 0 var(--neon-magenta), 0 0 18px rgba(0,255,255,0.22), inset 0 0 18px rgba(255,105,180,0.08);
+}
+
+.link-btn {
+    border-color: rgba(255,255,255,0.42);
+    background:
+        linear-gradient(90deg, rgba(0,255,255,0.04), transparent 42%, rgba(255,105,180,0.05)),
+        #111;
+    transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease, background-color 0.14s ease;
+}
+
+.link-btn:hover {
+    border-color: #fff;
+}
+
+.char-btn {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s ease, box-shadow 0.16s ease;
+}
+
+.char-btn::after,
+.char-select-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(115deg, transparent, rgba(255,255,255,0.18), transparent);
+    transform: translateX(-130%);
+    transition: transform 0.36s ease;
+}
+
+.char-btn:hover,
+.char-select-btn:hover {
+    animation: none;
+    transform: translate(4px, -4px) scale(1.04);
+    filter: brightness(1.22) saturate(1.18);
+    box-shadow: -4px 4px 0 var(--neon-magenta), 0 0 16px rgba(0,255,255,0.26);
+}
+
+.char-btn:hover::after,
+.char-select-btn:hover::after {
+    transform: translateX(130%);
+}
+
+.main-logo {
+    animation: logo-idle-float 5s ease-in-out infinite, neon-pulse 4s ease-in-out infinite;
+}
+
+p.subtitle {
+    border-color: var(--neon-cyan);
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.86), 0 0 14px rgba(0,255,255,0.18);
+}
+
+.modal-overlay {
+    z-index: 100200;
+    background:
+        linear-gradient(rgba(0, 255, 255, 0.05) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255, 105, 180, 0.04) 2px, transparent 2px),
+        rgba(0, 0, 0, 0.9);
+    background-size: 28px 28px, 28px 28px, auto;
+}
+
+.modal-box {
+    max-width: 780px;
+    background:
+        linear-gradient(rgba(0,255,255,0.04) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255,105,180,0.04) 2px, transparent 2px),
+        rgba(9, 5, 20, 0.96);
+    background-size: 24px 24px, 24px 24px, auto;
+    box-shadow: 12px 12px 0 rgba(0,0,0,0.92), 0 0 22px rgba(0,255,255,0.32);
+    animation: cg-panel-boot 0.24s steps(4);
+}
+
+.modal-header {
+    background: rgba(0,255,255,0.08);
+    border-bottom-color: var(--neon-cyan);
+}
+
+.modal-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 0.95;
+    text-shadow: 3px 3px 0 #000, 0 0 12px var(--neon-magenta);
+}
+
+.modal-body {
+    gap: 24px;
+}
+
+.modal-img-container {
+    width: min(35vw, 230px);
+}
+
+.modal-img,
+.secret-img-large {
+    border: 3px solid rgba(255,255,255,0.9);
+    border-radius: 5px;
+    box-shadow: 7px 7px 0 rgba(0,0,0,0.86), 0 0 16px rgba(255,105,180,0.22);
+}
+
+.modal-role {
+    width: fit-content;
+    padding: 5px 9px;
+    color: #05000a;
+    background: var(--neon-cyan);
+    border: 2px solid #fff;
+    box-shadow: 4px 4px 0 var(--akane-color);
+    font-size: 22px;
+    text-shadow: none;
+}
+
+.modal-desc {
+    font-size: 16px;
+    line-height: 1.48;
+}
+
+.modal-desc strong {
+    color: var(--neon-cyan);
+    text-shadow: 2px 2px 0 #000;
+}
+
+.char-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.char-stat-grid span {
+    min-width: 0;
+    padding: 8px;
+    color: #fff;
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    line-height: 1;
+    overflow-wrap: anywhere;
+    background: rgba(0,0,0,0.52);
+    border: 2px solid rgba(255,255,255,0.24);
+}
+
+.char-lore-list {
+    display: grid;
+    gap: 8px;
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.char-lore-list li {
+    position: relative;
+    padding: 10px 10px 10px 34px;
+    background: rgba(0,0,0,0.42);
+    border: 2px solid rgba(255,255,255,0.18);
+}
+
+.char-lore-list li::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 15px;
+    width: 9px;
+    height: 9px;
+    background: var(--neon-magenta);
+    box-shadow: 4px 4px 0 var(--neon-cyan);
+}
+
+.system-toast {
+    bottom: 28px;
+    max-width: min(92vw, 560px);
+    white-space: normal;
+    text-align: center;
+    background: rgba(5, 0, 10, 0.92);
+    border: 2px solid var(--neon-cyan);
+    border-radius: 6px;
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.86), 0 0 16px rgba(0,255,255,0.26);
+}
+
+#secretModal .modal-header {
+    border-bottom-color: #ff0044;
+    background: rgba(255, 0, 68, 0.12);
+}
+
+.file-list {
+    gap: 10px;
+}
+
+.file-item {
+    position: relative;
+    overflow: hidden;
+    background: rgba(0,0,0,0.52);
+    border-color: rgba(255,255,255,0.26);
+    border-radius: 4px;
+}
+
+.file-item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(115deg, transparent, rgba(255,255,255,0.12), transparent);
+    transform: translateX(-130%);
+    transition: transform 0.34s ease;
+}
+
+.file-item:hover {
+    border-color: var(--neon-cyan);
+    background: rgba(0,255,255,0.08);
+    transform: translateX(6px);
+    box-shadow: -4px 4px 0 var(--neon-magenta);
+}
+
+.file-item:hover::after {
+    transform: translateX(130%);
+}
+
+.file-icon {
+    min-width: 48px;
+    margin-right: 12px;
+    color: #05000a;
+    background: var(--neon-cyan);
+    border: 2px solid #fff;
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+    box-shadow: 3px 3px 0 #000;
+}
+
+.secret-lore-text {
+    border: 2px dashed rgba(255,255,255,0.3);
+    background: rgba(0,0,0,0.58);
+    border-radius: 5px;
+}
+
+.mitsuki-trigger-container {
+    width: 78px;
+    animation: cg-warning-float 3s ease-in-out infinite;
+}
+
+.mitsuki-trigger-btn {
+    width: 70px;
+    filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.86)) drop-shadow(0 0 10px rgba(255,0,68,0.36));
+}
+
+.mitsuki-trigger-label {
+    border-color: #ff0044;
+    background: rgba(5,0,10,0.94);
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.88), 0 0 12px rgba(255,0,68,0.28);
+}
+
+.mitsuki-overlay {
+    background:
+        radial-gradient(circle at 50% 18%, rgba(255,0,68,0.14), transparent 34%),
+        linear-gradient(rgba(0,255,255,0.05) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255,0,68,0.04) 2px, transparent 2px),
+        rgba(0,0,0,0.92);
+    background-size: auto, 28px 28px, 28px 28px, auto;
+}
+
+.mitsuki-vn-box {
+    animation: cg-panel-boot 0.24s steps(4);
+}
+
+.mitsuki-vn-screen {
+    box-shadow: 12px 12px 0 rgba(0,0,0,0.95), 0 0 24px rgba(0,255,255,0.34);
+}
+
+.mitsuki-illustration-container {
+    background:
+        radial-gradient(circle at 50% 35%, rgba(255,105,180,0.22), transparent 30%),
+        linear-gradient(rgba(0,255,255,0.05) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255,0,68,0.04) 2px, transparent 2px),
+        #080011;
+    background-size: auto, 24px 24px, 24px 24px, auto;
+}
+
+.mitsuki-dialogue-box {
+    background:
+        linear-gradient(90deg, rgba(0,255,255,0.06), transparent 45%, rgba(255,0,68,0.08)),
+        rgba(10,5,20,0.96);
+}
+
+.mitsuki-share-btn,
+.arcade-btn,
+.m-btn,
+.btn-back,
+.close-btn,
+.gallery-modal-close,
+.arcade-close-master {
+    border-radius: 4px;
+}
+
+.mitsuki-share-btn:hover,
+.arcade-btn:hover,
+.m-btn:hover,
+.btn-back:hover,
+.close-btn:hover,
+.arcade-close-master:hover {
+    border-color: #fff;
+    box-shadow: -4px 4px 0 var(--neon-magenta), 0 0 12px rgba(0,255,255,0.22);
+    transform: translate(3px, -3px);
+}
+
+.arcade-overlay {
+    background:
+        radial-gradient(circle at 50% 18%, rgba(138, 43, 226, 0.25), transparent 34%),
+        linear-gradient(rgba(0, 255, 255, 0.05) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255, 105, 180, 0.04) 2px, transparent 2px),
+        #05000a;
+    background-size: auto, 30px 30px, 30px 30px, auto;
+}
+
+.arcade-screen.active {
+    animation: cg-soft-pop 0.42s ease both;
+}
+
+.arcade-title {
+    font-size: clamp(42px, 8vw, 72px);
+    text-shadow: 5px 5px 0 #000, 0 0 18px var(--neon-cyan), 0 0 24px var(--akane-color);
+}
+
+.arcade-text {
+    padding: 0 8px;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.arcade-img-start,
+.game-over-img {
+    border-radius: 6px;
+    filter: drop-shadow(6px 6px 0 rgba(0,0,0,0.86)) drop-shadow(0 0 14px rgba(0,255,255,0.25));
+}
+
+.arcade-game-container {
+    position: relative;
+    overflow: hidden;
+    border: 3px solid rgba(255,255,255,0.25);
+    background:
+        linear-gradient(rgba(0,255,255,0.04) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255,105,180,0.04) 2px, transparent 2px),
+        rgba(0,0,0,0.45);
+    background-size: 24px 24px, 24px 24px, auto;
+}
+
+.scoreboard {
+    gap: 10px;
+}
+
+@media (max-width: 700px) {
+    .modal-body {
+        flex-direction: column;
+    }
+
+    .modal-img-container {
+        width: min(74vw, 230px);
+        margin: 0 auto;
+    }
+
+    .modal-role {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .char-stat-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .loading-text {
+        font-size: 28px;
+        letter-spacing: 2px;
+    }
+
+    .loading-icons-wrapper {
+        gap: 12px;
+    }
+
+    .loading-icons-wrapper .load-dot {
+        width: 42px;
+        height: 42px;
+    }
+
+    .modal-overlay {
+        padding: 12px;
+    }
+
+    .modal-box {
+        max-height: calc(100dvh - 24px);
+    }
+
+    .modal-body {
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .modal-desc {
+        font-size: 15px;
+    }
+
+    .char-lore-list li {
+        padding-top: 9px;
+        padding-bottom: 9px;
+    }
+
+    .system-toast {
+        bottom: max(18px, env(safe-area-inset-bottom));
+    }
+
+    .mitsuki-trigger-container {
+        left: 6px;
+        bottom: max(6px, env(safe-area-inset-bottom));
+        width: 54px;
+    }
+
+    .mitsuki-trigger-btn {
+        width: 48px;
+    }
+
+    .mitsuki-trigger-label {
+        font-size: 10px;
+        padding: 3px 1px;
+    }
+}

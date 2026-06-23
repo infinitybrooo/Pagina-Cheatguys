@@ -1028,3 +1028,186 @@ body.arcade-page {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* =========================================
+   VISUAL REFRESH 2026 - Shared shell and gallery
+   ========================================= */
+
+.cg-sidebar-toggle {
+    border-radius: 4px;
+    background:
+        linear-gradient(rgba(0, 255, 255, 0.08) 2px, transparent 2px),
+        #080811;
+    background-size: 12px 12px, auto;
+    box-shadow: 5px 5px 0 rgba(0,0,0,0.86), 0 0 14px rgba(0,255,255,0.36);
+}
+
+.cg-sidebar-toggle:hover {
+    box-shadow: -4px 4px 0 var(--neon-magenta), 0 0 18px rgba(0,255,255,0.34);
+    transform: translate(3px, -3px);
+}
+
+.cg-sidebar {
+    background:
+        radial-gradient(circle at 0% 10%, rgba(255,105,180,0.16), transparent 32%),
+        linear-gradient(rgba(0,255,255,0.06) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255,105,180,0.05) 2px, transparent 2px),
+        #080811;
+    background-size: auto, 24px 24px, 24px 24px, auto;
+}
+
+.cg-sidebar-link,
+.cg-sidebar-audio {
+    border-radius: 5px;
+}
+
+.cg-sidebar-link {
+    background:
+        linear-gradient(90deg, rgba(0,255,255,0.04), transparent 45%, rgba(255,105,180,0.06)),
+        rgba(0,0,0,0.48);
+}
+
+.cg-sidebar-link:hover,
+.cg-sidebar-link.active {
+    transform: translate(4px, -4px);
+    box-shadow: -5px 5px 0 var(--neon-magenta), 0 0 16px rgba(0,255,255,0.28);
+}
+
+.cg-sidebar-icon {
+    border-radius: 4px;
+}
+
+body.gallery-page {
+    background-color: #05000a;
+    background-image:
+        radial-gradient(circle at 20% 8%, rgba(255, 105, 180, 0.16), transparent 28%),
+        radial-gradient(circle at 84% 10%, rgba(0, 255, 255, 0.12), transparent 26%),
+        linear-gradient(rgba(138, 43, 226, 0.14) 3px, transparent 3px),
+        linear-gradient(90deg, rgba(138, 43, 226, 0.14) 3px, transparent 3px),
+        linear-gradient(to bottom, #05000a 0%, #0e001c 38%, #180033 70%, #05000a 100%);
+    background-size: auto, auto, 24px 24px, 24px 24px, auto;
+}
+
+.gallery-header {
+    animation: cg-soft-pop 0.46s ease both;
+}
+
+.gallery-title {
+    font-size: clamp(50px, 9vw, 92px);
+    text-shadow: 5px 5px 0 #000, 0 0 16px var(--character-accent), 0 0 28px rgba(255,105,180,0.55);
+}
+
+.gallery-subtitle {
+    width: fit-content;
+    margin: 10px auto 0;
+    padding: 6px 12px;
+    color: var(--neon-cyan);
+    background: rgba(0,0,0,0.62);
+    border: 2px solid var(--neon-cyan);
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.86);
+}
+
+.char-select-btn {
+    position: relative;
+    border-radius: 6px;
+}
+
+.carousel-section {
+    animation: cg-soft-pop 0.48s ease both;
+}
+
+.carousel-section:nth-of-type(2) { animation-delay: 0.08s; }
+.carousel-section:nth-of-type(3) { animation-delay: 0.16s; }
+
+.carousel-title {
+    width: fit-content;
+    padding: 6px 12px;
+    color: var(--character-accent);
+    background: rgba(0,0,0,0.66);
+    border: 2px solid rgba(255,255,255,0.32);
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.82);
+}
+
+.carousel-window {
+    border-width: 4px;
+    background:
+        radial-gradient(circle at center, rgba(0,255,255,0.13), transparent 45%),
+        linear-gradient(rgba(255,255,255,0.03) 50%, rgba(0,0,0,0.14) 50%),
+        rgba(0,0,0,0.76);
+    background-size: auto, 100% 4px, auto;
+    box-shadow: 8px 8px 0 rgba(0,0,0,0.84), 0 0 22px var(--character-shadow), inset 0 0 22px rgba(255,105,180,0.14);
+}
+
+.carousel-item {
+    border-radius: 6px;
+    background:
+        linear-gradient(rgba(0,255,255,0.04) 2px, transparent 2px),
+        #050505;
+    background-size: 18px 18px, auto;
+}
+
+.carousel-item.is-active {
+    box-shadow: 8px 8px 0 rgba(0,0,0,0.9), 0 0 20px var(--character-shadow);
+}
+
+.carousel-arrow {
+    border-radius: 5px;
+    background:
+        linear-gradient(rgba(0,255,255,0.08) 2px, transparent 2px),
+        #111;
+    background-size: 14px 14px, auto;
+}
+
+.carousel-arrow:hover {
+    transform: translate(3px, -3px);
+    box-shadow: -4px 4px 0 var(--neon-magenta), 0 0 14px rgba(255,105,180,0.5);
+}
+
+.gallery-modal-box,
+.gallery-modal-img,
+.gallery-footer {
+    border-radius: 6px;
+}
+
+.gallery-modal-box {
+    animation: cg-panel-boot 0.24s steps(4);
+}
+
+.gallery-footer {
+    border-color: rgba(255,255,255,0.22);
+    background:
+        linear-gradient(rgba(0,255,255,0.04) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255,105,180,0.04) 2px, transparent 2px),
+        rgba(0,0,0,0.72);
+    background-size: 24px 24px, 24px 24px, auto;
+}
+
+.arcade-page .arcade-overlay {
+    background:
+        radial-gradient(circle at 50% 18%, rgba(138, 43, 226, 0.25), transparent 34%),
+        linear-gradient(rgba(0, 255, 255, 0.05) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255, 105, 180, 0.04) 2px, transparent 2px),
+        #05000a;
+    background-size: auto, 30px 30px, 30px 30px, auto;
+}
+
+.arcade-page .arcade-game-container {
+    border-radius: 6px;
+}
+
+@media (max-width: 560px) {
+    .gallery-title {
+        font-size: clamp(42px, 16vw, 64px);
+    }
+
+    .gallery-subtitle {
+        max-width: calc(100% - 64px);
+        margin-left: 64px;
+        font-size: 18px;
+        text-align: left;
+    }
+
+    .carousel-window {
+        height: 310px;
+    }
+}

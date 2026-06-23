@@ -67,15 +67,39 @@
                     loader.style.display = 'none';
                     if (callback) callback();
                 }, 400);
-            }, 2000);
+            }, 900);
         }
 
         // --- SISTEMA FICHAS DE PERSONAJE ---
         const charData = {
-            akane: { name: "AKANE HOSHIZORA", role: "Vocalista y Guitarra Rítmica (Lvl. 15)", desc: "<p><strong>«La Demonio del Arcade».</strong> Introvertida, con un severo cuadro de ansiedad social y un HUD mental estilo JRPG clásico que se satura a la menor provocación. Su estética fusiona la ternura con toques gótico-otaku.</p><p>Es el núcleo emocional y creativo de la banda. Posee una motricidad fina increíble y una precisión quirúrgica heredada de romper récords en maquinitas clandestinas. Aunque lidera temblando en el escenario, su genialidad musical radica en una honestidad brutal que no puede esconderse tras distorsiones ruidosas.</p>", color: "var(--akane-color)", imgUrl: "assets/ficha-akane.webp" },
-            rika: { name: "RIKA TANAKA", role: "Guitarra Principal y Compositora (Lvl. 16)", desc: "<p><strong>«La Naranja Mecánica».</strong> Una bomba de tiempo punk-metal: pasional, impulsiva, sumamente expresiva y con una complexión atlética armada para el ataque directo.</p><p>Es el escudo físico y protector de Akane. Rika no es un prodigio de nacimiento; toca de forma brillante porque sangra sobre la guitarra, ensaya con intensidad salvaje en su ESP Horizon y arrastra a las masas con su agresividad escénica. Actúa como el motor de energía que obliga a la party a no quedarse estancada.</p>", color: "var(--rika-color)", imgUrl: "assets/ficha-rika.webp" },
-            momo: { name: "MOMO FUJIWARA", role: "Bajista y Encargada Estética (Lvl. 15)", desc: "<p><strong>«La Pulga».</strong> El corazón suave y armónico del grupo. Vive metida en un universo rosa pastel, pero esconde un trasfondo clásico al dominar el violonchelo, un instrumento elegante e inútil para el garage rock de la banda.</p><p>Al ser la más petite y empática del grupo, su rol es vital: su bajeo constante con su bajo 'Sina' no busca la velocidad destructiva, sino 'abrazar' el sonido para equilibrar las fricciones de la banda. Evita que el caos de los chicos se rompa en el intento, siendo el pegamento que mantiene unida a la party.</p>", color: "var(--momo-color)", imgUrl: "assets/ficha-momo.webp" },
-            jun: { name: "JUNPEI SAKAMOTO", role: "Baterista y Percusionista (Lvl. 16)", desc: "<p><strong>«El Maestro del Desgane Carismático».</strong> Flojo, sarcástico, de silueta alargada y con un sistema operativo que corre estrictamente en modo de ahorro de energía extrema. Tiene apellido de japonés pero alma de latino al dominar la percusión urbana de la metrópoli.</p><p>Es el protector silencioso del grupo y el verdadero monstruo del talento natural absurdo. Jun no necesita practicar ocho horas; asimila el tempo de forma subconsciente y perfecta. Aunque habitualmente opera al 1% por pura pereza mística, cuando activa su modo serio es una bestia rítmica implacable capaz de callarle la boca a cualquiera a puros baquetazos.</p>", color: "var(--jun-color)", imgUrl: "assets/ficha-jun.webp" }
+            akane: {
+                name: "AKANE HOSHIZORA",
+                role: "Fundadora, Vocalista Principal y Guitarra Rítmica (Lvl. 15)",
+                desc: "<div class='char-stat-grid'><span>COLOR: VIOLETA</span><span>APODO: LA DEMONIO DEL ARCADE</span><span>BUILD: HUD_SOCIAL_JRPG</span></div><p><strong>Akane no quería ser protagonista de nada.</strong> Es introvertida, silenciosa y socialmente torpe; su ansiedad convierte cualquier interacción en un menú de opciones tipo videojuego, con consecuencias que su cerebro exagera al 300%.</p><p>Detrás de su expresión neutral vive una mente brillante, observadora y creativa. Se estresa por pedir salsa extra, pero puede cantar en un escenario si alguien importante la necesita. Es el núcleo emocional de CheatGuys!, aunque ella siga intentando pasar desapercibida.</p><ul class='char-lore-list'><li>Canta con una profundidad enorme cuando se siente segura.</li><li>Toca guitarra rítmica con precisión emocional.</li><li>Tiene los puntajes más altos del arcade del colegio bajo seudónimo.</li><li>Su lugar seguro es el garaje convertido en cuartel de la banda.</li></ul>",
+                color: "var(--akane-color)",
+                imgUrl: "assets/ficha-akane.webp"
+            },
+            rika: {
+                name: "RIKA TANAKA",
+                role: "Guitarra Principal, Compositora y Musicalización (Lvl. 16)",
+                desc: "<div class='char-stat-grid'><span>COLOR: NARANJA</span><span>APODOS: MANDARINA / TERROR TANAKA</span><span>BUILD: VOLUME_MAX</span></div><p><strong>Rika es una bomba emocional con guitarra.</strong> Extrovertida, intensa, impulsiva y profundamente pasional; vive en volumen alto y no tiene filtro, ni ganas de conseguir uno.</p><p>Su caos viene con talento real: toca de oído, improvisa riffs únicos y arrastra a la gente a sus ideas aunque tengan la estabilidad de una mesa con tres patas. Con Akane funciona como escudo, motor y guitarra gemela, normalmente gritando.</p><ul class='char-lore-list'><li>Virtuosa de la guitarra eléctrica e instinto escénico natural.</li><li>Compone desde la emoción pura, sin pedir permiso.</li><li>Admira a Kaede Ayase y teme no estar a la altura.</li><li>Su ropa cambia según su estado de ánimo.</li></ul>",
+                color: "var(--rika-color)",
+                imgUrl: "assets/ficha-rika.webp"
+            },
+            momo: {
+                name: "MOMO FUJIWARA",
+                role: "Bajista, Encargada Estética y Corista (Lvl. 15)",
+                desc: "<div class='char-stat-grid'><span>COLOR: ROSA MEXICANO</span><span>APODO: PULGA</span><span>BUILD: SOFT_BASS_HEALER</span></div><p><strong>Momo es el corazón dulce y risueño de CheatGuys!.</strong> Pequeña, estética y con alma de algodón de azúcar, vive entre colores, accesorios, ideas bonitas y distracciones que llegan sin avisar.</p><p>Puede parecer perdida, pero lee emociones con una precisión que nadie le enseñó. Su bajo no busca aplastar la canción: la abraza. Es la primera en dar apoyo, llorar con alguien o decir “yo te creo” aunque no sepa de qué están hablando.</p><ul class='char-lore-list'><li>Su bajo se llama Sina y a veces le pide consejos.</li><li>Tiene oído armónico y detecta disonancias con facilidad.</li><li>Ayuda a definir el estilo visual de la banda.</li><li>Calma a Jun y reconforta a Akane casi sin intentarlo.</li></ul>",
+                color: "var(--momo-color)",
+                imgUrl: "assets/ficha-momo.webp"
+            },
+            jun: {
+                name: "JUNPEI SAKAMOTO",
+                role: "Baterista y Percusionista (Lvl. 16)",
+                desc: "<div class='char-stat-grid'><span>COLOR: CIAN</span><span>APODO: MONJE DEL RAMEN</span><span>BUILD: LUCKY_SLEEP_MODE</span></div><p><strong>Jun es el rey del desgane carismático.</strong> Relajado, sarcástico y con vibra de “todo saldrá bien... probablemente”, evita cualquier cosa que huela a responsabilidad, pero su talento musical roza lo absurdo.</p><p>Cuida a sus amigos desde la esquina, con comentarios secos y una calma casi mística. Parece operar en ahorro de energía, hasta que la banda realmente lo necesita y aparece el baterista preciso, intuitivo y sospechosamente afortunado.</p><ul class='char-lore-list'><li>Escucha una canción una vez y suele recordarla.</li><li>Tiene ritmo natural incluso caminando.</li><li>Defiende “el sillón de Jun” con flojera pasivo-agresiva.</li><li>Siempre trae un snack misterioso en la mochila.</li></ul>",
+                color: "var(--jun-color)",
+                imgUrl: "assets/ficha-jun.webp"
+            }
         };
 
         function abrirFichaPersonaje(charId) {
@@ -147,7 +171,7 @@
                 const list = document.getElementById('secretFileList'); list.innerHTML = '';
                 secretData.forEach((file, index) => {
                     const item = document.createElement('div'); item.className = 'file-item'; item.onclick = () => viewSecretFile(index);
-                    item.innerHTML = `<span class="file-icon">🖼️</span><span class="file-name">${file.name}</span>`; list.appendChild(item);
+                    item.innerHTML = `<span class="file-icon">IMG</span><span class="file-name">${file.name}</span>`; list.appendChild(item);
                 });
                 document.getElementById('secretFileList').style.display = 'flex'; 
                 document.getElementById('secretViewer').style.display = 'none';
