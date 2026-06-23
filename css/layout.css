@@ -94,12 +94,41 @@ body::after {
 }
 
 @media (max-width: 600px) {
+    body {
+        padding: 32px clamp(66px, 18vw, 82px) 150px 12px;
+    }
+
+    .profile-container {
+        margin-bottom: 28px;
+    }
+
+    .logos-wrapper {
+        max-width: min(100%, 340px);
+        gap: 10px;
+    }
+
+    .main-logo {
+        max-width: 235px;
+    }
+
+    p.subtitle {
+        max-width: 100%;
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+
+    .links-container {
+        width: min(100%, 450px);
+        gap: 22px;
+        margin-bottom: 126px;
+    }
+
+    .bottom-art-container {
+        margin-top: 28px;
+    }
+
     .modal-box { width: calc(100% - 20px); margin: 10px; }
     .modal-body { flex-direction: column; align-items: center; text-align: center; padding: 15px; }
-}
-
-@media (max-width: 400px) {
-    .volume-control-wrapper { right: 10px; top: auto; bottom: 105px; transform: none; padding: 10px 8px; }
 }
 
 @media (max-width: 640px) {

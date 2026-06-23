@@ -839,7 +839,7 @@ body.gallery-page #pageVolumeSlider {
     filter: drop-shadow(0 0 7px rgba(255, 255, 255, 0.18));
 }
 
-.arcade-trigger-btn {
+body.gallery-page .arcade-trigger-btn {
     position: fixed;
     right: 20px;
     bottom: 20px;
@@ -859,20 +859,20 @@ body.gallery-page #pageVolumeSlider {
     -webkit-tap-highlight-color: transparent;
 }
 
-.arcade-trigger-btn img {
+body.gallery-page .arcade-trigger-btn img {
     width: 50px;
     height: auto;
     display: block;
     filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, 0.55));
 }
 
-.arcade-trigger-btn:hover {
+body.gallery-page .arcade-trigger-btn:hover {
     transform: translateY(-5px) rotate(-2deg);
     border-color: var(--neon-magenta);
     box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.8), 0 0 18px rgba(255, 105, 180, 0.72);
 }
 
-.arcade-trigger-btn:active {
+body.gallery-page .arcade-trigger-btn:active {
     transform: translate(4px, 4px);
     box-shadow: 0 0 0 transparent;
 }
@@ -1068,14 +1068,14 @@ body.arcade-page {
         width: 100px;
     }
 
-    .arcade-trigger-btn {
+    body.gallery-page .arcade-trigger-btn {
         right: 10px;
         bottom: 14px;
         width: 60px;
         height: 60px;
     }
 
-    .arcade-trigger-btn img {
+    body.gallery-page .arcade-trigger-btn img {
         width: 42px;
     }
 

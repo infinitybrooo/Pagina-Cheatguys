@@ -71,7 +71,7 @@
 /* Buttons */
 .link-btn { 
     position: relative; overflow: hidden; 
-    display: flex; align-items: center; padding: 14px 18px; text-decoration: none; color: #ffffff; font-size: 16px; font-weight: 900; background-color: #1a1a1a; border: 2px solid #555; transition: all 0.1s; text-align: left; box-shadow: 4px 4px 0px rgba(0,0,0,0.6); 
+    display: flex; align-items: center; min-width: 0; padding: 14px 18px; text-decoration: none; color: #ffffff; font-size: 16px; font-weight: 900; background-color: #1a1a1a; border: 2px solid #555; transition: all 0.1s; text-align: left; box-shadow: 4px 4px 0px rgba(0,0,0,0.6); 
 }
 .link-btn::before {
     content: ''; position: absolute; top: 0; left: -75%;
@@ -87,9 +87,9 @@
 .link-btn:active { transform: translate(4px, 4px); box-shadow: 0px 0px 0px rgba(0,0,0,0); }
 .link-btn .icon { font-size: 26px; margin-right: 15px; filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5)); }
 .link-btn .icon-img { width: 28px; height: 28px; object-fit: contain; margin-right: 15px; flex-shrink: 0; filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5)); image-rendering: pixelated; }
-.text-container { display: flex; flex-direction: column; }
-.btn-title { font-size: 16px; font-weight: 900; line-height: 1.2; }
-.btn-subtitle { font-size: 12px; color: #bbbbbb; font-weight: 700; margin-top: 3px; font-family: 'VT323', monospace; letter-spacing: 1px; }
+.text-container { display: flex; flex-direction: column; min-width: 0; }
+.btn-title { font-size: 16px; font-weight: 900; line-height: 1.2; overflow-wrap: anywhere; }
+.btn-subtitle { font-size: 12px; color: #bbbbbb; font-weight: 700; margin-top: 3px; font-family: 'VT323', monospace; letter-spacing: 1px; overflow-wrap: anywhere; }
 
 /* Hover states for links */
 .btn-pitch:hover { border-color: #fff; background-color: #333; box-shadow: -4px 4px 0px var(--akane-color); transform: translate(4px, -4px); }
@@ -237,60 +237,100 @@ p.subtitle { font-family: 'VT323', monospace; color: #d3d3d3; font-size: 24px; m
 .volume-control-wrapper {
     position: fixed;
     right: 20px;
-    bottom: 110px;
-    top: auto;
+    top: 50%;
     transform: none;
-    z-index: 99999;
-    background-color: rgba(26, 26, 26, 0.92);
+    translate: 0 -50%;
+    z-index: 99990;
+    background: rgba(17, 17, 17, 0.92);
     border: 3px solid var(--akane-color);
-    border-radius: 12px;
-    padding: 10px 8px;
+    border-radius: 8px;
+    padding: 14px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
-    box-shadow: 4px 4px 0px rgba(0,0,0,0.8);
+    gap: 10px;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.82), 0 0 12px rgba(138, 43, 226, 0.42);
     transition: border-color 0.15s, box-shadow 0.15s;
     backdrop-filter: blur(4px);
-    max-height: 140px;
     box-sizing: border-box;
-    overflow: hidden;
 }
-.volume-control-wrapper:hover { border-color: #fff; box-shadow: 0 0 12px rgba(138,43,226,0.5); }
+.volume-control-wrapper:hover { border-color: #fff; box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.82), 0 0 16px rgba(138, 43, 226, 0.58); }
 .vol-icon { font-size: 18px; filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5)); }
 #pageVolumeSlider {
     -webkit-appearance: slider-vertical;
     appearance: slider-vertical;
     writing-mode: vertical-lr;
     direction: rtl;
-    width: 6px;
+    width: 7px;
     height: 90px;
     max-height: 90px;
     display: block;
     flex: 0 0 auto;
     margin: 0;
-    background: #333;
-    border-radius: 3px;
-    outline: none;
-    border: 1px solid #555;
     cursor: pointer;
+    accent-color: var(--akane-color);
 }
-#pageVolumeSlider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--akane-color); cursor: pointer; border: 2px solid #fff; box-shadow: 2px 2px 0px rgba(0,0,0,0.5); }
-#pageVolumeSlider::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: var(--akane-color); cursor: pointer; border: 2px solid #fff; box-shadow: 2px 2px 0px rgba(0,0,0,0.5); }
 
 /* Component Media Queries */
 @media (max-width: 600px) {
     #pageVolumeSlider {
-        height: 70px;
-        max-height: 70px;
+        height: 58px;
+        max-height: 58px;
+    }
+
+    #musicToggleBtn {
+        font-size: 24px;
     }
 
     .volume-control-wrapper {
         right: 10px;
+        top: auto;
         bottom: 112px;
-        max-height: 112px;
-        padding: 6px 5px;
-        gap: 4px;
+        translate: none;
+        transform: none;
+        padding: 9px 7px;
+        gap: 7px;
+    }
+
+    .menu-box {
+        padding: 16px;
+        gap: 12px;
+        box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.8);
+    }
+
+    .section-title {
+        font-size: 23px;
+    }
+
+    .link-btn {
+        padding: 12px;
+        gap: 0;
+    }
+
+    .link-btn .icon,
+    .link-btn .icon-img {
+        margin-right: 12px;
+    }
+
+    .character-select {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .char-btn {
+        width: 62px;
+        height: 62px;
+    }
+
+    .arcade-trigger-btn {
+        right: 10px;
+        bottom: 14px;
+        width: 60px;
+        height: 60px;
+    }
+
+    .arcade-trigger-btn img {
+        width: 42px;
     }
 
     .mitsuki-trigger-container {
