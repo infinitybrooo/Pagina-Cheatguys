@@ -1,0 +1,147 @@
+// =====================================================
+// AUDIO GLOBAL - Control unico desde la barra lateral
+// =====================================================
+(function () {
+    const STORAGE_VOLUME = "cgMasterVolume";
+    const STORAGE_ENABLED = "cgMusicEnabled";
+    const DEFAULT_VOLUME = 0.4;
+
+    let currentTrack = null;
+    let musicEnabled = localStorage.getItem(STORAGE_ENABLED) !== "false";
+    let masterVolume = Number.parseFloat(localStorage.getItem(STORAGE_VOLUME) || String(DEFAULT_VOLUME));
+    if (!Number.isFinite(masterVolume)) masterVolume = DEFAULT_VOLUME;
+
+    const multipliers = {
+        bgMusicPage: 1,
+        bgMusicArcade: 1.35,
+        bgMusicSecret: 1,
+        bgMusicChar: 0.9,
+        bgMusicSuddenDeath: 1.25,
+        bgMusicGameOver: 1.1
+    };
+
+    function getAudio(id) {
+        return document.getElementById(id);
+    }
+
+    function applyVolume() {
+        Object.entries(multipliers).forEach(([id, mult]) => {
+            const audio = getAudio(id);
+            if (audio) audio.volume = Math.min(masterVolume * mult, 1);
+        });
+    }
+
+    function updateButton(button) {
+        if (!button) return;
+        button.textContent = musicEnabled ? "\u266b" : "\u{1F507}";
+        button.classList.toggle("music-off", !musicEnabled);
+        button.setAttribute("aria-pressed", String(musicEnabled));
+    }
+
+    function pauseAudio(id, reset = false) {
+        const audio = getAudio(id);
+        if (!audio) return;
+        audio.pause();
+        if (reset) audio.currentTime = 0;
+    }
+
+    const manager = {
+        get volume() {
+            return masterVolume;
+        },
+
+        get enabled() {
+            return musicEnabled;
+        },
+
+        registerMultipliers(extraMultipliers) {
+            Object.assign(multipliers, extraMultipliers || {});
+            applyVolume();
+        },
+
+        setVolume(value) {
+            const parsed = Number.parseFloat(value);
+            if (!Number.isFinite(parsed)) return;
+            masterVolume = Math.max(0, Math.min(parsed, 1));
+            localStorage.setItem(STORAGE_VOLUME, String(masterVolume));
+            applyVolume();
+        },
+
+        playBg(id) {
+            if (!musicEnabled || !id) return;
+            const next = getAudio(id);
+            if (!next) return;
+
+            if (currentTrack && currentTrack !== id) {
+                pauseAudio(currentTrack, true);
+            }
+
+            currentTrack = id;
+            applyVolume();
+            next.play().catch(() => {});
+        },
+
+        pauseCurrent() {
+            if (currentTrack) pauseAudio(currentTrack, false);
+        },
+
+        resumeLobby() {
+            if (getAudio("bgMusicPage")) {
+                this.playBg("bgMusicPage");
+            }
+        },
+
+        muteAll() {
+            Object.keys(multipliers).forEach((id) => pauseAudio(id, false));
+        },
+
+        setEnabled(enabled) {
+            musicEnabled = Boolean(enabled);
+            localStorage.setItem(STORAGE_ENABLED, String(musicEnabled));
+            updateButton(document.getElementById("musicToggleBtn"));
+
+            if (!musicEnabled) {
+                this.muteAll();
+                return;
+            }
+
+            if (currentTrack && getAudio(currentTrack)) {
+                this.playBg(currentTrack);
+            } else if (getAudio("bgMusicPage")) {
+                this.playBg("bgMusicPage");
+            }
+        }
+    };
+
+    window.AudioManager = manager;
+    window.toggleMusic = function toggleMusic() {
+        manager.setEnabled(!manager.enabled);
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const slider = document.getElementById("pageVolumeSlider");
+        const button = document.getElementById("musicToggleBtn");
+
+        if (slider) {
+            slider.value = String(masterVolume);
+            slider.addEventListener("input", (event) => manager.setVolume(event.target.value));
+        }
+
+        updateButton(button);
+        applyVolume();
+
+        const defaultTrack = document.body.classList.contains("arcade-page") ? "bgMusicArcade" : "bgMusicPage";
+        const unlockAudio = () => {
+            if (musicEnabled && getAudio(defaultTrack)) {
+                manager.playBg(defaultTrack);
+            }
+            document.removeEventListener("click", unlockAudio, true);
+            document.removeEventListener("touchend", unlockAudio, true);
+            document.removeEventListener("keydown", unlockAudio, true);
+        };
+
+        document.addEventListener("click", unlockAudio, true);
+        document.addEventListener("touchend", unlockAudio, { capture: true, passive: true });
+        document.addEventListener("keydown", unlockAudio, true);
+    });
+})();

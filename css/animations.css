@@ -93,12 +93,6 @@
     100% { transform: scale(1); opacity: 1; }
 }
 
-/* Arcade button pulse */
-@keyframes arcade-btn-pulse {
-    0%, 100% { box-shadow: 4px 4px 0px rgba(0,0,0,0.8); }
-    50%       { box-shadow: 4px 4px 0px rgba(0,0,0,0.8), 0 0 14px rgba(0,255,255,0.55); }
-}
-
 /* Animation utility classes */
 .animate-in { opacity: 0; transform: translateY(40px); }
 body.page-loaded .animate-in {

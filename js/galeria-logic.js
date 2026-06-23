@@ -75,62 +75,12 @@ const carouselState = {
 
 document.addEventListener("DOMContentLoaded", () => {
     setupSidebarState();
-    setupGalleryMusic();
 
     if (document.querySelector(".gallery-main")) {
         seleccionarPersonaje("akane");
         setupGalleryModalKeyboard();
     }
 });
-
-// =====================================================
-// MUSICA DE FONDO EN GALERIA
-// =====================================================
-function setupGalleryMusic() {
-    const audio = document.getElementById("bgMusicPage");
-    const slider = document.getElementById("pageVolumeSlider");
-    const button = document.getElementById("musicToggleBtn");
-
-    if (!audio || !slider || !button) return;
-
-    let hasStarted = false;
-    let musicEnabled = true;
-
-    const applyVolume = () => {
-        audio.volume = Math.min(parseFloat(slider.value || "0.4"), 1);
-    };
-
-    const tryStartMusic = () => {
-        if (hasStarted || !musicEnabled) return;
-
-        audio.play().then(() => {
-            hasStarted = true;
-            document.removeEventListener("click", tryStartMusic, true);
-            document.removeEventListener("touchend", tryStartMusic, true);
-            document.removeEventListener("keydown", tryStartMusic, true);
-        }).catch(() => {});
-    };
-
-    window.toggleMusic = function toggleMusic() {
-        musicEnabled = !musicEnabled;
-
-        if (musicEnabled) {
-            button.textContent = "\u266b";
-            button.classList.remove("music-off");
-            tryStartMusic();
-        } else {
-            button.textContent = "\u{1F507}";
-            button.classList.add("music-off");
-            audio.pause();
-        }
-    };
-
-    applyVolume();
-    slider.addEventListener("input", applyVolume);
-    document.addEventListener("click", tryStartMusic, true);
-    document.addEventListener("touchend", tryStartMusic, { capture: true, passive: true });
-    document.addEventListener("keydown", tryStartMusic, true);
-}
 
 // =====================================================
 // BARRA LATERAL COLAPSABLE

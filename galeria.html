@@ -47,13 +47,13 @@
             <span class="cg-sidebar-icon cg-icon-gallery" aria-hidden="true"></span>
             <span class="cg-sidebar-label">Galer&iacute;a</span>
         </a>
-    </nav>
 
-    <div class="volume-control-wrapper gallery-volume-control" aria-label="Control de musica">
-        <button id="musicToggleBtn" title="Musica ON/OFF" onclick="toggleMusic()" aria-label="Activar o desactivar musica">&#9835;</button>
-        <span class="vol-icon" aria-hidden="true">&#128266;</span>
-        <input type="range" id="pageVolumeSlider" min="0" max="1" step="0.01" value="0.4" title="Control de Volumen" aria-label="Volumen de musica">
-    </div>
+        <div class="cg-sidebar-audio" aria-label="Control de musica">
+            <button id="musicToggleBtn" class="cg-audio-toggle" title="Musica ON/OFF" onclick="toggleMusic()" aria-label="Activar o desactivar musica" aria-pressed="true">&#9835;</button>
+            <label class="cg-audio-slider-label" for="pageVolumeSlider">VOL</label>
+            <input type="range" id="pageVolumeSlider" min="0" max="1" step="0.01" value="0.4" title="Control de Volumen" aria-label="Volumen de musica">
+        </div>
+    </nav>
 
     <!-- =========================================
          CONTENIDO PRINCIPAL
@@ -119,10 +119,6 @@
         </footer>
     </main>
 
-    <button class="arcade-trigger-btn gallery-arcade-trigger" onclick="window.location.href='minijuego.html'" title="Insert Coin...">
-        <img src="assets/arcade-controller.webp" alt="Arcade Controller">
-    </button>
-
     <!-- =========================================
          MODAL RETRO
          ========================================= -->
@@ -138,6 +134,7 @@
         </div>
     </div>
 
+    <script src="js/audio-global.js"></script>
     <script src="js/galeria-logic.js"></script>
 </body>
 </html>

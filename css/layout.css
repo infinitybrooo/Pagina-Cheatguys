@@ -89,13 +89,13 @@ body::after {
 
 /* Layout Media Queries */
 @media (max-width: 520px) {
-    .mitsuki-overlay { padding: 12px; align-items: flex-start; overflow-y: auto; }
-    .mitsuki-vn-box { width: 100%; margin-top: 16px; }
+    .mitsuki-overlay { padding: 10px; align-items: center; overflow-y: auto; }
+    .mitsuki-vn-box { width: 100%; margin: 0 auto; }
 }
 
 @media (max-width: 600px) {
     body {
-        padding: 32px clamp(66px, 18vw, 82px) 150px 12px;
+        padding: 32px 12px 150px;
     }
 
     .profile-container {
@@ -120,7 +120,7 @@ body::after {
     .links-container {
         width: min(100%, 450px);
         gap: 22px;
-        margin-bottom: 126px;
+        margin-bottom: 96px;
     }
 
     .bottom-art-container {

@@ -210,11 +210,6 @@ p.subtitle { font-family: 'VT323', monospace; color: #d3d3d3; font-size: 24px; m
 .secret-lore-text { font-size: 15px; line-height: 1.4; color: #ddd; background: rgba(0,0,0,0.5); padding: 15px; border: 1px dashed #666; text-align: left; width: 100%; }
 
 /* Arcade Components */
-.arcade-trigger-btn { position: fixed; bottom: 20px; right: 20px; z-index: 99999; width: 70px; height: 70px; border-radius: 8px; border: 3px solid var(--neon-cyan); background-color: #1a1a1a; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 4px 4px 0px rgba(0,0,0,0.8); transition: all 0.1s; outline: none; -webkit-tap-highlight-color: transparent; animation: arcade-btn-pulse 2.4s ease-in-out infinite; }
-.arcade-trigger-btn img { width: 50px; height: auto; filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5)); transition: 0.2s; }
-.arcade-trigger-btn:hover { transform: translateY(-5px); border-color: #fff; animation-play-state: paused; }
-.arcade-trigger-btn:hover img { filter: drop-shadow(0 0 8px var(--neon-cyan)); }
-.arcade-trigger-btn:active { transform: translate(4px, 4px); box-shadow: 0px 0px 0px transparent; }
 .arcade-close-master { position: fixed; top: 15px; right: 15px; background: #ff0044; color: #fff; border: 3px solid #fff; font-family: 'VT323', monospace; font-size: 22px; padding: 5px 15px; cursor: pointer; box-shadow: 4px 4px 0px rgba(0,0,0,0.8); transition: 0.1s; z-index: 100001; }
 .arcade-close-master:active { transform: translate(4px, 4px); box-shadow: 0px 0px 0px transparent; }
 .arcade-title { font-size: 48px; color: var(--neon-cyan); text-shadow: 4px 4px 0px var(--akane-color); margin-bottom: 20px; letter-spacing: 4px; line-height: 1; text-transform: uppercase;}
@@ -233,65 +228,8 @@ p.subtitle { font-family: 'VT323', monospace; color: #d3d3d3; font-size: 24px; m
 .m-btn-shoot { flex: 2; border-color: var(--akane-color); color: var(--akane-color); font-weight: bold;}
 .m-btn-shoot:active { background: var(--akane-color); color: #fff; }
 
-/* Volume Control */
-.volume-control-wrapper {
-    position: fixed;
-    right: 20px;
-    top: 50%;
-    transform: none;
-    translate: 0 -50%;
-    z-index: 99990;
-    background: rgba(17, 17, 17, 0.92);
-    border: 3px solid var(--akane-color);
-    border-radius: 8px;
-    padding: 14px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.82), 0 0 12px rgba(138, 43, 226, 0.42);
-    transition: border-color 0.15s, box-shadow 0.15s;
-    backdrop-filter: blur(4px);
-    box-sizing: border-box;
-}
-.volume-control-wrapper:hover { border-color: #fff; box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.82), 0 0 16px rgba(138, 43, 226, 0.58); }
-.vol-icon { font-size: 18px; filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5)); }
-#pageVolumeSlider {
-    -webkit-appearance: slider-vertical;
-    appearance: slider-vertical;
-    writing-mode: vertical-lr;
-    direction: rtl;
-    width: 7px;
-    height: 90px;
-    max-height: 90px;
-    display: block;
-    flex: 0 0 auto;
-    margin: 0;
-    cursor: pointer;
-    accent-color: var(--akane-color);
-}
-
 /* Component Media Queries */
 @media (max-width: 600px) {
-    #pageVolumeSlider {
-        height: 58px;
-        max-height: 58px;
-    }
-
-    #musicToggleBtn {
-        font-size: 24px;
-    }
-
-    .volume-control-wrapper {
-        right: 10px;
-        top: auto;
-        bottom: 112px;
-        translate: none;
-        transform: none;
-        padding: 9px 7px;
-        gap: 7px;
-    }
-
     .menu-box {
         padding: 16px;
         gap: 12px;
@@ -322,20 +260,9 @@ p.subtitle { font-family: 'VT323', monospace; color: #d3d3d3; font-size: 24px; m
         height: 62px;
     }
 
-    .arcade-trigger-btn {
-        right: 10px;
-        bottom: 14px;
-        width: 60px;
-        height: 60px;
-    }
-
-    .arcade-trigger-btn img {
-        width: 42px;
-    }
-
     .mitsuki-trigger-container {
         left: 8px;
-        bottom: 8px;
+        bottom: max(10px, env(safe-area-inset-bottom));
         width: 66px;
     }
 
@@ -346,6 +273,90 @@ p.subtitle { font-family: 'VT323', monospace; color: #d3d3d3; font-size: 24px; m
     .mitsuki-trigger-label {
         font-size: 12px;
         padding: 3px 2px;
+    }
+
+    .mitsuki-overlay {
+        padding: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mitsuki-vn-box {
+        width: min(100%, 430px);
+        max-height: calc(100dvh - 20px);
+        margin: 0 auto;
+    }
+
+    .mitsuki-close-btn {
+        top: 4px;
+        right: 4px;
+        font-size: 18px;
+        padding: 2px 9px;
+    }
+
+    .mitsuki-vn-screen {
+        max-height: calc(100dvh - 20px);
+        border-width: 3px;
+    }
+
+    .mitsuki-vn-header {
+        padding: 7px 46px 7px 10px;
+        gap: 8px;
+        font-size: 18px;
+        line-height: 1;
+    }
+
+    .mitsuki-illustration-container {
+        height: clamp(230px, 42dvh, 360px);
+    }
+
+    .mitsuki-illustration {
+        width: min(74%, 320px);
+        max-height: 104%;
+    }
+
+    .mitsuki-dialogue-box {
+        width: calc(100% - 18px);
+        margin: 9px;
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .mitsuki-portrait {
+        width: 68px;
+        height: 68px;
+        border-width: 2px;
+    }
+
+    .mitsuki-speaker {
+        font-size: 18px;
+    }
+
+    .mitsuki-text {
+        font-size: 15px;
+        line-height: 1.38;
+    }
+
+    .mitsuki-share-buttons {
+        justify-content: center;
+        gap: 9px;
+    }
+
+    .mitsuki-share-btn {
+        width: 48px;
+        height: 48px;
+    }
+
+    .mitsuki-share-btn img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .mitsuki-continue-btn {
+        width: calc(100% - 18px);
+        margin: 0 9px 10px;
+        font-size: 26px;
+        padding: 8px 12px;
     }
 }
 

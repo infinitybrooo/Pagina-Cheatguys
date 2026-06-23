@@ -1,77 +1,7 @@
         // =====================================================
-        // AUDIO MANAGER — Una sola pista de fondo a la vez.
-        // Cada contexto tiene su propia pista exclusiva.
-        // Lobby siempre reanuda desde donde se pausó.
+        // AUDIO MANAGER GLOBAL — controlado desde la barra lateral.
         // =====================================================
-        let hasMusicStarted = false;
-        let musicEnabled = true;
-
-        const AudioManager = {
-            _current: null,   // id de la pista actualmente activa
-            _cache: {},       // referencias DOM cacheadas
-
-            _el(id) {
-                if (!this._cache[id]) this._cache[id] = document.getElementById(id);
-                return this._cache[id];
-            },
-
-            // Multiplicadores de volumen por pista
-            _mult: {
-                bgMusicPage:        1.0,
-                bgMusicArcade:      1.4,
-                bgMusicSecret:      1.0,
-                bgMusicChar:        0.9,
-                bgMusicSuddenDeath: 1.3,
-                bgMusicGameOver:    1.2,
-            },
-
-            // Aplica volumen del slider × multiplicador de pista
-            setVolume(masterVol) {
-                for (const [id, mult] of Object.entries(this._mult)) {
-                    const el = this._el(id);
-                    if (el) el.volume = Math.min(masterVol * mult, 1.0);
-                }
-            },
-
-            // Detiene la pista anterior y arranca la nueva desde el principio
-            playBg(id) {
-                if (!musicEnabled) return;
-                if (this._current && this._current !== id) {
-                    const prev = this._el(this._current);
-                    if (prev) { prev.pause(); prev.currentTime = 0; }
-                }
-                this._current = id;
-                const el = this._el(id);
-                if (el) el.play().catch(() => {});
-            },
-
-            // Solo pausa sin resetear — para preservar posición del lobby
-            pauseCurrent() {
-                const el = this._el(this._current);
-                if (el) el.pause();
-            },
-
-            // Vuelve al lobby: detiene todo lo demás, reanuda bgMusicPage
-            // donde se quedó (no reinicia currentTime)
-            resumeLobby() {
-                if (!musicEnabled) return;
-                if (this._current && this._current !== 'bgMusicPage') {
-                    const prev = this._el(this._current);
-                    if (prev) { prev.pause(); prev.currentTime = 0; }
-                }
-                this._current = 'bgMusicPage';
-                const el = this._el('bgMusicPage');
-                if (el) el.play().catch(() => {});
-            },
-
-            // Silencia todo (toggle OFF)
-            muteAll() {
-                for (const id of Object.keys(this._mult)) {
-                    const el = this._el(id);
-                    if (el) el.pause();
-                }
-            }
-        };
+        const AudioManager = window.AudioManager;
 
         // =====================================================
         // UI FLOTANTE — Oculta botones/paneles externos mientras
@@ -98,47 +28,6 @@
 
         // Animación Inicial al Entrar
         document.addEventListener("DOMContentLoaded", () => {
-            const volSlider = document.getElementById('pageVolumeSlider');
-            const musicBtn  = document.getElementById('musicToggleBtn');
-
-            // Volumen inicial
-            AudioManager.setVolume(parseFloat(volSlider.value));
-
-            // Slider de volumen
-            volSlider.addEventListener('input', (e) => {
-                AudioManager.setVolume(parseFloat(e.target.value));
-            });
-
-            // Toggle música ON/OFF
-            window.toggleMusic = function() {
-                musicEnabled = !musicEnabled;
-                if (musicEnabled) {
-                    musicBtn.textContent = '🎵';
-                    musicBtn.classList.remove('music-off');
-                    if (hasMusicStarted) AudioManager.resumeLobby();
-                } else {
-                    musicBtn.textContent = '🔇';
-                    musicBtn.classList.add('music-off');
-                    AudioManager.muteAll();
-                }
-            };
-
-            // Desbloqueo de audio en primer gesto (bypass autoplay)
-            const tryStartMusic = () => {
-                if (!hasMusicStarted && musicEnabled) {
-                    AudioManager._el('bgMusicPage').play().then(() => {
-                        hasMusicStarted = true;
-                        AudioManager._current = 'bgMusicPage';
-                        document.removeEventListener('click',    tryStartMusic, true);
-                        document.removeEventListener('touchend', tryStartMusic, true);
-                        document.removeEventListener('keydown',  tryStartMusic, true);
-                    }).catch(() => {});
-                }
-            };
-            document.addEventListener('click',    tryStartMusic, true);
-            document.addEventListener('touchend', tryStartMusic, { capture: true, passive: true });
-            document.addEventListener('keydown',  tryStartMusic, true);
-
             document.body.style.overflow = 'hidden';
             showLoadingScreen(() => {
                 document.body.style.overflow = 'auto';
@@ -277,5 +166,3 @@
         }
         function viewSecretFile(i) { const data = secretData[i]; document.getElementById('secretFileList').style.display = 'none'; document.getElementById('secretViewerImg').src = data.url; document.getElementById('secretViewerDesc').innerHTML = data.desc; document.getElementById('secretViewer').style.display = 'flex'; }
         function backToSecretList() { document.getElementById('secretViewer').style.display = 'none'; document.getElementById('secretFileList').style.display = 'flex'; }
-
-

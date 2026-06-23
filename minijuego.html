@@ -46,12 +46,13 @@
             <span class="cg-sidebar-icon cg-icon-gallery" aria-hidden="true"></span>
             <span class="cg-sidebar-label">Galer&iacute;a</span>
         </a>
-    </nav>
 
-    <div class="arcade-volume-control">
-        <span class="arcade-volume-label">VOL</span>
-        <input type="range" id="arcadeVolumeSlider" min="0" max="1" step="0.01" value="0.45" title="Control de volumen arcade">
-    </div>
+        <div class="cg-sidebar-audio" aria-label="Control de musica">
+            <button id="musicToggleBtn" class="cg-audio-toggle" title="Musica ON/OFF" onclick="toggleMusic()" aria-label="Activar o desactivar musica" aria-pressed="true">&#9835;</button>
+            <label class="cg-audio-slider-label" for="pageVolumeSlider">VOL</label>
+            <input type="range" id="pageVolumeSlider" min="0" max="1" step="0.01" value="0.45" title="Control de Volumen" aria-label="Volumen de musica">
+        </div>
+    </nav>
 
     <div id="arcadeContainer" class="arcade-overlay">
         <button class="arcade-close-master" onclick="cerrarArcade()" title="Volver al lobby">[X]</button>
@@ -94,6 +95,7 @@
         </div>
     </div>
 
+    <script src="js/audio-global.js"></script>
     <script src="js/galeria-logic.js"></script>
     <script src="js/script.js"></script>
 </body>

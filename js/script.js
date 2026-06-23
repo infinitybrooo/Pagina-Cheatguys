@@ -47,16 +47,16 @@
         };
 
         function playArcadeBg(id) {
-            if (typeof AudioManager !== 'undefined') {
-                AudioManager.playBg(id);
+            if (window.AudioManager) {
+                window.AudioManager.playBg(id);
             } else {
                 localArcadeAudio.playBg(id);
             }
         }
 
         function exitArcadeAudio() {
-            if (typeof AudioManager !== 'undefined') {
-                AudioManager.resumeLobby();
+            if (window.AudioManager) {
+                window.AudioManager.resumeLobby();
             } else {
                 localArcadeAudio.stopAll();
             }
@@ -71,10 +71,10 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            const arcadeVolume = document.getElementById('arcadeVolumeSlider');
-            if (arcadeVolume) {
-                localArcadeAudio.setVolume(parseFloat(arcadeVolume.value));
-                arcadeVolume.addEventListener('input', (event) => {
+            const globalVolume = document.getElementById('pageVolumeSlider');
+            if (!window.AudioManager && globalVolume) {
+                localArcadeAudio.setVolume(parseFloat(globalVolume.value));
+                globalVolume.addEventListener('input', (event) => {
                     localArcadeAudio.setVolume(parseFloat(event.target.value));
                 });
             }
