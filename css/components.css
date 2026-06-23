@@ -150,7 +150,7 @@ p.subtitle { font-family: 'VT323', monospace; color: #d3d3d3; font-size: 24px; m
 .bottom-art:active { transform: scale(0.98); }
 
 /* Mitsuki Components */
-.mitsuki-trigger-container { position: fixed; left: 18px; bottom: 22px; z-index: 99999; display: flex; flex-direction: column; align-items: center; gap: 4px; width: 96px; margin: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.mitsuki-trigger-container { position: fixed; left: 10px; bottom: 10px; z-index: 99999; display: flex; flex-direction: column; align-items: center; gap: 4px; width: 80px; margin: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .mitsuki-trigger-btn { width: 78px; max-width: 65px; height: auto; image-rendering: pixelated; filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.8)); transition: transform 0.15s; -webkit-tap-highlight-color: transparent; animation: mitsuki-warn-pulse 2s ease-in-out infinite; box-sizing: border-box; }
 .mitsuki-trigger-btn:hover { transform: scale(1.08) rotate(-3deg); }
 .mitsuki-trigger-btn:active { transform: scale(0.95); }
@@ -237,17 +237,18 @@ p.subtitle { font-family: 'VT323', monospace; color: #d3d3d3; font-size: 24px; m
 .volume-control-wrapper {
     position: fixed;
     right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
+    bottom: 110px;
+    top: auto;
+    transform: none;
     z-index: 99999;
     background-color: rgba(26, 26, 26, 0.92);
     border: 3px solid var(--akane-color);
     border-radius: 12px;
-    padding: 14px 10px;
+    padding: 10px 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
     box-shadow: 4px 4px 0px rgba(0,0,0,0.8);
     transition: border-color 0.15s, box-shadow 0.15s;
     backdrop-filter: blur(4px);
@@ -273,8 +274,8 @@ p.subtitle { font-family: 'VT323', monospace; color: #d3d3d3; font-size: 24px; m
 
 /* Component Media Queries */
 @media (max-width: 600px) {
-    #pageVolumeSlider { height: 70px; }
-    .volume-control-wrapper { max-height: 120px; padding: 8px 6px; gap: 6px; }
+    #pageVolumeSlider { height: 50px; }
+    .volume-control-wrapper { max-height: 100px; padding: 6px 4px; gap: 4px; bottom: 90px; }
 }
 
 @media (max-width: 400px) {
