@@ -150,11 +150,11 @@ p.subtitle { font-family: 'VT323', monospace; color: #d3d3d3; font-size: 24px; m
 .bottom-art:active { transform: scale(0.98); }
 
 /* Mitsuki Components */
-.mitsuki-trigger-container { position: fixed; left: 10px; bottom: 10px; z-index: 99999; display: flex; flex-direction: column; align-items: center; gap: 4px; width: 80px; margin: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-.mitsuki-trigger-btn { width: 78px; max-width: 65px; height: auto; image-rendering: pixelated; filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.8)); transition: transform 0.15s; -webkit-tap-highlight-color: transparent; animation: mitsuki-warn-pulse 2s ease-in-out infinite; box-sizing: border-box; }
+.mitsuki-trigger-container { position: fixed; left: 10px; bottom: 10px; z-index: 99999; display: flex; flex-direction: column; align-items: center; gap: 4px; width: 72px; max-width: calc(100vw - 20px); margin: 0; cursor: pointer; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+.mitsuki-trigger-btn { display: block; width: 65px; max-width: 100%; height: auto; image-rendering: pixelated; filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.8)); transition: transform 0.15s; transform-origin: center bottom; -webkit-tap-highlight-color: transparent; animation: mitsuki-warn-pulse 2s ease-in-out infinite; box-sizing: border-box; }
 .mitsuki-trigger-btn:hover { transform: scale(1.08) rotate(-3deg); }
 .mitsuki-trigger-btn:active { transform: scale(0.95); }
-.mitsuki-trigger-label { display: block; width: 100%; font-family: 'VT323', monospace; font-size: 16px; line-height: 1; color: #fff; text-align: center; text-shadow: 2px 2px 0 #000, 0 0 8px #ff0044; background: rgba(5,0,10,0.88); border: 2px solid #ff0044; box-shadow: 3px 3px 0 rgba(0,0,0,0.85); padding: 4px 3px; }
+.mitsuki-trigger-label { display: block; width: 100%; box-sizing: border-box; font-family: 'VT323', monospace; font-size: 14px; line-height: 1; color: #fff; text-align: center; text-shadow: 2px 2px 0 #000, 0 0 8px #ff0044; background: rgba(5,0,10,0.88); border: 2px solid #ff0044; box-shadow: 3px 3px 0 rgba(0,0,0,0.85); padding: 4px 2px; overflow-wrap: break-word; }
 .mitsuki-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); background-image: linear-gradient(rgba(0,255,255,0.05) 2px, transparent 2px), linear-gradient(90deg, rgba(255,0,68,0.04) 2px, transparent 2px); background-size: 28px 28px; z-index: 100002; align-items: center; justify-content: center; padding: 18px; backdrop-filter: blur(5px); font-family: 'VT323', monospace; }
 .mitsuki-vn-box { position: relative; width: min(94vw, 760px); display: flex; flex-direction: column; align-items: center; animation: popIn 0.25s steps(5); }
 .mitsuki-close-btn { position: absolute; top: -12px; right: -12px; z-index: 3; }
@@ -252,7 +252,8 @@ p.subtitle { font-family: 'VT323', monospace; color: #d3d3d3; font-size: 24px; m
     box-shadow: 4px 4px 0px rgba(0,0,0,0.8);
     transition: border-color 0.15s, box-shadow 0.15s;
     backdrop-filter: blur(4px);
-    max-height: fit-content;
+    max-height: 140px;
+    box-sizing: border-box;
 }
 .volume-control-wrapper:hover { border-color: #fff; box-shadow: 0 0 12px rgba(138,43,226,0.5); }
 .vol-icon { font-size: 18px; filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5)); }
@@ -274,8 +275,33 @@ p.subtitle { font-family: 'VT323', monospace; color: #d3d3d3; font-size: 24px; m
 
 /* Component Media Queries */
 @media (max-width: 600px) {
-    #pageVolumeSlider { height: 50px; }
-    .volume-control-wrapper { max-height: 100px; padding: 6px 4px; gap: 4px; bottom: 90px; }
+    #pageVolumeSlider {
+        height: 70px;
+        max-height: 70px;
+    }
+
+    .volume-control-wrapper {
+        right: 10px;
+        bottom: 86px;
+        max-height: 118px;
+        padding: 6px 5px;
+        gap: 4px;
+    }
+
+    .mitsuki-trigger-container {
+        left: 8px;
+        bottom: 8px;
+        width: 66px;
+    }
+
+    .mitsuki-trigger-btn {
+        width: 60px;
+    }
+
+    .mitsuki-trigger-label {
+        font-size: 12px;
+        padding: 3px 2px;
+    }
 }
 
 @media (max-width: 400px) {
