@@ -1,0 +1,115 @@
+/* =========================================
+   LAYOUT & STRUCTURE
+   ========================================= */
+
+body {
+    background-color: #1a0033;
+    background-image: 
+        linear-gradient(rgba(138, 43, 226, 0.15) 3px, transparent 3px),
+        linear-gradient(90deg, rgba(138, 43, 226, 0.15) 3px, transparent 3px),
+        linear-gradient(to bottom, #05000a 0%, #05000a 20%, #0e001c 20%, #0e001c 40%, #17002e 40%, #17002e 60%, #1f0040 60%, #1f0040 80%, #280052 80%, #280052 100%);
+    background-size: 24px 24px, 24px 24px, 100% 100%;
+    background-attachment: fixed;
+    color: #ffffff;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    padding: 40px 20px;
+    margin: 0;
+    overflow-x: hidden;
+    animation: grid-breathe 8s ease-in-out infinite;
+}
+
+body::before {
+    content: ""; position: fixed; top: 0; left: 0; bottom: 0; right: 0;
+    background-image: url('../assets/fondo-akane.webp');
+    background-size: cover; background-position: center; opacity: 0.15; z-index: 1; pointer-events: none;
+    animation: bg-drift 14s ease-in-out infinite;
+}
+
+body::after {
+    content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%); background-size: 100% 4px; z-index: 999; pointer-events: none;
+}
+
+/* General Containers */
+.profile-container { margin-bottom: 40px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10; }
+.logos-wrapper { display: flex; align-items: center; justify-content: center; gap: 15px; width: 100%; max-width: 400px; margin-bottom: 15px; }
+.links-container { display: flex; flex-direction: column; gap: 30px; max-width: 450px; margin: 0 auto; position: relative; z-index: 10; }
+.bottom-art-container { width: 100%; max-width: 500px; margin: 40px auto 0; position: relative; z-index: 10; }
+.footer {
+    width: min(100%, 980px);
+    margin: 46px auto 0;
+    padding: 20px 18px;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    color: #9d9d9d;
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    line-height: 1.15;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.72);
+    border: 2px solid #333;
+    box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.75), inset 0 0 18px rgba(0, 255, 255, 0.08);
+}
+.footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-top: 1px solid rgba(0, 255, 255, 0.28);
+    background: linear-gradient(90deg, transparent, rgba(255, 105, 180, 0.12), transparent);
+    opacity: 0.7;
+}
+.footer p {
+    margin: 3px 0;
+    position: relative;
+    z-index: 1;
+}
+.footer-logo {
+    width: 120px;
+    height: auto;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 5px;
+    opacity: 0.74;
+    filter: drop-shadow(0 0 7px rgba(255, 255, 255, 0.18));
+}
+
+/* Arcade Layout */
+.arcade-overlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #05000a; background-image: linear-gradient(rgba(0, 255, 255, 0.05) 2px, transparent 2px), linear-gradient(90deg, rgba(0, 255, 255, 0.05) 2px, transparent 2px); background-size: 30px 30px; z-index: 100000; font-family: 'VT323', monospace; color: #fff; flex-direction: column; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.arcade-screen { display: none; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 100vh; text-align: center; padding: 60px 20px 40px 20px; }
+.arcade-screen.active { display: flex; }
+.arcade-game-container { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 450px;}
+.canvas-container { width: 100%; position: relative; }
+
+/* Layout Media Queries */
+@media (max-width: 520px) {
+    .mitsuki-overlay { padding: 12px; align-items: flex-start; overflow-y: auto; }
+    .mitsuki-vn-box { width: 100%; margin-top: 16px; }
+}
+
+@media (max-width: 600px) {
+    .modal-box { width: calc(100% - 20px); margin: 10px; }
+    .modal-body { flex-direction: column; align-items: center; text-align: center; padding: 15px; }
+}
+
+@media (max-width: 400px) {
+    .volume-control-wrapper { right: 10px; top: auto; bottom: 105px; transform: none; padding: 10px 8px; }
+}
+
+@media (max-width: 640px) {
+    .footer {
+        font-size: 16px;
+        padding: 16px 12px;
+        margin-top: 36px;
+    }
+
+    .footer-logo {
+        width: 100px;
+    }
+}

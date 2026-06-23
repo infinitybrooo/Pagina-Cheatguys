@@ -1,0 +1,21 @@
+/* =========================================
+   GLOBAL RESETS & VARIABLES
+   ========================================= */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+    --akane-color: #8A2BE2;
+    --rika-color: #FF4500;
+    --momo-color: #FF69B4;
+    --jun-color: #00BFFF;
+    --bg-color: #0a0a0c;
+    --spotify-color: #1DB954;
+    --yt-color: #FF0000;
+    --patreon-color: #FF424D;
+    --kofi-color: #13C3FF;
+    --paypal-color: #00457C;
+    --whatsapp-color: #25D366;
+    --discord-color: #5865F2;
+    --gold-color: #FFD700;
+    --neon-cyan: #00FFFF;
+}
