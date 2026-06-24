@@ -51,13 +51,14 @@
             document.getElementById('mitsukiShareWA').href = "https://api.whatsapp.com/send?text=" + textoCodificado;
             document.getElementById('mitsukiShareFB').href = "https://www.facebook.com/sharer/sharer.php?u=" + urlCodificada + "&quote=" + textoCodificado;
             document.getElementById('mitsukiShareX').href = "https://twitter.com/intent/tweet?text=" + textoCodificado;
+            document.getElementById('mitsukiShareDC').href = "https://discord.com/channels/@me";
         }
 
-        // Discord no tiene un link de "compartir" universal -> se copia el texto al portapapeles
-        function copiarParaDiscord() {
+        // Discord no tiene un link de compartir universal: se abre Discord y se copia el texto.
+        function compartirEnDiscord(event) {
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(MITSUKI_SHARE_TEXT)
-                    .then(() => showToast('¡Copiado para Discord!'))
+                    .then(() => showToast('¡Copiado para Discord! Pégalo en tu chat.'))
                     .catch(() => copiarParaDiscordFallback());
             } else {
                 copiarParaDiscordFallback();
@@ -74,12 +75,19 @@
             textarea.select();
             try {
                 document.execCommand('copy');
-                showToast('¡Copiado para Discord!');
+                showToast('¡Copiado para Discord! Pégalo en tu chat.');
             } catch (err) {
                 showToast('No se pudo copiar. Intenta manualmente.');
             }
             document.body.removeChild(textarea);
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const discordShare = document.getElementById('mitsukiShareDC');
+            if (discordShare) {
+                discordShare.addEventListener('click', compartirEnDiscord);
+            }
+        });
 
         function cerrarMitsuki(e) {
             if (e && e.target.id !== 'mitsukiOverlay') return;
