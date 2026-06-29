@@ -135,30 +135,47 @@ body.studio-info-page {
     font-size: 15px;
 }
 
-.studio-logo-card {
-    min-height: 420px;
+.studio-final {
+    display: block;
+}
+
+.studio-final-card {
+    display: grid;
+    grid-template-columns: minmax(230px, 0.62fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(24px, 5vw, 52px);
+    border-top-color: var(--info-purple);
+}
+
+.studio-final-logo {
+    position: relative;
+    min-height: 340px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: clamp(28px, 6vw, 58px);
-    background:
-        linear-gradient(rgba(255, 255, 255, 0.045) 2px, transparent 2px),
-        linear-gradient(90deg, rgba(0, 255, 255, 0.045) 2px, transparent 2px),
-        radial-gradient(circle at 50% 42%, rgba(0, 255, 255, 0.16), transparent 48%),
-        rgba(0, 0, 0, 0.84);
-    background-size: 22px 22px, 22px 22px, auto, auto;
-    cursor: zoom-in;
+    isolation: isolate;
 }
 
-.studio-logo-card img {
-    width: min(100%, 340px);
+.studio-final-logo::before {
+    content: "";
+    position: absolute;
+    inset: clamp(4px, 2vw, 18px);
+    z-index: -1;
+    background:
+        radial-gradient(circle at 50% 48%, rgba(176, 62, 255, 0.42), rgba(138, 43, 226, 0.16) 36%, transparent 68%);
+    filter: blur(10px);
+    opacity: 0.95;
+}
+
+.studio-final-logo img {
+    width: min(100%, 360px);
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 0 18px rgba(0, 255, 255, 0.34));
+    filter: drop-shadow(0 0 16px rgba(176, 62, 255, 0.42));
 }
 
-.studio-logo-card:hover img {
-    transform: scale(1.03);
+.studio-final-text {
+    min-width: 0;
 }
 
 .studio-final .info-final-copy h2 {
@@ -218,10 +235,18 @@ body.studio-info-page {
         aspect-ratio: 1 / 1;
     }
 
-    .studio-logo-card {
-        aspect-ratio: 1 / 1;
+    .studio-final-card {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .studio-final-logo {
         min-height: auto;
-        padding: 30px;
+        padding: 28px 12px 10px;
+    }
+
+    .studio-final-logo img {
+        width: min(100%, 280px);
     }
 
     .studio-avatar-copy,
