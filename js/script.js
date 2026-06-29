@@ -14,6 +14,18 @@
         }
 
         const ctx = canvas.getContext('2d');
+        const FRAME_MS = 1000 / 60;
+        const MAX_FRAME_DELTA = 2.4;
+        const SHOOT_SFX_POOL_SIZE = 5;
+        const SHOOT_SFX_MIN_INTERVAL = 38;
+        const SHOOT_SFX_BASE_VOLUME = 0.2;
+        const shootSfxPool = [];
+        let shootSfxIndex = 0;
+        let lastShootSfxTime = 0;
+
+        function chancePerFrame(baseChance, deltaFrames) {
+            return Math.random() < Math.min(baseChance * deltaFrames, 0.95);
+        }
 
         const localArcadeAudio = {
             _current: null,
@@ -62,6 +74,36 @@
             }
         }
 
+        function getCurrentArcadeVolume() {
+            const globalVolume = document.getElementById('pageVolumeSlider');
+            return globalVolume ? parseFloat(globalVolume.value || '0.45') : 0.45;
+        }
+
+        function initShootSfxPool() {
+            if (shootSfxPool.length) return;
+            const source = document.getElementById('arcadeShootSfx');
+            if (!source || !source.src) return;
+            for (let i = 0; i < SHOOT_SFX_POOL_SIZE; i++) {
+                const audio = i === 0 ? source : new Audio(source.src);
+                audio.preload = 'auto';
+                audio.volume = SHOOT_SFX_BASE_VOLUME * getCurrentArcadeVolume();
+                shootSfxPool.push(audio);
+            }
+        }
+
+        function playShootSfx() {
+            initShootSfxPool();
+            const now = performance.now();
+            if (!shootSfxPool.length || now - lastShootSfxTime < SHOOT_SFX_MIN_INTERVAL) return;
+            lastShootSfxTime = now;
+
+            const audio = shootSfxPool[shootSfxIndex];
+            shootSfxIndex = (shootSfxIndex + 1) % shootSfxPool.length;
+            audio.volume = SHOOT_SFX_BASE_VOLUME * getCurrentArcadeVolume();
+            audio.currentTime = 0;
+            audio.play().catch(() => {});
+        }
+
         function runArcadeLoading(callback) {
             if (typeof showLoadingScreen !== 'undefined' && document.getElementById('globalLoader')) {
                 showLoadingScreen(callback);
@@ -83,12 +125,14 @@
                 arcadeContainer.style.display = 'flex';
                 showScreen('start');
             }
+
+            bindMobileControls();
         });
 
         let animationId;
+        let lastFrameTime = 0;
         let isGameRunning = false;
         let score = 0;
-        let powerLevel = 1; 
         let waveCount = 0;
         let lives = 3;
         // Sudden Death: se activa al perder todas las vidas con power > 1
@@ -101,6 +145,26 @@
         let ufoTimer = 0;
         // Partículas de explosión
         let particles = [];
+        let powerUps = [];
+        let floatingTexts = [];
+        let stars = [];
+        let waveBanner = null;
+        let screenShake = 0;
+        let comboCount = 0;
+        let comboTimer = 0;
+        let shieldCharges = 0;
+        let powerDoubleTimer = 0;
+        let powerSlowTimer = 0;
+        let powerPierceTimer = 0;
+        const POINT_SHOT_STEP = 2000;
+        const MAX_POINT_SHOTS = 2;
+        const POWERUP_TYPES = [
+            { type: 'double', label: 'DOUBLE', color: '#FF69B4' },
+            { type: 'shield', label: 'SHIELD', color: '#00FFFF' },
+            { type: 'slow', label: 'SLOW', color: '#FFD700' },
+            { type: 'pierce', label: 'PIERCE', color: '#AA44FF' },
+            { type: 'heart', label: 'HEART', color: '#00FF99' }
+        ];
 
         // Nave de Akane
         const player = { x: 180, y: 460, width: 40, height: 15, speed: 5, color: '#8A2BE2', dx: 0 };
@@ -120,10 +184,79 @@
         // Puntos por fila: fila 0 (superior)=100, fila 1 (media)=20, fila 2+ (inferior)=10
         function puntajeEnemigo(enemy) {
             if (enemy.isUFO) return 500;
+            if (enemy.isMajorBoss) return 3000;
+            if (enemy.isBoss) return 1200;
+            if (enemy.isEscort) return 180;
             if (enemy.isRedShooter) return 150;
             if (enemy.row === 0) return 100;
             if (enemy.row === 1) return 20;
             return 10;
+        }
+
+        function overlap(a, b) {
+            return a.x < b.x + b.width && a.x + a.width > b.x &&
+                a.y < b.y + b.height && a.y + a.height > b.y;
+        }
+
+        function getEnemyY(enemy) {
+            return enemy.baseY + (enemy.yOffset || 0);
+        }
+
+        function getBaseShotCount() {
+            if (suddenDeath) return 1;
+            return Math.min(MAX_POINT_SHOTS, 1 + Math.floor(score / POINT_SHOT_STEP));
+        }
+
+        function getShotCount() {
+            const baseShots = getBaseShotCount();
+            return powerDoubleTimer > 0 && !suddenDeath ? Math.min(baseShots * 2, 4) : baseShots;
+        }
+
+        function getPowerUpDropChance(baseChance) {
+            if (suddenDeath) return 0;
+            const waveDropFactor = Math.max(0.24, 1 - Math.max(waveCount - 1, 0) * 0.045);
+            return baseChance * waveDropFactor;
+        }
+
+        function addFloatingText(text, x, y, color = '#FFFFFF', size = 18) {
+            floatingTexts.push({
+                text,
+                x,
+                y,
+                dy: -0.45,
+                life: 75,
+                color,
+                size
+            });
+        }
+
+        function showWaveBanner(text, color = '#00FFFF') {
+            waveBanner = { text, color, life: 150 };
+        }
+
+        function initStarfield() {
+            stars = [];
+            for (let i = 0; i < 54; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    speed: 0.18 + Math.random() * 0.65,
+                    size: Math.random() < 0.18 ? 2 : 1,
+                    color: Math.random() < 0.5 ? '#3D1A7A' : '#003F6B'
+                });
+            }
+        }
+
+        function refreshStatusLine(message) {
+            const statusLine = document.getElementById('arcadeStatusLine');
+            if (!statusLine) return;
+            let active = [];
+            if (powerDoubleTimer > 0) active.push('DOUBLE');
+            if (powerSlowTimer > 0) active.push('SLOW');
+            if (powerPierceTimer > 0) active.push('PIERCE');
+            if (shieldCharges > 0) active.push(`SHIELD x${shieldCharges}`);
+            if (comboCount > 1 && comboTimer > 0) active.push(`COMBO x${comboCount}`);
+            statusLine.innerText = message || `WAVE ${String(Math.max(waveCount, 1)).padStart(2, '0')} // ${active.length ? active.join(' // ') : 'READY'}`;
         }
 
         window.iniciarSecuenciaArcade = function() {
@@ -167,6 +300,7 @@
         }
 
         function iniciarJuegoArcade() {
+            detenerJuego();
             showScreen('game');
             resetGameData();
             crearOleada();
@@ -174,17 +308,24 @@
             document.addEventListener('keydown', handleKeyDown);
             document.addEventListener('keyup', handleKeyUp);
             isGameRunning = true;
-            loop();
+            lastFrameTime = 0;
+            animationId = requestAnimationFrame(loop);
         }
         window.iniciarJuegoArcade = iniciarJuegoArcade;
 
         function detenerJuego() {
             isGameRunning = false;
-            cancelAnimationFrame(animationId);
+            if (animationId) cancelAnimationFrame(animationId);
+            animationId = null;
+            lastFrameTime = 0;
             document.removeEventListener('keydown', handleKeyDown);
             document.removeEventListener('keyup', handleKeyUp);
             keys.ArrowLeft = false; keys.ArrowRight = false; keys.Space = false;
+            canShoot = true;
             touchLeft = false; touchRight = false;
+            document.querySelectorAll('[data-arcade-action].is-pressed').forEach((button) => {
+                button.classList.remove('is-pressed');
+            });
         }
 
         function gameOver() {
@@ -196,7 +337,6 @@
 
         function resetGameData() {
             score = 0;
-            powerLevel = 1;
             waveCount = 0;
             lives = 3;
             suddenDeath = false;
@@ -205,7 +345,19 @@
             ufo = null;
             ufoTimer = 0;
             particles = [];
+            powerUps = [];
+            floatingTexts = [];
+            waveBanner = null;
+            screenShake = 0;
+            comboCount = 0;
+            comboTimer = 0;
+            shieldCharges = 0;
+            powerDoubleTimer = 0;
+            powerSlowTimer = 0;
+            powerPierceTimer = 0;
+            initStarfield();
             actualizarScore();
+            refreshStatusLine('WAVE 01 // READY');
             player.x = canvas.width / 2 - player.width / 2;
             bullets = [];
             enemyBullets = [];
@@ -213,6 +365,81 @@
             barricadas = crearBarricadas();
             enemySpeed = 0.5;
             edgeCooldown = 0;
+            canShoot = true;
+        }
+
+        function createBossEnemy(isMajorBoss) {
+            const hp = isMajorBoss
+                ? 46 + Math.floor(waveCount / 15) * 10
+                : 16 + Math.floor(waveCount / 5) * 4;
+            const width = isMajorBoss ? 118 : 88;
+            const height = isMajorBoss ? 54 : 42;
+            return {
+                x: canvas.width / 2 - width / 2,
+                baseY: isMajorBoss ? 42 : 46,
+                yOffset: 0,
+                width,
+                height,
+                color: isMajorBoss ? '#6D17C8' : '#8A2BE2',
+                row: -2,
+                hp,
+                maxHp: hp,
+                isBoss: true,
+                isMajorBoss,
+                isRedShooter: false,
+                isUFO: false,
+                flashTimer: 0,
+                shootTimer: 0
+            };
+        }
+
+        function createBossEscort(homeX, homeY, color, row, index) {
+            return {
+                x: homeX,
+                baseY: homeY,
+                homeX,
+                homeY,
+                escortOffsetX: homeX + 14 - canvas.width / 2,
+                escortOffsetY: homeY - 42,
+                yOffset: 0,
+                width: 28,
+                height: 21,
+                color,
+                row,
+                isEscort: true,
+                isRedShooter: false,
+                isUFO: false,
+                flashTimer: 0,
+                diveCooldown: 80 + index * 28,
+                diveProgress: 0,
+                diveSeed: index * 1.3,
+                diveStartX: homeX,
+                diveStartY: homeY,
+                diveTargetX: homeX,
+                isDiving: false
+            };
+        }
+
+        function addMajorBossEscorts() {
+            const centerX = canvas.width / 2;
+            const escortRows = [
+                { y: 104, spread: 118, color: '#003080', row: 0 },
+                { y: 132, spread: 82, color: '#FF69B4', row: 1 },
+                { y: 160, spread: 128, color: '#FF4500', row: 2 }
+            ];
+            let index = 0;
+            escortRows.forEach((line) => {
+                [-1, 1].forEach((side) => {
+                    enemies.push(createBossEscort(
+                        centerX + side * line.spread - 14,
+                        line.y,
+                        line.color,
+                        line.row,
+                        index
+                    ));
+                    index++;
+                });
+            });
         }
 
         function crearOleada() {
@@ -221,6 +448,24 @@
             enemyBullets = [];
             ufo = null;
             particles = [];
+            powerUps = [];
+            const isMajorBossWave = waveCount > 1 && waveCount % 15 === 0;
+            const isBossWave = waveCount > 1 && waveCount % 5 === 0;
+            const isGlitchWave = !isBossWave && waveCount % 4 === 0;
+
+            if (isBossWave) {
+                enemies.push(createBossEnemy(isMajorBossWave));
+                if (isMajorBossWave) addMajorBossEscorts();
+                enemySpeed += isMajorBossWave ? 0.28 : 0.2;
+                enemyDirection = 1;
+                showWaveBanner(
+                    isMajorBossWave ? 'FULL BOSS // AKANE HAIR STORM' : 'BOSS WAVE // DEMONIO DEL ARCADE',
+                    isMajorBossWave ? '#AA44FF' : '#FF69B4'
+                );
+                refreshStatusLine(`WAVE ${String(waveCount).padStart(2, '0')} // ${isMajorBossWave ? 'FULL BOSS' : 'BOSS'}`);
+                return;
+            }
+
             const rows = 3;
             const cols = 6;
             const enemyWidth = 30;
@@ -230,7 +475,7 @@
             const offsetX = 28;
             const offsetY = 30;
 
-            let formationType = waveCount % 4;
+            let formationType = isGlitchWave ? 4 : waveCount % 4;
             let extraEnemies = Math.min(10, Math.floor(score / 1000));
             let totalAdded = 0;
 
@@ -238,7 +483,10 @@
                 for (let c = 0; c < cols; c++) {
                     let shouldAdd = true;
                     if (r < rows) {
-                        if (formationType === 2) {
+                        if (formationType === 4) {
+                            if (r === 1 && c % 2 === 0) shouldAdd = false;
+                            if (r === 2 && c % 2 !== 0) shouldAdd = false;
+                        } else if (formationType === 2) {
                             if ((r + c) % 2 !== 0) shouldAdd = false;
                         } else if (formationType === 3) {
                             if (r < Math.abs(c - 2.5) - 0.5) shouldAdd = false;
@@ -266,7 +514,8 @@
                             row: r,
                             isRedShooter: false,
                             isUFO: false,
-                            flashTimer: 0
+                            flashTimer: 0,
+                            isGlitch: isGlitchWave
                         });
                         totalAdded++;
                     }
@@ -295,8 +544,15 @@
             }
 
             enemySpeed += 0.15;
+            if (isGlitchWave) {
+                enemySpeed += 0.22;
+                showWaveBanner('GLITCH WAVE // MOVE FAST', '#00FFFF');
+            } else {
+                showWaveBanner(`WAVE ${String(waveCount).padStart(2, '0')}`, '#00FFFF');
+            }
             if (suddenDeath) enemySpeed *= 1.2;
             enemyDirection = 1;
+            refreshStatusLine(`WAVE ${String(waveCount).padStart(2, '0')} // ${isGlitchWave ? 'GLITCH' : 'READY'}`);
         }
 
         // --- BARRICADAS ---
@@ -368,12 +624,43 @@
             if(isGameRunning) disparar(); 
         }
 
+        function bindMobileControls() {
+            document.querySelectorAll('[data-arcade-action]').forEach((button) => {
+                const action = button.dataset.arcadeAction;
+
+                button.addEventListener('contextmenu', (event) => event.preventDefault());
+
+                button.addEventListener('pointerdown', (event) => {
+                    event.preventDefault();
+                    button.setPointerCapture?.(event.pointerId);
+                    button.classList.add('is-pressed');
+
+                    if (action === 'left') touchLeft = true;
+                    if (action === 'right') touchRight = true;
+                    if (action === 'shoot' && isGameRunning) disparar();
+                });
+
+                const release = (event) => {
+                    event.preventDefault();
+                    button.classList.remove('is-pressed');
+
+                    if (action === 'left') touchLeft = false;
+                    if (action === 'right') touchRight = false;
+                };
+
+                button.addEventListener('pointerup', release);
+                button.addEventListener('pointercancel', release);
+                button.addEventListener('lostpointercapture', () => {
+                    button.classList.remove('is-pressed');
+                    if (action === 'left') touchLeft = false;
+                    if (action === 'right') touchRight = false;
+                });
+            });
+        }
+
         function disparar() {
-            // Power extra: 1 cañón base, +1 por cada 2000 puntos
-            let numBullets = 1 + Math.floor(score / 2000);
-            if (numBullets > 4) numBullets = 4;
-            // En sudden death volvemos a 1 cañón
-            if (suddenDeath) numBullets = 1;
+            const numBullets = getShotCount();
+            playShootSfx();
             let spacing = 10;
             let startX = (player.x + player.width / 2) - ((numBullets - 1) * spacing) / 2;
             for (let i = 0; i < numBullets; i++) {
@@ -381,7 +668,8 @@
                     x: startX + (i * spacing) - 2, 
                     y: player.y, 
                     width: 4, height: 15, speed: 7, 
-                    color: '#FF69B4' 
+                    color: powerPierceTimer > 0 ? '#AA44FF' : '#FF69B4',
+                    pierce: powerPierceTimer > 0 ? 2 : 0
                 });
             }
         }
@@ -393,9 +681,9 @@
             // Si sudden death solo mostramos 1 corazon rojo parpadeante
             if (suddenDeath) {
                 const heartImg = document.createElement('img');
-                heartImg.className = 'heart-icon';
+                heartImg.className = 'heart-icon sudden-death-heart';
                 heartImg.src = 'assets/Corazon-Lleno.webp';
-                heartImg.style.filter = 'hue-rotate(180deg) drop-shadow(0 0 4px red)';
+                heartImg.style.filter = 'hue-rotate(180deg) saturate(1.8) drop-shadow(0 0 6px #ff1b4b)';
                 livesContainer.appendChild(heartImg);
             } else {
                 for (let i = 0; i < 3; i++) {
@@ -411,6 +699,16 @@
 
         function recibirDanio() {
             if (invulnerable) return;
+            if (shieldCharges > 0) {
+                shieldCharges--;
+                invulnerable = true;
+                invulnTimer = 75;
+                screenShake = 8;
+                spawnParticles(player.x + player.width / 2, player.y, '#00FFFF', 14);
+                addFloatingText('SHIELD SAVE', player.x + player.width / 2, player.y - 16, '#00FFFF', 18);
+                refreshStatusLine();
+                return;
+            }
             if (suddenDeath) {
                 // Sudden death: un golpe = game over
                 gameOver();
@@ -420,13 +718,18 @@
             actualizarScore();
             if (lives <= 0) {
                 // Si tenemos más de 1 cañón activamos sudden death
-                let cañonesActuales = 1 + Math.floor(score / 2000);
-                if (cañonesActuales > 4) cañonesActuales = 4;
+                let cañonesActuales = getBaseShotCount();
                 if (cañonesActuales > 1) {
                     // Activar sudden death: reemplaza música del arcade
                     suddenDeath = true;
+                    powerUps = [];
+                    powerDoubleTimer = 0;
+                    powerSlowTimer = 0;
+                    powerPierceTimer = 0;
+                    shieldCharges = 0;
                     enemySpeed *= 1.2;
                     playArcadeBg('bgMusicSuddenDeath');
+                    showWaveBanner('SUDDEN DEATH // NO MODS', '#FF4444');
                 } else {
                     gameOver();
                     return;
@@ -435,46 +738,188 @@
             // Invulnerabilidad 2 segundos (120 frames a 60fps)
             invulnerable = true;
             invulnTimer = 120;
+            comboCount = 0;
+            comboTimer = 0;
+            screenShake = 10;
+            refreshStatusLine();
         }
 
-        function update() {
+        function spawnPowerUp(x, y, forcedType) {
+            if (suddenDeath) return;
+            const config = forcedType
+                ? POWERUP_TYPES.find((item) => item.type === forcedType)
+                : POWERUP_TYPES[Math.floor(Math.random() * POWERUP_TYPES.length)];
+            if (!config) return;
+            powerUps.push({
+                x: x - 8,
+                y: y - 8,
+                width: 16,
+                height: 16,
+                speed: 1.35,
+                type: config.type,
+                label: config.label,
+                color: config.color,
+                spin: 0
+            });
+        }
+
+        function maybeSpawnPowerUp(x, y, chance = 0.13) {
+            const scaledChance = getPowerUpDropChance(chance);
+            if (scaledChance > 0 && Math.random() < scaledChance) spawnPowerUp(x, y);
+        }
+
+        function applyPowerUp(powerUp) {
+            if (powerUp.type === 'double') powerDoubleTimer = 620;
+            if (powerUp.type === 'slow') powerSlowTimer = 520;
+            if (powerUp.type === 'pierce') powerPierceTimer = 520;
+            if (powerUp.type === 'shield') shieldCharges = Math.min(shieldCharges + 1, 2);
+            if (powerUp.type === 'heart' && !suddenDeath) lives = Math.min(lives + 1, 3);
+
+            actualizarScore();
+            refreshStatusLine(`${powerUp.label} GET!`);
+            addFloatingText(powerUp.label, player.x + player.width / 2, player.y - 22, powerUp.color, 20);
+            spawnParticles(powerUp.x + powerUp.width / 2, powerUp.y + powerUp.height / 2, powerUp.color, 16);
+        }
+
+        function registerKill(enemy, pts, x, y) {
+            comboCount = comboTimer > 0 ? comboCount + 1 : 1;
+            comboTimer = 150;
+            const comboBonus = comboCount > 1 ? Math.min(comboCount * 5, 80) : 0;
+            score += pts + comboBonus;
+            actualizarScore();
+            addFloatingText(`+${pts + comboBonus}`, x, y, enemy.color || '#FFFFFF', 16);
+            if (comboCount > 1) {
+                addFloatingText(`COMBO x${comboCount}`, x, y - 15, '#00FFFF', 18);
+            }
+            screenShake = Math.min(10, 3 + comboCount);
+            refreshStatusLine();
+        }
+
+        function updateEscortMovement(enemy, index, deltaFrames, time) {
+            const majorBoss = enemies.find((item) => item.isMajorBoss);
+            if (majorBoss && !enemy.isDiving) {
+                enemy.homeX = majorBoss.x + majorBoss.width / 2 + enemy.escortOffsetX - enemy.width / 2;
+                enemy.homeY = majorBoss.baseY + enemy.escortOffsetY;
+            }
+
+            if (!enemy.isDiving) {
+                enemy.diveCooldown -= deltaFrames;
+                if (enemy.diveCooldown <= 0) {
+                    enemy.isDiving = true;
+                    enemy.diveProgress = 0;
+                    enemy.diveStartX = enemy.x;
+                    enemy.diveStartY = enemy.baseY;
+                    enemy.diveTargetX = player.x + player.width / 2 - enemy.width / 2;
+                }
+            }
+
+            if (enemy.isDiving) {
+                enemy.diveProgress += deltaFrames / 105;
+                const t = Math.min(enemy.diveProgress, 1);
+                const arc = Math.sin(t * Math.PI);
+                enemy.x = enemy.diveStartX + (enemy.diveTargetX - enemy.diveStartX) * t +
+                    Math.sin(t * Math.PI * 4 + enemy.diveSeed) * 34 * arc;
+                enemy.baseY = enemy.diveStartY + arc * 315;
+                enemy.yOffset = Math.sin(t * Math.PI * 5) * 8;
+
+                if (t >= 1) {
+                    enemy.isDiving = false;
+                    enemy.x = enemy.homeX;
+                    enemy.baseY = enemy.homeY;
+                    enemy.yOffset = 0;
+                    enemy.diveCooldown = 170 + Math.random() * 130;
+                }
+            } else {
+                enemy.x = enemy.homeX + Math.sin(time + enemy.diveSeed) * 10;
+                enemy.baseY = enemy.homeY + Math.cos(time * 1.2 + enemy.diveSeed) * 6;
+                enemy.yOffset = Math.sin(time * 1.8 + index) * 5;
+            }
+
+            if (enemy.x < 2) enemy.x = 2;
+            if (enemy.x + enemy.width > canvas.width - 2) enemy.x = canvas.width - enemy.width - 2;
+        }
+
+        function update(deltaFrames) {
+            const enemySpeedFactor = powerSlowTimer > 0 ? 0.55 : 1;
+
             if (keys.ArrowLeft || touchLeft) player.dx = -player.speed;
             else if (keys.ArrowRight || touchRight) player.dx = player.speed;
             else player.dx = 0;
 
-            player.x += player.dx;
+            player.x += player.dx * deltaFrames;
             if (player.x < 0) player.x = 0;
             if (player.x + player.width > canvas.width) player.x = canvas.width - player.width;
 
             // Invulnerabilidad
             if (invulnerable) {
-                invulnTimer--;
+                invulnTimer -= deltaFrames;
                 if (invulnTimer <= 0) invulnerable = false;
             }
 
+            if (powerDoubleTimer > 0) powerDoubleTimer = Math.max(0, powerDoubleTimer - deltaFrames);
+            if (powerSlowTimer > 0) powerSlowTimer = Math.max(0, powerSlowTimer - deltaFrames);
+            if (powerPierceTimer > 0) powerPierceTimer = Math.max(0, powerPierceTimer - deltaFrames);
+            if (comboTimer > 0) {
+                comboTimer = Math.max(0, comboTimer - deltaFrames);
+                if (comboTimer === 0) comboCount = 0;
+            }
+            if (waveBanner) {
+                waveBanner.life -= deltaFrames;
+                if (waveBanner.life <= 0) waveBanner = null;
+            }
+            if (screenShake > 0) screenShake = Math.max(0, screenShake - deltaFrames);
+
             // Balas del jugador
             for (let i = bullets.length - 1; i >= 0; i--) {
-                bullets[i].y -= bullets[i].speed;
+                bullets[i].y -= bullets[i].speed * deltaFrames;
                 if (bullets[i].y < 0) bullets.splice(i, 1);
             }
 
             // UFO: spawn periódico
-            ufoTimer++;
+            ufoTimer += deltaFrames;
             let ufoInterval = score >= 2000 ? 420 : 600; // aparece más seguido con puntuación alta
             if (!ufo && ufoTimer >= ufoInterval) {
                 ufoTimer = 0;
                 ufo = { x: -40, y: 18, width: 38, height: 16, speed: 2.2, color: '#FFD700', isUFO: true, row: -1, isRedShooter: false, flashTimer: 0, baseY: 18, yOffset: 0 };
             }
             if (ufo) {
-                ufo.x += ufo.speed;
+                ufo.x += ufo.speed * deltaFrames;
                 if (ufo.x > canvas.width + 50) ufo = null;
             }
 
             // Disparo de enemigos rojos Y naranjas
             for (let i = 0; i < enemies.length; i++) {
                 let enemy = enemies[i];
+                if (enemy.isBoss) {
+                    enemy.shootTimer += deltaFrames;
+                    if (enemy.shootTimer >= (enemy.isMajorBoss ? 54 : 62)) {
+                        enemy.shootTimer = 0;
+                        const offsets = enemy.isMajorBoss ? [-32, -12, 12, 32] : [-18, 0, 18];
+                        offsets.forEach((offset) => {
+                            enemyBullets.push({
+                                x: enemy.x + enemy.width / 2 + offset - 2,
+                                y: getEnemyY(enemy) + enemy.height,
+                                width: 4,
+                                height: enemy.isMajorBoss ? 13 : 11,
+                                speed: enemy.isMajorBoss ? 3.5 : 3.2,
+                                color: '#AA44FF'
+                            });
+                        });
+                    }
+                }
+                if (enemy.isEscort && chancePerFrame(enemy.isDiving ? 0.008 : 0.003, deltaFrames)) {
+                    let realY = enemy.baseY + enemy.yOffset;
+                    enemyBullets.push({
+                        x: enemy.x + enemy.width / 2 - 2,
+                        y: realY + enemy.height,
+                        width: 4,
+                        height: 9,
+                        speed: enemy.isDiving ? 4.5 : 3.5,
+                        color: enemy.color
+                    });
+                }
                 // Rojos: disparan más seguido desde 2000 pts
-                if (enemy.isRedShooter && score >= 2000 && Math.random() < 0.004) {
+                if (enemy.isRedShooter && score >= 2000 && chancePerFrame(0.004, deltaFrames)) {
                     let realY = enemy.baseY + enemy.yOffset;
                     enemyBullets.push({
                         x: enemy.x + enemy.width / 2 - 2,
@@ -483,7 +928,7 @@
                     });
                 }
                 // Naranjas (fila inferior, row>=2): disparan esporádicamente siempre
-                if (!enemy.isRedShooter && enemy.row >= 2 && Math.random() < 0.002) {
+                if (!enemy.isRedShooter && enemy.row >= 2 && chancePerFrame(0.002, deltaFrames)) {
                     let realY = enemy.baseY + enemy.yOffset;
                     enemyBullets.push({
                         x: enemy.x + enemy.width / 2 - 2,
@@ -491,13 +936,29 @@
                         width: 3, height: 8, speed: 3, color: '#FF8C00'
                     });
                 }
-                if (enemy.flashTimer > 0) enemy.flashTimer--;
+                if (enemy.flashTimer > 0) enemy.flashTimer -= deltaFrames;
+            }
+
+            // Power-ups
+            const playerBox = { x: player.x - 8, y: player.y - 6, width: player.width + 16, height: player.height + 16 };
+            for (let i = powerUps.length - 1; i >= 0; i--) {
+                const powerUp = powerUps[i];
+                powerUp.y += powerUp.speed * deltaFrames;
+                powerUp.spin += 0.12 * deltaFrames;
+                if (powerUp.y > canvas.height + 20) {
+                    powerUps.splice(i, 1);
+                    continue;
+                }
+                if (overlap(powerUp, playerBox)) {
+                    applyPowerUp(powerUp);
+                    powerUps.splice(i, 1);
+                }
             }
 
             // Balas enemigas vs Jugador y Barricadas
             for (let i = enemyBullets.length - 1; i >= 0; i--) {
                 let bullet = enemyBullets[i];
-                bullet.y += bullet.speed;
+                bullet.y += bullet.speed * deltaFrames;
                 if (bullet.y > canvas.height) {
                     enemyBullets.splice(i, 1); continue;
                 }
@@ -533,12 +994,31 @@
             let time = Date.now() / 200;
             let isChaosMode = score >= 1000;
 
-            if (edgeCooldown > 0) edgeCooldown--;
+            if (edgeCooldown > 0) edgeCooldown = Math.max(0, edgeCooldown - deltaFrames);
 
             for (let i = 0; i < enemies.length; i++) {
                 let enemy = enemies[i];
-                enemy.x += enemySpeed * enemyDirection;
-                enemy.yOffset = isChaosMode ? Math.sin(time + i * 0.7) * 12 : 0;
+                if (enemy.isEscort) {
+                    updateEscortMovement(enemy, i, deltaFrames, time);
+                    if (enemy.isDiving && !invulnerable && overlap({
+                        x: enemy.x,
+                        y: getEnemyY(enemy),
+                        width: enemy.width,
+                        height: enemy.height
+                    }, player)) {
+                        spawnParticles(enemy.x + enemy.width / 2, getEnemyY(enemy) + enemy.height / 2, enemy.color, 18);
+                        enemies.splice(i, 1);
+                        i--;
+                        recibirDanio();
+                        if (!isGameRunning) return;
+                    }
+                    continue;
+                }
+
+                enemy.x += enemySpeed * enemyDirection * deltaFrames * enemySpeedFactor;
+                enemy.yOffset = isChaosMode || enemy.isGlitch
+                    ? Math.sin(time + i * (enemy.isBoss ? 0.3 : 0.7)) * (enemy.isBoss ? 8 : 12)
+                    : 0;
                 // Solo permitimos detectar un nuevo "toque de borde" si el cooldown
                 // ya expiró; esto evita que el overshoot del frame anterior
                 // dispare una segunda inversión consecutiva (causaba el "tirón").
@@ -551,11 +1031,12 @@
                 enemyDirection *= -1;
                 edgeCooldown = 12; // ~0.2s a 60fps: tiempo mínimo antes de poder invertir de nuevo
                 for (let i = 0; i < enemies.length; i++) {
+                    if (enemies[i].isEscort) continue;
                     // Clamp: corrige el overshoot para que ninguna nave quede
                     // fuera de los límites del canvas tras la inversión
                     if (enemies[i].x < 0) enemies[i].x = 0;
                     if (enemies[i].x + enemies[i].width > canvas.width) enemies[i].x = canvas.width - enemies[i].width;
-                    enemies[i].baseY += 18;
+                    enemies[i].baseY += enemies[i].isBoss ? 10 : 18;
                     if (enemies[i].baseY + enemies[i].yOffset + enemies[i].height >= player.y) {
                         gameOver();
                         return;
@@ -590,10 +1071,11 @@
                     if (bullet.x < ufo.x + ufo.width && bullet.x + bullet.width > ufo.x &&
                         bullet.y < ufo.y + ufo.height && bullet.y + bullet.height > ufo.y) {
                         spawnParticles(ufo.x + ufo.width/2, ufo.y + ufo.height/2, '#FFD700', 16);
-                        score += 500;
-                        actualizarScore();
+                        registerKill(ufo, 500, ufo.x + ufo.width / 2, ufo.y + ufo.height / 2);
+                        maybeSpawnPowerUp(ufo.x + ufo.width / 2, ufo.y + ufo.height / 2, 0.45);
                         ufo = null;
-                        bullets.splice(bi, 1);
+                        if (bullet.pierce > 0) bullet.pierce--;
+                        else bullets.splice(bi, 1);
                         hit = true;
                     }
                 }
@@ -605,10 +1087,31 @@
                     if (bullet.x < enemy.x + enemy.width && bullet.x + bullet.width > enemy.x &&
                         bullet.y < realY + enemy.height && bullet.y + bullet.height > realY) {
                         
-                        bullets.splice(bi, 1);
                         let pts = puntajeEnemigo(enemy);
-                        score += pts;
-                        actualizarScore();
+                        const hitX = enemy.x + enemy.width / 2;
+                        const hitY = enemy.baseY + enemy.yOffset + enemy.height / 2;
+
+                        if (bullet.pierce > 0) bullet.pierce--;
+                        else bullets.splice(bi, 1);
+
+                        if (enemy.isBoss) {
+                            enemy.hp--;
+                            enemy.flashTimer = 8;
+                            spawnParticles(hitX, hitY, '#AA44FF', 5);
+                            addFloatingText('HIT', hitX, hitY - 10, '#AA44FF', 14);
+                            if (enemy.hp > 0) {
+                                hit = true;
+                                break;
+                            }
+                            registerKill(enemy, pts, hitX, hitY);
+                            spawnParticles(hitX, hitY, '#FF69B4', 34);
+                            spawnPowerUp(hitX - 20, hitY, 'shield');
+                            spawnPowerUp(hitX + 20, hitY, 'double');
+                            enemies.splice(ei, 1);
+                            hit = true;
+                            break;
+                        }
+                        registerKill(enemy, pts, hitX, hitY);
 
                         // Si es nave roja: explotar a los enemigos cercanos
                         if (enemy.isRedShooter) {
@@ -622,10 +1125,10 @@
                                 let ocx = other.x + other.width / 2;
                                 let ocy = other.baseY + other.yOffset + other.height / 2;
                                 let dist = Math.sqrt((cx-ocx)**2 + (cy-ocy)**2);
-                                if (dist < 65) {
-                                    score += puntajeEnemigo(other);
-                                    actualizarScore();
+                                if (!other.isBoss && dist < 65) {
+                                    registerKill(other, puntajeEnemigo(other), ocx, ocy);
                                     spawnParticles(ocx, ocy, other.color, 8);
+                                    maybeSpawnPowerUp(ocx, ocy, 0.08);
                                     enemies.splice(k, 1);
                                     if (k < ei) ei--;
                                 }
@@ -633,6 +1136,7 @@
                         } else {
                             spawnParticles(enemy.x + enemy.width/2, enemy.baseY + enemy.yOffset + enemy.height/2, enemy.color, 8);
                         }
+                        maybeSpawnPowerUp(hitX, hitY, enemy.isGlitch ? 0.22 : 0.12);
                         enemies.splice(ei, 1);
                         hit = true;
                         break;
@@ -643,14 +1147,31 @@
             // Actualizar partículas
             for (let i = particles.length - 1; i >= 0; i--) {
                 let p = particles[i];
-                p.x += p.dx;
-                p.y += p.dy;
-                p.dy += 0.1; // gravedad suave
-                p.life--;
+                p.x += p.dx * deltaFrames;
+                p.y += p.dy * deltaFrames;
+                p.dy += 0.1 * deltaFrames; // gravedad suave
+                p.life -= deltaFrames;
                 if (p.life <= 0) particles.splice(i, 1);
             }
 
+            for (let i = floatingTexts.length - 1; i >= 0; i--) {
+                const item = floatingTexts[i];
+                item.y += item.dy * deltaFrames;
+                item.life -= deltaFrames;
+                if (item.life <= 0) floatingTexts.splice(i, 1);
+            }
+
+            for (let i = 0; i < stars.length; i++) {
+                const star = stars[i];
+                star.y += star.speed * deltaFrames * (powerSlowTimer > 0 ? 0.45 : 1);
+                if (star.y > canvas.height) {
+                    star.y = -4;
+                    star.x = Math.random() * canvas.width;
+                }
+            }
+
             if (enemies.length === 0) { crearOleada(); }
+            refreshStatusLine();
         }
 
         // Dibuja una nave enemiga pixel-art según su tipo
@@ -662,7 +1183,54 @@
             let c = (enemy.flashTimer > 0 && enemy.flashTimer % 4 < 2) ? '#FFFFFF' : enemy.color;
             let cx = ex + w/2;
 
-            if (enemy.isRedShooter) {
+            if (enemy.isBoss) {
+                const pulse = 0.5 + 0.5 * Math.sin(Date.now() / 120);
+                ctx.fillStyle = `rgba(138, 43, 226, ${0.18 + pulse * 0.14})`;
+                ctx.beginPath();
+                ctx.ellipse(cx, ey + h / 2, w * 0.62, h * 0.72, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                const tailWidth = enemy.isMajorBoss ? 14 : 10;
+                const tailHeight = enemy.isMajorBoss ? h - 12 : h - 15;
+                ctx.fillStyle = '#2A083F';
+                ctx.fillRect(ex, ey + 8, tailWidth + 3, tailHeight + 3);
+                ctx.fillRect(ex + w - tailWidth - 3, ey + 8, tailWidth + 3, tailHeight + 3);
+                ctx.fillStyle = enemy.isMajorBoss ? '#C047FF' : '#AA44FF';
+                ctx.fillRect(ex + 2, ey + 6, tailWidth, tailHeight);
+                ctx.fillRect(ex + w - tailWidth - 2, ey + 6, tailWidth, tailHeight);
+                ctx.fillStyle = '#5E1AA8';
+                ctx.fillRect(ex + 2, ey + 6 + tailHeight - 7, tailWidth, 7);
+                ctx.fillRect(ex + w - tailWidth - 2, ey + 6 + tailHeight - 7, tailWidth, 7);
+
+                ctx.fillStyle = c;
+                ctx.fillRect(ex + 16, ey + 12, w - 32, h - 12);
+                ctx.fillRect(ex + 7, ey + 20, 14, 13);
+                ctx.fillRect(ex + w - 21, ey + 20, 14, 13);
+                ctx.beginPath();
+                ctx.moveTo(cx, ey);
+                ctx.lineTo(ex + w - 14, ey + 16);
+                ctx.lineTo(ex + 14, ey + 16);
+                ctx.closePath();
+                ctx.fill();
+
+                ctx.font = `bold ${enemy.isMajorBoss ? 18 : 15}px VT323, monospace`;
+                ctx.textAlign = 'center';
+                ctx.fillStyle = '#00B7FF';
+                ctx.shadowColor = '#00B7FF';
+                ctx.shadowBlur = 8;
+                ctx.fillText('>///<', cx, ey + (enemy.isMajorBoss ? 34 : 31));
+                ctx.shadowBlur = 0;
+                ctx.textAlign = 'left';
+
+                const hpRatio = Math.max(enemy.hp, 0) / enemy.maxHp;
+                ctx.fillStyle = 'rgba(0,0,0,0.72)';
+                ctx.fillRect(ex, ey - 10, w, 5);
+                ctx.fillStyle = '#FF69B4';
+                ctx.fillRect(ex, ey - 10, w * hpRatio, 5);
+                ctx.strokeStyle = '#FFFFFF';
+                ctx.lineWidth = 1;
+                ctx.strokeRect(ex + 0.5, ey - 9.5, w - 1, 4);
+            } else if (enemy.isRedShooter) {
                 // Nave roja: forma de diamante agresivo con llama
                 ctx.fillStyle = c;
                 // Cuerpo central
@@ -745,9 +1313,100 @@
             }
         }
 
-        function draw() {
+        function drawArcadeBackground() {
             ctx.fillStyle = '#000000';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            stars.forEach((star) => {
+                ctx.fillStyle = star.color;
+                ctx.globalAlpha = 0.5 + Math.sin((Date.now() / 300) + star.x) * 0.2;
+                ctx.fillRect(Math.floor(star.x), Math.floor(star.y), star.size, star.size);
+            });
+            ctx.globalAlpha = 1;
+
+            const gridOffset = (Date.now() / 45) % 28;
+            ctx.strokeStyle = 'rgba(138, 43, 226, 0.12)';
+            ctx.lineWidth = 1;
+            for (let y = 90 + gridOffset; y < canvas.height; y += 28) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+            for (let x = 20; x < canvas.width; x += 36) {
+                ctx.beginPath();
+                ctx.moveTo(x, 100);
+                ctx.lineTo(x + 34, canvas.height);
+                ctx.stroke();
+            }
+
+            const glow = 0.25 + 0.14 * Math.sin(Date.now() / 500);
+            ctx.fillStyle = `rgba(0, 255, 255, ${glow})`;
+            ctx.fillRect(0, canvas.height - 3, canvas.width, 1);
+        }
+
+        function drawPowerUp(powerUp) {
+            const px = Math.floor(powerUp.x);
+            const py = Math.floor(powerUp.y);
+            const bob = Math.sin(powerUp.spin) * 2;
+            ctx.fillStyle = 'rgba(0,0,0,0.66)';
+            ctx.fillRect(px - 2, py + bob - 2, powerUp.width + 4, powerUp.height + 4);
+            ctx.strokeStyle = powerUp.color;
+            ctx.lineWidth = 2;
+            ctx.strokeRect(px - 2.5, py + bob - 2.5, powerUp.width + 5, powerUp.height + 5);
+            ctx.fillStyle = powerUp.color;
+            ctx.fillRect(px + 3, py + bob + 3, 10, 10);
+            ctx.fillStyle = '#05000a';
+            ctx.font = 'bold 10px VT323, monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText(powerUp.label[0], px + 8, py + bob + 12);
+            ctx.textAlign = 'left';
+        }
+
+        function drawFloatingTexts() {
+            floatingTexts.forEach((item) => {
+                ctx.globalAlpha = Math.max(item.life / 75, 0);
+                ctx.font = `bold ${item.size}px VT323, monospace`;
+                ctx.textAlign = 'center';
+                ctx.fillStyle = item.color;
+                ctx.shadowColor = item.color;
+                ctx.shadowBlur = 8;
+                ctx.fillText(item.text, item.x, item.y);
+                ctx.shadowBlur = 0;
+            });
+            ctx.globalAlpha = 1;
+            ctx.textAlign = 'left';
+        }
+
+        function drawWaveBanner() {
+            if (!waveBanner) return;
+            const alpha = Math.min(1, waveBanner.life / 35);
+            ctx.globalAlpha = alpha;
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.72)';
+            ctx.fillRect(28, 216, canvas.width - 56, 42);
+            ctx.strokeStyle = waveBanner.color;
+            ctx.lineWidth = 2;
+            ctx.strokeRect(31, 219, canvas.width - 62, 36);
+            ctx.font = 'bold 23px VT323, monospace';
+            ctx.textAlign = 'center';
+            ctx.fillStyle = waveBanner.color;
+            ctx.shadowColor = waveBanner.color;
+            ctx.shadowBlur = 10;
+            ctx.fillText(waveBanner.text, canvas.width / 2, 244);
+            ctx.shadowBlur = 0;
+            ctx.textAlign = 'left';
+            ctx.globalAlpha = 1;
+        }
+
+        function draw() {
+            ctx.save();
+            if (screenShake > 0) {
+                const shakeX = (Math.random() - 0.5) * screenShake;
+                const shakeY = (Math.random() - 0.5) * screenShake;
+                ctx.translate(shakeX, shakeY);
+            }
+
+            drawArcadeBackground();
 
             // --- SUDDEN DEATH: fondo rojo pulsante ---
             if (suddenDeath) {
@@ -790,6 +1449,26 @@
             // --- NAVE DE AKANE ---
             let drawPlayer = !invulnerable || (Math.floor(invulnTimer / 5) % 2 === 0);
             if (drawPlayer) {
+                if (suddenDeath) {
+                    const dangerPulse = 0.5 + 0.5 * Math.sin(Date.now() / 95);
+                    ctx.strokeStyle = `rgba(255, 28, 76, ${0.55 + dangerPulse * 0.35})`;
+                    ctx.lineWidth = 2;
+                    ctx.shadowColor = '#FF1B4B';
+                    ctx.shadowBlur = 16;
+                    ctx.strokeRect(player.x - 13 - dangerPulse * 3, player.y - 12 - dangerPulse * 3, player.width + 26 + dangerPulse * 6, player.height + 25 + dangerPulse * 6);
+                    ctx.shadowBlur = 0;
+                }
+
+                if (shieldCharges > 0) {
+                    const radiusPulse = 1.5 + Math.sin(Date.now() / 110) * 1.5;
+                    ctx.strokeStyle = '#00FFFF';
+                    ctx.lineWidth = 2;
+                    ctx.shadowColor = '#00FFFF';
+                    ctx.shadowBlur = 12;
+                    ctx.strokeRect(player.x - 10 - radiusPulse, player.y - 8 - radiusPulse, player.width + 20 + radiusPulse * 2, player.height + 18 + radiusPulse * 2);
+                    ctx.shadowBlur = 0;
+                }
+
                 ctx.fillStyle = player.color;
                 // Cuerpo principal
                 ctx.fillRect(player.x + 5, player.y + 4, player.width - 10, player.height - 4);
@@ -812,7 +1491,7 @@
                 ctx.fillRect(player.x + player.width/2 - 4, player.y + 4, 8, 5);
 
                 // Cañones según nivel de disparo
-                let numBullets = suddenDeath ? 1 : Math.min(4, 1 + Math.floor(score / 2000));
+                let numBullets = getShotCount();
                 ctx.fillStyle = '#FFF';
                 if (numBullets === 1) {
                     ctx.fillRect(player.x + player.width/2 - 3, player.y - 4, 6, 5);
@@ -842,6 +1521,9 @@
                 ctx.fillStyle = bullet.color;
                 ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
             });
+
+            // --- POWER-UPS ---
+            powerUps.forEach(drawPowerUp);
 
             // --- BARRICADAS ---
             barricadas.forEach(blk => {
@@ -873,11 +1555,19 @@
                 ctx.fillRect(p.x - p.size/2, p.y - p.size/2, p.size, p.size);
             });
             ctx.globalAlpha = 1;
+
+            drawFloatingTexts();
+            drawWaveBanner();
+            ctx.restore();
         }
 
-        function loop() {
+        function loop(timestamp) {
             if (!isGameRunning) return;
-            update();
+            if (!lastFrameTime) lastFrameTime = timestamp;
+            const deltaFrames = Math.min((timestamp - lastFrameTime) / FRAME_MS, MAX_FRAME_DELTA);
+            lastFrameTime = timestamp;
+
+            update(deltaFrames || 1);
             draw();
             animationId = requestAnimationFrame(loop);
         }

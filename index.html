@@ -16,14 +16,14 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://cheatguysinfinity.netlify.app/">
     <meta property="og:title" content="CheatGuys! - Multiplayer Lobby">
-    <meta property="og:description" content="¡Rompí la página de CheatGuys! por andar de curioso. ¡Escanea el código para entrar al Arcade!">
+    <meta property="og:description" content="Lobby oficial de CheatGuys! por Infinity Brothers Studios.">
     <meta property="og:image" content="https://cheatguysinfinity.netlify.app/assets/qr-share.webp">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://cheatguysinfinity.netlify.app/">
     <meta name="twitter:title" content="CheatGuys! - Multiplayer Lobby">
-    <meta name="twitter:description" content="¡Rompí la página de CheatGuys! por andar de curioso. ¡Escanea el código para entrar al Arcade!">
+    <meta name="twitter:description" content="Lobby oficial de CheatGuys! por Infinity Brothers Studios.">
     <meta name="twitter:image" content="https://cheatguysinfinity.netlify.app/assets/qr-share.webp">
 </head>
 <body>
@@ -40,11 +40,8 @@
 
     <!-- Audios del Sistema -->
     <audio id="bgMusicPage"       src="https://files.catbox.moe/z2ivpr.mp3" loop></audio>
-    <audio id="bgMusicArcade"     src="https://files.catbox.moe/f9s1n5.mp3" loop></audio>
     <audio id="bgMusicSecret"     src="https://files.catbox.moe/pzvj2q.mp3" loop></audio>
     <audio id="bgMusicChar"       src="https://files.catbox.moe/nmby7m.mp3" loop></audio>
-    <audio id="bgMusicSuddenDeath" src="https://files.catbox.moe/m3s1wy.mp3" loop></audio>
-    <audio id="bgMusicGameOver"   src="https://files.catbox.moe/m0weel.mp3"></audio>
 
     <!-- =========================================
          BARRA LATERAL COLAPSABLE
@@ -232,52 +229,6 @@
         </div>
     </div>
 
-    <template id="legacyArcadeTemplate">
-        
-        <button class="arcade-close-master" onclick="cerrarArcade()" title="Salir del Arcade">[X]</button>
-
-        <div id="arcadeStartScreen" class="arcade-screen active">
-            <h1 class="arcade-title">ARCADE STAGE</h1>
-            <img loading="lazy" src="assets/arcade-start-akane.webp" alt="Demon Akane" class="arcade-img-start glitch-effect">
-            <p class="arcade-text">¿Crees que puedas superar la máxima puntuación de la Demonio del Arcade?<br>¡Inténtalo!... Si te atreves...</p>
-            <div class="arcade-buttons-wrapper">
-                <button class="arcade-btn" onclick="iniciarJuegoArcade()">[ INICIAR_JUEGO ]</button>
-            </div>
-        </div>
-
-        <div id="arcadeGameScreen" class="arcade-screen">
-            <div class="arcade-game-container">
-                <div class="scoreboard">
-                    <span id="currentScore">SCORE: 0</span>
-                    <div id="livesDisplay" class="hearts-box">
-                        <!-- Corazones cargados vía JavaScript -->
-                    </div>
-                    <span>AKANE: 95400</span>
-                </div>
-                <div class="canvas-container">
-                    <canvas id="spaceInvadersCanvas" width="400" height="500"></canvas>
-                </div>
-                <div class="mobile-controls">
-                    <!-- Eventos touch parchados con "event.preventDefault()" correcto -->
-                    <button class="m-btn" oncontextmenu="return false;" ontouchstart="event.preventDefault(); mueveI(true)" ontouchend="event.preventDefault(); mueveI(false)" ontouchcancel="mueveI(false)" onmousedown="mueveI(true)" onmouseup="mueveI(false)" onmouseleave="mueveI(false)">&#9664;</button>
-                    <button class="m-btn m-btn-shoot" oncontextmenu="return false;" ontouchstart="disparaTouch(event)" onmousedown="disparaTouch(event)">[ FIRE ]</button>
-                    <button class="m-btn" oncontextmenu="return false;" ontouchstart="event.preventDefault(); mueveD(true)" ontouchend="event.preventDefault(); mueveD(false)" ontouchcancel="mueveD(false)" onmousedown="mueveD(true)" onmouseup="mueveD(false)" onmouseleave="mueveD(false)">&#9654;</button>
-                </div>
-            </div>
-        </div>
-
-        <div id="arcadeGameOverScreen" class="arcade-screen">
-            <h1 class="arcade-title" style="color: #ff0044; text-shadow: 4px 4px 0px #000;">GAME OVER</h1>
-            <img loading="lazy" src="assets/arcade-gameover-rika.webp" alt="Defeat - Rika" class="game-over-img glitch-effect">
-            <p class="arcade-text" id="finalScoreText" style="font-size: 32px; color: #fff; margin-bottom: 5px;">PUNTUACIÓN FINAL: 0</p>
-            <p class="arcade-text" style="font-size: 20px; color: var(--akane-color);">La Demonio del Arcade sigue invicta.</p>
-            <div class="arcade-buttons-wrapper">
-                <button class="arcade-btn" onclick="iniciarJuegoArcade()">[ ¿OTRA FICHA? ]</button>
-            </div>
-        </div>
-
-    </template>
-
     <!-- =========================================
          SISTEMA LÓGICO UNIFICADO (JAVASCRIPT)
          ========================================= -->
@@ -285,6 +236,5 @@
     <script src="js/lobby-logic.js?v=20260623-refresh2"></script>
     <script src="js/mitsuki-secret.js?v=20260624-discord1"></script>
     <script src="js/galeria-logic.js?v=20260623-refresh2"></script>
-    <script src="js/script.js?v=20260623-refresh2"></script>
 </body>
 </html>
