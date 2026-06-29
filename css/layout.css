@@ -33,7 +33,7 @@ body::after {
 
 /* General Containers */
 .profile-container { margin-bottom: 40px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10; }
-.logos-wrapper { display: flex; align-items: center; justify-content: center; gap: 15px; width: 100%; max-width: 400px; margin-bottom: 15px; }
+.logos-wrapper { display: flex; align-items: center; justify-content: center; gap: 15px; width: 100%; max-width: 540px; margin-bottom: 15px; }
 .links-container { display: flex; flex-direction: column; gap: 30px; max-width: 450px; margin: 0 auto 150px; position: relative; z-index: 10; }
 .bottom-art-container { width: 100%; max-width: 500px; margin: 40px auto 0; position: relative; z-index: 10; }
 .footer {

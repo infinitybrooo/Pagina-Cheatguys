@@ -108,7 +108,6 @@ body.page-loaded .animate-in {
 .delay-7 { animation-delay: 1.0s; }
 
 .glitch-effect { animation: glitch-anim 3s infinite; position: relative; }
-.ideatoon-logo-small { animation: neon-pulse 4s ease-in-out infinite; }
 
 /* =========================================
    VISUAL REFRESH 2026 - Shared motion layer

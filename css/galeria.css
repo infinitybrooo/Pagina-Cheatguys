@@ -1482,3 +1482,136 @@ body.gallery-page {
     transform: translateX(0) !important;
     transition: none !important;
 }
+
+/* =========================================
+   SIDEBAR BRAND UPDATE - CheatGuys only
+   ========================================= */
+
+.cg-sidebar,
+.cg-sidebar-toggle {
+    --neon-cyan: #8b4dff;
+    --neon-magenta: #ff2bd6;
+    --sidebar-purple-rgb: 139, 77, 255;
+    --sidebar-magenta-rgb: 255, 43, 214;
+}
+
+.cg-sidebar-toggle {
+    background:
+        linear-gradient(90deg, rgba(var(--sidebar-magenta-rgb), 0.13), transparent 48%, rgba(var(--sidebar-purple-rgb), 0.16)),
+        linear-gradient(rgba(var(--sidebar-purple-rgb), 0.12) 2px, transparent 2px),
+        #090713;
+    box-shadow: 5px 5px 0 rgba(0,0,0,0.88), 0 0 16px rgba(var(--sidebar-purple-rgb),0.38);
+}
+
+.cg-sidebar-toggle span {
+    background: #8b4dff;
+    box-shadow: 0 0 9px rgba(var(--sidebar-purple-rgb), 0.9);
+}
+
+.cg-sidebar-toggle:hover,
+.cg-sidebar-toggle.is-open {
+    border-color: #ff2bd6;
+}
+
+.cg-sidebar-toggle:hover span,
+.cg-sidebar-toggle.is-open span {
+    background: #ff2bd6;
+    box-shadow: 0 0 10px rgba(var(--sidebar-magenta-rgb), 0.9);
+}
+
+.cg-sidebar {
+    background:
+        radial-gradient(circle at 18% 0%, rgba(var(--sidebar-magenta-rgb),0.22), transparent 28%),
+        radial-gradient(circle at 100% 24%, rgba(var(--sidebar-purple-rgb),0.18), transparent 30%),
+        linear-gradient(rgba(var(--sidebar-purple-rgb),0.08) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(var(--sidebar-magenta-rgb),0.06) 2px, transparent 2px),
+        #080711;
+    background-size: auto, auto, 22px 22px, 22px 22px, auto;
+    border-right-color: #8b4dff;
+    box-shadow: 10px 0 0 rgba(0,0,0,0.68), 0 0 28px rgba(var(--sidebar-purple-rgb),0.34);
+}
+
+.cg-sidebar::before {
+    background: linear-gradient(90deg, transparent, #8b4dff, #ff2bd6, transparent);
+    box-shadow: 0 0 12px rgba(var(--sidebar-purple-rgb),0.48);
+}
+
+.cg-sidebar-header::before,
+.cg-audio-slider-label {
+    background: #8b4dff;
+    color: #080711;
+    border-color: #fff;
+    box-shadow: 3px 3px 0 #ff2bd6;
+}
+
+.cg-sidebar-brand-logo {
+    display: block;
+    width: min(150px, 72%);
+    height: auto;
+    margin: 3px auto 0;
+    object-fit: contain;
+    image-rendering: auto;
+    filter:
+        drop-shadow(3px 3px 0 rgba(0,0,0,0.88))
+        drop-shadow(0 0 12px rgba(var(--sidebar-magenta-rgb),0.5));
+}
+
+.cg-sidebar-link {
+    background:
+        linear-gradient(90deg, rgba(var(--sidebar-purple-rgb),0.08), transparent 46%, rgba(var(--sidebar-magenta-rgb),0.08)),
+        rgba(0,0,0,0.5);
+}
+
+.cg-sidebar-link:hover,
+.cg-sidebar-link.active {
+    border-color: #8b4dff;
+    background:
+        linear-gradient(90deg, rgba(var(--sidebar-purple-rgb),0.2), rgba(var(--sidebar-magenta-rgb),0.1)),
+        rgba(0,0,0,0.68);
+    box-shadow: -5px 5px 0 #ff2bd6, 0 0 17px rgba(var(--sidebar-purple-rgb),0.38), inset 0 0 16px rgba(var(--sidebar-purple-rgb),0.12);
+}
+
+.cg-sidebar-link:hover::after,
+.cg-sidebar-link.active::after {
+    background: #ff2bd6;
+    box-shadow: 0 0 12px rgba(var(--sidebar-magenta-rgb),0.9), 5px 0 0 rgba(var(--sidebar-purple-rgb),0.3);
+}
+
+.cg-sidebar-icon {
+    background:
+        linear-gradient(rgba(255,255,255,0.18), transparent 48%),
+        #8b4dff;
+}
+
+.cg-icon-minigame::after {
+    background: #8b4dff;
+    box-shadow:
+        5px 0 0 #8b4dff,
+        14px -2px 0 #ff2bd6,
+        18px 2px 0 #ff2bd6;
+}
+
+.cg-sidebar-audio {
+    border-color: #ff2bd6;
+    background:
+        linear-gradient(90deg, rgba(var(--sidebar-magenta-rgb),0.13), rgba(var(--sidebar-purple-rgb),0.08)),
+        rgba(0,0,0,0.58);
+}
+
+.cg-sidebar-audio::before {
+    background: #ff2bd6;
+}
+
+.cg-audio-toggle {
+    border-color: #8b4dff;
+    text-shadow: 2px 2px 0 #000, 0 0 8px rgba(var(--sidebar-purple-rgb),0.9);
+}
+
+.cg-audio-toggle:hover {
+    box-shadow: -3px 3px 0 #ff2bd6, 0 0 12px rgba(var(--sidebar-purple-rgb),0.3);
+}
+
+#pageVolumeSlider {
+    accent-color: #ff2bd6;
+    filter: drop-shadow(0 0 6px rgba(var(--sidebar-magenta-rgb),0.28));
+}

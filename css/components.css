@@ -115,9 +115,8 @@
 .char-btn:hover { filter: brightness(1.25) saturate(1.2); animation: char-jitter 0.25s steps(3) infinite; }
 
 /* Logo and Subtitle */
-.main-logo { flex: 1; min-width: 0; max-width: 280px; height: auto; filter: drop-shadow(6px 6px 0px rgba(0, 0, 0, 0.9)); transition: transform 0.2s steps(4); cursor: pointer; animation: logo-idle-float 5s ease-in-out infinite; }
+.main-logo { flex: 1; min-width: 0; max-width: min(82vw, 460px); width: 100%; height: auto; filter: drop-shadow(6px 6px 0px rgba(0, 0, 0, 0.9)); transition: transform 0.2s steps(4); cursor: pointer; animation: logo-idle-float 5s ease-in-out infinite; }
 .main-logo:hover { transform: scale(1.05) rotate(-2deg); animation-play-state: paused; }
-.ideatoon-logo-small { width: 25%; max-width: 85px; height: auto; flex-shrink: 0; filter: drop-shadow(4px 4px 0px rgba(0, 0, 0, 0.8)); }
 p.subtitle { font-family: 'VT323', monospace; color: #d3d3d3; font-size: 24px; margin-top: 5px; letter-spacing: 2px; text-transform: uppercase; background-color: rgba(0,0,0,0.6); padding: 5px 15px; border: 2px solid #fff; box-shadow: 4px 4px 0px rgba(0,0,0,0.8); animation: subtitle-border-pulse 3s ease-in-out infinite; }
 
 /* Music Toggle */
