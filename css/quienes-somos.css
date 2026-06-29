@@ -1,0 +1,231 @@
+/* =========================================
+   QUIENES SOMOS - Studio page additions
+   ========================================= */
+
+body.studio-info-page {
+    background-image:
+        radial-gradient(circle at 14% 9%, rgba(0, 255, 255, 0.18), transparent 26%),
+        radial-gradient(circle at 84% 16%, rgba(255, 105, 180, 0.19), transparent 28%),
+        linear-gradient(rgba(0, 255, 255, 0.12) 3px, transparent 3px),
+        linear-gradient(90deg, rgba(255, 105, 180, 0.1) 3px, transparent 3px),
+        linear-gradient(to bottom, #03040c 0%, #12001e 42%, #001c20 74%, #05000a 100%);
+}
+
+.studio-hero .info-hero-media img,
+.studio-human-band .info-image-card img {
+    object-position: center 14%;
+}
+
+.studio-avatar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.studio-avatar-card,
+.studio-team-card {
+    display: grid;
+    min-width: 0;
+    background:
+        linear-gradient(rgba(0, 255, 255, 0.04) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255, 105, 180, 0.04) 2px, transparent 2px),
+        var(--info-panel);
+    background-size: 24px 24px, 24px 24px, auto;
+    border: 3px solid rgba(255, 255, 255, 0.82);
+    border-top: 7px solid var(--info-cyan);
+    border-radius: 6px;
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.82), inset 0 0 18px rgba(0, 255, 255, 0.07);
+    overflow: hidden;
+}
+
+.studio-avatar-card:nth-child(2),
+.studio-team-card:nth-child(2) {
+    border-top-color: var(--info-hot);
+}
+
+.studio-avatar-card:nth-child(3) {
+    border-top-color: var(--info-orange);
+}
+
+.studio-avatar-image {
+    min-height: 420px;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.studio-avatar-image img {
+    object-position: center 11%;
+}
+
+.studio-avatar-copy,
+.studio-team-copy {
+    position: relative;
+    padding: 22px;
+}
+
+.studio-avatar-copy h3,
+.studio-team-copy h3 {
+    margin: 0 0 8px;
+    color: #fff;
+    font-family: 'VT323', monospace;
+    font-size: clamp(32px, 4vw, 43px);
+    line-height: 0.95;
+    text-shadow: 3px 3px 0 #000, 0 0 12px rgba(255, 105, 180, 0.55);
+}
+
+.studio-avatar-copy strong,
+.studio-team-copy strong {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--info-cyan);
+    font-family: 'VT323', monospace;
+    font-size: 24px;
+    line-height: 1;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.studio-avatar-copy p,
+.studio-team-copy p {
+    color: var(--info-muted);
+    font-size: 16px;
+    line-height: 1.42;
+    margin: 0 0 12px;
+    text-align: left;
+}
+
+.studio-avatar-copy p:last-child,
+.studio-team-copy p:last-child {
+    margin-bottom: 0;
+}
+
+.studio-human-band .info-image-card {
+    min-height: 520px;
+}
+
+.studio-team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.studio-team-card {
+    grid-template-columns: minmax(190px, 0.52fr) minmax(0, 1fr);
+    align-items: stretch;
+    border-top-color: var(--info-orange);
+}
+
+.studio-team-image {
+    min-height: 100%;
+    border: 0;
+    border-right: 3px solid rgba(255, 255, 255, 0.82);
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.studio-team-image img {
+    object-position: center;
+}
+
+.studio-team-copy .info-pixel-list {
+    margin-top: 14px;
+}
+
+.studio-team-copy .info-pixel-list li {
+    font-size: 15px;
+}
+
+.studio-logo-card {
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(28px, 6vw, 58px);
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.045) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.045) 2px, transparent 2px),
+        radial-gradient(circle at 50% 42%, rgba(0, 255, 255, 0.16), transparent 48%),
+        rgba(0, 0, 0, 0.84);
+    background-size: 22px 22px, 22px 22px, auto, auto;
+    cursor: zoom-in;
+}
+
+.studio-logo-card img {
+    width: min(100%, 340px);
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 18px rgba(0, 255, 255, 0.34));
+}
+
+.studio-logo-card:hover img {
+    transform: scale(1.03);
+}
+
+.studio-final .info-final-copy h2 {
+    max-width: 620px;
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(34px, 5vw, 58px);
+    line-height: 1.04;
+    letter-spacing: 0;
+    text-transform: none;
+    text-shadow: 4px 4px 0 #000, 0 0 14px rgba(255, 105, 180, 0.42);
+}
+
+.studio-final .studio-slogan {
+    display: inline-block;
+    margin-top: 18px;
+    padding-top: 14px;
+    color: rgba(255, 255, 255, 0.82);
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(16px, 2.4vw, 22px);
+    line-height: 1.3;
+    letter-spacing: 0;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.84);
+}
+
+@media (max-width: 1000px) {
+    .studio-avatar-grid,
+    .studio-team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .studio-avatar-card {
+        grid-template-columns: minmax(210px, 0.58fr) minmax(0, 1fr);
+        align-items: stretch;
+    }
+
+    .studio-avatar-image {
+        min-height: 100%;
+    }
+}
+
+@media (max-width: 700px) {
+    .studio-avatar-card,
+    .studio-team-card {
+        grid-template-columns: 1fr;
+    }
+
+    .studio-avatar-image,
+    .studio-team-image {
+        min-height: auto;
+        aspect-ratio: 4 / 5;
+        border-right: 0;
+        border-bottom: 3px solid rgba(255, 255, 255, 0.82);
+    }
+
+    .studio-team-image {
+        aspect-ratio: 1 / 1;
+    }
+
+    .studio-logo-card {
+        aspect-ratio: 1 / 1;
+        min-height: auto;
+        padding: 30px;
+    }
+
+    .studio-avatar-copy,
+    .studio-team-copy {
+        padding: 18px;
+    }
+}

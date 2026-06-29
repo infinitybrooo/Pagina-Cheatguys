@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CheatGuys! - &iquest;Qui&eacute;nes Somos?</title>
+    <link rel="icon" type="image/png" href="assets/favicon.webp">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/galeria.css?v=20260623-sidebar5">
+    <link rel="stylesheet" href="css/que-es-cheatguys.css?v=20260623-refresh2">
+    <link rel="stylesheet" href="css/quienes-somos.css?v=20260629-studio1">
+</head>
+<body class="cheatguys-info-page studio-info-page">
+
+    <audio id="bgMusicPage" src="https://files.catbox.moe/z2ivpr.mp3" loop></audio>
+
+    <button id="sidebarToggle" class="cg-sidebar-toggle" onclick="toggleSidebar()" aria-label="Abrir/cerrar menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav id="sidebarNav" class="cg-sidebar" aria-label="Menu principal">
+        <div class="cg-sidebar-header">
+            <span class="cg-sidebar-logo">CHEATGUYS!</span>
+        </div>
+
+        <a href="index.html" class="cg-sidebar-link">
+            <span class="cg-sidebar-icon cg-icon-home" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">Inicio</span>
+        </a>
+        <a href="quienes-somos.html" class="cg-sidebar-link active">
+            <span class="cg-sidebar-icon cg-icon-about" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">&iquest;Qui&eacute;nes somos?</span>
+        </a>
+        <a href="que-es-cheatguys.html" class="cg-sidebar-link">
+            <span class="cg-sidebar-icon cg-icon-cheatguys" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">&iquest;Qu&eacute; es CheatGuys!?</span>
+        </a>
+        <a href="minijuego.html" class="cg-sidebar-link">
+            <span class="cg-sidebar-icon cg-icon-minigame" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">Minijuego</span>
+        </a>
+        <a href="galeria.html" class="cg-sidebar-link">
+            <span class="cg-sidebar-icon cg-icon-gallery" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">Galer&iacute;a</span>
+        </a>
+
+        <div class="cg-sidebar-audio" aria-label="Control de musica">
+            <button id="musicToggleBtn" class="cg-audio-toggle" title="Musica ON/OFF" onclick="toggleMusic()" aria-label="Activar o desactivar musica" aria-pressed="true">&#9835;</button>
+            <label class="cg-audio-slider-label" for="pageVolumeSlider">VOL</label>
+            <input type="range" id="pageVolumeSlider" min="0" max="1" step="0.01" value="0.4" title="Control de Volumen" aria-label="Volumen de musica">
+        </div>
+    </nav>
+
+    <div class="info-scroll-meter" aria-hidden="true"><span id="infoScrollMeter"></span></div>
+
+    <main id="mainContent" class="info-main">
+        <section class="info-hero studio-hero cg-info-reveal">
+            <div class="info-hero-copy">
+                <p class="info-system-line">STUDIO_FILE_LOADED // CREATOR_MODE: ONLINE</p>
+                <h1>&iquest;QUI&Eacute;NES SOMOS? <span class="cursor-blink">█</span></h1>
+                <p class="info-hero-lead">
+                    Infinity Brothers Studios es el b&uacute;nker creativo detr&aacute;s de CheatGuys!: un espacio donde
+                    avatares ca&oacute;ticos, narrativa visual y animaci&oacute;n tradicional chocan para construir universos
+                    exc&eacute;ntricos con alma emocional propia.
+                </p>
+                <div class="info-hero-actions" aria-label="Accesos de seccion">
+                    <a href="#ecosistema" class="info-btn">[ MASCOTAS ]</a>
+                    <a href="#factor-humano" class="info-btn info-btn-alt">[ EQUIPO ]</a>
+                </div>
+            </div>
+
+            <button class="info-hero-media info-image-card" type="button" data-full="assets/images/studio-info/grupo.webp" data-title="STUDIO_CREW.PNG">
+                <img src="assets/images/studio-info/grupo.webp" alt="Mascotas de Infinity Brothers Studios" loading="eager">
+                <span class="info-img-tag">STUDIO_CREW.PNG</span>
+            </button>
+        </section>
+
+        <section id="ecosistema" class="info-section cg-info-reveal">
+            <div class="info-section-heading">
+                <h2>El ecosistema meta</h2>
+                <p>Las mascotas del estudio operan desde el metaverso con distintos niveles de caos creativo.</p>
+            </div>
+
+            <div class="studio-avatar-grid">
+                <article class="studio-avatar-card">
+                    <button class="info-image-card studio-avatar-image" type="button" data-full="assets/images/studio-info/sally.webp" data-title="SALLY_ORIGINAL.LVL_UNKNOWN">
+                        <img src="assets/images/studio-info/sally.webp" alt="Sally Original, mascota del estudio" loading="lazy">
+                        <span class="info-img-tag">SALLY_ORIGINAL</span>
+                    </button>
+                    <div class="studio-avatar-copy">
+                        <span class="info-card-index">01</span>
+                        <h3>Sally Original</h3>
+                        <strong>La escritora compulsiva</strong>
+                        <p>Una flor c&oacute;smica exc&eacute;ntrica, impredecible y con una energ&iacute;a ca&oacute;tica desbordada.</p>
+                        <p>Es la fuente mayor de ideas y la mente detr&aacute;s de los conceptos m&aacute;s puros del estudio. Tiene un coraz&oacute;n enorme bajo sus capas de creatividad y locura.</p>
+                    </div>
+                </article>
+
+                <article class="studio-avatar-card">
+                    <button class="info-image-card studio-avatar-image" type="button" data-full="assets/images/studio-info/orian.webp" data-title="ORIAN_CONSTELLATION.LVL_UNKNOWN">
+                        <img src="assets/images/studio-info/orian.webp" alt="Orian Constellation, mascota del estudio" loading="lazy">
+                        <span class="info-img-tag">ORIAN_CONSTELLATION</span>
+                    </button>
+                    <div class="studio-avatar-copy">
+                        <span class="info-card-index">02</span>
+                        <h3>Orian Constellation</h3>
+                        <strong>El arquitecto del caos</strong>
+                        <p>Un agujero negro personificado en una sudadera viva: reservado, anal&iacute;tico y poco fan de las multitudes.</p>
+                        <p>Convierte el caos de Sally en cimientos s&oacute;lidos mediante worldbuilding, l&iacute;neas de tiempo y escaletas narrativas.</p>
+                    </div>
+                </article>
+
+                <article class="studio-avatar-card">
+                    <button class="info-image-card studio-avatar-image" type="button" data-full="assets/images/studio-info/infinity.webp" data-title="INFINITY_ANDROMEDA.LVL_UNKNOWN">
+                        <img src="assets/images/studio-info/infinity.webp" alt="Infinity Andromeda, mascota del estudio" loading="lazy">
+                        <span class="info-img-tag">INFINITY_ANDROMEDA</span>
+                    </button>
+                    <div class="studio-avatar-copy">
+                        <span class="info-card-index">03</span>
+                        <h3>Infinity Andromeda</h3>
+                        <strong>La reina del desgane</strong>
+                        <p>Una nebulosa flotante y dise&ntilde;adora de personajes oficial, con talento gr&aacute;fico monumental y energ&iacute;a f&iacute;sica cuestionable.</p>
+                        <p>Tras su somnolencia m&iacute;stica vive una personalidad dulce, tierna y apasionada por ilustrar, dise&ntilde;ar y discutir sus ships favoritos.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="factor-humano" class="info-section info-chaos-band studio-human-band cg-info-reveal">
+            <button class="info-image-card" type="button" data-full="assets/images/studio-info/grupo.webp" data-title="HUMAN_FACTOR_BRIDGE.WEBP">
+                <img src="assets/images/studio-info/grupo.webp" alt="Equipo de mascotas de Infinity Brothers Studios" loading="lazy">
+                <span class="info-img-tag">HUMAN_FACTOR_BRIDGE.WEBP</span>
+            </button>
+
+            <div class="info-chaos-copy">
+                <span class="info-card-index">04</span>
+                <h2>Las personas detr&aacute;s del estudio</h2>
+                <p>
+                    Detr&aacute;s de los avatares coloridos existe una estructura real: Infinity Brothers Studios somos
+                    dos hermanos originarios de Jalisco, M&eacute;xico.
+                </p>
+                <p>
+                    Nos mueve el poder de la narrativa visual y el lenguaje de la animaci&oacute;n tradicional. Fundamos
+                    este espacio para convertirlo en la cuna de proyectos exc&eacute;ntricos, sorprendentes y con un alma
+                    emocional &uacute;nica para cada universo.
+                </p>
+            </div>
+        </section>
+
+        <section class="info-section cg-info-reveal">
+            <div class="info-section-heading">
+                <h2>Roles de producci&oacute;n</h2>
+                <p>El lado humano del b&uacute;nker: arte visual, escritura, continuidad y direcci&oacute;n creativa.</p>
+            </div>
+
+            <div class="studio-team-grid">
+                <article class="studio-team-card">
+                    <button class="info-image-card studio-team-image" type="button" data-full="assets/images/studio-info/icon-angel.webp" data-title="ANGEL_HERNANDEZ.ART_DIRECTOR">
+                        <img src="assets/images/studio-info/icon-angel.webp" alt="Angel Hernandez, director de arte" loading="lazy">
+                        <span class="info-img-tag">ART_DIRECTOR</span>
+                    </button>
+                    <div class="studio-team-copy">
+                        <span class="info-feature-icon">A1</span>
+                        <h3>&Aacute;ngel Hern&aacute;ndez</h3>
+                        <strong>Director de Arte &amp; Dise&ntilde;o Visual</strong>
+                        <p>Responsable del universo est&eacute;tico y la identidad visual de la productora.</p>
+                        <ul class="info-pixel-list">
+                            <li>Dise&ntilde;o de personajes y consistencia estil&iacute;stica en 2D.</li>
+                            <li>Conceptos de fondos, turnarounds e ilustraci&oacute;n promocional.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="studio-team-card">
+                    <button class="info-image-card studio-team-image" type="button" data-full="assets/images/studio-info/icon-ramon.webp" data-title="RAMON_HERNANDEZ.SHOWRUNNER">
+                        <img src="assets/images/studio-info/icon-ramon.webp" alt="Ramon Hernandez, showrunner y lead writer" loading="lazy">
+                        <span class="info-img-tag">LEAD_WRITER</span>
+                    </button>
+                    <div class="studio-team-copy">
+                        <span class="info-feature-icon">R1</span>
+                        <h3>Ram&oacute;n Hern&aacute;ndez</h3>
+                        <strong>Showrunner &amp; Lead Writer</strong>
+                        <p>Responsable de la arquitectura conceptual, el desarrollo literario y la continuidad de los proyectos.</p>
+                        <ul class="info-pixel-list">
+                            <li>Guiones cinematogr&aacute;ficos, estructuras narrativas y biblias de producci&oacute;n.</li>
+                            <li>Worldbuilding, backstory y mitolog&iacute;as internas de cada universo.</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="studio-cierre" class="info-section info-final studio-final cg-info-reveal">
+            <button class="info-image-card info-final-img studio-logo-card" type="button" data-full="assets/images/studio-info/logo-completo.svg" data-title="INFINITY_BROTHERS_STUDIOS">
+                <img src="assets/images/studio-info/logo-completo.svg" alt="Logo completo de Infinity Brothers Studios" loading="lazy">
+            </button>
+
+            <article class="info-final-copy">
+                <h2>Un estudio peque&ntilde;o con hambre de universo.</h2>
+                <p>
+                    Infinity Brothers Studios combina dise&ntilde;o, guion, worldbuilding y una terquedad enorme por
+                    contar historias con identidad propia.
+                </p>
+                <p>
+                    Si CheatGuys! suena raro, colorido y emocional, es porque el estudio tambi&eacute;n funciona as&iacute;.
+                </p>
+                <strong class="studio-slogan">Historias infinitas. Mundos infinitos.</strong>
+            </article>
+        </section>
+
+        <footer class="gallery-footer info-footer">
+            <img loading="lazy" src="assets/logo-studio-blanco.webp" alt="Infinity Brothers Logo" class="gallery-footer-logo">
+            <p>CheatGuys! is a series owned by Infinity Brothers Studios TM. All artwork, descriptions, documents, characters, and story are the property of the studio and are protected by copyright.</p>
+            <p>CheatGuys! &copy; 2026 Infinity Brothers Studios TM. All rights reserved.</p>
+        </footer>
+    </main>
+
+    <div id="infoImageModal" class="info-image-modal" onclick="cerrarInfoImageModal(event)" aria-hidden="true">
+        <div class="info-image-modal-box" onclick="event.stopPropagation()" role="dialog" aria-modal="true" aria-label="Imagen de Infinity Brothers Studios">
+            <div class="info-image-modal-header">
+                <h2 id="infoImageModalTitle">IMAGE_VIEWER <span class="cursor-blink">█</span></h2>
+                <button class="info-modal-close" onclick="cerrarInfoImageModal()">[X]</button>
+            </div>
+            <div class="info-image-modal-body">
+                <img id="infoImageModalImg" alt="" class="info-image-modal-img">
+            </div>
+        </div>
+    </div>
+
+    <script src="js/audio-global.js?v=20260623-refresh2"></script>
+    <script src="js/galeria-logic.js?v=20260623-refresh2"></script>
+    <script src="js/que-es-cheatguys.js?v=20260623-refresh2"></script>
+</body>
+</html>
