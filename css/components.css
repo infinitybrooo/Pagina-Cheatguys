@@ -1120,6 +1120,51 @@ p.subtitle {
     font-size: clamp(20px, 3vw, 24px);
 }
 
+.arcade-stage-panel-win {
+    border-top-color: var(--neon-cyan);
+    background:
+        radial-gradient(circle at 50% 25%, rgba(0, 255, 255, 0.22), transparent 36%),
+        radial-gradient(circle at 50% 64%, rgba(255, 105, 180, 0.18), transparent 42%),
+        linear-gradient(rgba(0, 255, 255, 0.045) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(138, 43, 226, 0.08) 2px, transparent 2px),
+        rgba(8, 4, 18, 0.92);
+}
+
+.arcade-stage-panel-win .arcade-stage-tag {
+    background: var(--neon-magenta);
+    box-shadow: 4px 4px 0 var(--neon-cyan);
+    color: #fff;
+}
+
+.arcade-stage-panel-win .arcade-win-title {
+    color: #fff;
+    text-shadow:
+        5px 5px 0 #000,
+        0 0 16px var(--neon-magenta),
+        0 0 30px rgba(0, 255, 255, 0.72);
+}
+
+.arcade-win-frame {
+    min-height: 210px;
+    border-color: rgba(0, 255, 255, 0.84);
+}
+
+.arcade-character-frame .arcade-win-img {
+    max-width: min(78%, 230px);
+    margin: 0;
+    object-fit: contain;
+    image-rendering: auto;
+    filter:
+        drop-shadow(7px 7px 0 rgba(0, 0, 0, 0.86))
+        drop-shadow(0 0 14px rgba(255, 105, 180, 0.5))
+        drop-shadow(0 0 12px rgba(0, 255, 255, 0.34));
+}
+
+.arcade-stage-panel-win .arcade-win-copy {
+    max-width: 500px;
+    color: #f0d6ff;
+}
+
 .m-btn {
     touch-action: none;
 }

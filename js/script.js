@@ -4,9 +4,10 @@
         const screenStart = document.getElementById('arcadeStartScreen');
         const screenGame = document.getElementById('arcadeGameScreen');
         const screenOver = document.getElementById('arcadeGameOverScreen');
+        const screenWin = document.getElementById('arcadeWinScreen');
         const canvas = document.getElementById('spaceInvadersCanvas');
 
-        if (!arcadeContainer || !screenStart || !screenGame || !screenOver || !canvas) {
+        if (!arcadeContainer || !screenStart || !screenGame || !screenOver || !screenWin || !canvas) {
             window.iniciarSecuenciaArcade = function() {
                 window.location.href = 'minijuego.html';
             };
@@ -19,6 +20,7 @@
         const SHOOT_SFX_POOL_SIZE = 5;
         const SHOOT_SFX_MIN_INTERVAL = 38;
         const SHOOT_SFX_BASE_VOLUME = 0.2;
+        const AKANE_MAX_SCORE = 590990;
         const shootSfxPool = [];
         let shootSfxIndex = 0;
         let lastShootSfxTime = 0;
@@ -124,6 +126,9 @@
             if (document.body.classList.contains('arcade-page')) {
                 arcadeContainer.style.display = 'flex';
                 showScreen('start');
+                if (new URLSearchParams(window.location.search).has('win-preview')) {
+                    showWinPreview();
+                }
             }
 
             bindMobileControls();
@@ -294,9 +299,11 @@
             screenStart.classList.remove('active');
             screenGame.classList.remove('active');
             screenOver.classList.remove('active');
+            screenWin.classList.remove('active');
             if(screen === 'start') screenStart.classList.add('active');
             if(screen === 'game') screenGame.classList.add('active');
             if(screen === 'over') screenOver.classList.add('active');
+            if(screen === 'win') screenWin.classList.add('active');
         }
 
         function iniciarJuegoArcade() {
@@ -333,6 +340,20 @@
             playArcadeBg('bgMusicGameOver');
             document.getElementById('finalScoreText').innerText = `PUNTUACIÓN FINAL: ${score}`;
             showScreen('over');
+        }
+
+        function gameWin() {
+            score = Math.max(score, AKANE_MAX_SCORE);
+            actualizarScore();
+            detenerJuego();
+            playArcadeBg('bgMusicGameOver');
+            showScreen('win');
+        }
+
+        function showWinPreview() {
+            score = AKANE_MAX_SCORE;
+            actualizarScore();
+            showScreen('win');
         }
 
         function resetGameData() {
@@ -787,6 +808,10 @@
             const comboBonus = comboCount > 1 ? Math.min(comboCount * 5, 80) : 0;
             score += pts + comboBonus;
             actualizarScore();
+            if (score >= AKANE_MAX_SCORE) {
+                gameWin();
+                return;
+            }
             addFloatingText(`+${pts + comboBonus}`, x, y, enemy.color || '#FFFFFF', 16);
             if (comboCount > 1) {
                 addFloatingText(`COMBO x${comboCount}`, x, y - 15, '#00FFFF', 18);
