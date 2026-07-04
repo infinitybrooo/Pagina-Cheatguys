@@ -3,6 +3,7 @@
 // =====================================================
 
 const GALLERY_BASE_PATH = "assets/images/gallery/";
+const GALLERY_THUMB_FOLDER = "thumbs/";
 const AUTO_SLIDE_MS = 4000;
 const CATEGORIES = ["clothes", "thurn", "sketch"];
 
@@ -146,10 +147,11 @@ function renderizarGaleria() {
 
         numeros.forEach((num, index) => {
             const img = document.createElement("img");
-            img.src = buildImagePath(personajeActual, categoria, num);
+            img.src = buildImagePath(personajeActual, categoria, num, { thumb: true });
             img.alt = `${categoryLabels[categoria]} ${personajeActual} ${num}`;
             img.className = "carousel-item";
             img.loading = index === 0 ? "eager" : "lazy";
+            img.dataset.fullSrc = buildImagePath(personajeActual, categoria, num);
             img.dataset.category = categoria;
             img.dataset.index = String(index);
             img.addEventListener("click", () => abrirModalSiEsCentral(categoria, index));
@@ -167,9 +169,10 @@ function renderizarGaleria() {
     });
 }
 
-function buildImagePath(personaje, categoria, numero) {
+function buildImagePath(personaje, categoria, numero, options = {}) {
     const prefijo = categoryFilePrefix[categoria];
-    return `${GALLERY_BASE_PATH}${personaje}/${prefijo}-${personaje}-${numero}.webp`;
+    const variantFolder = options.thumb ? GALLERY_THUMB_FOLDER : "";
+    return `${GALLERY_BASE_PATH}${personaje}/${variantFolder}${prefijo}-${personaje}-${numero}.webp`;
 }
 
 // =====================================================
@@ -247,7 +250,7 @@ function abrirModalSiEsCentral(categoria, index) {
     const img = track && track.children[index];
     if (!img) return;
 
-    abrirModalGaleria(img.src, img.alt);
+    abrirModalGaleria(img.dataset.fullSrc || img.src, img.alt);
 }
 
 function abrirModalGaleria(src, alt) {

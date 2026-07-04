@@ -9,9 +9,14 @@
         let mitsukiPaso = 0;
 
         const mitsukiDialogo = [
-            { img: "assets/pestana-1-mitsuki.webp", texto: "¡Te dije que no lo presionaras, niño baboso!" },
-            { img: "assets/pestana-2-mitsuki.webp", texto: "Bueno, ya que estás aquí puedes compartir la página para que más personas lo vean, así tu curiosidad sirve de algo..." }
+            { img: "assets/mitsuki/pestana-1-mitsuki.webp", texto: "¡Te dije que no lo presionaras, niño baboso!" },
+            { img: "assets/mitsuki/pestana-2-mitsuki.webp", texto: "Bueno, ya que estás aquí puedes compartir la página para que más personas lo vean, así tu curiosidad sirve de algo..." }
         ];
+
+        function getResponsiveMitsukiAsset(url) {
+            if (!window.matchMedia || !window.matchMedia('(max-width: 768px)').matches) return url;
+            return url.replace(/\/([^/]+\.webp)$/i, '/mobile/$1');
+        }
 
         // PASO 0 -> Abre la interfaz y arranca el diálogo desde el principio
         function iniciarSecuenciaMitsuki() {
@@ -27,7 +32,7 @@
             const paso = mitsukiDialogo[mitsukiPaso];
             const esUltimaPestana = mitsukiPaso === mitsukiDialogo.length - 1;
 
-            document.getElementById('mitsukiIllustration').src = paso.img;
+            document.getElementById('mitsukiIllustration').src = getResponsiveMitsukiAsset(paso.img);
             document.getElementById('mitsukiText').textContent = paso.texto;
             document.getElementById('mitsukiStepCounter').textContent = "TAB " + String(mitsukiPaso + 1).padStart(2, '0') + "/02";
             document.getElementById('mitsukiShareButtons').style.display = esUltimaPestana ? 'flex' : 'none';

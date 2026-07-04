@@ -418,10 +418,16 @@ body.gallery-page::before {
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background-image: url('../assets/fondo-akane.webp');
+    background-image: url('../assets/backgrounds/fondo-akane.webp');
     background-size: cover;
     background-position: center;
     opacity: 0.12;
+}
+
+@media (max-width: 768px) {
+    body.gallery-page::before {
+        background-image: url('../assets/backgrounds/mobile/fondo-akane.webp');
+    }
 }
 
 body.gallery-page::after {

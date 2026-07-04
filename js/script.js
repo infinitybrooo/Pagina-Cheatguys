@@ -703,7 +703,7 @@
             if (suddenDeath) {
                 const heartImg = document.createElement('img');
                 heartImg.className = 'heart-icon sudden-death-heart';
-                heartImg.src = 'assets/Corazon-Lleno.webp';
+                heartImg.src = 'assets/icons/Corazon-Lleno.webp';
                 heartImg.style.filter = 'hue-rotate(180deg) saturate(1.8) drop-shadow(0 0 6px #ff1b4b)';
                 livesContainer.appendChild(heartImg);
             } else {
@@ -711,8 +711,8 @@
                     const heartImg = document.createElement('img');
                     heartImg.className = 'heart-icon';
                     heartImg.src = (i < lives)
-                        ? 'assets/Corazon-Lleno.webp'
-                        : 'assets/corazon-vacio.webp';
+                        ? 'assets/icons/Corazon-Lleno.webp'
+                        : 'assets/icons/corazon-vacio.webp';
                     livesContainer.appendChild(heartImg);
                 }
             }

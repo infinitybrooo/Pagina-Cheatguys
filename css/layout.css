@@ -21,9 +21,15 @@ body {
 
 body::before {
     content: ""; position: fixed; top: 0; left: 0; bottom: 0; right: 0;
-    background-image: url('../assets/fondo-akane.webp');
+    background-image: url('../assets/backgrounds/fondo-akane.webp');
     background-size: cover; background-position: center; opacity: 0.15; z-index: 1; pointer-events: none;
     animation: bg-drift 14s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+    body::before {
+        background-image: url('../assets/backgrounds/mobile/fondo-akane.webp');
+    }
 }
 
 body::after {

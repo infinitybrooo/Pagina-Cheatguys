@@ -39,10 +39,10 @@
     animation-direction: alternate;
     animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.ld-akane { background-image: url('../assets/icon-akane.webp'); animation-delay: 0s; }
-.ld-rika { background-image: url('../assets/icon-rika.webp'); animation-delay: 0.15s; }
-.ld-momo { background-image: url('../assets/icon-momo.webp'); animation-delay: 0.3s; }
-.ld-jun { background-image: url('../assets/icon-jun.webp'); animation-delay: 0.45s; }
+.ld-akane { background-image: url('../assets/icons/icon-akane.webp'); animation-delay: 0s; }
+.ld-rika { background-image: url('../assets/icons/icon-rika.webp'); animation-delay: 0.15s; }
+.ld-momo { background-image: url('../assets/icons/icon-momo.webp'); animation-delay: 0.3s; }
+.ld-jun { background-image: url('../assets/icons/icon-jun.webp'); animation-delay: 0.45s; }
 
 /* JRPG Menu Boxes */
 .menu-box {
@@ -108,10 +108,10 @@
     width: 75px; height: 75px; border-radius: 8px; border: 3px solid #fff; background-color: #1a1a1a; background-size: cover; background-position: center; background-repeat: no-repeat; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 4px 4px 0px rgba(0,0,0,0.8); transition: transform 0.15s steps(3), filter 0.15s; outline: none; 
 }
 .char-btn:active { transform: translate(4px, 4px); box-shadow: 0px 0px 0px rgba(0,0,0,0); }
-.char-btn.akane { border-color: var(--akane-color); background-image: url('../assets/icon-akane.webp'); }
-.char-btn.rika { border-color: var(--rika-color); background-image: url('../assets/icon-rika.webp'); }
-.char-btn.momo { border-color: var(--momo-color); background-image: url('../assets/icon-momo.webp'); }
-.char-btn.jun { border-color: var(--jun-color); background-image: url('../assets/icon-jun.webp'); }
+.char-btn.akane { border-color: var(--akane-color); background-image: url('../assets/icons/icon-akane.webp'); }
+.char-btn.rika { border-color: var(--rika-color); background-image: url('../assets/icons/icon-rika.webp'); }
+.char-btn.momo { border-color: var(--momo-color); background-image: url('../assets/icons/icon-momo.webp'); }
+.char-btn.jun { border-color: var(--jun-color); background-image: url('../assets/icons/icon-jun.webp'); }
 .char-btn:hover { filter: brightness(1.25) saturate(1.2); animation: char-jitter 0.25s steps(3) infinite; }
 
 /* Logo and Subtitle */
