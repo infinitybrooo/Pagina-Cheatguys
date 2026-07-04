@@ -184,6 +184,7 @@
         
         const keys = { ArrowLeft: false, ArrowRight: false, ArrowUp: false, ArrowDown: false, KeyA: false, KeyD: false, KeyW: false, KeyS: false, Space: false };
         let canShoot = true; 
+        let mobileFireTimer = null;
         const joystick = { active: false, pointerId: null, x: 0, y: 0 };
 
         // Puntos por fila: fila 0 (superior)=100, fila 1 (media)=20, fila 2+ (inferior)=10
@@ -330,6 +331,7 @@
             document.removeEventListener('keyup', handleKeyUp);
             Object.keys(keys).forEach((key) => { keys[key] = false; });
             canShoot = true;
+            stopMobileFire();
             resetJoystick();
             document.querySelectorAll('[data-arcade-action].is-pressed').forEach((button) => {
                 button.classList.remove('is-pressed');
@@ -627,6 +629,27 @@
             if(isGameRunning) disparar(); 
         }
 
+        function startMobileFire(button) {
+            if (!isGameRunning) return;
+            stopMobileFire();
+            disparar();
+            mobileFireTimer = window.setInterval(() => {
+                if (!isGameRunning) {
+                    stopMobileFire();
+                    return;
+                }
+                disparar();
+            }, 135);
+            button?.classList.add('is-pressed');
+        }
+
+        function stopMobileFire() {
+            if (mobileFireTimer) {
+                window.clearInterval(mobileFireTimer);
+                mobileFireTimer = null;
+            }
+        }
+
         function resetJoystick() {
             joystick.active = false;
             joystick.pointerId = null;
@@ -642,19 +665,20 @@
             const rect = joystickEl.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
-            const maxDistance = Math.min(rect.width, rect.height) * 0.34;
+            const visualDistance = Math.min(rect.width, rect.height) * 0.34;
+            const inputDistance = Math.min(rect.width, rect.height) * 0.18;
             const rawX = event.clientX - centerX;
             const rawY = event.clientY - centerY;
             const distance = Math.hypot(rawX, rawY);
-            const clampedDistance = Math.min(distance, maxDistance);
+            const clampedDistance = Math.min(distance, visualDistance);
             const angle = Math.atan2(rawY, rawX);
             const knobX = Math.cos(angle) * clampedDistance;
             const knobY = Math.sin(angle) * clampedDistance;
             const knob = joystickEl.querySelector('.arcade-joystick-knob');
 
-            joystick.x = maxDistance ? knobX / maxDistance : 0;
-            joystick.y = maxDistance ? knobY / maxDistance : 0;
-            if (distance < 7) {
+            joystick.x = inputDistance ? Math.max(-1, Math.min(1, rawX / inputDistance)) : 0;
+            joystick.y = inputDistance ? Math.max(-1, Math.min(1, rawY / inputDistance)) : 0;
+            if (distance < 3) {
                 joystick.x = 0;
                 joystick.y = 0;
             }
@@ -672,18 +696,20 @@
                     button.setPointerCapture?.(event.pointerId);
                     button.classList.add('is-pressed');
 
-                    if (action === 'shoot' && isGameRunning) disparar();
+                    if (action === 'shoot') startMobileFire(button);
                 });
 
                 const release = (event) => {
                     event.preventDefault();
                     button.classList.remove('is-pressed');
+                    if (action === 'shoot') stopMobileFire();
                 };
 
                 button.addEventListener('pointerup', release);
                 button.addEventListener('pointercancel', release);
                 button.addEventListener('lostpointercapture', () => {
                     button.classList.remove('is-pressed');
+                    if (action === 'shoot') stopMobileFire();
                 });
             });
 
@@ -699,6 +725,11 @@
                     updateJoystickFromEvent(event, joystickEl);
                 });
                 joystickEl.addEventListener('pointermove', (event) => {
+                    if (!joystick.active || joystick.pointerId !== event.pointerId) return;
+                    event.preventDefault();
+                    updateJoystickFromEvent(event, joystickEl);
+                });
+                joystickEl.addEventListener('pointerrawupdate', (event) => {
                     if (!joystick.active || joystick.pointerId !== event.pointerId) return;
                     event.preventDefault();
                     updateJoystickFromEvent(event, joystickEl);
