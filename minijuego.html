@@ -90,9 +90,12 @@
                     <canvas id="spaceInvadersCanvas" width="400" height="500"></canvas>
                 </div>
                 <div class="mobile-controls">
-                    <button type="button" class="m-btn" data-arcade-action="left" aria-label="Mover a la izquierda">&#9664;</button>
                     <button type="button" class="m-btn m-btn-shoot" data-arcade-action="shoot" aria-label="Disparar">[ FIRE ]</button>
-                    <button type="button" class="m-btn" data-arcade-action="right" aria-label="Mover a la derecha">&#9654;</button>
+                    <div class="arcade-joystick" data-arcade-joystick aria-label="Joystick de movimiento" role="application">
+                        <div class="arcade-joystick-ring">
+                            <div class="arcade-joystick-knob"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

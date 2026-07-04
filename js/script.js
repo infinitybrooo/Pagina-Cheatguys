@@ -157,12 +157,14 @@
         let screenShake = 0;
         let comboCount = 0;
         let comboTimer = 0;
-        let shieldCharges = 0;
+        let shieldTimer = 0;
         let powerDoubleTimer = 0;
         let powerSlowTimer = 0;
         let powerPierceTimer = 0;
         const POINT_SHOT_STEP = 2000;
         const MAX_POINT_SHOTS = 2;
+        const SHIELD_DURATION_FRAMES = 20 * 60;
+        const PLAYER_MIN_Y = 318;
         const POWERUP_TYPES = [
             { type: 'double', label: 'DOUBLE', color: '#FF69B4' },
             { type: 'shield', label: 'SHIELD', color: '#00FFFF' },
@@ -172,19 +174,17 @@
         ];
 
         // Nave de Akane
-        const player = { x: 180, y: 460, width: 40, height: 15, speed: 5, color: '#8A2BE2', dx: 0 };
+        const player = { x: 180, y: 460, width: 40, height: 15, speed: 4.6, color: '#8A2BE2', dx: 0, dy: 0 };
         let bullets = [];
         let enemyBullets = [];
         let enemies = [];
-        let barricadas = [];
         let enemyDirection = 1;
         let enemySpeed = 0.5;
         let edgeCooldown = 0; // evita doble-inversión de dirección en frames consecutivos
         
-        const keys = { ArrowLeft: false, ArrowRight: false, Space: false };
+        const keys = { ArrowLeft: false, ArrowRight: false, ArrowUp: false, ArrowDown: false, KeyA: false, KeyD: false, KeyW: false, KeyS: false, Space: false };
         let canShoot = true; 
-        let touchLeft = false;
-        let touchRight = false;
+        const joystick = { active: false, pointerId: null, x: 0, y: 0 };
 
         // Puntos por fila: fila 0 (superior)=100, fila 1 (media)=20, fila 2+ (inferior)=10
         function puntajeEnemigo(enemy) {
@@ -193,9 +193,10 @@
             if (enemy.isBoss) return 1200;
             if (enemy.isEscort) return 180;
             if (enemy.isRedShooter) return 150;
-            if (enemy.row === 0) return 100;
-            if (enemy.row === 1) return 20;
-            return 10;
+            let base = 10;
+            if (enemy.row === 0) base = 100;
+            else if (enemy.row === 1) base = 20;
+            return enemy.state === 'diving' ? base * 2 : base;
         }
 
         function overlap(a, b) {
@@ -259,7 +260,7 @@
             if (powerDoubleTimer > 0) active.push('DOUBLE');
             if (powerSlowTimer > 0) active.push('SLOW');
             if (powerPierceTimer > 0) active.push('PIERCE');
-            if (shieldCharges > 0) active.push(`SHIELD x${shieldCharges}`);
+            if (shieldTimer > 0) active.push(`SHIELD ${Math.ceil(shieldTimer / 60)}s`);
             if (comboCount > 1 && comboTimer > 0) active.push(`COMBO x${comboCount}`);
             statusLine.innerText = message || `WAVE ${String(Math.max(waveCount, 1)).padStart(2, '0')} // ${active.length ? active.join(' // ') : 'READY'}`;
         }
@@ -327,9 +328,9 @@
             lastFrameTime = 0;
             document.removeEventListener('keydown', handleKeyDown);
             document.removeEventListener('keyup', handleKeyUp);
-            keys.ArrowLeft = false; keys.ArrowRight = false; keys.Space = false;
+            Object.keys(keys).forEach((key) => { keys[key] = false; });
             canShoot = true;
-            touchLeft = false; touchRight = false;
+            resetJoystick();
             document.querySelectorAll('[data-arcade-action].is-pressed').forEach((button) => {
                 button.classList.remove('is-pressed');
             });
@@ -372,7 +373,7 @@
             screenShake = 0;
             comboCount = 0;
             comboTimer = 0;
-            shieldCharges = 0;
+            shieldTimer = 0;
             powerDoubleTimer = 0;
             powerSlowTimer = 0;
             powerPierceTimer = 0;
@@ -380,10 +381,12 @@
             actualizarScore();
             refreshStatusLine('WAVE 01 // READY');
             player.x = canvas.width / 2 - player.width / 2;
+            player.y = 460;
+            player.dx = 0;
+            player.dy = 0;
             bullets = [];
             enemyBullets = [];
             enemies = [];
-            barricadas = crearBarricadas();
             enemySpeed = 0.5;
             edgeCooldown = 0;
             canShoot = true;
@@ -525,9 +528,21 @@
                         else if (r === 1) color = '#FF69B4';  // Rosa — fila media (20pts)
                         else color = '#FF4500';               // Naranja — fila inferior (10pts)
 
+                        const homeX = offsetX + c * (enemyWidth + padX);
+                        const homeY = offsetY + r * (enemyHeight + padY);
+                        const fromLeft = (c + r + waveCount) % 2 === 0;
                         enemies.push({ 
-                            x: offsetX + c * (enemyWidth + padX), 
-                            baseY: offsetY + r * (enemyHeight + padY),
+                            x: fromLeft ? -70 - c * 12 : canvas.width + 40 + c * 12,
+                            baseY: -44 - r * 18,
+                            homeX,
+                            homeY,
+                            entryStartX: fromLeft ? -70 - c * 12 : canvas.width + 40 + c * 12,
+                            entryStartY: -44 - r * 18,
+                            enterProgress: -totalAdded * 0.055,
+                            entrySeed: (r + 1) * (c + 2),
+                            state: 'entering',
+                            diveCooldown: 170 + Math.random() * 230 + r * 22,
+                            diveProgress: 0,
                             yOffset: 0,
                             width: enemyWidth, 
                             height: enemyHeight, 
@@ -549,18 +564,23 @@
                 for (let i = 0; i < numReds; i++) {
                     let col = Math.floor(Math.random() * cols);
                     let rowR = rows - 1;
-                    enemies.push({
-                        x: offsetX + col * (enemyWidth + padX),
-                        baseY: offsetY + rowR * (enemyHeight + padY) + (i * (enemyHeight + padY)),
-                        yOffset: 0,
-                        width: enemyWidth,
-                        height: enemyHeight,
+                        enemies.push({
+                            x: offsetX + col * (enemyWidth + padX),
+                            baseY: offsetY + rowR * (enemyHeight + padY) + (i * (enemyHeight + padY)),
+                            homeX: offsetX + col * (enemyWidth + padX),
+                            homeY: offsetY + rowR * (enemyHeight + padY) + (i * (enemyHeight + padY)),
+                            yOffset: 0,
+                            width: enemyWidth,
+                            height: enemyHeight,
                         color: '#FF0000',
-                        row: rowR,
-                        isRedShooter: true,
-                        isUFO: false,
-                        flashTimer: 0
-                    });
+                            row: rowR,
+                            isRedShooter: true,
+                            isUFO: false,
+                            flashTimer: 0,
+                            state: 'formation',
+                            diveCooldown: 120 + Math.random() * 160,
+                            diveProgress: 0
+                        });
                 }
             }
 
@@ -574,40 +594,6 @@
             if (suddenDeath) enemySpeed *= 1.2;
             enemyDirection = 1;
             refreshStatusLine(`WAVE ${String(waveCount).padStart(2, '0')} // ${isGlitchWave ? 'GLITCH' : 'READY'}`);
-        }
-
-        // --- BARRICADAS ---
-        function crearBarricadas() {
-            const numBarricadas = 4;
-            const bW = 48; const bH = 32;
-            const bY = canvas.height - 85;
-            const totalW = numBarricadas * bW + (numBarricadas - 1) * 18;
-            const startX = (canvas.width - totalW) / 2;
-            const result = [];
-            for (let i = 0; i < numBarricadas; i++) {
-                let bx = startX + i * (bW + 18);
-                // Cada barricada tiene una cuadrícula de bloques 6x4
-                let bloques = [];
-                const cols = 6; const rows = 4;
-                const blkW = Math.floor(bW / cols);
-                const blkH = Math.floor(bH / rows);
-                for (let r = 0; r < rows; r++) {
-                    for (let c = 0; c < cols; c++) {
-                        // Recorte de esquinas para forma arqueada
-                        if ((r === 0 && (c === 0 || c === cols-1)) ||
-                            (r === rows-1 && (c === 0 || c === cols-1))) continue;
-                        bloques.push({
-                            x: bx + c * blkW,
-                            y: bY + r * blkH,
-                            w: blkW - 1,
-                            h: blkH - 1,
-                            hp: 3   // 3 impactos para destruir
-                        });
-                    }
-                }
-                result.push(bloques);
-            }
-            return result.flat(); // Un array plano de bloques
         }
 
         function spawnParticles(x, y, color, count) {
@@ -626,23 +612,53 @@
         }
 
         function handleKeyDown(e) {
-            if (e.code === 'ArrowLeft') keys.ArrowLeft = true;
-            if (e.code === 'ArrowRight') keys.ArrowRight = true;
+            if (Object.prototype.hasOwnProperty.call(keys, e.code)) keys[e.code] = true;
             if (e.code === 'Space' && canShoot) { disparar(); canShoot = false; }
-            if (['ArrowLeft', 'ArrowRight', 'Space'].includes(e.code)) e.preventDefault();
+            if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'KeyA', 'KeyD', 'KeyW', 'KeyS', 'Space'].includes(e.code)) e.preventDefault();
         }
 
         function handleKeyUp(e) {
-            if (e.code === 'ArrowLeft') keys.ArrowLeft = false;
-            if (e.code === 'ArrowRight') keys.ArrowRight = false;
+            if (Object.prototype.hasOwnProperty.call(keys, e.code)) keys[e.code] = false;
             if (e.code === 'Space') canShoot = true;
         }
 
-        window.mueveI = function(estado) { touchLeft = estado; }
-        window.mueveD = function(estado) { touchRight = estado; }
         window.disparaTouch = function(e) { 
             e.preventDefault(); 
             if(isGameRunning) disparar(); 
+        }
+
+        function resetJoystick() {
+            joystick.active = false;
+            joystick.pointerId = null;
+            joystick.x = 0;
+            joystick.y = 0;
+            const joystickEl = document.querySelector('[data-arcade-joystick]');
+            const knob = joystickEl?.querySelector('.arcade-joystick-knob');
+            joystickEl?.classList.remove('is-active');
+            if (knob) knob.style.transform = 'translate(-50%, -50%)';
+        }
+
+        function updateJoystickFromEvent(event, joystickEl) {
+            const rect = joystickEl.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const maxDistance = Math.min(rect.width, rect.height) * 0.34;
+            const rawX = event.clientX - centerX;
+            const rawY = event.clientY - centerY;
+            const distance = Math.hypot(rawX, rawY);
+            const clampedDistance = Math.min(distance, maxDistance);
+            const angle = Math.atan2(rawY, rawX);
+            const knobX = Math.cos(angle) * clampedDistance;
+            const knobY = Math.sin(angle) * clampedDistance;
+            const knob = joystickEl.querySelector('.arcade-joystick-knob');
+
+            joystick.x = maxDistance ? knobX / maxDistance : 0;
+            joystick.y = maxDistance ? knobY / maxDistance : 0;
+            if (distance < 7) {
+                joystick.x = 0;
+                joystick.y = 0;
+            }
+            if (knob) knob.style.transform = `translate(calc(-50% + ${knobX}px), calc(-50% + ${knobY}px))`;
         }
 
         function bindMobileControls() {
@@ -656,27 +672,45 @@
                     button.setPointerCapture?.(event.pointerId);
                     button.classList.add('is-pressed');
 
-                    if (action === 'left') touchLeft = true;
-                    if (action === 'right') touchRight = true;
                     if (action === 'shoot' && isGameRunning) disparar();
                 });
 
                 const release = (event) => {
                     event.preventDefault();
                     button.classList.remove('is-pressed');
-
-                    if (action === 'left') touchLeft = false;
-                    if (action === 'right') touchRight = false;
                 };
 
                 button.addEventListener('pointerup', release);
                 button.addEventListener('pointercancel', release);
                 button.addEventListener('lostpointercapture', () => {
                     button.classList.remove('is-pressed');
-                    if (action === 'left') touchLeft = false;
-                    if (action === 'right') touchRight = false;
                 });
             });
+
+            const joystickEl = document.querySelector('[data-arcade-joystick]');
+            if (joystickEl) {
+                joystickEl.addEventListener('contextmenu', (event) => event.preventDefault());
+                joystickEl.addEventListener('pointerdown', (event) => {
+                    event.preventDefault();
+                    joystick.active = true;
+                    joystick.pointerId = event.pointerId;
+                    joystickEl.setPointerCapture?.(event.pointerId);
+                    joystickEl.classList.add('is-active');
+                    updateJoystickFromEvent(event, joystickEl);
+                });
+                joystickEl.addEventListener('pointermove', (event) => {
+                    if (!joystick.active || joystick.pointerId !== event.pointerId) return;
+                    event.preventDefault();
+                    updateJoystickFromEvent(event, joystickEl);
+                });
+                const releaseJoystick = (event) => {
+                    event.preventDefault();
+                    resetJoystick();
+                };
+                joystickEl.addEventListener('pointerup', releaseJoystick);
+                joystickEl.addEventListener('pointercancel', releaseJoystick);
+                joystickEl.addEventListener('lostpointercapture', resetJoystick);
+            }
         }
 
         function disparar() {
@@ -720,10 +754,10 @@
 
         function recibirDanio() {
             if (invulnerable) return;
-            if (shieldCharges > 0) {
-                shieldCharges--;
+            if (shieldTimer > 0) {
+                shieldTimer = 0;
                 invulnerable = true;
-                invulnTimer = 75;
+                invulnTimer = 42;
                 screenShake = 8;
                 spawnParticles(player.x + player.width / 2, player.y, '#00FFFF', 14);
                 addFloatingText('SHIELD SAVE', player.x + player.width / 2, player.y - 16, '#00FFFF', 18);
@@ -738,23 +772,15 @@
             lives--;
             actualizarScore();
             if (lives <= 0) {
-                // Si tenemos más de 1 cañón activamos sudden death
-                let cañonesActuales = getBaseShotCount();
-                if (cañonesActuales > 1) {
-                    // Activar sudden death: reemplaza música del arcade
-                    suddenDeath = true;
-                    powerUps = [];
-                    powerDoubleTimer = 0;
-                    powerSlowTimer = 0;
-                    powerPierceTimer = 0;
-                    shieldCharges = 0;
-                    enemySpeed *= 1.2;
-                    playArcadeBg('bgMusicSuddenDeath');
-                    showWaveBanner('SUDDEN DEATH // NO MODS', '#FF4444');
-                } else {
-                    gameOver();
-                    return;
-                }
+                suddenDeath = true;
+                powerUps = [];
+                powerDoubleTimer = 0;
+                powerSlowTimer = 0;
+                powerPierceTimer = 0;
+                shieldTimer = 0;
+                enemySpeed *= 1.2;
+                playArcadeBg('bgMusicSuddenDeath');
+                showWaveBanner('SUDDEN DEATH // NO MODS', '#FF4444');
             }
             // Invulnerabilidad 2 segundos (120 frames a 60fps)
             invulnerable = true;
@@ -793,7 +819,7 @@
             if (powerUp.type === 'double') powerDoubleTimer = 620;
             if (powerUp.type === 'slow') powerSlowTimer = 520;
             if (powerUp.type === 'pierce') powerPierceTimer = 520;
-            if (powerUp.type === 'shield') shieldCharges = Math.min(shieldCharges + 1, 2);
+            if (powerUp.type === 'shield') shieldTimer = SHIELD_DURATION_FRAMES;
             if (powerUp.type === 'heart' && !suddenDeath) lives = Math.min(lives + 1, 3);
 
             actualizarScore();
@@ -864,16 +890,107 @@
             if (enemy.x + enemy.width > canvas.width - 2) enemy.x = canvas.width - enemy.width - 2;
         }
 
+        function startEnemyDive(enemy) {
+            enemy.state = 'diving';
+            enemy.diveProgress = 0;
+            enemy.diveStartX = enemy.x;
+            enemy.diveStartY = enemy.baseY;
+            enemy.diveTargetX = player.x + player.width / 2 - enemy.width / 2;
+            enemy.returnX = enemy.homeX ?? enemy.x;
+            enemy.returnY = enemy.homeY ?? enemy.baseY;
+        }
+
+        function updateGalagaEnemyMovement(enemy, index, deltaFrames, time) {
+            if (enemy.isBoss || enemy.isEscort || enemy.isUFO) return false;
+
+            if (enemy.state === 'entering') {
+                enemy.enterProgress += deltaFrames / 78;
+                if (enemy.enterProgress < 0) return true;
+                const t = Math.min(enemy.enterProgress, 1);
+                const ease = 1 - Math.pow(1 - t, 3);
+                const sway = Math.sin(t * Math.PI * 2 + enemy.entrySeed) * 38 * (1 - t);
+                enemy.x = enemy.entryStartX + (enemy.homeX - enemy.entryStartX) * ease + sway;
+                enemy.baseY = enemy.entryStartY + (enemy.homeY - enemy.entryStartY) * ease;
+                enemy.yOffset = Math.sin(t * Math.PI + enemy.entrySeed) * 10 * (1 - t);
+                if (t >= 1) {
+                    enemy.state = 'formation';
+                    enemy.x = enemy.homeX;
+                    enemy.baseY = enemy.homeY;
+                    enemy.yOffset = 0;
+                }
+                return true;
+            }
+
+            if (enemy.state === 'diving') {
+                enemy.diveProgress += deltaFrames / (enemy.isRedShooter ? 78 : 96);
+                const t = Math.min(enemy.diveProgress, 1);
+                const arc = Math.sin(t * Math.PI);
+                const sideCurve = Math.sin(t * Math.PI * (enemy.row === 1 ? 4 : 3) + enemy.entrySeed) * (enemy.row === 0 ? 46 : 32) * arc;
+                enemy.x = enemy.diveStartX + (enemy.diveTargetX - enemy.diveStartX) * t + sideCurve;
+                enemy.baseY = enemy.diveStartY + arc * (enemy.row === 0 ? 330 : 290);
+                enemy.yOffset = Math.sin(t * Math.PI * 5) * 7;
+                if (t >= 1) {
+                    enemy.state = 'returning';
+                    enemy.diveProgress = 0;
+                    enemy.returnStartX = enemy.x;
+                    enemy.returnStartY = enemy.baseY;
+                }
+                return true;
+            }
+
+            if (enemy.state === 'returning') {
+                enemy.diveProgress += deltaFrames / 58;
+                const t = Math.min(enemy.diveProgress, 1);
+                const ease = 1 - Math.pow(1 - t, 2);
+                enemy.x = enemy.returnStartX + ((enemy.homeX ?? enemy.returnX) - enemy.returnStartX) * ease;
+                enemy.baseY = enemy.returnStartY + ((enemy.homeY ?? enemy.returnY) - enemy.returnStartY) * ease;
+                enemy.yOffset = Math.sin(t * Math.PI) * -18;
+                if (t >= 1) {
+                    enemy.state = 'formation';
+                    enemy.x = enemy.homeX ?? enemy.returnX;
+                    enemy.baseY = enemy.homeY ?? enemy.returnY;
+                    enemy.yOffset = 0;
+                    enemy.diveCooldown = 170 + Math.random() * 260;
+                }
+                return true;
+            }
+
+            if (enemy.state === 'formation') {
+                enemy.homeX = enemy.x;
+                enemy.homeY = enemy.baseY;
+                enemy.diveCooldown -= deltaFrames * (waveCount >= 4 ? 1.2 : 1);
+                if (waveCount >= 2 && enemy.diveCooldown <= 0 && Math.random() < 0.018) {
+                    startEnemyDive(enemy);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         function update(deltaFrames) {
             const enemySpeedFactor = powerSlowTimer > 0 ? 0.55 : 1;
 
-            if (keys.ArrowLeft || touchLeft) player.dx = -player.speed;
-            else if (keys.ArrowRight || touchRight) player.dx = player.speed;
-            else player.dx = 0;
+            let moveX = joystick.x;
+            let moveY = joystick.y;
+            if (keys.ArrowLeft || keys.KeyA) moveX -= 1;
+            if (keys.ArrowRight || keys.KeyD) moveX += 1;
+            if (keys.ArrowUp || keys.KeyW) moveY -= 1;
+            if (keys.ArrowDown || keys.KeyS) moveY += 1;
+            const moveLength = Math.hypot(moveX, moveY);
+            if (moveLength > 1) {
+                moveX /= moveLength;
+                moveY /= moveLength;
+            }
 
+            player.dx = moveX * player.speed;
+            player.dy = moveY * player.speed;
             player.x += player.dx * deltaFrames;
+            player.y += player.dy * deltaFrames;
             if (player.x < 0) player.x = 0;
             if (player.x + player.width > canvas.width) player.x = canvas.width - player.width;
+            if (player.y < PLAYER_MIN_Y) player.y = PLAYER_MIN_Y;
+            if (player.y + player.height > canvas.height - 8) player.y = canvas.height - player.height - 8;
 
             // Invulnerabilidad
             if (invulnerable) {
@@ -881,6 +998,7 @@
                 if (invulnTimer <= 0) invulnerable = false;
             }
 
+            if (shieldTimer > 0) shieldTimer = Math.max(0, shieldTimer - deltaFrames);
             if (powerDoubleTimer > 0) powerDoubleTimer = Math.max(0, powerDoubleTimer - deltaFrames);
             if (powerSlowTimer > 0) powerSlowTimer = Math.max(0, powerSlowTimer - deltaFrames);
             if (powerPierceTimer > 0) powerPierceTimer = Math.max(0, powerPierceTimer - deltaFrames);
@@ -943,6 +1061,17 @@
                         color: enemy.color
                     });
                 }
+                if (enemy.state === 'diving' && chancePerFrame(0.006, deltaFrames)) {
+                    let realY = enemy.baseY + enemy.yOffset;
+                    enemyBullets.push({
+                        x: enemy.x + enemy.width / 2 - 2,
+                        y: realY + enemy.height,
+                        width: 4,
+                        height: 9,
+                        speed: 4.2,
+                        color: enemy.color
+                    });
+                }
                 // Rojos: disparan más seguido desde 2000 pts
                 if (enemy.isRedShooter && score >= 2000 && chancePerFrame(0.004, deltaFrames)) {
                     let realY = enemy.baseY + enemy.yOffset;
@@ -980,30 +1109,13 @@
                 }
             }
 
-            // Balas enemigas vs Jugador y Barricadas
+            // Balas enemigas vs Jugador
             for (let i = enemyBullets.length - 1; i >= 0; i--) {
                 let bullet = enemyBullets[i];
                 bullet.y += bullet.speed * deltaFrames;
                 if (bullet.y > canvas.height) {
                     enemyBullets.splice(i, 1); continue;
                 }
-                // Colisión con barricadas
-                let hitBarricada = false;
-                for (let bi = barricadas.length - 1; bi >= 0; bi--) {
-                    let blk = barricadas[bi];
-                    if (bullet.x < blk.x + blk.w && bullet.x + bullet.width > blk.x &&
-                        bullet.y < blk.y + blk.h && bullet.y + bullet.height > blk.y) {
-                        blk.hp--;
-                        if (blk.hp <= 0) {
-                            spawnParticles(blk.x + blk.w/2, blk.y + blk.h/2, '#00FF99', 4);
-                            barricadas.splice(bi, 1);
-                        }
-                        enemyBullets.splice(i, 1);
-                        hitBarricada = true;
-                        break;
-                    }
-                }
-                if (hitBarricada) continue;
                 // Colisión con el jugador
                 if (!invulnerable &&
                     bullet.x < player.x + player.width && bullet.x + bullet.width > player.x &&
@@ -1040,6 +1152,22 @@
                     continue;
                 }
 
+                if (updateGalagaEnemyMovement(enemy, i, deltaFrames, time)) {
+                    if (enemy.state === 'diving' && !invulnerable && overlap({
+                        x: enemy.x,
+                        y: getEnemyY(enemy),
+                        width: enemy.width,
+                        height: enemy.height
+                    }, player)) {
+                        spawnParticles(enemy.x + enemy.width / 2, getEnemyY(enemy) + enemy.height / 2, enemy.color, 16);
+                        enemies.splice(i, 1);
+                        i--;
+                        recibirDanio();
+                        if (!isGameRunning) return;
+                    }
+                    continue;
+                }
+
                 enemy.x += enemySpeed * enemyDirection * deltaFrames * enemySpeedFactor;
                 enemy.yOffset = isChaosMode || enemy.isGlitch
                     ? Math.sin(time + i * (enemy.isBoss ? 0.3 : 0.7)) * (enemy.isBoss ? 8 : 12)
@@ -1063,33 +1191,18 @@
                     if (enemies[i].x + enemies[i].width > canvas.width) enemies[i].x = canvas.width - enemies[i].width;
                     enemies[i].baseY += enemies[i].isBoss ? 10 : 18;
                     if (enemies[i].baseY + enemies[i].yOffset + enemies[i].height >= player.y) {
-                        gameOver();
+                        spawnParticles(enemies[i].x + enemies[i].width / 2, getEnemyY(enemies[i]) + enemies[i].height / 2, enemies[i].color, 16);
+                        enemies.splice(i, 1);
+                        recibirDanio();
                         return;
                     }
                 }
             }
 
-            // Colisiones: balas del jugador vs barricadas, enemigos + UFO
+            // Colisiones: balas del jugador vs enemigos + UFO
             for (let bi = bullets.length - 1; bi >= 0; bi--) {
                 let bullet = bullets[bi];
                 let hit = false;
-
-                // Chequear barricadas primero (la bala las puede destruir)
-                for (let bri = barricadas.length - 1; bri >= 0; bri--) {
-                    let blk = barricadas[bri];
-                    if (bullet.x < blk.x + blk.w && bullet.x + bullet.width > blk.x &&
-                        bullet.y < blk.y + blk.h && bullet.y + bullet.height > blk.y) {
-                        blk.hp--;
-                        if (blk.hp <= 0) {
-                            spawnParticles(blk.x + blk.w/2, blk.y + blk.h/2, '#00FF99', 4);
-                            barricadas.splice(bri, 1);
-                        }
-                        bullets.splice(bi, 1);
-                        hit = true;
-                        break;
-                    }
-                }
-                if (hit) continue;
 
                 // Chequear UFO
                 if (ufo) {
@@ -1368,6 +1481,14 @@
             const glow = 0.25 + 0.14 * Math.sin(Date.now() / 500);
             ctx.fillStyle = `rgba(0, 255, 255, ${glow})`;
             ctx.fillRect(0, canvas.height - 3, canvas.width, 1);
+
+            ctx.strokeStyle = `rgba(0, 255, 255, ${0.08 + glow * 0.12})`;
+            ctx.setLineDash([8, 8]);
+            ctx.beginPath();
+            ctx.moveTo(18, PLAYER_MIN_Y - 8);
+            ctx.lineTo(canvas.width - 18, PLAYER_MIN_Y - 8);
+            ctx.stroke();
+            ctx.setLineDash([]);
         }
 
         function drawPowerUp(powerUp) {
@@ -1484,7 +1605,7 @@
                     ctx.shadowBlur = 0;
                 }
 
-                if (shieldCharges > 0) {
+                if (shieldTimer > 0) {
                     const radiusPulse = 1.5 + Math.sin(Date.now() / 110) * 1.5;
                     ctx.strokeStyle = '#00FFFF';
                     ctx.lineWidth = 2;
@@ -1549,26 +1670,6 @@
 
             // --- POWER-UPS ---
             powerUps.forEach(drawPowerUp);
-
-            // --- BARRICADAS ---
-            barricadas.forEach(blk => {
-                // Color según HP: verde brillante → verde oscuro → amarillo → naranja
-                let ratio = blk.hp / 3;
-                let r, g, b;
-                if (ratio > 0.66) {       // hp=3: verde neón
-                    r=0; g=220; b=100;
-                } else if (ratio > 0.33) { // hp=2: verde apagado
-                    r=0; g=140; b=60;
-                } else {                   // hp=1: amarillo-naranja (casi destruido)
-                    r=200; g=120; b=0;
-                }
-                ctx.fillStyle = `rgb(${r},${g},${b})`;
-                ctx.fillRect(blk.x, blk.y, blk.w, blk.h);
-                // Borde pixelado
-                ctx.strokeStyle = `rgba(${r+40},${g+40},${b+40},0.6)`;
-                ctx.lineWidth = 1;
-                ctx.strokeRect(blk.x + 0.5, blk.y + 0.5, blk.w - 1, blk.h - 1);
-            });
 
             // --- ENEMIGOS ---
             enemies.forEach(enemy => drawEnemy(ctx, enemy));
