@@ -186,6 +186,7 @@
         let canShoot = true; 
         let mobileFireTimer = null;
         const joystick = { active: false, pointerId: null, x: 0, y: 0 };
+        const pointerMove = { active: false, pointerId: null, hasTarget: false, x: 0, y: 0 };
 
         // Puntos por fila: fila 0 (superior)=100, fila 1 (media)=20, fila 2+ (inferior)=10
         function puntajeEnemigo(enemy) {
@@ -333,6 +334,7 @@
             canShoot = true;
             stopMobileFire();
             resetJoystick();
+            resetPointerMove();
             document.querySelectorAll('[data-arcade-action].is-pressed').forEach((button) => {
                 button.classList.remove('is-pressed');
             });
@@ -639,7 +641,7 @@
                     return;
                 }
                 disparar();
-            }, 135);
+            }, 185);
             button?.classList.add('is-pressed');
         }
 
@@ -659,6 +661,34 @@
             const knob = joystickEl?.querySelector('.arcade-joystick-knob');
             joystickEl?.classList.remove('is-active');
             if (knob) knob.style.transform = 'translate(-50%, -50%)';
+        }
+
+        function resetPointerMove() {
+            pointerMove.active = false;
+            pointerMove.pointerId = null;
+            pointerMove.hasTarget = false;
+        }
+
+        function updatePointerMoveTarget(event) {
+            const rect = canvas.getBoundingClientRect();
+            pointerMove.x = (event.clientX - rect.left) * (canvas.width / rect.width);
+            pointerMove.y = (event.clientY - rect.top) * (canvas.height / rect.height);
+            pointerMove.hasTarget = true;
+        }
+
+        function getPointerMoveVector() {
+            if (!pointerMove.hasTarget) return { x: 0, y: 0 };
+            const targetX = pointerMove.x - player.width / 2;
+            const targetY = pointerMove.y - player.height / 2;
+            const dx = targetX - player.x;
+            const dy = targetY - player.y;
+            const distance = Math.hypot(dx, dy);
+            if (distance < 4) return { x: 0, y: 0 };
+            const response = Math.min(distance / 34, 1);
+            return {
+                x: (dx / distance) * response,
+                y: (dy / distance) * response
+            };
         }
 
         function updateJoystickFromEvent(event, joystickEl) {
@@ -742,6 +772,43 @@
                 joystickEl.addEventListener('pointercancel', releaseJoystick);
                 joystickEl.addEventListener('lostpointercapture', resetJoystick);
             }
+
+            canvas.addEventListener('contextmenu', (event) => event.preventDefault());
+            canvas.addEventListener('pointerdown', (event) => {
+                if (!isGameRunning || event.pointerType === 'mouse') return;
+                event.preventDefault();
+                pointerMove.active = true;
+                pointerMove.pointerId = event.pointerId;
+                canvas.setPointerCapture?.(event.pointerId);
+                updatePointerMoveTarget(event);
+            });
+            canvas.addEventListener('pointermove', (event) => {
+                if (!isGameRunning) return;
+                if (event.pointerType === 'mouse') {
+                    updatePointerMoveTarget(event);
+                    return;
+                }
+                if (!pointerMove.active || pointerMove.pointerId !== event.pointerId) return;
+                event.preventDefault();
+                updatePointerMoveTarget(event);
+            });
+            canvas.addEventListener('pointerrawupdate', (event) => {
+                if (!isGameRunning || event.pointerType === 'mouse') return;
+                if (!pointerMove.active || pointerMove.pointerId !== event.pointerId) return;
+                event.preventDefault();
+                updatePointerMoveTarget(event);
+            });
+            const releasePointerMove = (event) => {
+                if (pointerMove.pointerId !== event.pointerId) return;
+                event.preventDefault();
+                resetPointerMove();
+            };
+            canvas.addEventListener('pointerup', releasePointerMove);
+            canvas.addEventListener('pointercancel', releasePointerMove);
+            canvas.addEventListener('pointerleave', (event) => {
+                if (event.pointerType === 'mouse') resetPointerMove();
+            });
+            canvas.addEventListener('lostpointercapture', resetPointerMove);
         }
 
         function disparar() {
@@ -1002,12 +1069,21 @@
         function update(deltaFrames) {
             const enemySpeedFactor = powerSlowTimer > 0 ? 0.55 : 1;
 
-            let moveX = joystick.x;
-            let moveY = joystick.y;
-            if (keys.ArrowLeft || keys.KeyA) moveX -= 1;
-            if (keys.ArrowRight || keys.KeyD) moveX += 1;
-            if (keys.ArrowUp || keys.KeyW) moveY -= 1;
-            if (keys.ArrowDown || keys.KeyS) moveY += 1;
+            let moveX = 0;
+            let moveY = 0;
+            if (joystick.active) {
+                moveX = joystick.x;
+                moveY = joystick.y;
+            } else if (pointerMove.hasTarget) {
+                const pointerVector = getPointerMoveVector();
+                moveX = pointerVector.x;
+                moveY = pointerVector.y;
+            } else {
+                if (keys.ArrowLeft || keys.KeyA) moveX -= 1;
+                if (keys.ArrowRight || keys.KeyD) moveX += 1;
+                if (keys.ArrowUp || keys.KeyW) moveY -= 1;
+                if (keys.ArrowDown || keys.KeyS) moveY += 1;
+            }
             const moveLength = Math.hypot(moveX, moveY);
             if (moveLength > 1) {
                 moveX /= moveLength;
