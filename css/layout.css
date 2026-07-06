@@ -11,7 +11,7 @@ body {
     background-size: 24px 24px, 24px 24px, 100% 100%;
     background-attachment: fixed;
     color: #ffffff;
-    font-family: 'Nunito', sans-serif;
+    font-family: var(--font-body);
     text-align: center;
     padding: 40px 20px;
     margin: 0;
@@ -54,7 +54,7 @@ body::after {
     align-items: center;
     gap: 5px;
     color: #9d9d9d;
-    font-family: 'VT323', monospace;
+    font-family: var(--font-terminal);
     font-size: 18px;
     line-height: 1.15;
     text-align: center;
@@ -87,7 +87,7 @@ body::after {
 }
 
 /* Arcade Layout */
-.arcade-overlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #05000a; background-image: linear-gradient(rgba(0, 255, 255, 0.05) 2px, transparent 2px), linear-gradient(90deg, rgba(0, 255, 255, 0.05) 2px, transparent 2px); background-size: 30px 30px; z-index: 100000; font-family: 'VT323', monospace; color: #fff; flex-direction: column; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.arcade-overlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #05000a; background-image: linear-gradient(rgba(0, 255, 255, 0.05) 2px, transparent 2px), linear-gradient(90deg, rgba(0, 255, 255, 0.05) 2px, transparent 2px); background-size: 30px 30px; z-index: 100000; font-family: var(--font-terminal); color: #fff; flex-direction: column; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 .arcade-screen { display: none; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 100vh; text-align: center; padding: 60px 20px 40px 20px; }
 .arcade-screen.active { display: flex; }
 .arcade-game-container { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 450px;}

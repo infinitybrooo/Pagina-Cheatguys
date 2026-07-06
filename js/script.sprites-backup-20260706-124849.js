@@ -15,7 +15,6 @@
         }
 
         const ctx = canvas.getContext('2d');
-        ctx.imageSmoothingEnabled = false;
         const FRAME_MS = 1000 / 60;
         const MAX_FRAME_DELTA = 2.4;
         const SHOOT_SFX_POOL_SIZE = 5;
@@ -28,79 +27,6 @@
 
         function chancePerFrame(baseChance, deltaFrames) {
             return Math.random() < Math.min(baseChance * deltaFrames, 0.95);
-        }
-
-        const SPRITE_BASE_PATH = 'assets/arcade/sprites/';
-        const ARCADE_SPRITE_FILES = {
-            akaneShip: 'akane-ship.png',
-            enemyBlue: 'enemy-blue.png',
-            enemyPink: 'enemy-pink.png',
-            enemyOrange: 'enemy-orange.png',
-            enemyRed: 'enemy-red-shooter.png',
-            bossMini: 'boss-mini.png',
-            bossFull: 'boss-full.png',
-            bossMiniAnxiety: 'boss-mini-anxiety-sheet.png',
-            bossFullAnxiety: 'boss-full-anxiety-sheet.png',
-            ufoGold: 'ufo-gold.png',
-            powerDouble: 'power-double.png',
-            powerShield: 'power-shield.png',
-            powerSlow: 'power-slow.png',
-            powerPierce: 'power-pierce.png',
-            powerHeart: 'power-heart.png',
-            powerInvincible: 'power-invincible.png',
-            tractorBeam: 'tractor-beam-sheet.png',
-            challengeTarget: 'challenge-target.png',
-            bulletPlayer: 'bullet-player.png',
-            bulletPierce: 'bullet-pierce.png',
-            bulletEnemyOrange: 'bullet-enemy-orange.png',
-            bulletEnemyPurple: 'bullet-enemy-purple.png',
-            shieldRing: 'shield-ring.png'
-        };
-        const arcadeSprites = {};
-        const POWERUP_SPRITES = {
-            double: 'powerDouble',
-            shield: 'powerShield',
-            slow: 'powerSlow',
-            pierce: 'powerPierce',
-            heart: 'powerHeart',
-            invincible: 'powerInvincible'
-        };
-
-        Object.entries(ARCADE_SPRITE_FILES).forEach(([key, file]) => {
-            const image = new Image();
-            image.decoding = 'async';
-            image.src = `${SPRITE_BASE_PATH}${file}`;
-            arcadeSprites[key] = image;
-        });
-
-        function isSpriteReady(key) {
-            const image = arcadeSprites[key];
-            return Boolean(image && image.complete && image.naturalWidth > 0);
-        }
-
-        function drawSprite(key, x, y, width, height, options = {}) {
-            if (!isSpriteReady(key)) return false;
-            const image = arcadeSprites[key];
-            const frames = options.frames || 1;
-            const frame = options.frame || 0;
-            const sourceWidth = image.naturalWidth / frames;
-            const sourceX = Math.floor(frame % frames) * sourceWidth;
-            ctx.save();
-            ctx.imageSmoothingEnabled = false;
-            if (options.alpha !== undefined) ctx.globalAlpha = options.alpha;
-            ctx.drawImage(
-                image,
-                sourceX,
-                0,
-                sourceWidth,
-                image.naturalHeight,
-                Math.floor(x),
-                Math.floor(y),
-                Math.floor(width),
-                Math.floor(height)
-            );
-            ctx.restore();
-            return true;
         }
 
         const localArcadeAudio = {
@@ -235,15 +161,9 @@
         let powerDoubleTimer = 0;
         let powerSlowTimer = 0;
         let powerPierceTimer = 0;
-        let invincibleTimer = 0;
-        let pendingChallengeStage = false;
-        let challengeStage = null;
-        const POINT_SHOT_STEP = 10000;
+        const POINT_SHOT_STEP = 2000;
         const MAX_POINT_SHOTS = 2;
         const SHIELD_DURATION_FRAMES = 20 * 60;
-        const INVINCIBLE_DURATION_FRAMES = 10 * 60;
-        const TRACTOR_BEAM_DURATION_FRAMES = 4 * 60;
-        const TRACTOR_BEAM_COOLDOWN_FRAMES = 280;
         const PLAYER_MIN_Y = 318;
         const POWERUP_TYPES = [
             { type: 'double', label: 'DOUBLE', color: '#FF69B4' },
@@ -251,9 +171,6 @@
             { type: 'slow', label: 'SLOW', color: '#FFD700' },
             { type: 'pierce', label: 'PIERCE', color: '#AA44FF' },
             { type: 'heart', label: 'HEART', color: '#00FF99' }
-        ];
-        const UNIQUE_POWERUP_TYPES = [
-            { type: 'invincible', label: 'INVINCIBLE', color: '#FFD32A' }
         ];
 
         // Nave de Akane
@@ -273,7 +190,6 @@
 
         // Puntos por fila: fila 0 (superior)=100, fila 1 (media)=20, fila 2+ (inferior)=10
         function puntajeEnemigo(enemy) {
-            if (enemy.isChallengeTarget) return 280;
             if (enemy.isUFO) return 500;
             if (enemy.isMajorBoss) return 3000;
             if (enemy.isBoss) return 1200;
@@ -308,22 +224,6 @@
             if (suddenDeath) return 0;
             const waveDropFactor = Math.max(0.24, 1 - Math.max(waveCount - 1, 0) * 0.045);
             return baseChance * waveDropFactor;
-        }
-
-        function getPowerUpConfig(type) {
-            return [...POWERUP_TYPES, ...UNIQUE_POWERUP_TYPES].find((item) => item.type === type);
-        }
-
-        function isPlayerProtected() {
-            return invulnerable || invincibleTimer > 0;
-        }
-
-        function getActiveTractorEnemy() {
-            return enemies.find((enemy) => enemy.isRedShooter && enemy.tractorActive && enemy.tractorTimer > 0);
-        }
-
-        function getTractorSlowFactor() {
-            return getActiveTractorEnemy() ? 0.38 : 1;
         }
 
         function addFloatingText(text, x, y, color = '#FFFFFF', size = 18) {
@@ -362,12 +262,9 @@
             if (powerDoubleTimer > 0) active.push('DOUBLE');
             if (powerSlowTimer > 0) active.push('SLOW');
             if (powerPierceTimer > 0) active.push('PIERCE');
-            if (invincibleTimer > 0) active.push(`INVINCIBLE ${Math.ceil(invincibleTimer / 60)}s`);
-            if (getActiveTractorEnemy()) active.push('TRACTOR LOCK');
             if (shieldTimer > 0) active.push(`SHIELD ${Math.ceil(shieldTimer / 60)}s`);
             if (comboCount > 1 && comboTimer > 0) active.push(`COMBO x${comboCount}`);
-            const label = challengeStage?.active ? 'BONUS' : `WAVE ${String(Math.max(waveCount, 1)).padStart(2, '0')}`;
-            statusLine.innerText = message || `${label} // ${active.length ? active.join(' // ') : 'READY'}`;
+            statusLine.innerText = message || `WAVE ${String(Math.max(waveCount, 1)).padStart(2, '0')} // ${active.length ? active.join(' // ') : 'READY'}`;
         }
 
         window.iniciarSecuenciaArcade = function() {
@@ -484,9 +381,6 @@
             powerDoubleTimer = 0;
             powerSlowTimer = 0;
             powerPierceTimer = 0;
-            invincibleTimer = 0;
-            pendingChallengeStage = false;
-            challengeStage = null;
             initStarfield();
             actualizarScore();
             refreshStatusLine('WAVE 01 // READY');
@@ -576,148 +470,7 @@
             });
         }
 
-        function createChallengeTarget(index) {
-            const side = index % 2 === 0 ? -1 : 1;
-            const lane = index % 6;
-            const group = Math.floor(index / 6);
-            return {
-                x: side < 0 ? -48 - lane * 18 : canvas.width + 22 + lane * 18,
-                baseY: 74 + group * 54,
-                yOffset: 0,
-                width: 30,
-                height: 22,
-                color: '#FFD32A',
-                row: 0,
-                isChallengeTarget: true,
-                isRedShooter: false,
-                isUFO: false,
-                flashTimer: 0,
-                state: 'challenge',
-                challengeProgress: -index * 0.07,
-                challengePath: index % 3,
-                challengeSide: side,
-                challengeSeed: index * 0.8
-            };
-        }
-
-        function createChallengingStage() {
-            pendingChallengeStage = false;
-            challengeStage = {
-                active: true,
-                total: 18,
-                killed: 0,
-                escaped: 0
-            };
-            enemies = [];
-            enemyBullets = [];
-            powerUps = [];
-            ufo = null;
-            for (let i = 0; i < challengeStage.total; i++) {
-                enemies.push(createChallengeTarget(i));
-            }
-            enemyDirection = 1;
-            showWaveBanner('CHALLENGING STAGE // BONUS', '#FFD32A');
-            refreshStatusLine('BONUS STAGE // HIT THE PARADE');
-        }
-
-        function createRedTractorEnemy(index, cols, enemyWidth, enemyHeight, options = {}) {
-            const fromLeft = options.fromLeft ?? ((index + waveCount) % 2 === 0);
-            const startX = options.startX ?? (fromLeft ? -62 - index * 18 : canvas.width + 34 + index * 18);
-            const targetY = options.targetY ?? (86 + index * 38);
-            return {
-                x: startX,
-                baseY: options.startY ?? (-32 - index * 18),
-                homeX: startX,
-                homeY: targetY,
-                yOffset: 0,
-                width: enemyWidth,
-                height: enemyHeight,
-                color: '#FF0000',
-                row: 2,
-                hp: 4,
-                maxHp: 4,
-                isRedShooter: true,
-                isUFO: false,
-                flashTimer: 0,
-                state: 'hunting',
-                diveCooldown: 0,
-                diveProgress: 0,
-                huntTargetY: targetY,
-                huntSeed: index * 1.7,
-                tractorCooldown: options.tractorCooldown ?? (45 + index * 35),
-                tractorTimer: 0,
-                tractorActive: false,
-                tractorRewardReady: false
-            };
-        }
-
-        function addBossRedEscorts(isMajorBoss) {
-            const count = isMajorBoss ? 2 : 1;
-            const enemyWidth = 30;
-            const enemyHeight = 22;
-            for (let i = 0; i < count; i++) {
-                const side = i % 2 === 0 ? -1 : 1;
-                enemies.push(createRedTractorEnemy(i, 6, enemyWidth, enemyHeight, {
-                    fromLeft: side < 0,
-                    startX: canvas.width / 2 + side * (isMajorBoss ? 96 : 76) - enemyWidth / 2,
-                    startY: isMajorBoss ? 122 + i * 30 : 112,
-                    targetY: isMajorBoss ? 104 + i * 34 : 118,
-                    tractorCooldown: isMajorBoss ? 95 + i * 45 : 120
-                }));
-            }
-        }
-
-        function updateChallengeTarget(enemy, deltaFrames) {
-            enemy.challengeProgress += deltaFrames / 140;
-            if (enemy.challengeProgress < 0) return false;
-            const t = enemy.challengeProgress;
-            const direction = enemy.challengeSide;
-            const travel = canvas.width + 96;
-            enemy.x = direction < 0
-                ? -46 + travel * t
-                : canvas.width + 16 - travel * t;
-
-            if (enemy.challengePath === 0) {
-                enemy.baseY = 82 + Math.sin(t * Math.PI * 2 + enemy.challengeSeed) * 34;
-            } else if (enemy.challengePath === 1) {
-                enemy.baseY = 132 + Math.sin(t * Math.PI * 3 + enemy.challengeSeed) * 52;
-            } else {
-                enemy.baseY = 190 + Math.sin(t * Math.PI * 2.4 + enemy.challengeSeed) * 46;
-            }
-            enemy.yOffset = Math.sin(t * Math.PI * 8 + enemy.challengeSeed) * 4;
-
-            const offscreen = direction < 0
-                ? enemy.x > canvas.width + 44
-                : enemy.x + enemy.width < -44;
-            if (offscreen) {
-                challengeStage.escaped++;
-                return true;
-            }
-            return false;
-        }
-
-        function finishChallengingStage() {
-            if (!challengeStage?.active) return;
-            const perfect = challengeStage.killed === challengeStage.total;
-            const bonus = perfect ? 3000 : challengeStage.killed * 80;
-            if (bonus > 0) {
-                score += bonus;
-                actualizarScore();
-                addFloatingText(`BONUS +${bonus}`, canvas.width / 2, 248, perfect ? '#FFD32A' : '#00FFFF', 24);
-                if (score >= AKANE_MAX_SCORE) {
-                    gameWin();
-                    return;
-                }
-            }
-            showWaveBanner(perfect ? 'PERFECT BONUS!' : 'BONUS CLEAR', perfect ? '#FFD32A' : '#00FFFF');
-            challengeStage = null;
-        }
-
         function crearOleada() {
-            if (pendingChallengeStage) {
-                createChallengingStage();
-                return;
-            }
             waveCount++;
             enemies = [];
             enemyBullets = [];
@@ -731,7 +484,6 @@
             if (isBossWave) {
                 enemies.push(createBossEnemy(isMajorBossWave));
                 if (isMajorBossWave) addMajorBossEscorts();
-                addBossRedEscorts(isMajorBossWave);
                 enemySpeed += isMajorBossWave ? 0.28 : 0.2;
                 enemyDirection = 1;
                 showWaveBanner(
@@ -810,11 +562,29 @@
                 }
             }
 
-            // Rojas cazadoras: 1-2 cada 3 oleadas para que invencibilidad no se acumule.
-            if (score >= 2000 && waveCount % 3 === 0) {
+            // Agregar 1-2 naves rojas especiales si score >= 2000
+            if (score >= 2000) {
                 let numReds = 1 + Math.floor(Math.random() * 2); // 1 o 2
                 for (let i = 0; i < numReds; i++) {
-                    enemies.push(createRedTractorEnemy(i, cols, enemyWidth, enemyHeight));
+                    let col = Math.floor(Math.random() * cols);
+                    let rowR = rows - 1;
+                        enemies.push({
+                            x: offsetX + col * (enemyWidth + padX),
+                            baseY: offsetY + rowR * (enemyHeight + padY) + (i * (enemyHeight + padY)),
+                            homeX: offsetX + col * (enemyWidth + padX),
+                            homeY: offsetY + rowR * (enemyHeight + padY) + (i * (enemyHeight + padY)),
+                            yOffset: 0,
+                            width: enemyWidth,
+                            height: enemyHeight,
+                        color: '#FF0000',
+                            row: rowR,
+                            isRedShooter: true,
+                            isUFO: false,
+                            flashTimer: 0,
+                            state: 'formation',
+                            diveCooldown: 120 + Math.random() * 160,
+                            diveProgress: 0
+                        });
                 }
             }
 
@@ -1080,9 +850,9 @@
             }
         }
 
-        function recibirDanio(options = {}) {
-            if (invulnerable || invincibleTimer > 0) return;
-            if (shieldTimer > 0 && !options.bypassShield) {
+        function recibirDanio() {
+            if (invulnerable) return;
+            if (shieldTimer > 0) {
                 shieldTimer = 0;
                 invulnerable = true;
                 invulnTimer = 42;
@@ -1105,7 +875,6 @@
                 powerDoubleTimer = 0;
                 powerSlowTimer = 0;
                 powerPierceTimer = 0;
-                clearTractorBeams();
                 shieldTimer = 0;
                 enemySpeed *= 1.2;
                 playArcadeBg('bgMusicSuddenDeath');
@@ -1123,7 +892,7 @@
         function spawnPowerUp(x, y, forcedType) {
             if (suddenDeath) return;
             const config = forcedType
-                ? getPowerUpConfig(forcedType)
+                ? POWERUP_TYPES.find((item) => item.type === forcedType)
                 : POWERUP_TYPES[Math.floor(Math.random() * POWERUP_TYPES.length)];
             if (!config) return;
             powerUps.push({
@@ -1144,108 +913,12 @@
             if (scaledChance > 0 && Math.random() < scaledChance) spawnPowerUp(x, y);
         }
 
-        function clearTractorBeams() {
-            enemies.forEach((enemy) => {
-                if (!enemy.isRedShooter) return;
-                enemy.tractorActive = false;
-                enemy.tractorTimer = 0;
-                enemy.tractorRewardReady = false;
-                enemy.tractorCooldown = TRACTOR_BEAM_COOLDOWN_FRAMES;
-            });
-        }
-
-        function startTractorBeam(enemy) {
-            if (suddenDeath || challengeStage?.active || invincibleTimer > 0) return;
-            enemy.tractorActive = true;
-            enemy.tractorTimer = TRACTOR_BEAM_DURATION_FRAMES;
-            enemy.tractorRewardReady = true;
-            enemy.tractorCooldown = TRACTOR_BEAM_COOLDOWN_FRAMES;
-            enemy.state = 'beaming';
-            enemy.yOffset = 0;
-            showWaveBanner('TRACTOR BEAM // ROMPE EL ROJO', '#FF2E6D');
-            addFloatingText('TRACTOR!', player.x + player.width / 2, player.y - 20, '#FF2E6D', 18);
-        }
-
-        function updateRedHunterMovement(enemy, deltaFrames) {
-            if (!enemy.isRedShooter || challengeStage?.active) return false;
-
-            if (enemy.tractorActive) {
-                updateTractorBeam(enemy, deltaFrames);
-                return true;
-            }
-
-            if (invulnerable || invincibleTimer > 0) {
-                enemy.tractorCooldown = Math.max(enemy.tractorCooldown || 0, 45);
-            } else {
-                enemy.tractorCooldown = Math.max(0, (enemy.tractorCooldown || 0) - deltaFrames);
-            }
-
-            const desiredX = player.x + player.width / 2 - enemy.width / 2;
-            const desiredY = Math.max(56, player.y - 128);
-            const chaseSpeed = 2.2 + Math.min(waveCount, 12) * 0.05;
-            const dx = desiredX - enemy.x;
-            const dy = desiredY - enemy.baseY;
-            const distance = Math.hypot(dx, dy);
-
-            if (distance > 1) {
-                const step = Math.min(distance, chaseSpeed * deltaFrames);
-                enemy.x += (dx / distance) * step;
-                enemy.baseY += (dy / distance) * step;
-            }
-
-            enemy.yOffset = Math.sin(Date.now() / 115 + enemy.huntSeed) * 4;
-            if (enemy.x < 2) enemy.x = 2;
-            if (enemy.x + enemy.width > canvas.width - 2) enemy.x = canvas.width - enemy.width - 2;
-            if (enemy.baseY < 42) enemy.baseY = 42;
-            if (enemy.baseY > PLAYER_MIN_Y - 82) enemy.baseY = PLAYER_MIN_Y - 82;
-
-            const aligned = Math.abs((enemy.x + enemy.width / 2) - (player.x + player.width / 2)) < 13;
-            const aboveAkane = enemy.baseY + enemy.height < player.y - 48;
-            if (enemy.tractorCooldown === 0 && aligned && aboveAkane) {
-                startTractorBeam(enemy);
-            }
-            return true;
-        }
-
-        function updateTractorBeam(enemy, deltaFrames) {
-            if (!enemy.isRedShooter || challengeStage?.active) return;
-            if (enemy.tractorActive) {
-                if (invincibleTimer > 0) {
-                    enemy.tractorActive = false;
-                    enemy.tractorRewardReady = false;
-                    enemy.tractorTimer = 0;
-                    enemy.state = 'hunting';
-                    return;
-                }
-                enemy.tractorTimer -= deltaFrames;
-                enemy.x += (player.x + player.width / 2 - (enemy.x + enemy.width / 2)) * 0.028 * deltaFrames;
-                enemy.baseY += (Math.max(56, player.y - 128) - enemy.baseY) * 0.016 * deltaFrames;
-                enemy.yOffset = Math.sin(Date.now() / 70 + enemy.huntSeed) * 3;
-                if (enemy.tractorTimer <= 0) {
-                    enemy.tractorActive = false;
-                    enemy.tractorRewardReady = false;
-                    enemy.tractorTimer = 0;
-                    enemy.state = 'hunting';
-                    spawnParticles(player.x + player.width / 2, player.y + player.height / 2, '#FF2E6D', 18);
-                    addFloatingText('TRACTOR HIT', player.x + player.width / 2, player.y - 18, '#FF2E6D', 18);
-                    recibirDanio({ bypassShield: true });
-                }
-                return;
-            }
-        }
-
         function applyPowerUp(powerUp) {
             if (powerUp.type === 'double') powerDoubleTimer = 620;
             if (powerUp.type === 'slow') powerSlowTimer = 520;
             if (powerUp.type === 'pierce') powerPierceTimer = 520;
             if (powerUp.type === 'shield') shieldTimer = SHIELD_DURATION_FRAMES;
             if (powerUp.type === 'heart' && !suddenDeath) lives = Math.min(lives + 1, 3);
-            if (powerUp.type === 'invincible') {
-                invincibleTimer = INVINCIBLE_DURATION_FRAMES;
-                invulnerable = false;
-                invulnTimer = 0;
-                clearTractorBeams();
-            }
 
             actualizarScore();
             refreshStatusLine(`${powerUp.label} GET!`);
@@ -1327,7 +1000,6 @@
 
         function updateGalagaEnemyMovement(enemy, index, deltaFrames, time) {
             if (enemy.isBoss || enemy.isEscort || enemy.isUFO) return false;
-            if (enemy.isRedShooter) return updateRedHunterMovement(enemy, deltaFrames);
 
             if (enemy.state === 'entering') {
                 enemy.enterProgress += deltaFrames / 78;
@@ -1396,7 +1068,6 @@
 
         function update(deltaFrames) {
             const enemySpeedFactor = powerSlowTimer > 0 ? 0.55 : 1;
-            const playerSpeedFactor = getTractorSlowFactor();
 
             let moveX = 0;
             let moveY = 0;
@@ -1419,8 +1090,8 @@
                 moveY /= moveLength;
             }
 
-            player.dx = moveX * player.speed * playerSpeedFactor;
-            player.dy = moveY * player.speed * playerSpeedFactor;
+            player.dx = moveX * player.speed;
+            player.dy = moveY * player.speed;
             player.x += player.dx * deltaFrames;
             player.y += player.dy * deltaFrames;
             if (player.x < 0) player.x = 0;
@@ -1438,7 +1109,6 @@
             if (powerDoubleTimer > 0) powerDoubleTimer = Math.max(0, powerDoubleTimer - deltaFrames);
             if (powerSlowTimer > 0) powerSlowTimer = Math.max(0, powerSlowTimer - deltaFrames);
             if (powerPierceTimer > 0) powerPierceTimer = Math.max(0, powerPierceTimer - deltaFrames);
-            if (invincibleTimer > 0) invincibleTimer = Math.max(0, invincibleTimer - deltaFrames);
             if (comboTimer > 0) {
                 comboTimer = Math.max(0, comboTimer - deltaFrames);
                 if (comboTimer === 0) comboCount = 0;
@@ -1456,13 +1126,11 @@
             }
 
             // UFO: spawn periódico
-            if (!challengeStage?.active) {
-                ufoTimer += deltaFrames;
-                let ufoInterval = score >= 2000 ? 420 : 600; // aparece más seguido con puntuación alta
-                if (!ufo && ufoTimer >= ufoInterval) {
-                    ufoTimer = 0;
-                    ufo = { x: -40, y: 18, width: 38, height: 16, speed: 2.2, color: '#FFD700', isUFO: true, row: -1, isRedShooter: false, flashTimer: 0, baseY: 18, yOffset: 0 };
-                }
+            ufoTimer += deltaFrames;
+            let ufoInterval = score >= 2000 ? 420 : 600; // aparece más seguido con puntuación alta
+            if (!ufo && ufoTimer >= ufoInterval) {
+                ufoTimer = 0;
+                ufo = { x: -40, y: 18, width: 38, height: 16, speed: 2.2, color: '#FFD700', isUFO: true, row: -1, isRedShooter: false, flashTimer: 0, baseY: 18, yOffset: 0 };
             }
             if (ufo) {
                 ufo.x += ufo.speed * deltaFrames;
@@ -1556,7 +1224,7 @@
                     enemyBullets.splice(i, 1); continue;
                 }
                 // Colisión con el jugador
-                if (!isPlayerProtected() &&
+                if (!invulnerable &&
                     bullet.x < player.x + player.width && bullet.x + bullet.width > player.x &&
                     bullet.y < player.y + player.height && bullet.y + bullet.height > player.y) {
                     enemyBullets.splice(i, 1);
@@ -1574,16 +1242,9 @@
 
             for (let i = 0; i < enemies.length; i++) {
                 let enemy = enemies[i];
-                if (enemy.isChallengeTarget) {
-                    if (updateChallengeTarget(enemy, deltaFrames)) {
-                        enemies.splice(i, 1);
-                        i--;
-                    }
-                    continue;
-                }
                 if (enemy.isEscort) {
                     updateEscortMovement(enemy, i, deltaFrames, time);
-                    if (enemy.isDiving && !isPlayerProtected() && overlap({
+                    if (enemy.isDiving && !invulnerable && overlap({
                         x: enemy.x,
                         y: getEnemyY(enemy),
                         width: enemy.width,
@@ -1599,7 +1260,7 @@
                 }
 
                 if (updateGalagaEnemyMovement(enemy, i, deltaFrames, time)) {
-                    if (enemy.state === 'diving' && !isPlayerProtected() && overlap({
+                    if (enemy.state === 'diving' && !invulnerable && overlap({
                         x: enemy.x,
                         y: getEnemyY(enemy),
                         width: enemy.width,
@@ -1678,26 +1339,6 @@
                         if (bullet.pierce > 0) bullet.pierce--;
                         else bullets.splice(bi, 1);
 
-                        if (enemy.isChallengeTarget) {
-                            challengeStage.killed++;
-                            registerKill(enemy, pts, hitX, hitY);
-                            spawnParticles(hitX, hitY, '#FFD32A', 16);
-                            enemies.splice(ei, 1);
-                            hit = true;
-                            break;
-                        }
-
-                        if (enemy.isRedShooter) {
-                            enemy.hp = Math.max(0, (enemy.hp || 1) - 1);
-                            enemy.flashTimer = 8;
-                            spawnParticles(hitX, hitY, '#FF2E6D', 6);
-                            addFloatingText(`${enemy.hp}/${enemy.maxHp || 4}`, hitX, hitY - 10, '#FF2E6D', 13);
-                            if (enemy.hp > 0) {
-                                hit = true;
-                                break;
-                            }
-                        }
-
                         if (enemy.isBoss) {
                             enemy.hp--;
                             enemy.flashTimer = 8;
@@ -1708,7 +1349,6 @@
                                 break;
                             }
                             registerKill(enemy, pts, hitX, hitY);
-                            if (enemy.isMajorBoss) pendingChallengeStage = true;
                             spawnParticles(hitX, hitY, '#FF69B4', 34);
                             spawnPowerUp(hitX - 20, hitY, 'shield');
                             spawnPowerUp(hitX + 20, hitY, 'double');
@@ -1717,18 +1357,12 @@
                             break;
                         }
                         registerKill(enemy, pts, hitX, hitY);
-                        let handledPowerDrop = false;
 
                         // Si es nave roja: explotar a los enemigos cercanos
                         if (enemy.isRedShooter) {
                             let cx = enemy.x + enemy.width / 2;
                             let cy = enemy.baseY + enemy.yOffset + enemy.height / 2;
                             spawnParticles(cx, cy, '#FF0000', 20);
-                            if (enemy.tractorRewardReady && enemy.tractorTimer > 0) {
-                                spawnPowerUp(cx, cy, 'invincible');
-                                addFloatingText('INVINCIBLE DROP', cx, cy - 18, '#FFD32A', 16);
-                                handledPowerDrop = true;
-                            }
                             // Radio de explosión: matar/dañar a enemigos a 60px
                             for (let k = enemies.length - 1; k >= 0; k--) {
                                 if (k === ei) continue;
@@ -1736,7 +1370,7 @@
                                 let ocx = other.x + other.width / 2;
                                 let ocy = other.baseY + other.yOffset + other.height / 2;
                                 let dist = Math.sqrt((cx-ocx)**2 + (cy-ocy)**2);
-                                if (!other.isBoss && !other.isRedShooter && dist < 65) {
+                                if (!other.isBoss && dist < 65) {
                                     registerKill(other, puntajeEnemigo(other), ocx, ocy);
                                     spawnParticles(ocx, ocy, other.color, 8);
                                     maybeSpawnPowerUp(ocx, ocy, 0.08);
@@ -1747,7 +1381,7 @@
                         } else {
                             spawnParticles(enemy.x + enemy.width/2, enemy.baseY + enemy.yOffset + enemy.height/2, enemy.color, 8);
                         }
-                        if (!handledPowerDrop) maybeSpawnPowerUp(hitX, hitY, enemy.isGlitch ? 0.22 : 0.12);
+                        maybeSpawnPowerUp(hitX, hitY, enemy.isGlitch ? 0.22 : 0.12);
                         enemies.splice(ei, 1);
                         hit = true;
                         break;
@@ -1781,82 +1415,12 @@
                 }
             }
 
-            if (enemies.length === 0) {
-                if (challengeStage?.active) finishChallengingStage();
-                if (isGameRunning) crearOleada();
-            }
+            if (enemies.length === 0) { crearOleada(); }
             refreshStatusLine();
         }
 
-        function getEnemySpriteKey(enemy) {
-            if (enemy.isChallengeTarget) return 'challengeTarget';
-            if (enemy.isBoss) return enemy.isMajorBoss ? 'bossFullAnxiety' : 'bossMiniAnxiety';
-            if (enemy.isRedShooter) return 'enemyRed';
-            if (enemy.row === 0) return 'enemyBlue';
-            if (enemy.row === 1) return 'enemyPink';
-            return 'enemyOrange';
-        }
-
-        function drawBossHpBar(enemy, ex, ey, w) {
-            const hpRatio = Math.max(enemy.hp, 0) / enemy.maxHp;
-            ctx.fillStyle = 'rgba(0,0,0,0.72)';
-            ctx.fillRect(ex, ey - 10, w, 5);
-            ctx.fillStyle = '#FF69B4';
-            ctx.fillRect(ex, ey - 10, w * hpRatio, 5);
-            ctx.strokeStyle = '#FFFFFF';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(ex + 0.5, ey - 9.5, w - 1, 4);
-        }
-
-        function drawEnemy(ctx, enemy) {
-            const ex = Math.floor(enemy.x);
-            const ey = Math.floor(enemy.baseY + enemy.yOffset);
-            const w = enemy.width;
-            const h = enemy.height;
-            const key = getEnemySpriteKey(enemy);
-
-            if (enemy.isBoss) {
-                const frames = key.includes('Anxiety') ? 4 : 1;
-                const frame = Math.floor(Date.now() / 135) % frames;
-                const spriteW = enemy.isMajorBoss ? w + 66 : w + 44;
-                const spriteH = enemy.isMajorBoss ? h + 56 : h + 34;
-                const spriteX = ex + w / 2 - spriteW / 2;
-                const spriteY = ey + h / 2 - spriteH / 2 - (enemy.isMajorBoss ? 8 : 5);
-
-                if (drawSprite(key, spriteX, spriteY, spriteW, spriteH, { frames, frame })) {
-                    if (enemy.flashTimer > 0 && enemy.flashTimer % 4 < 2) {
-                        ctx.fillStyle = 'rgba(255,255,255,0.45)';
-                        ctx.fillRect(spriteX, spriteY, spriteW, spriteH);
-                    }
-                    drawBossHpBar(enemy, ex, ey, w);
-                    return;
-                }
-            } else {
-                const spriteW = enemy.isEscort ? w + 13 : w + 14;
-                const spriteH = enemy.isEscort ? h + 16 : h + 14;
-                const spriteX = ex + w / 2 - spriteW / 2;
-                const spriteY = ey + h / 2 - spriteH / 2;
-                if (drawSprite(key, spriteX, spriteY, spriteW, spriteH)) {
-                    if (enemy.flashTimer > 0 && enemy.flashTimer % 4 < 2) {
-                        ctx.fillStyle = 'rgba(255,255,255,0.5)';
-                        ctx.fillRect(spriteX, spriteY, spriteW, spriteH);
-                    }
-                    if (enemy.isRedShooter && enemy.maxHp > 1) {
-                        const hpY = spriteY - 5;
-                        ctx.fillStyle = 'rgba(0,0,0,0.65)';
-                        ctx.fillRect(spriteX + 4, hpY, spriteW - 8, 3);
-                        ctx.fillStyle = '#FF2E6D';
-                        ctx.fillRect(spriteX + 4, hpY, (spriteW - 8) * Math.max(enemy.hp, 0) / enemy.maxHp, 3);
-                    }
-                    return;
-                }
-            }
-
-            drawEnemyFallback(ctx, enemy);
-        }
-
         // Dibuja una nave enemiga pixel-art según su tipo
-        function drawEnemyFallback(ctx, enemy) {
+        function drawEnemy(ctx, enemy) {
             let ex = Math.floor(enemy.x);
             let ey = Math.floor(enemy.baseY + enemy.yOffset);
             let w = enemy.width;
@@ -2038,18 +1602,6 @@
             const px = Math.floor(powerUp.x);
             const py = Math.floor(powerUp.y);
             const bob = Math.sin(powerUp.spin) * 2;
-            const spriteKey = POWERUP_SPRITES[powerUp.type];
-            const visualSize = 26;
-            if (drawSprite(
-                spriteKey,
-                px + powerUp.width / 2 - visualSize / 2,
-                py + bob + powerUp.height / 2 - visualSize / 2,
-                visualSize,
-                visualSize
-            )) {
-                return;
-            }
-
             ctx.fillStyle = 'rgba(0,0,0,0.66)';
             ctx.fillRect(px - 2, py + bob - 2, powerUp.width + 4, powerUp.height + 4);
             ctx.strokeStyle = powerUp.color;
@@ -2099,50 +1651,6 @@
             ctx.globalAlpha = 1;
         }
 
-        function drawTractorBeams() {
-            enemies.forEach((enemy) => {
-                if (!enemy.isRedShooter || !enemy.tractorActive || enemy.tractorTimer <= 0) return;
-                const ex = enemy.x + enemy.width / 2;
-                const ey = getEnemyY(enemy) + enemy.height;
-                const px = player.x + player.width / 2;
-                const py = player.y + player.height / 2;
-                const progress = 1 - enemy.tractorTimer / TRACTOR_BEAM_DURATION_FRAMES;
-                const pulse = 0.5 + 0.5 * Math.sin(Date.now() / 70);
-                const beamWidth = 26 + pulse * 10 + progress * 10;
-                const frame = Math.floor(Date.now() / 90) % 4;
-
-                ctx.save();
-                ctx.globalAlpha = 0.58 + pulse * 0.22;
-                ctx.fillStyle = 'rgba(255, 46, 93, 0.28)';
-                ctx.beginPath();
-                ctx.moveTo(ex - 8, ey);
-                ctx.lineTo(ex + 8, ey);
-                ctx.lineTo(px + beamWidth / 2, py + 11);
-                ctx.lineTo(px - beamWidth / 2, py + 11);
-                ctx.closePath();
-                ctx.fill();
-
-                ctx.strokeStyle = '#FF2E6D';
-                ctx.lineWidth = 2;
-                ctx.setLineDash([5, 5]);
-                ctx.beginPath();
-                ctx.moveTo(ex, ey);
-                ctx.lineTo(px, py);
-                ctx.stroke();
-                ctx.setLineDash([]);
-
-                drawSprite(
-                    'tractorBeam',
-                    px - beamWidth / 2,
-                    ey,
-                    beamWidth,
-                    Math.max(38, py - ey + 16),
-                    { frames: 4, frame, alpha: 0.72 }
-                );
-                ctx.restore();
-            });
-        }
-
         function draw() {
             ctx.save();
             if (screenShake > 0) {
@@ -2171,33 +1679,28 @@
             if (ufo) {
                 let glow = 0.5 + 0.5 * Math.sin(Date.now() / 100);
                 ctx.fillStyle = `rgba(255, 215, 0, ${0.3 + glow * 0.3})`;
-                ctx.fillRect(ufo.x - 8, ufo.y + 2, ufo.width + 16, ufo.height + 7);
-                const ufoVisualW = 58;
-                const ufoVisualH = 36;
-                if (!drawSprite(
-                    'ufoGold',
-                    ufo.x + ufo.width / 2 - ufoVisualW / 2,
-                    ufo.y + ufo.height / 2 - ufoVisualH / 2,
-                    ufoVisualW,
-                    ufoVisualH
-                )) {
-                    // Cuerpo
-                    ctx.fillStyle = '#FFD700';
-                    ctx.beginPath();
-                    ctx.ellipse(ufo.x + ufo.width/2, ufo.y + ufo.height*0.65, ufo.width*0.5, ufo.height*0.35, 0, 0, Math.PI*2);
-                    ctx.fill();
-                    // Cúpula
-                    ctx.fillStyle = '#FFFAAA';
-                    ctx.beginPath();
-                    ctx.ellipse(ufo.x + ufo.width/2, ufo.y + ufo.height*0.35, ufo.width*0.22, ufo.height*0.3, 0, 0, Math.PI*2);
-                    ctx.fill();
-                }
+                ctx.beginPath();
+                ctx.ellipse(ufo.x + ufo.width/2, ufo.y + ufo.height/2, ufo.width*0.6, ufo.height*0.8, 0, 0, Math.PI*2);
+                ctx.fill();
+                // Cuerpo
+                ctx.fillStyle = '#FFD700';
+                ctx.beginPath();
+                ctx.ellipse(ufo.x + ufo.width/2, ufo.y + ufo.height*0.65, ufo.width*0.5, ufo.height*0.35, 0, 0, Math.PI*2);
+                ctx.fill();
+                // Cúpula
+                ctx.fillStyle = '#FFFAAA';
+                ctx.beginPath();
+                ctx.ellipse(ufo.x + ufo.width/2, ufo.y + ufo.height*0.35, ufo.width*0.22, ufo.height*0.3, 0, 0, Math.PI*2);
+                ctx.fill();
+                // Luces
+                ctx.fillStyle = '#FF0000';
+                ctx.beginPath(); ctx.arc(ufo.x + 8, ufo.y + ufo.height*0.65, 2, 0, Math.PI*2); ctx.fill();
+                ctx.fillStyle = '#00FF00';
+                ctx.beginPath(); ctx.arc(ufo.x + ufo.width - 8, ufo.y + ufo.height*0.65, 2, 0, Math.PI*2); ctx.fill();
             }
 
-            drawTractorBeams();
-
             // --- NAVE DE AKANE ---
-            let drawPlayer = invincibleTimer > 0 || !invulnerable || (Math.floor(invulnTimer / 5) % 2 === 0);
+            let drawPlayer = !invulnerable || (Math.floor(invulnTimer / 5) % 2 === 0);
             if (drawPlayer) {
                 if (suddenDeath) {
                     const dangerPulse = 0.5 + 0.5 * Math.sin(Date.now() / 95);
@@ -2209,70 +1712,36 @@
                     ctx.shadowBlur = 0;
                 }
 
-                if (invincibleTimer > 0) {
-                    const invPulse = 0.5 + 0.5 * Math.sin(Date.now() / 85);
-                    ctx.strokeStyle = `rgba(255, 211, 42, ${0.62 + invPulse * 0.28})`;
-                    ctx.lineWidth = 2;
-                    ctx.shadowColor = '#FFD32A';
-                    ctx.shadowBlur = 18;
-                    ctx.strokeRect(player.x - 15 - invPulse * 3, player.y - 13 - invPulse * 2, player.width + 30 + invPulse * 6, player.height + 27 + invPulse * 4);
-                    ctx.fillStyle = `rgba(255, 211, 42, ${0.08 + invPulse * 0.08})`;
-                    ctx.fillRect(player.x - 12, player.y - 10, player.width + 24, player.height + 22);
-                    ctx.shadowBlur = 0;
-                }
-
                 if (shieldTimer > 0) {
                     const radiusPulse = 1.5 + Math.sin(Date.now() / 110) * 1.5;
-                    const shieldW = 74 + radiusPulse * 2;
-                    const shieldH = 55 + radiusPulse * 2;
+                    ctx.strokeStyle = '#00FFFF';
+                    ctx.lineWidth = 2;
                     ctx.shadowColor = '#00FFFF';
                     ctx.shadowBlur = 12;
-                    if (!drawSprite(
-                        'shieldRing',
-                        player.x + player.width / 2 - shieldW / 2,
-                        player.y + player.height / 2 - shieldH / 2,
-                        shieldW,
-                        shieldH
-                    )) {
-                        ctx.strokeStyle = '#00FFFF';
-                        ctx.lineWidth = 2;
-                        ctx.strokeRect(player.x - 10 - radiusPulse, player.y - 8 - radiusPulse, player.width + 20 + radiusPulse * 2, player.height + 18 + radiusPulse * 2);
-                    }
+                    ctx.strokeRect(player.x - 10 - radiusPulse, player.y - 8 - radiusPulse, player.width + 20 + radiusPulse * 2, player.height + 18 + radiusPulse * 2);
                     ctx.shadowBlur = 0;
                 }
 
-                const playerVisualW = 58;
-                const playerVisualH = 41;
-                const playerSpriteDrawn = drawSprite(
-                    'akaneShip',
-                    player.x + player.width / 2 - playerVisualW / 2,
-                    player.y + player.height / 2 - playerVisualH / 2 + 2,
-                    playerVisualW,
-                    playerVisualH
-                );
-
-                if (!playerSpriteDrawn) {
-                    ctx.fillStyle = player.color;
-                    // Cuerpo principal
-                    ctx.fillRect(player.x + 5, player.y + 4, player.width - 10, player.height - 4);
-                    // Nariz
-                    ctx.beginPath();
-                    ctx.moveTo(player.x + player.width/2, player.y);
-                    ctx.lineTo(player.x + player.width/2 - 7, player.y + 8);
-                    ctx.lineTo(player.x + player.width/2 + 7, player.y + 8);
-                    ctx.closePath();
-                    ctx.fill();
-                    // Alas
-                    ctx.fillRect(player.x, player.y + 6, 7, player.height - 4);
-                    ctx.fillRect(player.x + player.width - 7, player.y + 6, 7, player.height - 4);
-                    // "Coletas" laterales
-                    ctx.fillStyle = '#AA44FF';
-                    ctx.fillRect(player.x - 8, player.y + 6, 8, 8);
-                    ctx.fillRect(player.x + player.width, player.y + 6, 8, 8);
-                    // Cabina
-                    ctx.fillStyle = '#DDB0FF';
-                    ctx.fillRect(player.x + player.width/2 - 4, player.y + 4, 8, 5);
-                }
+                ctx.fillStyle = player.color;
+                // Cuerpo principal
+                ctx.fillRect(player.x + 5, player.y + 4, player.width - 10, player.height - 4);
+                // Nariz
+                ctx.beginPath();
+                ctx.moveTo(player.x + player.width/2, player.y);
+                ctx.lineTo(player.x + player.width/2 - 7, player.y + 8);
+                ctx.lineTo(player.x + player.width/2 + 7, player.y + 8);
+                ctx.closePath();
+                ctx.fill();
+                // Alas
+                ctx.fillRect(player.x, player.y + 6, 7, player.height - 4);
+                ctx.fillRect(player.x + player.width - 7, player.y + 6, 7, player.height - 4);
+                // "Coletas" laterales
+                ctx.fillStyle = '#AA44FF';
+                ctx.fillRect(player.x - 8, player.y + 6, 8, 8);
+                ctx.fillRect(player.x + player.width, player.y + 6, 8, 8);
+                // Cabina
+                ctx.fillStyle = '#DDB0FF';
+                ctx.fillRect(player.x + player.width/2 - 4, player.y + 4, 8, 5);
 
                 // Cañones según nivel de disparo
                 let numBullets = getShotCount();
@@ -2296,20 +1765,14 @@
 
             // --- BALAS DEL JUGADOR ---
             bullets.forEach(bullet => {
-                const bulletKey = bullet.pierce > 0 ? 'bulletPierce' : 'bulletPlayer';
-                if (!drawSprite(bulletKey, bullet.x - 3, bullet.y - 2, 10, 20)) {
-                    ctx.fillStyle = bullet.color;
-                    ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
-                }
+                ctx.fillStyle = bullet.color;
+                ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
             });
 
             // --- BALAS ENEMIGAS ---
             enemyBullets.forEach(bullet => {
-                const bulletKey = bullet.color === '#AA44FF' ? 'bulletEnemyPurple' : 'bulletEnemyOrange';
-                if (!drawSprite(bulletKey, bullet.x - 2, bullet.y - 2, 8, 16)) {
-                    ctx.fillStyle = bullet.color;
-                    ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
-                }
+                ctx.fillStyle = bullet.color;
+                ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
             });
 
             // --- POWER-UPS ---

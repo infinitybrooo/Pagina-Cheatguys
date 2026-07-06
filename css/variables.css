@@ -4,6 +4,10 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 :root {
+    --font-body: 'Nunito', sans-serif;
+    --font-terminal: 'VT323', monospace;
+    --font-display: 'Bungee', var(--font-terminal);
+    --font-pixel: 'Silkscreen', var(--font-terminal);
     --akane-color: #8A2BE2;
     --rika-color: #FF4500;
     --momo-color: #FF69B4;

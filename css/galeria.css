@@ -464,20 +464,28 @@ body.gallery-page::after {
 
 .gallery-title {
     margin: 0;
-    font-family: 'VT323', monospace;
-    font-size: clamp(44px, 8vw, 78px);
-    line-height: 0.95;
-    letter-spacing: 4px;
+    font-family: var(--font-display);
+    font-size: clamp(34px, 6.8vw, 62px);
+    line-height: 1.05;
+    letter-spacing: 0;
+    white-space: nowrap;
     color: #fff;
     text-shadow: 5px 5px 0 #000, 0 0 12px var(--character-accent), 0 0 24px rgba(255, 105, 180, 0.55);
     transition: text-shadow 0.24s ease;
 }
 
+.gallery-title .cursor-blink {
+    display: inline-block;
+    font-family: var(--font-terminal);
+    font-size: 0.72em;
+    vertical-align: 0.04em;
+}
+
 .gallery-subtitle {
     margin: 8px 0 0;
-    font-family: 'VT323', monospace;
-    font-size: 24px;
-    letter-spacing: 2px;
+    font-family: var(--font-pixel);
+    font-size: 14px;
+    letter-spacing: 0;
     color: var(--neon-magenta);
     text-shadow: 3px 3px 0 #000;
 }
@@ -536,10 +544,10 @@ body.gallery-page::after {
 .carousel-title {
     margin: 0 0 12px;
     padding-left: 8px;
-    font-family: 'VT323', monospace;
-    font-size: 32px;
+    font-family: var(--font-pixel);
+    font-size: 18px;
     line-height: 1;
-    letter-spacing: 2px;
+    letter-spacing: 0;
     color: var(--neon-magenta);
     text-shadow: 3px 3px 0 #000, 0 0 10px rgba(255, 105, 180, 0.7);
 }
@@ -1203,7 +1211,7 @@ body.gallery-page {
 
 @media (max-width: 560px) {
     .gallery-title {
-        font-size: clamp(42px, 16vw, 64px);
+        font-size: clamp(34px, 13vw, 52px);
     }
 
     .gallery-subtitle {
