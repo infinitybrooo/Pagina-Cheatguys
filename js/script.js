@@ -32,11 +32,11 @@
 
         const SPRITE_BASE_PATH = 'assets/arcade/sprites/';
         const ARCADE_SPRITE_FILES = {
-            akaneShip: 'akane-ship.png',
-            enemyBlue: 'enemy-blue.png',
-            enemyPink: 'enemy-pink.png',
-            enemyOrange: 'enemy-orange.png',
-            enemyRed: 'enemy-red-shooter.png',
+            akaneShip: 'custom-akane.png',
+            enemyBlue: 'custom-jun.png',
+            enemyPink: 'custom-momo.png',
+            enemyOrange: 'custom-rika.png',
+            enemyRed: 'custom-nave-roja-hoshi.png',
             bossMini: 'boss-mini.png',
             bossFull: 'boss-full.png',
             bossMiniAnxiety: 'boss-mini-anxiety-sheet.png',
@@ -1832,8 +1832,8 @@
                     return;
                 }
             } else {
-                const spriteW = enemy.isEscort ? w + 13 : w + 14;
-                const spriteH = enemy.isEscort ? h + 16 : h + 14;
+                const spriteW = enemy.isRedShooter ? w + 24 : (enemy.isEscort ? w + 15 : w + 16);
+                const spriteH = enemy.isRedShooter ? h + 24 : (enemy.isEscort ? h + 18 : h + 18);
                 const spriteX = ex + w / 2 - spriteW / 2;
                 const spriteY = ey + h / 2 - spriteH / 2;
                 if (drawSprite(key, spriteX, spriteY, spriteW, spriteH)) {
@@ -2241,8 +2241,8 @@
                     ctx.shadowBlur = 0;
                 }
 
-                const playerVisualW = 58;
-                const playerVisualH = 41;
+                const playerVisualW = 64;
+                const playerVisualH = 49;
                 const playerSpriteDrawn = drawSprite(
                     'akaneShip',
                     player.x + player.width / 2 - playerVisualW / 2,
