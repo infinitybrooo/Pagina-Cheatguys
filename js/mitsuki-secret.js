@@ -14,6 +14,7 @@
         ];
 
         function getResponsiveMitsukiAsset(url) {
+            if (typeof getResponsiveAssetUrl === 'function') return getResponsiveAssetUrl(url);
             if (!window.matchMedia || !window.matchMedia('(max-width: 768px)').matches) return url;
             return url.replace(/\/([^/]+\.webp)$/i, '/mobile/$1');
         }

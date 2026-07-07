@@ -12,7 +12,7 @@
 </head>
 <body class="cheatguys-info-page">
 
-    <audio id="bgMusicPage" src="https://files.catbox.moe/z2ivpr.mp3" loop></audio>
+    <audio id="bgMusicPage" src="https://files.catbox.moe/z2ivpr.mp3" loop preload="none"></audio>
 
     <button id="sidebarToggle" class="cg-sidebar-toggle" onclick="toggleSidebar()" aria-label="Abrir/cerrar menu" aria-expanded="false">
         <span></span>
@@ -71,7 +71,7 @@
             </div>
 
             <button class="info-hero-media info-image-card" type="button" data-full="assets/images/cheatguys-info/info-team-stack.webp" data-title="PARTY_FORMATION.PNG">
-                <img src="assets/images/cheatguys-info/mobile/info-team-stack.webp" alt="Equipo principal de CheatGuys!" loading="eager">
+                <img src="assets/images/cheatguys-info/mobile/info-team-stack.webp" alt="Equipo principal de CheatGuys!" loading="eager" decoding="async" fetchpriority="high">
                 <span class="info-img-tag">PARTY_FORMATION.PNG</span>
             </button>
         </section>
@@ -95,7 +95,7 @@
             </article>
 
             <button class="info-image-card info-tall-card" type="button" data-full="assets/images/cheatguys-info/info-akane-guitar.webp" data-title="AKANE_SOCIAL_SURVIVAL.EXE">
-                <img src="assets/images/cheatguys-info/mobile/info-akane-guitar.webp" alt="Akane tocando guitarra" loading="lazy">
+                <img src="assets/images/cheatguys-info/mobile/info-akane-guitar.webp" alt="Akane tocando guitarra" loading="lazy" decoding="async">
                 <span class="info-img-tag">AKANE_SOCIAL_SURVIVAL.EXE</span>
             </button>
         </section>
@@ -127,7 +127,7 @@
 
         <section class="info-section info-chaos-band cg-info-reveal">
             <button class="info-image-card" type="button" data-full="assets/images/cheatguys-info/info-band-chaos.webp" data-title="FRIENDSHIP_GLITCH.JPG">
-                <img src="assets/images/cheatguys-info/mobile/info-band-chaos.webp" alt="Banda de CheatGuys! en caos divertido" loading="lazy">
+                <img src="assets/images/cheatguys-info/mobile/info-band-chaos.webp" alt="Banda de CheatGuys! en caos divertido" loading="lazy" decoding="async">
                 <span class="info-img-tag">FRIENDSHIP_GLITCH.JPG</span>
             </button>
 
@@ -168,7 +168,7 @@
                 </article>
 
                 <button class="info-image-card info-wide-card" type="button" data-full="assets/images/cheatguys-info/info-garage-show.webp" data-title="GARAGE_SHOW_BUILD_01.WEBP">
-                    <img src="assets/images/cheatguys-info/mobile/info-garage-show.webp" alt="Presentacion caotica de CheatGuys!" loading="lazy">
+                    <img src="assets/images/cheatguys-info/mobile/info-garage-show.webp" alt="Presentacion caotica de CheatGuys!" loading="lazy" decoding="async">
                     <span class="info-img-tag">GARAGE_SHOW_BUILD_01.WEBP</span>
                 </button>
             </div>
@@ -176,7 +176,7 @@
 
         <section class="info-section info-final cg-info-reveal">
             <button class="info-image-card info-final-img" type="button" data-full="assets/images/cheatguys-info/info-akane-chibi.webp" data-title="AKANE_INTERNAL_HUD.PNG">
-                <img src="assets/images/cheatguys-info/mobile/info-akane-chibi.webp" alt="Akane estilo chibi" loading="lazy">
+                <img src="assets/images/cheatguys-info/mobile/info-akane-chibi.webp" alt="Akane estilo chibi" loading="lazy" decoding="async">
                 <span class="info-img-tag">AKANE_INTERNAL_HUD.PNG</span>
             </button>
 
@@ -194,7 +194,7 @@
         </section>
 
         <footer class="gallery-footer info-footer">
-            <img loading="lazy" src="assets/branding/mobile/logo-studio-blanco.webp" alt="Infinity Brothers Logo" class="gallery-footer-logo">
+            <img loading="lazy" src="assets/branding/mobile/logo-studio-blanco.webp" alt="Infinity Brothers Logo" class="gallery-footer-logo" decoding="async">
             <p>CheatGuys! is a series owned by Infinity Brothers Studios TM. All artwork, descriptions, documents, characters, and story are the property of the studio and are protected by copyright.</p>
             <p>CheatGuys! &copy; 2026 Infinity Brothers Studios TM. All rights reserved.</p>
         </footer>

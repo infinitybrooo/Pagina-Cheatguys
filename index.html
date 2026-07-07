@@ -37,9 +37,9 @@
     -->
 
     <!-- Audios del Sistema -->
-    <audio id="bgMusicPage"       src="https://files.catbox.moe/z2ivpr.mp3" loop></audio>
-    <audio id="bgMusicSecret"     src="https://files.catbox.moe/pzvj2q.mp3" loop></audio>
-    <audio id="bgMusicChar"       src="https://files.catbox.moe/nmby7m.mp3" loop></audio>
+    <audio id="bgMusicPage"       src="https://files.catbox.moe/z2ivpr.mp3" loop preload="none"></audio>
+    <audio id="bgMusicSecret"     src="https://files.catbox.moe/pzvj2q.mp3" loop preload="none"></audio>
+    <audio id="bgMusicChar"       src="https://files.catbox.moe/nmby7m.mp3" loop preload="none"></audio>
 
     <!-- =========================================
          BARRA LATERAL COLAPSABLE
@@ -103,7 +103,7 @@
     <div class="profile-container animate-in delay-1">
         <div class="logos-wrapper">
             <a href="https://youtu.be/dQw4w9WgXcQ?si=JWIxkPOp9xFteFNp" target="_blank" class="easter-egg-link">
-                <img src="assets/branding/mobile/logo-cheatguys.webp" alt="CheatGuys Official Logo" class="main-logo" onerror="this.onerror=null; this.src='https://placehold.co/340x120/1a1a1a/8A2BE2?text=CHEATGUYS!';">
+                <img src="assets/branding/mobile/logo-cheatguys.webp" alt="CheatGuys Official Logo" class="main-logo" decoding="async" fetchpriority="high" onerror="this.onerror=null; this.src='https://placehold.co/340x120/1a1a1a/8A2BE2?text=CHEATGUYS!';">
             </a>
         </div>
         <p class="subtitle">Infinity Brothers Studio</p>
@@ -119,52 +119,52 @@
     <div class="links-container">
         <div class="menu-box box-main animate-in delay-2">
             <div class="section-title">SYSTEM_FILES <span class="cursor-blink">█</span></div>
-            <a href="https://drive.google.com/file/d/1SonB_djMHOB4hJ8E7r-vTR7WhIlLRfpF/view?usp=drivesdk" target="_blank" class="link-btn btn-pitch"><img loading="lazy" src="assets/social/pitch.webp" class="icon-img" alt="Pitch"><div class="text-container"><span class="btn-title">Official Pitch Bible</span><span class="btn-subtitle">READ_PRODUCTION_DECK.EXE</span></div></a>
-            <a href="https://x.com/infinitybrooo" target="_blank" class="link-btn btn-x"><img loading="lazy" src="assets/social/Xnews.webp" class="icon-img" alt="X"><div class="text-container"><span class="btn-title">Infinity Brothers on X</span><span class="btn-subtitle">FOLLOW_STUDIO_UPDATES</span></div></a>
-            <a href="https://www.tiktok.com/@infinitybrooo" target="_blank" class="link-btn btn-tiktok"><img loading="lazy" src="assets/social/tik-tok.webp" class="icon-img" alt="TikTok"><div class="text-container"><span class="btn-title">TikTok Animatics</span><span class="btn-subtitle">BEHIND_THE_SCENES_VIDEO</span></div></a>
+            <a href="https://drive.google.com/file/d/1SonB_djMHOB4hJ8E7r-vTR7WhIlLRfpF/view?usp=drivesdk" target="_blank" class="link-btn btn-pitch"><img loading="lazy" src="assets/social/pitch.webp" class="icon-img" alt="Pitch" decoding="async"><div class="text-container"><span class="btn-title">Official Pitch Bible</span><span class="btn-subtitle">READ_PRODUCTION_DECK.EXE</span></div></a>
+            <a href="https://x.com/infinitybrooo" target="_blank" class="link-btn btn-x"><img loading="lazy" src="assets/social/Xnews.webp" class="icon-img" alt="X" decoding="async"><div class="text-container"><span class="btn-title">Infinity Brothers on X</span><span class="btn-subtitle">FOLLOW_STUDIO_UPDATES</span></div></a>
+            <a href="https://www.tiktok.com/@infinitybrooo" target="_blank" class="link-btn btn-tiktok"><img loading="lazy" src="assets/social/tik-tok.webp" class="icon-img" alt="TikTok" decoding="async"><div class="text-container"><span class="btn-title">TikTok Animatics</span><span class="btn-subtitle">BEHIND_THE_SCENES_VIDEO</span></div></a>
         </div>
 
         <div class="menu-box box-stickers animate-in delay-3">
             <div class="section-title">INVENTORY: STICKERS <span class="cursor-blink">█</span></div>
-            <a href="https://drive.google.com/file/d/1yZCsVabFGpf_UgIVVHxMJMJ6r_d2aSYD/view?usp=sharing" target="_blank" class="link-btn btn-whatsapp"><img loading="lazy" src="assets/social/whastapp-stickers.webp" class="icon-img" alt="WhatsApp"><div class="text-container"><span class="btn-title">WhatsApp Sticker Pack</span><span class="btn-subtitle">EQUIP: AKANE'S ANXIETY</span></div></a>
-            <a href="#" class="link-btn btn-discord" onclick="event.preventDefault(); showToast('SYSTEM: Discord Emotes — COMING SOON...')"><img loading="lazy" src="assets/social/Discord-icons.webp" class="icon-img" alt="Discord"><div class="text-container"><span class="btn-title">Discord Emotes</span><span class="btn-subtitle">COMING_SOON.EXE</span></div></a>
+            <a href="https://drive.google.com/file/d/1yZCsVabFGpf_UgIVVHxMJMJ6r_d2aSYD/view?usp=sharing" target="_blank" class="link-btn btn-whatsapp"><img loading="lazy" src="assets/social/whastapp-stickers.webp" class="icon-img" alt="WhatsApp" decoding="async"><div class="text-container"><span class="btn-title">WhatsApp Sticker Pack</span><span class="btn-subtitle">EQUIP: AKANE'S ANXIETY</span></div></a>
+            <a href="#" class="link-btn btn-discord" onclick="event.preventDefault(); showToast('SYSTEM: Discord Emotes — COMING SOON...')"><img loading="lazy" src="assets/social/Discord-icons.webp" class="icon-img" alt="Discord" decoding="async"><div class="text-container"><span class="btn-title">Discord Emotes</span><span class="btn-subtitle">COMING_SOON.EXE</span></div></a>
         </div>
 
         <div class="menu-box box-support animate-in delay-4">
             <div class="section-title">MERCHANT_SHOP <span class="cursor-blink">█</span></div>
             <a href="#" class="link-btn btn-patreon"><span class="icon">🧡</span><div class="text-container"><span class="btn-title">Patreon Guild</span><span class="btn-subtitle">COMING_SOON.EXE</span></div></a>
-            <a href="https://buymeacoffee.com/infinitybrooo" target="_blank" class="link-btn btn-kofi"><img loading="lazy" src="assets/social/Buy-Coffee.webp" class="icon-img" alt="Coffee"><div class="text-container"><span class="btn-title">Mitsuki's Coffee</span><span class="btn-subtitle">BUY_HER_A_COFFEE_FOR_THE_TEACHER</span></div></a>
-            <a href="https://www.paypal.me/infinitybrooo" target="_blank" class="link-btn btn-paypal"><img loading="lazy" src="assets/social/Paypal.webp" class="icon-img" alt="PayPal"><div class="text-container"><span class="btn-title">PayPal Donations</span><span class="btn-subtitle">SUPPORT_INDIE_ANIMATION</span></div></a>
+            <a href="https://buymeacoffee.com/infinitybrooo" target="_blank" class="link-btn btn-kofi"><img loading="lazy" src="assets/social/Buy-Coffee.webp" class="icon-img" alt="Coffee" decoding="async"><div class="text-container"><span class="btn-title">Mitsuki's Coffee</span><span class="btn-subtitle">BUY_HER_A_COFFEE_FOR_THE_TEACHER</span></div></a>
+            <a href="https://www.paypal.me/infinitybrooo" target="_blank" class="link-btn btn-paypal"><img loading="lazy" src="assets/social/Paypal.webp" class="icon-img" alt="PayPal" decoding="async"><div class="text-container"><span class="btn-title">PayPal Donations</span><span class="btn-subtitle">SUPPORT_INDIE_ANIMATION</span></div></a>
         </div>
 
         <div class="menu-box box-music animate-in delay-5">
             <div class="section-title">SOUND_TEST_MENU <span class="cursor-blink">█</span></div>
-            <div class="music-card card-akane"><div class="card-header"><img loading="lazy" src="assets/characters/posters/thumbs/poster-akane.webp" class="cover-art"><div class="text-container"><span class="btn-title">Akane: Noise I Can't Say Out Loud</span></div></div><div class="platform-links"><a href="https://music.youtube.com/playlist?list=PLjimL7gdf7217m1FLAFeRCeqellB_wLlE&si=Ih13VcRduZ3dAQvz" target="_blank" class="plat-btn yt-btn">▶ YouTube</a><a href="https://open.spotify.com/playlist/7eayTb4jbfExCeT8r8rGAr?si=wWNnrpIdSVuDp0lz3m-6Dg&pi=1-2rYg0BSaicf" target="_blank" class="plat-btn sp-btn">🎧 Spotify</a></div></div>
-            <div class="music-card card-rika"><div class="card-header"><img loading="lazy" src="assets/characters/posters/thumbs/poster-rika.webp" class="cover-art"><div class="text-container"><span class="btn-title">Rika: Volume First, Consequences Later</span></div></div><div class="platform-links"><a href="https://music.youtube.com/playlist?list=PLjimL7gdf721v4C-hyzBO0tudRQG4mgWt&si=VgP4OuLfqwMg_Mqi" target="_blank" class="plat-btn yt-btn">▶ YouTube</a><a href="https://open.spotify.com/playlist/5xOhRBBW6qfcxgvpGZLjaI?si=Ngwlrq4eRmybcuSlObTiEA" target="_blank" class="plat-btn sp-btn">🎧 Spotify</a></div></div>
-            <div class="music-card card-momo"><div class="card-header"><img loading="lazy" src="assets/characters/posters/thumbs/poster-momo.webp" class="cover-art"><div class="text-container"><span class="btn-title">Momo: Pink City Lights</span></div></div><div class="platform-links"><a href="https://music.youtube.com/playlist?list=PLjimL7gdf720e-jVoBcLJ7HCw3Mzj6Wbx&si=HuNmgHbie30p18Jv" target="_blank" class="plat-btn yt-btn">▶ YouTube</a><a href="https://open.spotify.com/playlist/5ra2tvSpzrYs8f96ArFqg3?si=93s0Nn_jSNih3-bJSZPI4A&pi=vun3-nXiT_Kul" target="_blank" class="plat-btn sp-btn">🎧 Spotify</a></div></div>
-            <div class="music-card card-jun"><div class="card-header"><img loading="lazy" src="assets/characters/posters/thumbs/poster-jun.webp" class="cover-art"><div class="text-container"><span class="btn-title">Jun: Sleepy Groove, Sharp Timing</span></div></div><div class="platform-links"><a href="https://music.youtube.com/playlist?list=PLjimL7gdf720rFPx-tIPhw2SLfLLktTIV&si=bfoLuYhmp6rHxh7t" target="_blank" class="plat-btn yt-btn">▶ YouTube</a><a href="https://open.spotify.com/playlist/5I3zRnkbCrhdFzEYsNR2aV?si=UNxF8a1aTIWck4FvjEPr2g&pi=ONRT_DSNQCS4A" target="_blank" class="plat-btn sp-btn">🎧 Spotify</a></div></div>
+            <div class="music-card card-akane"><div class="card-header"><img loading="lazy" src="assets/characters/posters/thumbs/poster-akane.webp" class="cover-art" decoding="async"><div class="text-container"><span class="btn-title">Akane: Noise I Can't Say Out Loud</span></div></div><div class="platform-links"><a href="https://music.youtube.com/playlist?list=PLjimL7gdf7217m1FLAFeRCeqellB_wLlE&si=Ih13VcRduZ3dAQvz" target="_blank" class="plat-btn yt-btn">▶ YouTube</a><a href="https://open.spotify.com/playlist/7eayTb4jbfExCeT8r8rGAr?si=wWNnrpIdSVuDp0lz3m-6Dg&pi=1-2rYg0BSaicf" target="_blank" class="plat-btn sp-btn">🎧 Spotify</a></div></div>
+            <div class="music-card card-rika"><div class="card-header"><img loading="lazy" src="assets/characters/posters/thumbs/poster-rika.webp" class="cover-art" decoding="async"><div class="text-container"><span class="btn-title">Rika: Volume First, Consequences Later</span></div></div><div class="platform-links"><a href="https://music.youtube.com/playlist?list=PLjimL7gdf721v4C-hyzBO0tudRQG4mgWt&si=VgP4OuLfqwMg_Mqi" target="_blank" class="plat-btn yt-btn">▶ YouTube</a><a href="https://open.spotify.com/playlist/5xOhRBBW6qfcxgvpGZLjaI?si=Ngwlrq4eRmybcuSlObTiEA" target="_blank" class="plat-btn sp-btn">🎧 Spotify</a></div></div>
+            <div class="music-card card-momo"><div class="card-header"><img loading="lazy" src="assets/characters/posters/thumbs/poster-momo.webp" class="cover-art" decoding="async"><div class="text-container"><span class="btn-title">Momo: Pink City Lights</span></div></div><div class="platform-links"><a href="https://music.youtube.com/playlist?list=PLjimL7gdf720e-jVoBcLJ7HCw3Mzj6Wbx&si=HuNmgHbie30p18Jv" target="_blank" class="plat-btn yt-btn">▶ YouTube</a><a href="https://open.spotify.com/playlist/5ra2tvSpzrYs8f96ArFqg3?si=93s0Nn_jSNih3-bJSZPI4A&pi=vun3-nXiT_Kul" target="_blank" class="plat-btn sp-btn">🎧 Spotify</a></div></div>
+            <div class="music-card card-jun"><div class="card-header"><img loading="lazy" src="assets/characters/posters/thumbs/poster-jun.webp" class="cover-art" decoding="async"><div class="text-container"><span class="btn-title">Jun: Sleepy Groove, Sharp Timing</span></div></div><div class="platform-links"><a href="https://music.youtube.com/playlist?list=PLjimL7gdf720rFPx-tIPhw2SLfLLktTIV&si=bfoLuYhmp6rHxh7t" target="_blank" class="plat-btn yt-btn">▶ YouTube</a><a href="https://open.spotify.com/playlist/5I3zRnkbCrhdFzEYsNR2aV?si=UNxF8a1aTIWck4FvjEPr2g&pi=ONRT_DSNQCS4A" target="_blank" class="plat-btn sp-btn">🎧 Spotify</a></div></div>
         </div>
 
         <div class="menu-box box-contact animate-in delay-6">
             <div class="section-title">COMMUNICATIONS <span class="cursor-blink">█</span></div>
-            <a href="mailto:infinitybrooothers@outlook.com" class="link-btn btn-mail"><img loading="lazy" src="assets/icons/mail-icon.png" class="icon-img" alt="Mail"><div class="text-container"><span class="btn-title">Send System Mail</span><span class="btn-subtitle">infinitybrooothers@outlook.com</span></div></a>
-            <a href="https://wa.me/qr/U2HZ5TMRR4I4G1" target="_blank" class="link-btn btn-whatsapp"><img loading="lazy" src="assets/social/whatsapp.webp" class="icon-img" alt="WhatsApp"><div class="text-container"><span class="btn-title">WhatsApp Business</span><span class="btn-subtitle">DIRECT_CHAT_WITH_STUDIO</span></div></a>
+            <a href="mailto:infinitybrooothers@outlook.com" class="link-btn btn-mail"><img loading="lazy" src="assets/icons/mail-icon.png" class="icon-img" alt="Mail" decoding="async"><div class="text-container"><span class="btn-title">Send System Mail</span><span class="btn-subtitle">infinitybrooothers@outlook.com</span></div></a>
+            <a href="https://wa.me/qr/U2HZ5TMRR4I4G1" target="_blank" class="link-btn btn-whatsapp"><img loading="lazy" src="assets/social/whatsapp.webp" class="icon-img" alt="WhatsApp" decoding="async"><div class="text-container"><span class="btn-title">WhatsApp Business</span><span class="btn-subtitle">DIRECT_CHAT_WITH_STUDIO</span></div></a>
         </div>
     </div>
 
     <!-- ARTE INFERIOR Y EASTER EGG -->
     <div class="bottom-art-container animate-in delay-7">
-        <img loading="lazy" src="assets/characters/mobile/lineup-team.webp" alt="CheatGuys Team" class="bottom-art" onclick="registrarClic()">
+        <img loading="lazy" src="assets/characters/mobile/lineup-team.webp" alt="CheatGuys Team" class="bottom-art" onclick="registrarClic()" decoding="async">
     </div>
 
     <!-- EL BOTÓN PROHIBIDO DE MITSUKI -->
     <div class="mitsuki-trigger-container" onclick="iniciarSecuenciaMitsuki()" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); iniciarSecuenciaMitsuki();}">
-        <img loading="lazy" src="assets/mitsuki/mobile/btn-no-presionar.webp" alt="No presionar" class="mitsuki-trigger-btn">
+        <img loading="lazy" src="assets/mitsuki/mobile/btn-no-presionar.webp" alt="No presionar" class="mitsuki-trigger-btn" decoding="async">
         <span class="mitsuki-trigger-label">NO PRESIONAR</span>
     </div>
 
     <div class="footer animate-in delay-7">
-        <img loading="lazy" src="assets/branding/mobile/logo-studio-blanco.webp" alt="Infinity Brothers Logo" class="footer-logo">
+        <img loading="lazy" src="assets/branding/mobile/logo-studio-blanco.webp" alt="Infinity Brothers Logo" class="footer-logo" decoding="async">
         <p>CheatGuys! is a series owned by Infinity Brothers Studios TM. All artwork, descriptions, documents, characters, and story are the property of the studio and are protected by copyright.</p>
         <p>CheatGuys! &copy; 2026 Infinity Brothers Studios TM. All rights reserved.</p>
     </div>
@@ -177,7 +177,7 @@
         <div class="modal-box" onclick="event.stopPropagation()">
             <div class="modal-header" id="modalHeader"><h2 class="modal-title" id="modalTitle">NAME <span class="cursor-blink">█</span></h2><button class="close-btn" onclick="closeModal(null, 'charModal')">[X]</button></div>
             <div class="modal-body">
-                <div class="modal-img-container"><img loading="lazy" id="modalImg" src="" class="modal-img"></div>
+                <div class="modal-img-container"><img loading="lazy" id="modalImg" src="" class="modal-img" decoding="async"></div>
                 <div class="modal-info"><h3 class="modal-role" id="modalRole">Role</h3><div class="modal-desc" id="modalDesc"></div></div>
             </div>
         </div>
@@ -189,7 +189,7 @@
             <div class="secret-body">
                 <div class="file-list" id="secretFileList"></div>
                 <div class="secret-viewer" id="secretViewer"><div class="secret-viewer-header"><button class="btn-back" onclick="backToSecretList()">[ < VOLVER_A_LISTA ]</button></div>
-                <img loading="lazy" id="secretViewerImg" src="" class="secret-img-large glitch-effect"><div class="secret-lore-text" id="secretViewerDesc"></div></div>
+                <img loading="lazy" id="secretViewerImg" src="" class="secret-img-large glitch-effect" decoding="async"><div class="secret-lore-text" id="secretViewerDesc"></div></div>
             </div>
         </div>
     </div>
@@ -206,18 +206,18 @@
                     <span id="mitsukiStepCounter">TAB 01/02</span>
                 </div>
                 <div class="mitsuki-illustration-container">
-                    <img id="mitsukiIllustration" loading="lazy" src="" alt="Mitsuki" class="mitsuki-illustration glitch-effect">
+                    <img id="mitsukiIllustration" loading="lazy" src="" alt="Mitsuki" class="mitsuki-illustration glitch-effect" decoding="async">
                 </div>
                 <div id="mitsukiDialogueBox" class="mitsuki-dialogue-box">
-                    <img loading="lazy" src="assets/icons/icon-mitsuki.webp" alt="Mitsuki" class="mitsuki-portrait glitch-effect">
+                    <img loading="lazy" src="assets/icons/icon-mitsuki.webp" alt="Mitsuki" class="mitsuki-portrait glitch-effect" decoding="async">
                     <div class="mitsuki-dialogue-content">
                         <span class="mitsuki-speaker">MITSUKI</span>
                         <p id="mitsukiText" class="mitsuki-text"></p>
                         <div id="mitsukiShareButtons" class="mitsuki-share-buttons">
-                            <a id="mitsukiShareWA" href="#" target="_blank" rel="noopener" class="mitsuki-share-btn"><img loading="lazy" src="assets/share/icon-share-wa.webp" alt="Compartir en WhatsApp"></a>
-                            <a id="mitsukiShareFB" href="#" target="_blank" rel="noopener" class="mitsuki-share-btn"><img loading="lazy" src="assets/share/icon-share-fb.webp" alt="Compartir en Facebook"></a>
-                            <a id="mitsukiShareX" href="#" target="_blank" rel="noopener" class="mitsuki-share-btn"><img loading="lazy" src="assets/share/icon-share-x.webp" alt="Compartir en X"></a>
-                            <a id="mitsukiShareDC" href="#" target="_blank" rel="noopener" class="mitsuki-share-btn"><img loading="lazy" src="assets/share/icon-share-dc.webp" alt="Compartir en Discord"></a>
+                            <a id="mitsukiShareWA" href="#" target="_blank" rel="noopener" class="mitsuki-share-btn"><img loading="lazy" src="assets/share/icon-share-wa.webp" alt="Compartir en WhatsApp" decoding="async"></a>
+                            <a id="mitsukiShareFB" href="#" target="_blank" rel="noopener" class="mitsuki-share-btn"><img loading="lazy" src="assets/share/icon-share-fb.webp" alt="Compartir en Facebook" decoding="async"></a>
+                            <a id="mitsukiShareX" href="#" target="_blank" rel="noopener" class="mitsuki-share-btn"><img loading="lazy" src="assets/share/icon-share-x.webp" alt="Compartir en X" decoding="async"></a>
+                            <a id="mitsukiShareDC" href="#" target="_blank" rel="noopener" class="mitsuki-share-btn"><img loading="lazy" src="assets/share/icon-share-dc.webp" alt="Compartir en Discord" decoding="async"></a>
                         </div>
                     </div>
                 </div>

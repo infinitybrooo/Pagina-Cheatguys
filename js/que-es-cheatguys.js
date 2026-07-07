@@ -3,6 +3,8 @@
 // =====================================================
 
 (function () {
+    let scrollMeterFrame = null;
+
     function updateScrollMeter() {
         const meter = document.getElementById("infoScrollMeter");
         if (!meter) return;
@@ -10,6 +12,15 @@
         const max = document.documentElement.scrollHeight - window.innerHeight;
         const progress = max > 0 ? (window.scrollY / max) * 100 : 0;
         meter.style.width = Math.max(0, Math.min(progress, 100)) + "%";
+    }
+
+    function requestScrollMeterUpdate() {
+        if (scrollMeterFrame) return;
+
+        scrollMeterFrame = window.requestAnimationFrame(() => {
+            scrollMeterFrame = null;
+            updateScrollMeter();
+        });
     }
 
     function setupReveal() {
@@ -91,6 +102,6 @@
         updateScrollMeter();
     });
 
-    window.addEventListener("scroll", updateScrollMeter, { passive: true });
-    window.addEventListener("resize", updateScrollMeter);
+    window.addEventListener("scroll", requestScrollMeterUpdate, { passive: true });
+    window.addEventListener("resize", requestScrollMeterUpdate);
 })();
