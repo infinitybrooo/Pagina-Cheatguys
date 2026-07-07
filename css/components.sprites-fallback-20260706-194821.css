@@ -1214,30 +1214,8 @@ p.subtitle {
 }
 
 #arcadeGameScreen .arcade-game-container {
-    position: relative;
     gap: 10px;
     overflow: hidden;
-}
-
-#arcadeGameScreen .arcade-pause-toggle {
-    align-self: flex-end;
-    min-height: 30px;
-    padding: 3px 10px;
-    border: 2px solid rgba(0, 255, 255, 0.72);
-    border-radius: 4px;
-    background: rgba(5, 0, 10, 0.86);
-    color: var(--neon-cyan);
-    font-family: 'VT323', monospace;
-    font-size: 18px;
-    line-height: 1;
-    text-shadow: 2px 2px 0 #000;
-    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(138, 43, 226, 0.22);
-    cursor: pointer;
-}
-
-#arcadeGameScreen .arcade-pause-toggle:active {
-    transform: translate(3px, 3px);
-    box-shadow: inset 0 0 10px rgba(138, 43, 226, 0.22);
 }
 
 #arcadeGameScreen .scoreboard {
@@ -1260,82 +1238,6 @@ p.subtitle {
 #arcadeGameScreen .scoreboard > span {
     min-width: 0;
     white-space: nowrap;
-}
-
-#arcadeGameScreen .score-stack {
-    display: grid;
-    min-width: 92px;
-    line-height: 1;
-}
-
-#arcadeGameScreen .new-record-badge {
-    min-height: 12px;
-    color: #FFD32A;
-    font-size: 14px;
-    opacity: 0;
-    text-shadow: 0 0 8px rgba(255, 211, 42, 0.75), 2px 2px 0 #000;
-}
-
-#arcadeGameScreen .new-record-badge.is-visible {
-    opacity: 1;
-    animation: arcade-record-pulse 0.85s steps(2) infinite;
-}
-
-@keyframes arcade-record-pulse {
-    0%, 100% { color: #FFD32A; }
-    50% { color: #FFFFFF; }
-}
-
-#arcadeGameScreen .arcade-pause-menu {
-    position: absolute;
-    inset: 0;
-    z-index: 12;
-    display: none;
-    place-items: center;
-    padding: 18px;
-    background:
-        linear-gradient(rgba(0, 255, 255, 0.05) 2px, transparent 2px),
-        linear-gradient(90deg, rgba(255, 105, 180, 0.05) 2px, transparent 2px),
-        rgba(5, 0, 10, 0.78);
-    background-size: 24px 24px;
-    backdrop-filter: blur(2px);
-}
-
-#arcadeGameScreen .arcade-pause-menu.is-active {
-    display: grid;
-}
-
-#arcadeGameScreen .arcade-pause-panel {
-    width: min(100%, 300px);
-    padding: 18px 16px;
-    border: 2px solid rgba(0, 255, 255, 0.78);
-    border-radius: 6px;
-    background:
-        linear-gradient(135deg, rgba(138, 43, 226, 0.25), rgba(0, 0, 0, 0.86) 42%, rgba(255, 105, 180, 0.16)),
-        #080010;
-    box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.82), inset 0 0 18px rgba(0, 255, 255, 0.12);
-    text-align: center;
-}
-
-#arcadeGameScreen .arcade-pause-title {
-    margin: 8px 0 16px;
-    color: var(--neon-cyan);
-    font-family: 'VT323', monospace;
-    font-size: 42px;
-    line-height: 1;
-    text-shadow: 4px 4px 0 var(--akane-color);
-}
-
-#arcadeGameScreen .arcade-pause-panel .arcade-buttons-wrapper {
-    max-width: none;
-}
-
-#arcadeGameScreen .arcade-pause-menu:not(.is-active) {
-    display: none !important;
-}
-
-#arcadeGameScreen .arcade-pause-menu.is-active {
-    display: grid !important;
 }
 
 #arcadeGameScreen .arcade-status-line {

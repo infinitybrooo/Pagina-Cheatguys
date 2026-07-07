@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css?v=20260629-noideatoon1">
     <link rel="stylesheet" href="css/galeria.css?v=20260629-sidebar-logo1">
     <link rel="stylesheet" href="css/animations.css?v=20260629-noideatoon1">
-    <link rel="stylesheet" href="css/components.css?v=20260629-noideatoon1">
+    <link rel="stylesheet" href="css/components.css?v=20260706-pause1">
 </head>
 <body class="arcade-page">
 
@@ -69,7 +69,7 @@
                 </div>
                 <p class="arcade-text">&iquest;Crees que puedas superar la m&aacute;xima puntuaci&oacute;n de la Demonio del Arcade?<br>&iexcl;Int&eacute;ntalo!... Si te atreves...</p>
                 <div class="arcade-stage-stats" aria-label="Datos de la partida">
-                    <span>RECORD: 590,990</span>
+                    <span>RECORD: 99,999</span>
                     <span>MODE: PURPLE RUN</span>
                 </div>
                 <div class="arcade-buttons-wrapper">
@@ -80,10 +80,14 @@
 
         <div id="arcadeGameScreen" class="arcade-screen">
             <div class="arcade-game-container">
+                <button type="button" class="arcade-pause-toggle" onclick="pausarJuegoArcade()" aria-label="Pausar partida">[ PAUSA ]</button>
                 <div class="scoreboard">
-                    <span id="currentScore">SCORE: 0</span>
+                    <span class="score-stack">
+                        <span id="newRecordBadge" class="new-record-badge" aria-live="polite">NUEVO RECORD</span>
+                        <span id="currentScore">SCORE: 0</span>
+                    </span>
                     <div id="livesDisplay" class="hearts-box"></div>
-                    <span>AKANE: 590,990</span>
+                    <span id="akaneHighScore">AKANE: 99,999</span>
                 </div>
                 <div id="arcadeStatusLine" class="arcade-status-line">WAVE 01 // READY</div>
                 <div class="canvas-container">
@@ -94,6 +98,17 @@
                     <div class="arcade-joystick" data-arcade-joystick aria-label="Joystick de movimiento" role="application">
                         <div class="arcade-joystick-ring">
                             <div class="arcade-joystick-knob"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="arcadePauseMenu" class="arcade-pause-menu" aria-hidden="true">
+                    <div class="arcade-pause-panel">
+                        <span class="arcade-stage-tag">PAUSE // INSERT SNACK</span>
+                        <h2 class="arcade-pause-title">PAUSA</h2>
+                        <div class="arcade-buttons-wrapper">
+                            <button type="button" class="arcade-btn" onclick="reanudarJuegoArcade()">[ REANUDAR ]</button>
+                            <button type="button" class="arcade-btn" onclick="iniciarJuegoArcade()">[ REINICIAR ]</button>
+                            <button type="button" class="arcade-btn" onclick="cerrarArcade()">[ SALIR ]</button>
                         </div>
                     </div>
                 </div>
@@ -110,7 +125,7 @@
                 <p class="arcade-text arcade-final-score" id="finalScoreText">PUNTUACI&Oacute;N FINAL: 0</p>
                 <p class="arcade-text arcade-game-over-copy">La Demonio del Arcade sigue invicta.</p>
                 <div class="arcade-stage-stats" aria-label="Estado de la partida">
-                    <span>AKANE: 590,990</span>
+                    <span>AKANE: 99,999</span>
                     <span>STATUS: CONTINUE?</span>
                 </div>
                 <div class="arcade-buttons-wrapper">
@@ -128,7 +143,7 @@
                 </div>
                 <p class="arcade-text arcade-win-copy">Wow, no pense que llegarias hasta aqui, bien por ti supongo... lo que es tener demasiado tiempo libre...</p>
                 <div class="arcade-stage-stats" aria-label="Resultado de victoria">
-                    <span>SCORE: 590,990</span>
+                    <span>SCORE: 99,999</span>
                     <span>STATUS: IMPACTADO</span>
                 </div>
                 <div class="arcade-buttons-wrapper">
@@ -140,6 +155,20 @@
 
     <script src="js/audio-global.js?v=20260623-refresh2"></script>
     <script src="js/galeria-logic.js?v=20260623-refresh2"></script>
-    <script src="js/script.js?v=20260623-refresh2"></script>
+    <script src="js/script.js?v=20260706-pause1"></script>
+    <script>
+        (() => {
+            const sys = "color:#ff3df2;background:#16001f;border:1px solid #ff3df2;padding:2px 6px;font-family:monospace;text-shadow:0 0 8px #ff3df2;";
+            const akane = "color:#c77dff;font-weight:700;";
+            const jun = "color:#53e7ff;font-weight:700;";
+
+            console.groupCollapsed("%cARCADE_KERNEL // DEMONIO_INPUT_DETECTED", sys);
+            console.log("La Demonio del Arcade detecto input externo.");
+            console.log("Si pierdes, fue lag emocional.");
+            console.log("%cJUN:", jun, "Presiona botones con intencion. O sin intencion. A veces funciona igual.");
+            console.log("%cAKANE:", akane, "...eso no es una estrategia.");
+            console.groupEnd();
+        })();
+    </script>
 </body>
 </html>

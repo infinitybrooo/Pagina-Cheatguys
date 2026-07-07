@@ -21,7 +21,7 @@
         const SHOOT_SFX_POOL_SIZE = 5;
         const SHOOT_SFX_MIN_INTERVAL = 38;
         const SHOOT_SFX_BASE_VOLUME = 0.2;
-        const AKANE_MAX_SCORE = 590990;
+        const AKANE_MAX_SCORE = 99999;
         const shootSfxPool = [];
         let shootSfxIndex = 0;
         let lastShootSfxTime = 0;
@@ -54,7 +54,8 @@
             bulletPierce: 'bullet-pierce.png',
             bulletEnemyOrange: 'bullet-enemy-orange.png',
             bulletEnemyPurple: 'bullet-enemy-purple.png',
-            shieldRing: 'shield-ring.png'
+            shieldRing: 'shield-ring.png',
+            invincibleAura: 'invincible-aura.png'
         };
         const arcadeSprites = {};
         const POWERUP_SPRITES = {
@@ -231,6 +232,9 @@
         let screenShake = 0;
         let comboCount = 0;
         let comboTimer = 0;
+        let newRecordReached = false;
+        let isGamePaused = false;
+        let resumeCountdown = 0;
         let shieldTimer = 0;
         let powerDoubleTimer = 0;
         let powerSlowTimer = 0;
@@ -370,6 +374,38 @@
             statusLine.innerText = message || `${label} // ${active.length ? active.join(' // ') : 'READY'}`;
         }
 
+        function setPauseMenuVisible(visible) {
+            const pauseMenu = document.getElementById('arcadePauseMenu');
+            if (!pauseMenu) return;
+            pauseMenu.classList.toggle('is-active', visible);
+            pauseMenu.setAttribute('aria-hidden', visible ? 'false' : 'true');
+        }
+
+        function canUseGameplayInput() {
+            return isGameRunning && !isGamePaused && resumeCountdown <= 0;
+        }
+
+        function pauseGameplayControls() {
+            stopMobileFire();
+            resetJoystick();
+            resetPointerMove();
+            Object.keys(keys).forEach((key) => { keys[key] = false; });
+            canShoot = true;
+            document.querySelectorAll('[data-arcade-action].is-pressed').forEach((button) => {
+                button.classList.remove('is-pressed');
+            });
+        }
+
+        function updateNewRecordState() {
+            if (!newRecordReached && score >= AKANE_MAX_SCORE) {
+                newRecordReached = true;
+                showWaveBanner('NUEVO RECORD // SIGUE VIVO', '#FFD32A');
+                addFloatingText('NUEVO RECORD', canvas.width / 2, 286, '#FFD32A', 26);
+            }
+            const badge = document.getElementById('newRecordBadge');
+            if (badge) badge.classList.toggle('is-visible', newRecordReached);
+        }
+
         window.iniciarSecuenciaArcade = function() {
             if (!document.body.classList.contains('arcade-page')) {
                 window.location.href = 'minijuego.html';
@@ -406,6 +442,7 @@
             screenGame.classList.remove('active');
             screenOver.classList.remove('active');
             screenWin.classList.remove('active');
+            if (screen !== 'game') setPauseMenuVisible(false);
             if(screen === 'start') screenStart.classList.add('active');
             if(screen === 'game') screenGame.classList.add('active');
             if(screen === 'over') screenOver.classList.add('active');
@@ -433,14 +470,10 @@
             lastFrameTime = 0;
             document.removeEventListener('keydown', handleKeyDown);
             document.removeEventListener('keyup', handleKeyUp);
-            Object.keys(keys).forEach((key) => { keys[key] = false; });
-            canShoot = true;
-            stopMobileFire();
-            resetJoystick();
-            resetPointerMove();
-            document.querySelectorAll('[data-arcade-action].is-pressed').forEach((button) => {
-                button.classList.remove('is-pressed');
-            });
+            isGamePaused = false;
+            resumeCountdown = 0;
+            setPauseMenuVisible(false);
+            pauseGameplayControls();
         }
 
         function gameOver() {
@@ -448,14 +481,6 @@
             playArcadeBg('bgMusicGameOver');
             document.getElementById('finalScoreText').innerText = `PUNTUACIÓN FINAL: ${score}`;
             showScreen('over');
-        }
-
-        function gameWin() {
-            score = Math.max(score, AKANE_MAX_SCORE);
-            actualizarScore();
-            detenerJuego();
-            playArcadeBg('bgMusicGameOver');
-            showScreen('win');
         }
 
         function showWinPreview() {
@@ -480,6 +505,10 @@
             screenShake = 0;
             comboCount = 0;
             comboTimer = 0;
+            newRecordReached = false;
+            isGamePaused = false;
+            resumeCountdown = 0;
+            setPauseMenuVisible(false);
             shieldTimer = 0;
             powerDoubleTimer = 0;
             powerSlowTimer = 0;
@@ -500,6 +529,23 @@
             enemySpeed = 0.5;
             edgeCooldown = 0;
             canShoot = true;
+        }
+
+        window.pausarJuegoArcade = function() {
+            if (!isGameRunning || isGamePaused || resumeCountdown > 0) return;
+            isGamePaused = true;
+            pauseGameplayControls();
+            setPauseMenuVisible(true);
+            refreshStatusLine('PAUSE // TAKE A BREATH');
+        }
+
+        window.reanudarJuegoArcade = function() {
+            if (!isGameRunning || !isGamePaused) return;
+            isGamePaused = false;
+            resumeCountdown = 3 * 60;
+            lastFrameTime = 0;
+            setPauseMenuVisible(false);
+            refreshStatusLine('RESUME IN 3...');
         }
 
         function createBossEnemy(isMajorBoss) {
@@ -704,10 +750,6 @@
                 score += bonus;
                 actualizarScore();
                 addFloatingText(`BONUS +${bonus}`, canvas.width / 2, 248, perfect ? '#FFD32A' : '#00FFFF', 24);
-                if (score >= AKANE_MAX_SCORE) {
-                    gameWin();
-                    return;
-                }
             }
             showWaveBanner(perfect ? 'PERFECT BONUS!' : 'BONUS CLEAR', perfect ? '#FFD32A' : '#00FFFF');
             challengeStage = null;
@@ -846,8 +888,14 @@
         }
 
         function handleKeyDown(e) {
+            if (e.code === 'Escape' || e.code === 'KeyP') {
+                e.preventDefault();
+                if (isGamePaused) window.reanudarJuegoArcade();
+                else window.pausarJuegoArcade();
+                return;
+            }
             if (Object.prototype.hasOwnProperty.call(keys, e.code)) keys[e.code] = true;
-            if (e.code === 'Space' && canShoot) { disparar(); canShoot = false; }
+            if (e.code === 'Space' && canShoot && canUseGameplayInput()) { disparar(); canShoot = false; }
             if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'KeyA', 'KeyD', 'KeyW', 'KeyS', 'Space'].includes(e.code)) e.preventDefault();
         }
 
@@ -858,15 +906,15 @@
 
         window.disparaTouch = function(e) { 
             e.preventDefault(); 
-            if(isGameRunning) disparar(); 
+            if(canUseGameplayInput()) disparar(); 
         }
 
         function startMobileFire(button) {
-            if (!isGameRunning) return;
+            if (!canUseGameplayInput()) return;
             stopMobileFire();
             disparar();
             mobileFireTimer = window.setInterval(() => {
-                if (!isGameRunning) {
+                if (!canUseGameplayInput()) {
                     stopMobileFire();
                     return;
                 }
@@ -977,6 +1025,7 @@
             if (joystickEl) {
                 joystickEl.addEventListener('contextmenu', (event) => event.preventDefault());
                 joystickEl.addEventListener('pointerdown', (event) => {
+                    if (!canUseGameplayInput()) return;
                     event.preventDefault();
                     joystick.active = true;
                     joystick.pointerId = event.pointerId;
@@ -1005,7 +1054,7 @@
 
             canvas.addEventListener('contextmenu', (event) => event.preventDefault());
             canvas.addEventListener('pointerdown', (event) => {
-                if (!isGameRunning || event.pointerType === 'mouse') return;
+                if (!canUseGameplayInput() || event.pointerType === 'mouse') return;
                 event.preventDefault();
                 pointerMove.active = true;
                 pointerMove.pointerId = event.pointerId;
@@ -1013,7 +1062,7 @@
                 updatePointerMoveTarget(event);
             });
             canvas.addEventListener('pointermove', (event) => {
-                if (!isGameRunning) return;
+                if (!canUseGameplayInput()) return;
                 if (event.pointerType === 'mouse') {
                     updatePointerMoveTarget(event);
                     return;
@@ -1023,7 +1072,7 @@
                 updatePointerMoveTarget(event);
             });
             canvas.addEventListener('pointerrawupdate', (event) => {
-                if (!isGameRunning || event.pointerType === 'mouse') return;
+                if (!canUseGameplayInput() || event.pointerType === 'mouse') return;
                 if (!pointerMove.active || pointerMove.pointerId !== event.pointerId) return;
                 event.preventDefault();
                 updatePointerMoveTarget(event);
@@ -1059,6 +1108,7 @@
 
         function actualizarScore() {
             document.getElementById('currentScore').innerText = `SCORE: ${score}`;
+            updateNewRecordState();
             const livesContainer = document.getElementById('livesDisplay');
             livesContainer.innerHTML = '';
             // Si sudden death solo mostramos 1 corazon rojo parpadeante
@@ -1259,10 +1309,6 @@
             const comboBonus = comboCount > 1 ? Math.min(comboCount * 5, 80) : 0;
             score += pts + comboBonus;
             actualizarScore();
-            if (score >= AKANE_MAX_SCORE) {
-                gameWin();
-                return;
-            }
             addFloatingText(`+${pts + comboBonus}`, x, y, enemy.color || '#FFFFFF', 16);
             if (comboCount > 1) {
                 addFloatingText(`COMBO x${comboCount}`, x, y - 15, '#00FFFF', 18);
@@ -1832,8 +1878,8 @@
                     return;
                 }
             } else {
-                const spriteW = enemy.isRedShooter ? w + 24 : (enemy.isEscort ? w + 15 : w + 16);
-                const spriteH = enemy.isRedShooter ? h + 24 : (enemy.isEscort ? h + 18 : h + 18);
+                const spriteW = enemy.isRedShooter ? 38 : (enemy.isEscort ? 34 : 36);
+                const spriteH = enemy.isRedShooter ? 36 : (enemy.isEscort ? 30 : 30);
                 const spriteX = ex + w / 2 - spriteW / 2;
                 const spriteY = ey + h / 2 - spriteH / 2;
                 if (drawSprite(key, spriteX, spriteY, spriteW, spriteH)) {
@@ -2211,13 +2257,24 @@
 
                 if (invincibleTimer > 0) {
                     const invPulse = 0.5 + 0.5 * Math.sin(Date.now() / 85);
-                    ctx.strokeStyle = `rgba(255, 211, 42, ${0.62 + invPulse * 0.28})`;
-                    ctx.lineWidth = 2;
                     ctx.shadowColor = '#FFD32A';
                     ctx.shadowBlur = 18;
-                    ctx.strokeRect(player.x - 15 - invPulse * 3, player.y - 13 - invPulse * 2, player.width + 30 + invPulse * 6, player.height + 27 + invPulse * 4);
-                    ctx.fillStyle = `rgba(255, 211, 42, ${0.08 + invPulse * 0.08})`;
-                    ctx.fillRect(player.x - 12, player.y - 10, player.width + 24, player.height + 22);
+                    const auraW = 62 + invPulse * 4;
+                    const auraH = 44 + invPulse * 3;
+                    if (!drawSprite(
+                        'invincibleAura',
+                        player.x + player.width / 2 - auraW / 2,
+                        player.y + player.height / 2 - auraH / 2 + 2,
+                        auraW,
+                        auraH,
+                        { alpha: 0.86 + invPulse * 0.12 }
+                    )) {
+                        ctx.strokeStyle = `rgba(255, 211, 42, ${0.62 + invPulse * 0.28})`;
+                        ctx.lineWidth = 2;
+                        ctx.strokeRect(player.x - 15 - invPulse * 3, player.y - 13 - invPulse * 2, player.width + 30 + invPulse * 6, player.height + 27 + invPulse * 4);
+                        ctx.fillStyle = `rgba(255, 211, 42, ${0.08 + invPulse * 0.08})`;
+                        ctx.fillRect(player.x - 12, player.y - 10, player.width + 24, player.height + 22);
+                    }
                     ctx.shadowBlur = 0;
                 }
 
@@ -2241,8 +2298,8 @@
                     ctx.shadowBlur = 0;
                 }
 
-                const playerVisualW = 64;
-                const playerVisualH = 49;
+                const playerVisualW = 54;
+                const playerVisualH = 40;
                 const playerSpriteDrawn = drawSprite(
                     'akaneShip',
                     player.x + player.width / 2 - playerVisualW / 2,
@@ -2331,11 +2388,53 @@
             ctx.restore();
         }
 
+        function drawResumeCountdown() {
+            if (resumeCountdown <= 0) return;
+            const seconds = Math.max(1, Math.ceil(resumeCountdown / 60));
+            ctx.save();
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.62)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = '#00FFFF';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(82, 198, canvas.width - 164, 98);
+            ctx.font = 'bold 24px VT323, monospace';
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#DDB9FF';
+            ctx.shadowColor = '#8A2BE2';
+            ctx.shadowBlur = 12;
+            ctx.fillText('PREPARATE', canvas.width / 2, 232);
+            ctx.font = 'bold 48px VT323, monospace';
+            ctx.fillStyle = '#00FFFF';
+            ctx.shadowColor = '#00FFFF';
+            ctx.fillText(String(seconds), canvas.width / 2, 272);
+            ctx.shadowBlur = 0;
+            ctx.textAlign = 'left';
+            ctx.restore();
+        }
+
         function loop(timestamp) {
             if (!isGameRunning) return;
             if (!lastFrameTime) lastFrameTime = timestamp;
             const deltaFrames = Math.min((timestamp - lastFrameTime) / FRAME_MS, MAX_FRAME_DELTA);
             lastFrameTime = timestamp;
+
+            if (isGamePaused) {
+                draw();
+                animationId = requestAnimationFrame(loop);
+                return;
+            }
+
+            if (resumeCountdown > 0) {
+                resumeCountdown = Math.max(0, resumeCountdown - (deltaFrames || 1));
+                draw();
+                drawResumeCountdown();
+                if (resumeCountdown === 0) {
+                    lastFrameTime = 0;
+                    refreshStatusLine();
+                }
+                animationId = requestAnimationFrame(loop);
+                return;
+            }
 
             update(deltaFrames || 1);
             draw();
