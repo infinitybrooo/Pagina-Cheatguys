@@ -1,0 +1,9 @@
+# Backups and local review artifacts are not needed in the published site.
+.agents/
+docs/screenshots/
+js/*.backup*.js
+js/*backup*.js
+css/*.backup*.css
+css/*backup*.css
+css/*fallback*.css
+assets/arcade/_sprite-backups/

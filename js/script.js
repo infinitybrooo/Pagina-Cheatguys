@@ -534,9 +534,12 @@
         window.pausarJuegoArcade = function() {
             if (!isGameRunning || isGamePaused || resumeCountdown > 0) return;
             isGamePaused = true;
+            if (animationId) cancelAnimationFrame(animationId);
+            animationId = null;
             pauseGameplayControls();
             setPauseMenuVisible(true);
             refreshStatusLine('PAUSE // TAKE A BREATH');
+            draw();
         }
 
         window.reanudarJuegoArcade = function() {
@@ -546,7 +549,14 @@
             lastFrameTime = 0;
             setPauseMenuVisible(false);
             refreshStatusLine('RESUME IN 3...');
+            animationId = requestAnimationFrame(loop);
         }
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden && isGameRunning && !isGamePaused) {
+                window.pausarJuegoArcade();
+            }
+        });
 
         function createBossEnemy(isMajorBoss) {
             const hp = isMajorBoss
@@ -2420,7 +2430,7 @@
 
             if (isGamePaused) {
                 draw();
-                animationId = requestAnimationFrame(loop);
+                animationId = null;
                 return;
             }
 

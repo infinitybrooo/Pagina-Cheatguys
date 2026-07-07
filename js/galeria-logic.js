@@ -44,30 +44,6 @@ const categoryLabels = {
 
 let personajeActual = "akane";
 
-// =====================================================
-// UI FLOTANTE — Oculta botones externos mientras hay un overlay abierto.
-// Si lobby-logic.js ya definió esta función (ej. en index.html), no se
-// sobreescribe; en galeria.html (standalone) queda definida aquí.
-// =====================================================
-if (typeof setFloatingUiHidden === "undefined") {
-    window.setFloatingUiHidden = function setFloatingUiHidden(hidden) {
-        document.body.classList.toggle("overlay-open", hidden);
-    };
-}
-
-if (typeof actualizarUiFlotantePorOverlays === "undefined") {
-    window.actualizarUiFlotantePorOverlays = function actualizarUiFlotantePorOverlays() {
-        const idsOverlayDisplay = ["charModal", "secretModal", "mitsukiOverlay", "arcadeContainer"];
-        const overlayPorDisplay = idsOverlayDisplay.some((id) => {
-            const el = document.getElementById(id);
-            return el && el.style.display === "flex";
-        });
-        const galleryModal = document.getElementById("galleryModal");
-        const overlayPorClase = !!(galleryModal && galleryModal.classList.contains("is-open"));
-        setFloatingUiHidden(overlayPorDisplay || overlayPorClase);
-    };
-}
-
 const carouselState = {
     clothes: { index: 0, timer: null },
     thurn: { index: 0, timer: null },
@@ -75,43 +51,11 @@ const carouselState = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    setupSidebarState();
-
     if (document.querySelector(".gallery-main")) {
         seleccionarPersonaje("akane");
         setupGalleryModalKeyboard();
     }
 });
-
-// =====================================================
-// BARRA LATERAL COLAPSABLE
-// =====================================================
-function setupSidebarState() {
-    const sidebar = document.getElementById("sidebarNav");
-    const toggle = document.getElementById("sidebarToggle");
-
-    if (!sidebar || !toggle) return;
-
-    sidebar.classList.remove("is-open");
-    toggle.classList.remove("is-open");
-    toggle.setAttribute("aria-expanded", "false");
-}
-
-function toggleSidebar() {
-    const sidebar = document.getElementById("sidebarNav");
-    const toggle = document.getElementById("sidebarToggle");
-    const main = document.getElementById("mainContent");
-
-    if (!sidebar || !toggle) return;
-
-    const isOpen = sidebar.classList.toggle("is-open");
-    toggle.classList.toggle("is-open", isOpen);
-    toggle.setAttribute("aria-expanded", String(isOpen));
-
-    if (main) {
-        main.classList.toggle("sidebar-open", isOpen);
-    }
-}
 
 // =====================================================
 // SELECTOR DE PERSONAJES
@@ -139,7 +83,6 @@ function renderizarGaleria() {
 
         const ventana = track.closest(".carousel-window");
         const numeros = galleryData[personajeActual][categoria] || [];
-        const prefijo = categoryFilePrefix[categoria];
 
         detenerTemporizador(categoria);
         carouselState[categoria].index = 0;

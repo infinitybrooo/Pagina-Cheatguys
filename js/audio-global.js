@@ -7,8 +7,8 @@
     const DEFAULT_VOLUME = 0.4;
 
     let currentTrack = null;
-    let musicEnabled = localStorage.getItem(STORAGE_ENABLED) !== "false";
-    let masterVolume = Number.parseFloat(localStorage.getItem(STORAGE_VOLUME) || String(DEFAULT_VOLUME));
+    let musicEnabled = safeGetStorage(STORAGE_ENABLED) !== "false";
+    let masterVolume = Number.parseFloat(safeGetStorage(STORAGE_VOLUME) || String(DEFAULT_VOLUME));
     if (!Number.isFinite(masterVolume)) masterVolume = DEFAULT_VOLUME;
 
     const multipliers = {
@@ -22,6 +22,22 @@
 
     function getAudio(id) {
         return document.getElementById(id);
+    }
+
+    function safeGetStorage(key) {
+        try {
+            return window.localStorage.getItem(key);
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function safeSetStorage(key, value) {
+        try {
+            window.localStorage.setItem(key, value);
+        } catch (error) {
+            // La preferencia simplemente no se persiste si el navegador bloquea almacenamiento.
+        }
     }
 
     function applyVolume() {
@@ -63,7 +79,7 @@
             const parsed = Number.parseFloat(value);
             if (!Number.isFinite(parsed)) return;
             masterVolume = Math.max(0, Math.min(parsed, 1));
-            localStorage.setItem(STORAGE_VOLUME, String(masterVolume));
+            safeSetStorage(STORAGE_VOLUME, String(masterVolume));
             applyVolume();
         },
 
@@ -97,7 +113,7 @@
 
         setEnabled(enabled) {
             musicEnabled = Boolean(enabled);
-            localStorage.setItem(STORAGE_ENABLED, String(musicEnabled));
+            safeSetStorage(STORAGE_ENABLED, String(musicEnabled));
             updateButton(document.getElementById("musicToggleBtn"));
 
             if (!musicEnabled) {

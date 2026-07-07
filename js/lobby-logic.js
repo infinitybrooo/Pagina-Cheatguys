@@ -3,34 +3,6 @@
         // =====================================================
         const AudioManager = window.AudioManager;
 
-        // =====================================================
-        // UI FLOTANTE — Oculta botones/paneles externos mientras
-        // hay un modal/overlay abierto (ficha, secretos, mitsuki, arcade, galería)
-        // =====================================================
-        function setFloatingUiHidden(hidden) {
-            document.body.classList.toggle('overlay-open', hidden);
-        }
-
-        function hayOverlayActivo() {
-            const idsOverlayDisplay = ['charModal', 'secretModal', 'mitsukiOverlay', 'arcadeContainer'];
-            const overlayPorDisplay = idsOverlayDisplay.some((id) => {
-                const el = document.getElementById(id);
-                return el && el.style.display === 'flex';
-            });
-            const galleryModal = document.getElementById('galleryModal');
-            const overlayPorClase = !!(galleryModal && galleryModal.classList.contains('is-open'));
-            return overlayPorDisplay || overlayPorClase;
-        }
-
-        function actualizarUiFlotantePorOverlays() {
-            setFloatingUiHidden(hayOverlayActivo());
-        }
-
-        function getResponsiveAssetUrl(url) {
-            if (!window.matchMedia || !window.matchMedia('(max-width: 768px)').matches) return url;
-            return url.replace(/\/([^/]+\.webp)$/i, '/mobile/$1');
-        }
-
         // Animación Inicial al Entrar
         document.addEventListener("DOMContentLoaded", () => {
             document.body.style.overflow = 'hidden';
