@@ -141,9 +141,12 @@ exports.handler = async function handler(event) {
         },
         contents,
         generationConfig: {
-          temperature: 0.55,
-          topP: 0.9,
-          maxOutputTokens: 220
+          temperature: 0.45,
+          topP: 0.85,
+          maxOutputTokens: 512,
+          thinkingConfig: {
+            thinkingBudget: 0
+          }
         }
       })
     });
