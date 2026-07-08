@@ -78,21 +78,29 @@
 
         <div id="arcadeGameScreen" class="arcade-screen">
             <div class="arcade-game-container">
-                <button type="button" class="arcade-pause-toggle" onclick="pausarJuegoArcade()" aria-label="Pausar partida">[ PAUSA ]</button>
                 <div class="scoreboard">
                     <span class="score-stack">
                         <span id="newRecordBadge" class="new-record-badge" aria-live="polite">NUEVO RECORD</span>
                         <span id="currentScore">SCORE: 0</span>
                     </span>
                     <div id="livesDisplay" class="hearts-box"></div>
-                    <span id="akaneHighScore">AKANE: 99,999</span>
+                    <span class="arcade-score-actions">
+                        <button type="button" class="arcade-pause-toggle" onclick="pausarJuegoArcade()" aria-label="Pausar partida">
+                            <span class="arcade-control-icon icon-pause" aria-hidden="true"></span>
+                            <span>PAUSA</span>
+                        </button>
+                        <span id="akaneHighScore">AKANE: 99,999</span>
+                    </span>
                 </div>
                 <div id="arcadeStatusLine" class="arcade-status-line">WAVE 01 // READY</div>
                 <div class="canvas-container">
                     <canvas id="spaceInvadersCanvas" width="400" height="500"></canvas>
                 </div>
                 <div class="mobile-controls">
-                    <button type="button" class="m-btn m-btn-shoot" data-arcade-action="shoot" aria-label="Disparar">[ FIRE ]</button>
+                    <button type="button" class="m-btn m-btn-shoot" data-arcade-action="shoot" aria-label="Disparar">
+                        <span class="arcade-control-icon icon-fire" aria-hidden="true"></span>
+                        <span>FIRE</span>
+                    </button>
                     <div class="arcade-joystick" data-arcade-joystick aria-label="Joystick de movimiento" role="application">
                         <div class="arcade-joystick-ring">
                             <div class="arcade-joystick-knob"></div>
@@ -104,9 +112,18 @@
                         <span class="arcade-stage-tag">PAUSE // INSERT SNACK</span>
                         <h2 class="arcade-pause-title">PAUSA</h2>
                         <div class="arcade-buttons-wrapper">
-                            <button type="button" class="arcade-btn" onclick="reanudarJuegoArcade()">[ REANUDAR ]</button>
-                            <button type="button" class="arcade-btn" onclick="iniciarJuegoArcade()">[ REINICIAR ]</button>
-                            <button type="button" class="arcade-btn" onclick="cerrarArcade()">[ SALIR ]</button>
+                            <button type="button" class="arcade-btn arcade-pause-action" onclick="reanudarJuegoArcade()">
+                                <span class="arcade-control-icon icon-play" aria-hidden="true"></span>
+                                <span>REANUDAR</span>
+                            </button>
+                            <button type="button" class="arcade-btn arcade-pause-action" onclick="iniciarJuegoArcade()">
+                                <span class="arcade-control-icon icon-restart" aria-hidden="true"></span>
+                                <span>REINICIAR</span>
+                            </button>
+                            <button type="button" class="arcade-btn arcade-pause-action" onclick="cerrarArcade()">
+                                <span class="arcade-control-icon icon-exit" aria-hidden="true"></span>
+                                <span>SALIR</span>
+                            </button>
                         </div>
                     </div>
                 </div>

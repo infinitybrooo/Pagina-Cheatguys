@@ -1201,43 +1201,138 @@ p.subtitle {
     touch-action: none;
 }
 
-.m-btn.is-pressed {
-    background: var(--neon-cyan);
-    color: #000;
-    transform: translate(3px, 3px);
-    box-shadow: 0 0 0 transparent;
-}
-
-.m-btn-shoot.is-pressed {
-    background: var(--akane-color);
-    color: #fff;
-}
-
 #arcadeGameScreen .arcade-game-container {
     position: relative;
     gap: 10px;
     overflow: hidden;
 }
 
+#arcadeGameScreen .arcade-control-icon {
+    position: relative;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    image-rendering: pixelated;
+}
+
+#arcadeGameScreen .icon-pause::before,
+#arcadeGameScreen .icon-pause::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    width: 5px;
+    height: 14px;
+    background: currentColor;
+    box-shadow: 0 0 8px currentColor;
+}
+
+#arcadeGameScreen .icon-pause::before { left: 3px; }
+#arcadeGameScreen .icon-pause::after { right: 3px; }
+
+#arcadeGameScreen .icon-fire::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 1px;
+    width: 4px;
+    height: 16px;
+    background: currentColor;
+    box-shadow:
+        0 -2px 0 #fff2aa,
+        -4px 5px 0 #ff9b2f,
+        4px 5px 0 #ff9b2f,
+        -7px 10px 0 #ff382e,
+        7px 10px 0 #ff382e,
+        0 0 10px currentColor;
+}
+
+#arcadeGameScreen .icon-play::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 3px;
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 10px solid currentColor;
+    filter: drop-shadow(0 0 6px currentColor);
+}
+
+#arcadeGameScreen .icon-restart::before {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border: 3px solid currentColor;
+    border-left-color: transparent;
+    box-shadow: 0 0 8px currentColor;
+}
+
+#arcadeGameScreen .icon-restart::after {
+    content: "";
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    width: 6px;
+    height: 6px;
+    background: currentColor;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+#arcadeGameScreen .icon-exit::before,
+#arcadeGameScreen .icon-exit::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 8px;
+    width: 12px;
+    height: 3px;
+    background: currentColor;
+    box-shadow: 0 0 8px currentColor;
+}
+
+#arcadeGameScreen .icon-exit::before { transform: rotate(45deg); }
+#arcadeGameScreen .icon-exit::after { transform: rotate(-45deg); }
+
 #arcadeGameScreen .arcade-pause-toggle {
-    align-self: flex-end;
-    min-height: 30px;
-    padding: 3px 10px;
-    border: 2px solid rgba(0, 255, 255, 0.72);
-    border-radius: 4px;
-    background: rgba(5, 0, 10, 0.86);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: end;
+    gap: 6px;
+    min-height: 28px;
+    padding: 4px 9px;
+    border: 2px solid rgba(0, 255, 255, 0.86);
+    border-radius: 5px;
+    background:
+        linear-gradient(180deg, rgba(0, 255, 255, 0.18), rgba(0, 0, 0, 0.2) 48%, rgba(138, 43, 226, 0.18)),
+        rgba(4, 0, 9, 0.94);
     color: var(--neon-cyan);
     font-family: 'VT323', monospace;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1;
+    letter-spacing: 1px;
     text-shadow: 2px 2px 0 #000;
-    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(138, 43, 226, 0.22);
+    box-shadow:
+        4px 4px 0 rgba(0, 0, 0, 0.88),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.06),
+        inset 0 0 14px rgba(0, 255, 255, 0.16);
     cursor: pointer;
+}
+
+#arcadeGameScreen .arcade-pause-toggle:hover {
+    color: #fff;
+    border-color: #ff69b4;
+    box-shadow:
+        4px 4px 0 rgba(0, 0, 0, 0.88),
+        0 0 12px rgba(255, 105, 180, 0.34),
+        inset 0 0 14px rgba(255, 105, 180, 0.18);
 }
 
 #arcadeGameScreen .arcade-pause-toggle:active {
     transform: translate(3px, 3px);
-    box-shadow: inset 0 0 10px rgba(138, 43, 226, 0.22);
+    box-shadow: inset 0 0 14px rgba(138, 43, 226, 0.28);
 }
 
 #arcadeGameScreen .scoreboard {
@@ -1260,6 +1355,13 @@ p.subtitle {
 #arcadeGameScreen .scoreboard > span {
     min-width: 0;
     white-space: nowrap;
+}
+
+#arcadeGameScreen .arcade-score-actions {
+    display: grid;
+    justify-items: end;
+    gap: 3px;
+    line-height: 1;
 }
 
 #arcadeGameScreen .score-stack {
@@ -1296,7 +1398,8 @@ p.subtitle {
     background:
         linear-gradient(rgba(0, 255, 255, 0.05) 2px, transparent 2px),
         linear-gradient(90deg, rgba(255, 105, 180, 0.05) 2px, transparent 2px),
-        rgba(5, 0, 10, 0.78);
+        radial-gradient(circle at 50% 28%, rgba(138, 43, 226, 0.35), transparent 42%),
+        rgba(5, 0, 10, 0.82);
     background-size: 24px 24px;
     backdrop-filter: blur(2px);
 }
@@ -1306,28 +1409,128 @@ p.subtitle {
 }
 
 #arcadeGameScreen .arcade-pause-panel {
-    width: min(100%, 300px);
-    padding: 18px 16px;
-    border: 2px solid rgba(0, 255, 255, 0.78);
+    width: min(100%, 318px);
+    padding: 20px 18px 18px;
+    border: 3px solid rgba(0, 255, 255, 0.82);
     border-radius: 6px;
     background:
-        linear-gradient(135deg, rgba(138, 43, 226, 0.25), rgba(0, 0, 0, 0.86) 42%, rgba(255, 105, 180, 0.16)),
+        linear-gradient(180deg, rgba(0, 255, 255, 0.14), transparent 18%),
+        linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(0, 0, 0, 0.9) 42%, rgba(255, 105, 180, 0.18)),
         #080010;
-    box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.82), inset 0 0 18px rgba(0, 255, 255, 0.12);
+    box-shadow:
+        8px 8px 0 rgba(0, 0, 0, 0.86),
+        0 0 24px rgba(0, 255, 255, 0.18),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.06),
+        inset 0 0 22px rgba(0, 255, 255, 0.12);
     text-align: center;
 }
 
 #arcadeGameScreen .arcade-pause-title {
-    margin: 8px 0 16px;
+    margin: 8px 0 18px;
     color: var(--neon-cyan);
     font-family: 'VT323', monospace;
-    font-size: 42px;
+    font-size: 46px;
     line-height: 1;
-    text-shadow: 4px 4px 0 var(--akane-color);
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 0 var(--akane-color), 0 0 16px rgba(0, 255, 255, 0.38);
 }
 
 #arcadeGameScreen .arcade-pause-panel .arcade-buttons-wrapper {
     max-width: none;
+    gap: 12px;
+}
+
+#arcadeGameScreen .arcade-pause-panel .arcade-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    min-height: 52px;
+    padding: 9px 16px;
+    border-width: 3px;
+    border-color: rgba(0, 255, 255, 0.84);
+    border-radius: 5px;
+    background:
+        linear-gradient(90deg, rgba(0, 255, 255, 0.12), rgba(138, 43, 226, 0.14) 55%, rgba(255, 105, 180, 0.1)),
+        #151019;
+    color: #f4e9ff;
+    font-size: 25px;
+    letter-spacing: 1px;
+    box-shadow:
+        5px 5px 0 var(--akane-color),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.05),
+        inset 0 0 12px rgba(0, 255, 255, 0.1);
+}
+
+#arcadeGameScreen .arcade-pause-panel .arcade-btn:hover {
+    color: #fff;
+    border-color: #ff69b4;
+    background:
+        linear-gradient(90deg, rgba(255, 105, 180, 0.2), rgba(0, 255, 255, 0.12)),
+        #18101e;
+}
+
+#arcadeGameScreen .arcade-pause-panel .arcade-btn:active {
+    transform: translate(5px, 5px);
+    box-shadow: inset 0 0 12px rgba(0, 255, 255, 0.1);
+}
+
+#arcadeGameScreen .mobile-controls .m-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 70px;
+    padding: 12px 14px;
+    overflow: hidden;
+    border: 3px solid #ff382e;
+    border-radius: 6px;
+    background:
+        linear-gradient(180deg, rgba(255, 112, 82, 0.22), rgba(30, 0, 12, 0.08) 44%, rgba(0, 0, 0, 0.24)),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.04) 0 2px, transparent 2px 8px),
+        rgba(8, 0, 9, 0.92);
+    color: #ff6a5c;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 3px 3px 0 #000, 0 0 10px rgba(255, 56, 46, 0.42);
+    box-shadow:
+        0 6px 0 #5e1110,
+        5px 8px 0 rgba(0, 0, 0, 0.78),
+        inset 0 0 0 3px rgba(255, 255, 255, 0.05),
+        inset 0 -12px 18px rgba(255, 56, 46, 0.12);
+}
+
+#arcadeGameScreen .mobile-controls .m-btn::after {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    pointer-events: none;
+}
+
+#arcadeGameScreen .mobile-controls .m-btn:hover {
+    color: #ffd9d4;
+    border-color: #ff6a5c;
+    box-shadow:
+        0 6px 0 #5e1110,
+        5px 8px 0 rgba(0, 0, 0, 0.78),
+        0 0 14px rgba(255, 56, 46, 0.32),
+        inset 0 -12px 18px rgba(255, 56, 46, 0.12);
+}
+
+#arcadeGameScreen .mobile-controls .m-btn:active,
+#arcadeGameScreen .mobile-controls .m-btn.is-pressed {
+    transform: translate(3px, 5px);
+    background:
+        linear-gradient(180deg, rgba(255, 56, 46, 0.55), rgba(138, 43, 226, 0.18)),
+        rgba(20, 0, 12, 0.96);
+    color: #fff;
+    box-shadow:
+        0 1px 0 #5e1110,
+        2px 3px 0 rgba(0, 0, 0, 0.86),
+        inset 0 0 18px rgba(255, 255, 255, 0.08);
 }
 
 #arcadeGameScreen .arcade-pause-menu:not(.is-active) {
@@ -1376,7 +1579,7 @@ p.subtitle {
 
 @media (max-height: 760px) and (min-width: 621px) {
     #arcadeGameScreen .arcade-game-container {
-        width: 390px;
+        width: 370px;
         padding: 10px;
         gap: 8px;
     }
@@ -1407,8 +1610,9 @@ p.subtitle {
     }
 
     #arcadeGameScreen .m-btn {
-        min-height: 60px;
-        padding: 10px 5px;
+        min-height: 56px;
+        padding: 8px 6px;
+        font-size: 27px;
     }
 
     #arcadeGameScreen .arcade-joystick {
