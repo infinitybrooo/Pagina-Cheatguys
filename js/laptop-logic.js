@@ -35,6 +35,7 @@
     };
 
     let currentCharacter = null;
+    let chatHistory = [];
     let isSending = false;
 
     function getElements() {
@@ -75,7 +76,8 @@
 
         const bubble = document.createElement("div");
         bubble.className = "chat-bubble";
-        bubble.textContent = text;
+        bubble.textContent = String(text || "");
+        bubble.title = String(text || "");
         row.appendChild(bubble);
 
         return row;
@@ -85,6 +87,14 @@
         if (!history || !currentCharacter) return;
         history.appendChild(createMessageBubble(text, type, currentCharacter));
         scrollHistory(history);
+    }
+
+    function rememberMessage(role, text) {
+        chatHistory.push({ role, text });
+
+        if (chatHistory.length > 10) {
+            chatHistory = chatHistory.slice(-10);
+        }
     }
 
     function createTypingIndicator(character) {
@@ -140,13 +150,16 @@
         els.chatName.textContent = character.fullName;
         els.chatStatus.textContent = "ONLINE // CHAT-ROOM";
         els.history.innerHTML = "";
+        chatHistory = [];
         setMode("chat", els);
         appendMessage(els.history, character.greeting, "bot");
+        rememberMessage("model", character.greeting);
         window.setTimeout(() => els.input.focus(), 80);
     }
 
     function closeChat(els) {
         currentCharacter = null;
+        chatHistory = [];
         isSending = false;
         els.input.value = "";
         els.history.innerHTML = "";
@@ -166,7 +179,11 @@
             return "La conexion con Neo Teno esta fallando por la llave de Gemini. Revisa la variable en Netlify.";
         }
 
-        return errorText || "La laptop hizo corto circuito. Intenta otra vez.";
+        if (/quota|overloaded|503|429|unavailable|timeout|fetch/i.test(errorText || "")) {
+            return "La senal con Neo Teno se saturo. Dale otro intento en unos segundos.";
+        }
+
+        return "La laptop hizo corto circuito. Intenta otra vez.";
     }
 
     async function sendMessage(els) {
@@ -177,6 +194,7 @@
 
         els.input.value = "";
         appendMessage(els.history, message, "user");
+        rememberMessage("user", message);
         setSendingState(els, true);
 
         const typing = createTypingIndicator(currentCharacter);
@@ -192,7 +210,8 @@
                 },
                 body: JSON.stringify({
                     mensaje: message,
-                    personaje: Object.keys(characters).find((key) => characters[key] === currentCharacter) || "akane"
+                    personaje: Object.keys(characters).find((key) => characters[key] === currentCharacter) || "akane",
+                    historial: chatHistory
                 })
             });
 
@@ -207,6 +226,7 @@
             }
 
             appendMessage(els.history, data.respuesta || "...", "bot");
+            rememberMessage("model", data.respuesta || "...");
         } catch (error) {
             typing.remove();
             appendMessage(els.history, "No pude conectar con la terminal de Neo Teno. Revisa netlify dev.", "bot");

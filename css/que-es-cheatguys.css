@@ -748,6 +748,7 @@ body.cheatguys-info-page::after {
 .chat-history {
     min-height: 0;
     max-height: 300px;
+    overflow-x: hidden;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -759,6 +760,8 @@ body.cheatguys-info-page::after {
 }
 
 .chat-message-row {
+    width: 100%;
+    min-width: 0;
     display: flex;
     align-items: flex-end;
     gap: 8px;
@@ -773,20 +776,24 @@ body.cheatguys-info-page::after {
 }
 
 .chat-bubble {
-    max-width: min(76%, 440px);
+    min-width: 0;
+    max-width: min(calc(100% - 58px), 520px);
     padding: 10px 12px;
     color: #fff;
     font-family: var(--font-body);
     font-size: 15px;
     line-height: 1.36;
     text-align: left;
-    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-break: normal;
     border: 3px solid rgba(255, 255, 255, 0.76);
     border-radius: 8px;
     box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.74);
 }
 
 .chat-message-row.user .chat-bubble {
+    max-width: min(78%, 520px);
     background: linear-gradient(135deg, rgba(138, 43, 226, 0.96), rgba(255, 105, 180, 0.82));
 }
 
@@ -1201,8 +1208,12 @@ body.cheatguys-info-page::after {
     }
 
     .chat-bubble {
-        max-width: 82%;
+        max-width: calc(100% - 48px);
         font-size: 14px;
+    }
+
+    .chat-message-row.user .chat-bubble {
+        max-width: 84%;
     }
 
     .chat-character-chip img,
