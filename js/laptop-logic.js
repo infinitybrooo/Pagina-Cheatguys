@@ -176,14 +176,13 @@
         els.input.disabled = state;
     }
 
-    function isMobileLaptopViewport() {
-        return window.matchMedia("(max-width: 620px)").matches;
-    }
-
     function openMobileProgramWindow(els) {
-        if (!els.bunker || !isMobileLaptopViewport()) return;
+        if (!els.bunker) return;
         els.bunker.classList.add("is-mobile-program-open");
         document.body.classList.add("laptop-program-lock");
+        if (els.screen) els.screen.scrollTop = 0;
+        if (els.desktop) els.desktop.scrollTop = 0;
+        if (els.chatRoom) els.chatRoom.scrollTop = 0;
     }
 
     function closeMobileProgramWindow(els) {
@@ -268,7 +267,7 @@
 
         if (els.screen) {
             els.screen.addEventListener("click", (event) => {
-                if (!isMobileLaptopViewport() || els.bunker.classList.contains("is-mobile-program-open")) return;
+                if (els.bunker.classList.contains("is-mobile-program-open")) return;
 
                 event.preventDefault();
                 event.stopPropagation();
@@ -286,12 +285,6 @@
 
         document.addEventListener("keydown", (event) => {
             if (event.key === "Escape") {
-                closeMobileProgramWindow(els);
-            }
-        });
-
-        window.addEventListener("resize", () => {
-            if (!isMobileLaptopViewport()) {
                 closeMobileProgramWindow(els);
             }
         });
