@@ -43,6 +43,8 @@
             bunker: document.getElementById("laptop-bunker"),
             desktop: document.getElementById("laptopDesktop"),
             chatRoom: document.getElementById("laptopChatRoom"),
+            screen: document.querySelector("#laptop-bunker .laptop-screen"),
+            mobileWindowClose: document.getElementById("laptopMobileWindowClose"),
             characterButtons: document.querySelectorAll("[data-laptop-character]"),
             closeButton: document.getElementById("laptopCloseChat"),
             chatAvatar: document.getElementById("chatCharacterAvatar"),
@@ -174,6 +176,22 @@
         els.input.disabled = state;
     }
 
+    function isMobileLaptopViewport() {
+        return window.matchMedia("(max-width: 620px)").matches;
+    }
+
+    function openMobileProgramWindow(els) {
+        if (!els.bunker || !isMobileLaptopViewport()) return;
+        els.bunker.classList.add("is-mobile-program-open");
+        document.body.classList.add("laptop-program-lock");
+    }
+
+    function closeMobileProgramWindow(els) {
+        if (!els.bunker) return;
+        els.bunker.classList.remove("is-mobile-program-open");
+        document.body.classList.remove("laptop-program-lock");
+    }
+
     function getFriendlyErrorMessage(errorText) {
         if (/quota|credits|depleted|billing|prepayment|429|overloaded|503|unavailable|timeout|fetch/i.test(errorText || "")) {
             return "La senal con Neo Teno se saturo. Dale otro intento en unos segundos.";
@@ -247,6 +265,36 @@
         });
 
         els.closeButton.addEventListener("click", () => closeChat(els));
+
+        if (els.screen) {
+            els.screen.addEventListener("click", (event) => {
+                if (!isMobileLaptopViewport() || els.bunker.classList.contains("is-mobile-program-open")) return;
+
+                event.preventDefault();
+                event.stopPropagation();
+                openMobileProgramWindow(els);
+            }, true);
+        }
+
+        if (els.mobileWindowClose) {
+            els.mobileWindowClose.addEventListener("click", (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                closeMobileProgramWindow(els);
+            });
+        }
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeMobileProgramWindow(els);
+            }
+        });
+
+        window.addEventListener("resize", () => {
+            if (!isMobileLaptopViewport()) {
+                closeMobileProgramWindow(els);
+            }
+        });
 
         els.form.addEventListener("submit", (event) => {
             event.preventDefault();

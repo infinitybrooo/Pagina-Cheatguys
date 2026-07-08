@@ -492,9 +492,11 @@ body.cheatguys-info-page::after {
     width: min(100%, 1040px);
     margin: 0 auto 54px;
     display: grid;
-    grid-template-columns: minmax(240px, 0.48fr) minmax(0, 1fr);
+    grid-template-columns: 280px 720px;
     gap: clamp(22px, 4vw, 40px);
     align-items: center;
+    overflow-x: auto;
+    overflow-y: visible;
 }
 
 .laptop-copy h2 {
@@ -516,7 +518,8 @@ body.cheatguys-info-page::after {
 
 .pixel-laptop {
     position: relative;
-    width: 100%;
+    width: 720px;
+    max-width: none;
     color: #fff;
     font-family: var(--font-terminal);
     filter: drop-shadow(14px 18px 0 rgba(0, 0, 0, 0.58));
@@ -575,6 +578,7 @@ body.cheatguys-info-page::after {
 .laptop-screen {
     position: relative;
     overflow: hidden;
+    width: 100%;
     min-height: 450px;
     padding: 14px;
     background:
@@ -585,6 +589,10 @@ body.cheatguys-info-page::after {
     background-size: 22px 22px, 22px 22px, auto, auto;
     border: 4px solid #05000a;
     box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.18), inset 0 0 36px rgba(0, 255, 255, 0.12);
+}
+
+.laptop-mobile-window-close {
+    display: none;
 }
 
 .laptop-screen::after {
@@ -606,6 +614,36 @@ body.cheatguys-info-page::after {
     min-height: 422px;
 }
 
+.laptop-desktop {
+    overflow: hidden;
+    background:
+        linear-gradient(rgba(7, 0, 14, 0.24), rgba(7, 0, 14, 0.42)),
+        linear-gradient(rgba(255, 255, 255, 0.045) 50%, rgba(0, 0, 0, 0.1) 50%),
+        url('../assets/images/cheatguys-info/fondo-ado.jpg') center / cover no-repeat;
+    background-size: auto, 100% 4px, cover;
+    border: 2px solid rgba(255, 255, 255, 0.16);
+}
+
+.laptop-desktop::after {
+    content: "AKANE_OS  //  ADO_WALLPAPER.JPG  //  WIFI: ANXIETY";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    color: #05000a;
+    background: linear-gradient(90deg, rgba(0, 255, 255, 0.92), rgba(255, 105, 180, 0.9));
+    border-top: 3px solid #fff;
+    font-family: var(--font-pixel);
+    font-size: 10px;
+    line-height: 1.2;
+    text-shadow: none;
+}
+
 .laptop-topbar,
 .laptop-chat-header {
     display: flex;
@@ -625,8 +663,10 @@ body.cheatguys-info-page::after {
 .laptop-icons-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 16px;
-    padding: clamp(22px, 5vw, 44px) 8px 10px;
+    gap: 18px;
+    position: relative;
+    z-index: 3;
+    padding: 34px 18px 52px;
 }
 
 .laptop-app-icon {
@@ -635,10 +675,10 @@ body.cheatguys-info-page::after {
     flex-direction: column;
     align-items: center;
     gap: 9px;
-    padding: 12px 6px;
+    padding: 9px 6px;
     color: #fff;
-    background: rgba(10, 5, 20, 0.58);
-    border: 3px solid rgba(255, 255, 255, 0.62);
+    background: transparent;
+    border: 2px solid transparent;
     border-radius: 6px;
     cursor: pointer;
     font-family: var(--font-pixel);
@@ -648,7 +688,7 @@ body.cheatguys-info-page::after {
 }
 
 .laptop-app-icon img {
-    width: clamp(58px, 8vw, 82px);
+    width: 82px;
     aspect-ratio: 1;
     object-fit: contain;
     filter: drop-shadow(4px 4px 0 rgba(0, 0, 0, 0.8));
@@ -658,8 +698,9 @@ body.cheatguys-info-page::after {
 .laptop-app-icon:focus-visible {
     outline: none;
     transform: translate(3px, -5px);
-    border-color: #fff;
-    box-shadow: -5px 5px 0 var(--info-hot), 0 0 18px rgba(0, 255, 255, 0.36);
+    background: rgba(0, 255, 255, 0.13);
+    border-color: rgba(255, 255, 255, 0.82);
+    box-shadow: -4px 4px 0 rgba(0, 0, 0, 0.85), 0 0 18px rgba(0, 255, 255, 0.36);
 }
 
 .app-akane { --app-color: var(--akane-color); }
@@ -673,6 +714,7 @@ body.cheatguys-info-page::after {
     overflow-wrap: anywhere;
     background: rgba(0, 0, 0, 0.72);
     border: 2px solid var(--app-color);
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.74);
 }
 
 .laptop-chat-room {
@@ -1045,7 +1087,7 @@ body.cheatguys-info-page::after {
     }
 
     .laptop-icons-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }
 
@@ -1157,7 +1199,12 @@ body.cheatguys-info-page::after {
     }
 
     .laptop-bunker {
+        width: 100%;
         margin-bottom: 38px;
+        display: block;
+        overflow-x: auto;
+        padding: 0 0 18px;
+        overscroll-behavior-x: contain;
     }
 
     .laptop-copy h2 {
@@ -1165,41 +1212,47 @@ body.cheatguys-info-page::after {
     }
 
     .pixel-laptop-lid {
-        padding: 10px;
-        border-width: 4px;
+        padding: 18px;
+        border-width: 5px;
     }
 
     .laptop-screen {
-        min-height: 480px;
-        padding: 10px;
+        min-height: 450px;
+        padding: 14px;
+        cursor: zoom-in;
     }
 
     .laptop-desktop,
     .laptop-chat-room {
-        min-height: 452px;
+        min-height: 422px;
     }
 
     .laptop-topbar,
     .laptop-chat-header {
-        align-items: flex-start;
-        font-size: 10px;
+        align-items: center;
+        font-size: 12px;
     }
 
     .laptop-chat-header {
-        flex-direction: column;
+        flex-direction: row;
     }
 
     .laptop-close-app {
-        width: 100%;
+        width: auto;
     }
 
     .laptop-icons-grid {
-        gap: 10px;
-        padding-top: 24px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+        padding: 34px 18px 52px;
     }
 
     .laptop-app-icon {
-        font-size: 10px;
+        font-size: 12px;
+    }
+
+    .laptop-app-icon img {
+        width: 82px;
     }
 
     .chat-history {
@@ -1240,13 +1293,126 @@ body.cheatguys-info-page::after {
     }
 
     .pixel-laptop-base {
-        width: 96%;
-        min-height: 78px;
-        padding: 12px 12px 10px;
+        width: 92%;
+        min-height: 92px;
+        padding: 16px 18px 12px;
     }
 
     .laptop-keyboard {
-        gap: 4px;
+        gap: 6px;
+    }
+
+    body.laptop-program-lock {
+        overflow: hidden;
+    }
+
+    .laptop-bunker.is-mobile-program-open {
+        transform: none !important;
+    }
+
+    .laptop-bunker.is-mobile-program-open .pixel-laptop {
+        filter: none;
+        transform: none !important;
+    }
+
+    .laptop-screen::before {
+        content: "TOCA PARA ABRIR LA VENTANA";
+        position: absolute;
+        left: 50%;
+        bottom: 48px;
+        z-index: 5;
+        padding: 6px 9px;
+        color: #05000a;
+        background: rgba(0, 255, 255, 0.88);
+        border: 2px solid #fff;
+        font-family: var(--font-pixel);
+        font-size: 10px;
+        line-height: 1;
+        box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.8);
+        transform: translateX(-50%);
+        pointer-events: none;
+    }
+
+    .laptop-bunker.is-mobile-program-open .laptop-screen {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        right: auto;
+        bottom: auto;
+        z-index: 100700;
+        width: calc(100dvw - 20px) !important;
+        max-width: calc(100dvw - 20px);
+        min-height: 0;
+        height: calc(100dvh - 20px);
+        padding: 10px;
+        box-sizing: border-box;
+        cursor: default;
+        border: 4px solid #fff;
+        box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.78), 0 0 24px rgba(0, 255, 255, 0.42);
+    }
+
+    .laptop-bunker.is-mobile-program-open .laptop-screen::before {
+        display: none;
+    }
+
+    .laptop-bunker.is-mobile-program-open .laptop-mobile-window-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        z-index: 7;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 42px;
+        min-height: 34px;
+        color: #fff;
+        background: #ff0044;
+        border: 3px solid #fff;
+        box-shadow: 4px 4px 0 #000;
+        font-family: var(--font-pixel);
+        font-size: 13px;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+    .laptop-bunker.is-mobile-program-open .laptop-desktop,
+    .laptop-bunker.is-mobile-program-open .laptop-chat-room {
+        min-height: 0;
+        height: 100%;
+    }
+
+    .laptop-bunker.is-mobile-program-open .laptop-topbar {
+        padding-right: 58px;
+    }
+
+    .laptop-bunker.is-mobile-program-open .laptop-icons-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-content: start;
+        gap: 14px;
+        padding: 24px 12px 56px;
+    }
+
+    .laptop-bunker.is-mobile-program-open .laptop-chat-header {
+        flex-direction: column;
+        align-items: stretch;
+        padding-right: 58px;
+    }
+
+    .laptop-bunker.is-mobile-program-open .laptop-close-app {
+        width: 100%;
+    }
+
+    .laptop-bunker.is-mobile-program-open .chat-history {
+        max-height: none;
+        min-height: 0;
+    }
+
+    .laptop-bunker.is-mobile-program-open .laptop-chat-form {
+        grid-template-columns: 1fr;
+    }
+
+    .laptop-bunker.is-mobile-program-open .laptop-chat-form button {
+        min-height: 42px;
     }
 }
 
