@@ -176,6 +176,20 @@
         els.input.disabled = state;
     }
 
+    function updateLaptopMobileScale(els) {
+        if (!els.bunker) return;
+
+        if (!window.matchMedia("(max-width: 620px)").matches) {
+            els.bunker.style.removeProperty("--laptop-mobile-scale");
+            els.bunker.style.removeProperty("--laptop-mobile-height");
+            return;
+        }
+
+        const scale = Math.min(1, Math.max(0.1, (window.innerWidth - 20) / 720));
+        els.bunker.style.setProperty("--laptop-mobile-scale", scale.toFixed(4));
+        els.bunker.style.setProperty("--laptop-mobile-height", `${Math.ceil((598 * scale) + 18)}px`);
+    }
+
     function openMobileProgramWindow(els) {
         if (!els.bunker) return;
         els.bunker.classList.add("is-mobile-program-open");
@@ -257,6 +271,8 @@
         const els = getElements();
         if (!els.bunker || !els.desktop || !els.chatRoom || !els.form) return;
 
+        updateLaptopMobileScale(els);
+
         els.characterButtons.forEach((button) => {
             button.addEventListener("click", () => {
                 openChat(button.dataset.laptopCharacter, els);
@@ -287,6 +303,10 @@
             if (event.key === "Escape") {
                 closeMobileProgramWindow(els);
             }
+        });
+
+        window.addEventListener("resize", () => {
+            updateLaptopMobileScale(els);
         });
 
         els.form.addEventListener("submit", (event) => {

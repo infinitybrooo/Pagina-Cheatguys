@@ -691,8 +691,8 @@ body.laptop-program-lock {
     background:
         linear-gradient(rgba(7, 0, 14, 0.24), rgba(7, 0, 14, 0.42)),
         linear-gradient(rgba(255, 255, 255, 0.045) 50%, rgba(0, 0, 0, 0.1) 50%),
-        url('../assets/images/cheatguys-info/fondo-ado.jpg') center / contain no-repeat;
-    background-size: auto, 100% 4px, contain;
+        url('../assets/images/cheatguys-info/fondo-ado.jpg') center / cover no-repeat;
+    background-size: auto, 100% 4px, cover;
     border: 2px solid rgba(255, 255, 255, 0.16);
 }
 
@@ -1271,12 +1271,21 @@ body.laptop-program-lock {
     }
 
     .laptop-bunker {
+        --laptop-mobile-scale: 1;
+        --laptop-mobile-height: 616px;
         width: 100%;
+        min-height: var(--laptop-mobile-height);
         margin-bottom: 38px;
         display: block;
-        overflow-x: auto;
+        overflow: hidden;
         padding: 0 0 18px;
-        overscroll-behavior-x: contain;
+    }
+
+    .pixel-laptop {
+        width: 720px;
+        max-width: none;
+        transform: scale(var(--laptop-mobile-scale));
+        transform-origin: top left;
     }
 
     .laptop-copy h2 {
