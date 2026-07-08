@@ -175,12 +175,12 @@
     }
 
     function getFriendlyErrorMessage(errorText) {
-        if (/api key|gemini_api_key|gemini/i.test(errorText || "")) {
-            return "La conexion con Neo Teno esta fallando por la llave de Gemini. Revisa la variable en Netlify.";
+        if (/quota|credits|depleted|billing|prepayment|429|overloaded|503|unavailable|timeout|fetch/i.test(errorText || "")) {
+            return "La senal con Neo Teno se saturo. Dale otro intento en unos segundos.";
         }
 
-        if (/quota|overloaded|503|429|unavailable|timeout|fetch/i.test(errorText || "")) {
-            return "La senal con Neo Teno se saturo. Dale otro intento en unos segundos.";
+        if (/api key|gemini_api_key|groq_api_key|invalid api key/i.test(errorText || "")) {
+            return "La conexion con Neo Teno esta fallando por una llave de API. Revisa las variables en Netlify.";
         }
 
         return "La laptop hizo corto circuito. Intenta otra vez.";

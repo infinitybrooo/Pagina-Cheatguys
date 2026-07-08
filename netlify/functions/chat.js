@@ -21,6 +21,8 @@ const corsHeaders = {
 
 const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 const GEMINI_API_KEY = (process.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY_PRIMARY || "").trim();
+const GROQ_MODEL = process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
+const GROQ_API_KEY = (process.env.GROQ_API_KEY || "").trim();
 
 const CHARACTER_FALLBACKS = {
   akane: "S-soy Akane Hoshizora... vocalista y guitarra de CheatGuys!. Mi HUD social esta temblando, pero sigo aqui.",
@@ -57,6 +59,122 @@ function jsonResponse(statusCode, body) {
     },
     body: JSON.stringify(body)
   };
+}
+
+function getSystemPrompt(characterPrompt) {
+  return `${GENERAL_CONTEXT}\n\n${characterPrompt}`;
+}
+
+function getRecentHistory(historial, mensaje) {
+  const recentHistory = historial
+    .filter((item) => item && (item.role === "user" || item.role === "model") && typeof item.text === "string")
+    .slice(-8)
+    .map((item) => ({
+      role: item.role,
+      text: item.text.slice(0, 700)
+    }));
+
+  if (recentHistory.length === 0 || recentHistory[recentHistory.length - 1].role !== "user") {
+    recentHistory.push({
+      role: "user",
+      text: mensaje
+    });
+  }
+
+  return recentHistory;
+}
+
+function normalizeProviderError(data, fallbackMessage) {
+  return data?.error?.message || data?.error || fallbackMessage;
+}
+
+async function callGroq({ systemPrompt, recentHistory }) {
+  const groqResponse = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${GROQ_API_KEY}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      model: GROQ_MODEL,
+      messages: [
+        {
+          role: "system",
+          content: systemPrompt
+        },
+        ...recentHistory.map((item) => ({
+          role: item.role === "model" ? "assistant" : "user",
+          content: item.text
+        }))
+      ],
+      temperature: 0.45,
+      top_p: 0.85,
+      max_completion_tokens: 512,
+      stream: false
+    })
+  });
+
+  const data = await groqResponse.json();
+
+  if (!groqResponse.ok) {
+    throw new Error(normalizeProviderError(data, "Groq no pudo responder."));
+  }
+
+  return data?.choices?.[0]?.message?.content?.trim() || "";
+}
+
+async function callGemini({ systemPrompt, recentHistory }) {
+  const contents = recentHistory.map((item) => ({
+    role: item.role,
+    parts: [
+      {
+        text: item.text
+      }
+    ]
+  }));
+
+  const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      systemInstruction: {
+        parts: [
+          {
+            text: systemPrompt
+          }
+        ]
+      },
+      contents,
+      generationConfig: {
+        temperature: 0.45,
+        topP: 0.85,
+        maxOutputTokens: 512,
+        thinkingConfig: {
+          thinkingBudget: 0
+        }
+      }
+    })
+  });
+
+  const data = await geminiResponse.json();
+
+  if (!geminiResponse.ok) {
+    const message = normalizeProviderError(data, "Gemini no pudo responder.");
+    const normalizedMessage = String(message).toLowerCase();
+
+    if (normalizedMessage.includes("api key not valid") || normalizedMessage.includes("api_key_invalid")) {
+      throw new Error("La API key de Gemini no es valida. Revisa que el valor en Netlify este completo y sin espacios.");
+    }
+
+    throw new Error(message);
+  }
+
+  return data?.candidates?.[0]?.content?.parts
+    ?.map((part) => part.text || "")
+    .join("")
+    .trim() || "";
 }
 
 exports.handler = async function handler(event) {
@@ -96,87 +214,48 @@ exports.handler = async function handler(event) {
     });
   }
 
-  if (!GEMINI_API_KEY) {
-    return jsonResponse(500, { error: "Falta configurar GEMINI_API_KEY o GEMINI_API_KEY_PRIMARY en Netlify." });
+  if (!GROQ_API_KEY && !GEMINI_API_KEY) {
+    return jsonResponse(500, { error: "Falta configurar GROQ_API_KEY o GEMINI_API_KEY_PRIMARY en Netlify." });
   }
 
-  try {
-    const recentHistory = historial
-      .filter((item) => item && (item.role === "user" || item.role === "model") && typeof item.text === "string")
-      .slice(-8)
-      .map((item) => ({
-        role: item.role,
-        parts: [
-          {
-            text: item.text.slice(0, 700)
-          }
-        ]
-      }));
+  const systemPrompt = getSystemPrompt(characterPrompt);
+  const recentHistory = getRecentHistory(historial, mensaje);
+  const providerErrors = [];
 
-    const contents = recentHistory.length > 0
-      ? recentHistory
-      : [
-        {
-          role: "user",
-          parts: [
-            {
-              text: mensaje
-            }
-          ]
-        }
-      ];
+  if (GROQ_API_KEY) {
+    try {
+      const texto = await callGroq({ systemPrompt, recentHistory });
 
-    const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        systemInstruction: {
-          parts: [
-            {
-              text: `${GENERAL_CONTEXT}\n\n${characterPrompt}`
-            }
-          ]
-        },
-        contents,
-        generationConfig: {
-          temperature: 0.45,
-          topP: 0.85,
-          maxOutputTokens: 512,
-          thinkingConfig: {
-            thinkingBudget: 0
-          }
-        }
-      })
-    });
-
-    const data = await geminiResponse.json();
-
-    if (!geminiResponse.ok) {
-      const message = data?.error?.message || "Gemini no pudo responder.";
-      const normalizedMessage = message.toLowerCase();
-
-      if (normalizedMessage.includes("api key not valid") || normalizedMessage.includes("api_key_invalid")) {
-        return jsonResponse(401, {
-          error: "La API key de Gemini no es valida. Revisa que el valor en Netlify este completo y sin espacios."
-        });
-      }
-
-      return jsonResponse(geminiResponse.status, { error: message });
+      return jsonResponse(200, {
+        respuesta: texto || fallbackText,
+        provider: "groq"
+      });
+    } catch (error) {
+      providerErrors.push(`Groq: ${error.message}`);
     }
+  }
 
-    const texto = data?.candidates?.[0]?.content?.parts
-      ?.map((part) => part.text || "")
-      .join("")
-      .trim();
+  if (GEMINI_API_KEY) {
+    try {
+      const texto = await callGemini({ systemPrompt, recentHistory });
 
-    return jsonResponse(200, {
-      respuesta: texto || fallbackText
-    });
-  } catch (error) {
-    return jsonResponse(500, {
-      error: "No se pudo conectar con Gemini."
+      return jsonResponse(200, {
+        respuesta: texto || fallbackText,
+        provider: "gemini"
+      });
+    } catch (error) {
+      providerErrors.push(`Gemini: ${error.message}`);
+    }
+  }
+
+  if (providerErrors.length > 0) {
+    return jsonResponse(503, {
+      error: providerErrors.join(" | ")
     });
   }
+
+  return jsonResponse(200, {
+    respuesta: fallbackText,
+    provider: "fallback"
+  });
 };
