@@ -44,6 +44,242 @@
 .ld-momo { background-image: url('../assets/icons/icon-momo.webp'); animation-delay: 0.3s; }
 .ld-jun { background-image: url('../assets/icons/icon-jun.webp'); animation-delay: 0.45s; }
 
+/* Start Window */
+.start-window {
+    position: fixed;
+    inset: 0;
+    z-index: 10000000;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    color: #fff;
+    background:
+        radial-gradient(circle at 50% 45%, rgba(138, 43, 226, 0.28), transparent 34%),
+        linear-gradient(#05000a, #05000a);
+    font-family: var(--font-pixel);
+    transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+
+.start-window::before,
+.start-window::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 6;
+}
+
+.start-window::before {
+    background:
+        linear-gradient(rgba(255,255,255,0.035) 50%, rgba(0,0,0,0.25) 50%),
+        linear-gradient(90deg, rgba(255,0,68,0.055), rgba(0,255,255,0.04), rgba(255,0,68,0.055));
+    background-size: 100% 4px, 5px 100%;
+    mix-blend-mode: screen;
+}
+
+.start-window::after {
+    background: radial-gradient(circle at 50% 50%, transparent 50%, rgba(0,0,0,0.45) 100%);
+}
+
+.start-window.is-finished {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.start-window.is-booted .start-crt-flash {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.start-window.is-ready .start-boot-panel {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.start-window.is-ready .start-title-panel {
+    opacity: 1;
+    transform: scale(1);
+    filter: none;
+}
+
+.start-crt-flash {
+    position: absolute;
+    inset: 0;
+    z-index: 8;
+    pointer-events: none;
+    background: #fff;
+    transform-origin: center;
+    animation: start-crt-power 1.25s steps(9, end) forwards;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.start-boot-panel,
+.start-title-panel {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+}
+
+.start-boot-panel {
+    z-index: 3;
+    align-content: center;
+    gap: 12px;
+    padding: 24px;
+    background: rgba(5, 0, 10, 0.92);
+    animation: start-boot-hide 2.25s steps(7, end) forwards;
+    transition: opacity 0.24s ease, visibility 0.24s ease;
+}
+
+.start-studio-logo {
+    width: min(54vw, 260px);
+    height: auto;
+    filter: drop-shadow(0 0 16px rgba(255,255,255,0.45)) drop-shadow(0 0 24px rgba(0,255,255,0.28));
+    animation: start-logo-glow 1.1s ease-in-out 0.45s both;
+}
+
+.start-os-label {
+    color: var(--neon-cyan);
+    font-size: clamp(18px, 4vw, 28px);
+    text-shadow: 3px 3px 0 #000, 0 0 16px rgba(0,255,255,0.65);
+    opacity: 0;
+    animation: start-os-appear 0.8s steps(5, end) 0.75s forwards;
+}
+
+.start-title-panel {
+    z-index: 2;
+    opacity: 0;
+    transform: scale(1.02);
+    filter: contrast(2) hue-rotate(24deg);
+    animation: start-title-enter 0.65s steps(6, end) 2.18s forwards;
+    transition: opacity 0.25s ease, transform 0.25s ease, filter 0.25s ease;
+}
+
+.start-bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(1.2) contrast(1.14) brightness(0.74);
+}
+
+.start-title-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        radial-gradient(circle at 50% 35%, rgba(255, 105, 180, 0.2), transparent 34%),
+        linear-gradient(rgba(5,0,10,0.16), rgba(5,0,10,0.62));
+    pointer-events: none;
+}
+
+.start-title-content {
+    position: relative;
+    z-index: 2;
+    width: min(92vw, 720px);
+    min-height: min(82dvh, 620px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(14px, 3vh, 24px);
+    padding: clamp(18px, 4vw, 34px);
+    border: 4px solid rgba(255,255,255,0.9);
+    box-shadow: 10px 10px 0 rgba(0,0,0,0.84), 0 0 24px rgba(0,255,255,0.26), inset 0 0 24px rgba(255,105,180,0.1);
+    background:
+        linear-gradient(rgba(0,255,255,0.045) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255,105,180,0.04) 2px, transparent 2px),
+        rgba(5,0,10,0.54);
+    background-size: 24px 24px, 24px 24px, auto;
+}
+
+.start-player-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    color: var(--neon-cyan);
+    font-size: clamp(14px, 3vw, 18px);
+    text-shadow: 3px 3px 0 #000;
+}
+
+.start-series-logo {
+    width: min(86vw, 500px);
+    height: auto;
+    filter: drop-shadow(7px 7px 0 rgba(0,0,0,0.86)) drop-shadow(0 0 16px rgba(255,105,180,0.28));
+    animation: start-title-pulse 2.2s ease-in-out infinite;
+}
+
+.start-menu-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.press-start-btn {
+    min-width: min(82vw, 280px);
+    padding: 10px 18px;
+    cursor: pointer;
+    color: #05000a;
+    background: var(--neon-cyan);
+    border: 3px solid #fff;
+    box-shadow: 6px 6px 0 var(--neon-magenta);
+    font-family: var(--font-pixel);
+    font-size: clamp(18px, 4vw, 28px);
+    line-height: 1;
+    text-align: center;
+    animation: start-press-blink 1.1s steps(2, end) infinite;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.press-start-btn:hover,
+.press-start-btn:focus-visible {
+    outline: none;
+    color: #fff;
+    background: var(--neon-magenta);
+    box-shadow: -6px 6px 0 var(--neon-cyan), 0 0 18px rgba(0,255,255,0.32);
+}
+
+.press-start-btn:active {
+    transform: translate(6px, 6px);
+    box-shadow: 0 0 0 transparent;
+}
+
+.start-menu-meta {
+    color: #d7d7d7;
+    font-size: clamp(10px, 2.5vw, 13px);
+    text-shadow: 2px 2px 0 #000;
+}
+
+.start-runner-track {
+    width: min(88vw, 560px);
+    height: clamp(170px, 22vh, 210px);
+    position: relative;
+    overflow: hidden;
+    border-bottom: 3px solid rgba(255,255,255,0.68);
+}
+
+.start-akane-runner {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 247px;
+    height: 216px;
+    background-image: url('../assets/start-window/akane-run-1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    image-rendering: pixelated;
+    filter: drop-shadow(5px 5px 0 rgba(0,0,0,0.75));
+    transform: translateX(-50%) scale(0.72);
+    transform-origin: center bottom;
+    animation: start-akane-run 0.52s steps(1, end) infinite, start-akane-bob 0.52s steps(2, end) infinite;
+}
+
 /* JRPG Menu Boxes */
 .menu-box {
     overflow: hidden;
@@ -388,6 +624,35 @@ p.subtitle { font-family: var(--font-pixel); color: #d3d3d3; font-size: 15px; ma
 
 /* Component Media Queries */
 @media (max-width: 600px) {
+    .start-title-content {
+        width: min(92vw, 390px);
+        min-height: min(78dvh, 600px);
+        padding: 16px 12px;
+        gap: 14px;
+        border-width: 3px;
+        box-shadow: 7px 7px 0 rgba(0,0,0,0.84), 0 0 18px rgba(0,255,255,0.24);
+    }
+
+    .start-studio-logo {
+        width: min(62vw, 220px);
+    }
+
+    .start-series-logo {
+        width: min(88vw, 340px);
+    }
+
+    .start-player-row {
+        font-size: 13px;
+    }
+
+    .start-runner-track {
+        height: 168px;
+    }
+
+    .start-akane-runner {
+        transform: translateX(-50%) scale(0.62);
+    }
+
     .menu-box {
         padding: 16px;
         gap: 12px;

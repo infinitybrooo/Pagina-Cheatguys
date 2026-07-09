@@ -146,3 +146,55 @@ body.page-loaded .animate-in {
     45% { opacity: 0.82; filter: brightness(1.25) blur(0); }
     100% { opacity: 1; transform: translateY(0) scale(1); filter: none; }
 }
+
+@keyframes start-crt-power {
+    0% { opacity: 1; transform: scaleY(0.01) scaleX(0); filter: brightness(4); }
+    16% { opacity: 1; transform: scaleY(0.015) scaleX(1); }
+    34% { opacity: 0.95; transform: scaleY(1) scaleX(1); }
+    58% { opacity: 0.22; transform: scaleY(1) scaleX(1); }
+    100% { opacity: 0; transform: scaleY(1) scaleX(1); visibility: hidden; }
+}
+
+@keyframes start-boot-hide {
+    0%, 72% { opacity: 1; visibility: visible; }
+    100% { opacity: 0; visibility: hidden; }
+}
+
+@keyframes start-logo-glow {
+    0% { opacity: 0; transform: scale(0.92); filter: brightness(3) blur(4px); }
+    40% { opacity: 1; transform: scale(1.04); filter: brightness(1.7) blur(0); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes start-os-appear {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes start-title-enter {
+    0% { opacity: 0; transform: scale(1.02); filter: contrast(2) hue-rotate(24deg); }
+    60% { opacity: 1; transform: scale(1); filter: brightness(1.35); }
+    100% { opacity: 1; transform: scale(1); filter: none; }
+}
+
+@keyframes start-title-pulse {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-4px) scale(1.015); }
+}
+
+@keyframes start-press-blink {
+    0%, 52% { opacity: 1; }
+    53%, 100% { opacity: 0.58; }
+}
+
+@keyframes start-akane-run {
+    0%, 24.99% { background-image: url('../assets/start-window/akane-run-1.png'); }
+    25%, 49.99% { background-image: url('../assets/start-window/akane-run-2.png'); }
+    50%, 74.99% { background-image: url('../assets/start-window/akane-run-3.png'); }
+    75%, 100% { background-image: url('../assets/start-window/akane-run-4.png'); }
+}
+
+@keyframes start-akane-bob {
+    0%, 100% { margin-bottom: 0; }
+    50% { margin-bottom: 4px; }
+}

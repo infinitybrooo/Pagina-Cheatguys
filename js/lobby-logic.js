@@ -6,10 +6,7 @@
         // Animación Inicial al Entrar
         document.addEventListener("DOMContentLoaded", () => {
             document.body.style.overflow = 'hidden';
-            showLoadingScreen(() => {
-                document.body.style.overflow = 'auto';
-                document.body.classList.add('page-loaded');
-            });
+            setupStartWindow();
 
             // Interceptor de Links
             document.querySelectorAll('a').forEach(link => {
@@ -34,6 +31,49 @@
                 }
             });
         });
+
+        function setupStartWindow() {
+            const startWindow = document.getElementById('startWindow');
+            const pressStartBtn = document.getElementById('pressStartBtn');
+
+            if (!startWindow || !pressStartBtn) {
+                showLoadingScreen(() => {
+                    document.body.style.overflow = 'auto';
+                    document.body.classList.add('page-loaded');
+                });
+                return;
+            }
+
+            document.body.classList.add('start-window-active');
+            window.setTimeout(() => startWindow.classList.add('is-booted'), 1250);
+            window.setTimeout(() => {
+                startWindow.classList.add('is-ready');
+                pressStartBtn.focus({ preventScroll: true });
+            }, 2250);
+
+            const startLobby = () => {
+                pressStartBtn.disabled = true;
+                document.removeEventListener('keydown', startOnKey);
+                startWindow.classList.add('is-finished');
+                showLoadingScreen(() => {
+                    document.body.style.overflow = 'auto';
+                    document.body.classList.remove('start-window-active');
+                    document.body.classList.add('page-loaded');
+                    startWindow.remove();
+                });
+            };
+
+            const startOnKey = (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    pressStartBtn.click();
+                }
+            };
+
+            pressStartBtn.addEventListener('click', startLobby, { once: true });
+            document.addEventListener('keydown', startOnKey);
+        }
+
         // --- FUNCIÓN GLOBAL DE PANTALLA DE CARGA ---
         function showLoadingScreen(callback) {
             const loader = document.getElementById('globalLoader');

@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="assets/branding/favicon.webp">
     <link rel="stylesheet" href="css/fonts.css?v=20260706-localfonts1">
     
-    <link rel="stylesheet" href="css/style.css?v=20260709-homehook1">
+    <link rel="stylesheet" href="css/style.css?v=20260709-startwindow1">
     <link rel="stylesheet" href="css/galeria.css?v=20260629-sidebar-logo1">
 
     <!-- Open Graph / Facebook / WhatsApp -->
@@ -86,6 +86,31 @@
     <!-- =========================================
          PANTALLA DE CARGA GLOBAL
          ========================================= -->
+    <div id="startWindow" class="start-window" aria-label="Pantalla de inicio CheatGuys">
+        <div class="start-crt-flash" aria-hidden="true"></div>
+        <section class="start-boot-panel" aria-hidden="true">
+            <img src="assets/branding/mobile/logo-studio-blanco.webp" alt="" class="start-studio-logo" decoding="async">
+            <div class="start-os-label">InfinityOS</div>
+        </section>
+        <section class="start-title-panel" aria-label="Inicio del videojuego">
+            <video class="start-bg-video" src="assets/start-window/loop-fondo-clean.mp4" autoplay muted loop playsinline preload="auto"></video>
+            <div class="start-title-content">
+                <div class="start-player-row">
+                    <span>PLAYER ONE</span>
+                    <span>READY</span>
+                </div>
+                <img src="assets/branding/mobile/logo-cheatguys.webp" alt="CheatGuys!" class="start-series-logo" decoding="async">
+                <div class="start-menu-card">
+                    <button id="pressStartBtn" class="press-start-btn" type="button">PRESS START</button>
+                    <div class="start-menu-meta">INSERT COIN // BUILD 2026</div>
+                </div>
+                <div class="start-runner-track" aria-hidden="true">
+                    <div class="start-akane-runner"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
     <div id="globalLoader" class="loading-overlay">
         <h2 class="loading-text">SYSTEM_LOADING <span class="cursor-blink">█</span></h2>
         <div class="loading-icons-wrapper">
@@ -248,7 +273,7 @@
          ========================================= -->
     <script src="js/audio-global.js?v=20260623-refresh2"></script>
     <script src="js/ui-global.js?v=20260707-ui1"></script>
-    <script src="js/lobby-logic.js?v=20260709-homehook2"></script>
+    <script src="js/lobby-logic.js?v=20260709-startwindow1"></script>
     <script src="js/mitsuki-secret.js?v=20260624-discord1"></script>
     <script>
         (() => {
