@@ -19,6 +19,10 @@ body {
     animation: grid-breathe 8s ease-in-out infinite;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body::before {
     content: ""; position: fixed; top: 0; left: 0; bottom: 0; right: 0;
     background-image: url('../assets/backgrounds/fondo-akane.webp');
@@ -38,10 +42,10 @@ body::after {
 }
 
 /* General Containers */
-.profile-container { margin-bottom: 40px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10; }
+.profile-container { width: min(100%, 980px); margin: 0 auto 34px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10; }
 .logos-wrapper { display: flex; align-items: center; justify-content: center; gap: 15px; width: 100%; max-width: 540px; margin-bottom: 15px; }
-.links-container { display: flex; flex-direction: column; gap: 30px; max-width: 450px; margin: 0 auto 150px; position: relative; z-index: 10; }
-.bottom-art-container { width: 100%; max-width: 500px; margin: 40px auto 0; position: relative; z-index: 10; }
+.links-container { display: flex; flex-direction: column; gap: 30px; max-width: 450px; margin: 44px auto 150px; position: relative; z-index: 10; }
+.bottom-art-container { width: min(100%, 340px); margin: 18px auto 0; position: relative; z-index: 10; }
 .footer {
     width: min(100%, 980px);
     margin: 46px auto 0;
@@ -105,7 +109,8 @@ body::after {
     }
 
     .profile-container {
-        margin-bottom: 28px;
+        width: 100%;
+        margin-bottom: 26px;
     }
 
     .logos-wrapper {
@@ -126,11 +131,13 @@ body::after {
     .links-container {
         width: min(100%, 450px);
         gap: 22px;
+        margin-top: 34px;
         margin-bottom: 96px;
     }
 
     .bottom-art-container {
-        margin-top: 28px;
+        width: min(100%, 315px);
+        margin-top: 16px;
     }
 
     .modal-box { width: calc(100% - 20px); margin: 10px; }

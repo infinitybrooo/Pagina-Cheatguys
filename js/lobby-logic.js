@@ -13,7 +13,9 @@
 
             // Interceptor de Links
             document.querySelectorAll('a').forEach(link => {
-                if (link.href && !link.href.startsWith('javascript') && !link.href.startsWith('#')) {
+                const linkUrl = new URL(link.href, window.location.href);
+                const isSamePageHash = linkUrl.hash && linkUrl.origin === window.location.origin && linkUrl.pathname === window.location.pathname;
+                if (link.href && !link.href.startsWith('javascript') && !link.getAttribute('href')?.startsWith('#') && !isSamePageHash) {
                     link.addEventListener('click', function(e) {
                         if (this.classList.contains('btn-patreon')) {
                             e.preventDefault();
