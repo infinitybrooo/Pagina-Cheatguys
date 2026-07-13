@@ -5,21 +5,29 @@
     "use strict";
 
     const CONFIG = window.CG_CONFIG || {};
-    const START_INTRO_SESSION_KEY = CONFIG.storageKeys?.startIntroSeen || "cheatguys.startIntroSeen.v1";
+    const START_WINDOW_SESSION_KEY = CONFIG.storageKeys?.startWindowSeenSession || "cheatguys.startWindowSeen.v1";
 
-    function hasSeenStartIntro() {
+    function hasSeenStartWindowThisSession() {
         try {
-            return sessionStorage.getItem(START_INTRO_SESSION_KEY) === "1";
+            return window.sessionStorage.getItem(START_WINDOW_SESSION_KEY) === "1";
         } catch (_) {
             return false;
         }
     }
 
-    function rememberStartIntro() {
+    function rememberStartWindowSession() {
         try {
-            sessionStorage.setItem(START_INTRO_SESSION_KEY, "1");
+            window.sessionStorage.setItem(START_WINDOW_SESSION_KEY, "1");
         } catch (_) {
-            // La introduccion sigue funcionando aunque el almacenamiento este bloqueado.
+            // La pantalla sigue funcionando aunque sessionStorage este bloqueado.
+        }
+    }
+
+    function resetStartWindowSession() {
+        try {
+            window.sessionStorage.removeItem(START_WINDOW_SESSION_KEY);
+        } catch (_) {
+            // El reinicio continuara aunque no se pueda modificar el almacenamiento.
         }
     }
 
@@ -46,7 +54,7 @@
         const startWindow = document.getElementById("startWindow");
         const pressStartBtn = document.getElementById("pressStartBtn");
 
-        if (hasSeenStartIntro()) {
+        if (hasSeenStartWindowThisSession()) {
             if (startWindow) startWindow.remove();
             showLoadingScreen(() => {
                 document.body.style.overflow = "auto";
@@ -71,10 +79,7 @@
             pressStartBtn.focus({ preventScroll: true });
         }, 2250);
 
-        const startLobby = () => {
-            pressStartBtn.disabled = true;
-            document.removeEventListener("keydown", startOnKey);
-            rememberStartIntro();
+        const revealLobby = () => {
             startWindow.classList.add("is-finished");
             showLoadingScreen(() => {
                 document.body.style.overflow = "auto";
@@ -82,6 +87,30 @@
                 document.body.classList.add("page-loaded");
                 startWindow.remove();
             });
+        };
+
+        const startLobby = () => {
+            pressStartBtn.disabled = true;
+            document.removeEventListener("keydown", startOnKey);
+            rememberStartWindowSession();
+
+            try {
+                const intro = window.CGStartIntro;
+                if (!intro || !intro.shouldShow()) {
+                    revealLobby();
+                    return;
+                }
+
+                const started = intro.start({
+                    onComplete: revealLobby,
+                    onSkip: revealLobby,
+                    onError: revealLobby
+                });
+                if (!started) revealLobby();
+            } catch (error) {
+                if (window.CG_LOG) window.CG_LOG.error("START_INTRO", "CG-INTRO-001", "Fallback hacia el lobby.", error);
+                revealLobby();
+            }
         };
 
         const startOnKey = (event) => {
@@ -152,7 +181,9 @@
         setupStartWindow,
         setupExplicitLinkTransitions,
         shouldUseLoadingTransition,
-        showLoadingScreen
+        showLoadingScreen,
+        resetStartWindowSession,
+        sessionKey: START_WINDOW_SESSION_KEY
     });
     window.CGLobbyStart = window.CG.lobbyStart;
     window.showLoadingScreen = showLoadingScreen;

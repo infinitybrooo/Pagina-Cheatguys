@@ -8,6 +8,7 @@
     const DEFAULT_VOLUME = 0.4;
 
     let currentTrack = null;
+    const activeSfx = new Set();
     let musicEnabled = safeGetStorage(STORAGE_ENABLED) !== "false";
     let masterVolume = Number.parseFloat(safeGetStorage(STORAGE_VOLUME) || String(DEFAULT_VOLUME));
     if (!Number.isFinite(masterVolume)) masterVolume = DEFAULT_VOLUME;
@@ -45,6 +46,9 @@
         Object.entries(multipliers).forEach(([id, mult]) => {
             const audio = getAudio(id);
             if (audio) audio.volume = Math.min(masterVolume * mult, 1);
+        });
+        activeSfx.forEach((entry) => {
+            entry.audio.volume = Math.min(masterVolume * entry.multiplier, 1);
         });
     }
 
@@ -98,6 +102,31 @@
             next.play().catch(() => {});
         },
 
+        playSfx(url, options = {}) {
+            if (!musicEnabled || !url) return null;
+            const audio = new Audio(url);
+            const entry = {
+                audio,
+                multiplier: Number.isFinite(options.volume) ? options.volume : 1
+            };
+            activeSfx.add(entry);
+            audio.preload = "auto";
+            audio.volume = Math.min(masterVolume * entry.multiplier, 1);
+            const release = () => activeSfx.delete(entry);
+            audio.addEventListener("ended", release, { once: true });
+            audio.addEventListener("error", release, { once: true });
+            audio.play().catch(release);
+            return audio;
+        },
+
+        stopSfx() {
+            activeSfx.forEach((entry) => {
+                entry.audio.pause();
+                entry.audio.currentTime = 0;
+            });
+            activeSfx.clear();
+        },
+
         pauseCurrent() {
             if (currentTrack) pauseAudio(currentTrack, false);
         },
@@ -110,6 +139,7 @@
 
         muteAll() {
             Object.keys(multipliers).forEach((id) => pauseAudio(id, false));
+            this.stopSfx();
         },
 
         setEnabled(enabled) {

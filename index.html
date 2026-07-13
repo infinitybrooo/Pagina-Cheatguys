@@ -6,19 +6,8 @@
     <title>CheatGuys! - Multiplayer Lobby</title>
     <link rel="icon" type="image/png" href="assets/branding/favicon.webp">
     <link rel="stylesheet" href="css/fonts.css?v=20260706-localfonts1">
-    
-    <script>
-        (() => {
-            try {
-                if (sessionStorage.getItem("cheatguys.startIntroSeen.v1") === "1") {
-                    document.documentElement.classList.add("start-intro-seen");
-                }
-            } catch (_) {
-                // Si el almacenamiento no esta disponible, se conserva el flujo completo.
-            }
-        })();
-    </script>
-    <link rel="stylesheet" href="css/style.css?v=20260713-mixer1">
+    <link rel="stylesheet" href="css/style.css?v=20260713-mixer2">
+    <link rel="stylesheet" href="css/start-intro-novel.css?v=20260713-v3">
     <link rel="stylesheet" href="css/galeria.css?v=20260629-sidebar-logo1">
 
     <!-- Open Graph / Facebook / WhatsApp -->
@@ -127,6 +116,42 @@
         </section>
     </div>
 
+    <!-- =========================================
+         MINI NOVELA VISUAL DE PRESENTACION
+         Reutiliza la estructura visual de Mitsuki sin compartir su estado.
+         ========================================= -->
+    <div id="startIntroOverlay" class="start-intro-overlay mitsuki-overlay" role="dialog" aria-modal="true" aria-labelledby="startIntroTitle" aria-describedby="startIntroText" aria-hidden="true">
+        <div class="start-intro-vn-box mitsuki-vn-box">
+            <div id="startIntroScreen" class="start-intro-vn-screen mitsuki-vn-screen" tabindex="-1">
+                <header class="start-intro-header mitsuki-vn-header">
+                    <span id="startIntroTitle">INFINITY_OS // STARTUP_STORY</span>
+                    <span id="startIntroCounter">TAB 01/08</span>
+                    <button id="startIntroSkipBtn" class="start-intro-skip" type="button" aria-label="Omitir la introduccion y continuar al lobby">[ OMITIR_INTRO.EXE ]</button>
+                </header>
+
+                <div id="startIntroScene" class="start-intro-scene">
+                    <div id="startIntroVisual" class="start-intro-visual mitsuki-illustration-container" aria-live="off">
+                        <div id="startIntroSprites" class="start-intro-sprites" aria-hidden="true"></div>
+                        <div id="startIntroEffects" class="start-intro-effects" aria-hidden="true"></div>
+                    </div>
+
+                    <div id="startIntroDialogueBox" class="start-intro-dialogue mitsuki-dialogue-box" role="button" tabindex="0" aria-label="Continuar dialogo">
+                        <img id="startIntroPortrait" class="start-intro-portrait mitsuki-portrait glitch-effect" src="assets/icons/icon-akane.webp" alt="Retrato de Akane" decoding="async">
+                        <div class="mitsuki-dialogue-content">
+                            <span id="startIntroSpeaker" class="start-intro-speaker mitsuki-speaker">AKANE</span>
+                            <p id="startIntroText" class="start-intro-text mitsuki-text" aria-live="polite"></p>
+                        </div>
+                    </div>
+
+                    <button id="startIntroContinueBtn" class="start-intro-continue mitsuki-continue-btn" type="button" aria-label="Continuar a la siguiente viñeta">[ CONTINUAR ]</button>
+                </div>
+
+                <section id="startIntroBsod" class="start-intro-bsod" aria-live="assertive" hidden></section>
+            </div>
+        </div>
+        <div class="start-intro-blackout" aria-hidden="true"></div>
+    </div>
+
     <div id="globalLoader" class="loading-overlay">
         <h2 class="loading-text">SYSTEM_LOADING <span class="cursor-blink">█</span></h2>
         <div class="loading-icons-wrapper">
@@ -233,7 +258,7 @@
 
     <section id="mixerWindow" class="mixer-window" role="dialog" aria-modal="false" aria-labelledby="mixerWindowTitle" aria-hidden="true" hidden>
         <header class="mixer-titlebar">
-            <span id="mixerWindowTitle">INFINITY OS // GUERRILLA_MIXER</span>
+            <span id="mixerWindowTitle">INFINITY OS // GARAGE_MIXER</span>
             <button type="button" class="mixer-close" data-cg-mixer-close aria-label="Cerrar mixer y detener preview">[X]</button>
         </header>
         <div class="mixer-content">
@@ -244,11 +269,17 @@
             <div class="mixer-readout">
                 <span class="mixer-channel-label">NOW_PREVIEWING // 30_SEC</span>
                 <strong id="mixerTrackTitle">SELECCIONANDO...</strong>
-                <div id="mixerVisualizer" class="mixer-bars mixer-visualizer" aria-hidden="true">
-                    <span class="mixer-bar"></span>
-                    <span class="mixer-bar"></span>
-                    <span class="mixer-bar"></span>
-                    <span class="mixer-bar"></span>
+                <div id="mixerVisualizer" class="mixer-eq mixer-visualizer" aria-hidden="true">
+                    <span class="mixer-eq-line"></span>
+                    <span class="mixer-eq-line"></span>
+                    <span class="mixer-eq-line"></span>
+                    <span class="mixer-eq-line"></span>
+                    <span class="mixer-eq-line"></span>
+                    <span class="mixer-eq-line"></span>
+                    <span class="mixer-eq-line"></span>
+                    <span class="mixer-eq-line"></span>
+                    <span class="mixer-eq-line"></span>
+                    <span class="mixer-eq-line"></span>
                 </div>
                 <span id="mixerStatus" class="mixer-status" aria-live="polite">WAITING_FOR_INPUT</span>
                 <a id="mixerStoreLink" class="mixer-store-link" href="#" target="_blank" rel="noopener" hidden>[ OPEN_IN_ITUNES ]</a>
@@ -268,6 +299,7 @@
         <p>CheatGuys! is a series owned by Infinity Brothers Studios TM. All artwork, descriptions, documents, characters, music, and story are the property of the studio and are protected by copyright.</p>
         <p>Interactive components (including character chat simulations) utilize experimental AI for entertainment and narrative purposes only. Leaderboard submissions are stored locally for gameplay experience.</p>
         <p>CheatGuys! &copy; 2026 Infinity Brothers Studios TM. All rights reserved</p>
+        <button id="footerIntroResetBtn" class="footer-secret-reset" type="button" aria-label="Reiniciar secretamente la secuencia de introduccion">[ RECOVERY_NODE_0xCG ]</button>
     </div>
 
     <!-- =========================================
@@ -334,7 +366,8 @@
     <script src="js/cg-diagnostics.js?v=20260713-maint1"></script>
     <script src="js/audio-global.js?v=20260713-maint1"></script>
     <script src="js/ui-global.js?v=20260707-ui1"></script>
-    <script src="js/lobby-start.js?v=20260713-maint1"></script>
+    <script src="js/start-intro-novel.js?v=20260713-v3"></script>
+    <script src="js/lobby-start.js?v=20260713-v2"></script>
     <script src="js/lobby-data.js?v=20260713-maint1"></script>
     <script src="js/lobby-logic.js?v=20260713-playlist2"></script>
     <script src="js/mitsuki-secret.js?v=20260624-discord1"></script>

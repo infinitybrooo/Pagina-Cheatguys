@@ -6,7 +6,7 @@
         const CG_LOG = window.CG_LOG || null;
 
         // =====================================================
-        // GUERRILLA MIXER // previews promocionales de iTunes
+        // GARAGE MIXER // previews promocionales de iTunes
         // =====================================================
         function crearPlaylistDesdeTexto(lista) {
             return lista.trim().split(/\r?\n/).map((linea) => {

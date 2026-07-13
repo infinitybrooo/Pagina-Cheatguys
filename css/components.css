@@ -45,10 +45,6 @@
 .ld-jun { background-image: url('../assets/icons/icon-jun.webp'); animation-delay: 0.45s; }
 
 /* Start Window */
-html.start-intro-seen .start-window {
-    display: none;
-}
-
 .start-window {
     position: fixed;
     inset: 0;
@@ -428,7 +424,7 @@ p.subtitle { font-family: var(--font-pixel); color: #d3d3d3; font-size: 15px; ma
     outline-offset: 3px;
 }
 
-/* Infinity OS // Guerrilla Mixer */
+/* Infinity OS // Garage Mixer */
 .mixer-window {
     --mixer-accent: var(--neon-cyan);
     position: fixed;
@@ -622,7 +618,7 @@ p.subtitle { font-family: var(--font-pixel); color: #d3d3d3; font-size: 15px; ma
     .mixer-window {
         right: 10px;
         bottom: 10px;
-        width: calc(100vw - 20px);
+        width: calc(100% - 20px);
         box-shadow: 6px 6px 0 #000, 0 0 16px color-mix(in srgb, var(--mixer-accent) 48%, transparent);
     }
 

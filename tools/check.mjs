@@ -15,6 +15,7 @@ const requiredFiles = [
     "js/cg-diagnostics.js",
     "js/ui-global.js",
     "js/audio-global.js",
+    "js/start-intro-novel.js",
     "js/lobby-start.js",
     "js/lobby-data.js",
     "js/lobby-logic.js",
@@ -31,6 +32,7 @@ const jsFiles = [
     "js/cg-diagnostics.js",
     "js/ui-global.js",
     "js/audio-global.js",
+    "js/start-intro-novel.js",
     "js/lobby-start.js",
     "js/lobby-data.js",
     "js/lobby-logic.js",
@@ -111,7 +113,7 @@ function checkHtmlReferences() {
 
 function checkStorageKeys() {
     const config = readFileSync(join(root, "js/cg-config.js"), "utf8");
-    ["cheatguys.startIntroSeen.v1", "cgMasterVolume", "cgMusicEnabled"].forEach((key) => {
+    ["cheatguys.startIntroSeen.v2", "cheatguys.startWindowSeen.v1", "cgMasterVolume", "cgMusicEnabled"].forEach((key) => {
         if (!config.includes(key)) fail(`Config compartida no contiene storage key: ${key}`);
     });
 }
