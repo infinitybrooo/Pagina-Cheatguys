@@ -1,0 +1,435 @@
+/* Mini novela visual de inicio. Extiende los componentes de Mitsuki. */
+.start-intro-overlay {
+    z-index: 10000001;
+    padding: clamp(8px, 2vw, 20px);
+    background:
+        radial-gradient(circle at 50% 20%, rgba(138, 43, 226, 0.2), transparent 38%),
+        rgba(0, 0, 0, 0.94);
+}
+
+.start-intro-vn-box {
+    width: min(96vw, 1040px);
+    max-height: calc(100dvh - 16px);
+}
+
+.start-intro-vn-screen {
+    width: 100%;
+    max-height: calc(100dvh - 16px);
+    min-height: min(92dvh, 760px);
+}
+
+.start-intro-header {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 14px;
+    min-height: 48px;
+}
+
+.start-intro-skip {
+    padding: 5px 10px;
+    color: #fff;
+    background: #240012;
+    border: 2px solid #ff0044;
+    box-shadow: 3px 3px 0 #000;
+    font-family: var(--font-terminal);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.start-intro-skip:hover,
+.start-intro-skip:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+    color: #05000a;
+    background: #ff0044;
+}
+
+.start-intro-skip[hidden] {
+    display: none;
+}
+
+.footer-secret-reset {
+    position: relative;
+    z-index: 1;
+    margin-top: 8px;
+    padding: 3px 8px;
+    color: #747474;
+    background: rgba(0, 0, 0, 0.42);
+    border: 1px dashed #444;
+    font-family: var(--font-terminal);
+    font-size: 13px;
+    letter-spacing: 1px;
+    opacity: 0.28;
+    cursor: pointer;
+    transition: opacity 0.16s, color 0.16s, border-color 0.16s, box-shadow 0.16s;
+}
+
+.footer-secret-reset:hover,
+.footer-secret-reset:focus-visible {
+    outline: none;
+    color: #fff;
+    border-color: #ff0044;
+    box-shadow: 0 0 10px rgba(255, 0, 68, 0.4);
+    opacity: 1;
+}
+
+.start-intro-scene {
+    min-height: 0;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+}
+
+.start-intro-scene[hidden],
+.start-intro-bsod[hidden] {
+    display: none;
+}
+
+.start-intro-scene.is-entering {
+    pointer-events: none;
+    animation: start-intro-scene-in 0.28s steps(5, end);
+}
+
+.start-intro-visual {
+    position: relative;
+    height: clamp(250px, 52dvh, 490px);
+    background-position: center;
+    background-size: cover;
+    isolation: isolate;
+}
+
+.start-intro-visual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(90deg, rgba(0, 255, 255, 0.08), transparent 25%, transparent 75%, rgba(255, 0, 68, 0.1));
+    pointer-events: none;
+}
+
+.start-intro-sprites,
+.start-intro-effects {
+    position: absolute;
+    inset: 0;
+}
+
+.start-intro-sprites {
+    z-index: 1;
+}
+
+.start-intro-sprite {
+    position: absolute;
+    z-index: var(--intro-sprite-layer);
+    left: 50%;
+    top: 50%;
+    width: var(--intro-sprite-size);
+    max-width: 94%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: var(--intro-sprite-position);
+    image-rendering: auto;
+    filter: drop-shadow(8px 8px 0 rgba(0, 0, 0, 0.82));
+    transform: translate(-50%, -50%);
+}
+
+.start-intro-sprite.is-kick { animation: start-intro-kick 0.28s steps(5, end); }
+.start-intro-sprite.is-slide-left { animation: start-intro-slide-left 0.28s steps(5, end); }
+.start-intro-sprite.is-slide-right { animation: start-intro-slide-right 0.28s steps(5, end); }
+.start-intro-sprite.is-float { animation: start-intro-float-in 0.35s ease-out; }
+.start-intro-sprite.is-group { animation: start-intro-group-in 0.32s steps(5, end); }
+.start-intro-sprite.is-overload { animation: start-intro-overload 0.18s steps(2, end) infinite; }
+
+.start-intro-effects {
+    z-index: 3;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.start-intro-effects.has-pastel-sparkles::before {
+    content: "✦  ✧  ♥  ✦  ♥";
+    position: absolute;
+    inset: 8% 5% auto;
+    color: #ff8ad8;
+    font-size: clamp(20px, 5vw, 48px);
+    word-spacing: 7vw;
+    text-shadow: 0 0 10px #fff;
+    animation: start-intro-sparkle 1.2s steps(4, end) infinite;
+}
+
+.start-intro-effects.has-concert-flash::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(115deg, transparent 0 14%, rgba(255, 69, 0, 0.2) 15% 17%, transparent 18% 28%);
+    animation: start-intro-concert 0.8s steps(3, end) infinite;
+}
+
+.start-intro-effects.has-red-static::before,
+.start-intro-effects.has-red-static::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(0deg, rgba(255, 0, 30, 0.18) 0 2px, transparent 2px 5px),
+        repeating-linear-gradient(90deg, transparent 0 13px, rgba(255, 0, 68, 0.22) 14px 17px);
+    mix-blend-mode: screen;
+    animation: start-intro-static 0.13s steps(2, end) infinite;
+}
+
+.start-intro-effects.has-red-static::after {
+    inset: 18% -10%;
+    background: rgba(255, 0, 40, 0.24);
+    animation-duration: 0.19s;
+}
+
+.start-intro-effects.has-anxious-overload::after {
+    content: "ANXIOUS_OVERLOAD // 999%";
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    padding: 5px 8px;
+    color: #fff;
+    background: #a00020;
+    border: 2px solid #fff;
+    font-family: var(--font-pixel);
+    font-size: clamp(12px, 2.5vw, 20px);
+    box-shadow: 5px 5px 0 #000;
+}
+
+.start-intro-sprites.is-disintegrating {
+    animation: start-intro-pixel-dissolve 1.15s steps(10, end) 0.35s both;
+}
+
+.start-intro-vn-screen.has-scene-glitch {
+    animation: start-intro-screen-glitch 0.22s steps(2, end) infinite;
+}
+
+.start-intro-dialogue {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.start-intro-dialogue:focus-visible,
+.start-intro-continue:focus-visible {
+    outline: 3px solid var(--neon-cyan);
+    outline-offset: 3px;
+}
+
+.start-intro-speaker {
+    max-width: 100%;
+}
+
+.start-intro-text {
+    max-height: 7.4em;
+    overflow-y: auto;
+}
+
+.start-intro-continue {
+    flex-shrink: 0;
+}
+
+.start-intro-bsod {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: clamp(18px, 4vw, 42px);
+    overflow-y: auto;
+    color: #fff;
+    background: #0754b8;
+    font-family: var(--font-terminal);
+    text-align: left;
+    text-shadow: 2px 2px 0 rgba(0, 0, 70, 0.45);
+}
+
+.start-intro-bsod-brand {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 3px 8px;
+    color: #0754b8;
+    background: #fff;
+    font-size: clamp(17px, 3vw, 24px);
+}
+
+.start-intro-bsod-title {
+    margin: 0 0 18px;
+    font-size: clamp(25px, 5vw, 48px);
+    line-height: 1;
+}
+
+.start-intro-bsod-copy,
+.start-intro-bsod-list,
+.start-intro-bsod-restart,
+.start-intro-bsod-code {
+    max-width: 900px;
+    margin: 0 0 14px;
+    font-size: clamp(15px, 2.3vw, 22px);
+    line-height: 1.18;
+}
+
+.start-intro-bsod-list {
+    padding-left: 26px;
+    list-style: "*  ";
+}
+
+.start-intro-bsod-restart {
+    margin-top: 20px;
+    animation: start-intro-bsod-blink 0.35s steps(2, end) infinite;
+}
+
+.start-intro-bsod-code {
+    color: #d8efff;
+}
+
+.start-intro-vn-screen.is-bsod {
+    border-color: #fff;
+    background: #0754b8;
+    box-shadow: 0 0 0 5px #0754b8, 12px 12px 0 #000;
+}
+
+.start-intro-vn-screen.is-bsod .start-intro-header {
+    color: #fff;
+    background: #043c86;
+    border-color: #fff;
+}
+
+.start-intro-blackout {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    visibility: hidden;
+    opacity: 0;
+    background: #000;
+    pointer-events: none;
+    transition: opacity 0.32s linear, visibility 0.32s linear;
+}
+
+.start-intro-overlay.is-blackout .start-intro-blackout,
+.start-intro-overlay:has(.start-intro-vn-screen.is-fading-black) .start-intro-blackout {
+    visibility: visible;
+    opacity: 1;
+}
+
+@keyframes start-intro-scene-in {
+    0% { opacity: 0; filter: contrast(2) hue-rotate(40deg); transform: translateX(10px); }
+    100% { opacity: 1; filter: none; transform: none; }
+}
+
+@keyframes start-intro-kick {
+    0% { transform: translate(70%, -45%) rotate(8deg); }
+    100% { transform: translate(-50%, -50%); }
+}
+
+@keyframes start-intro-slide-left {
+    0% { transform: translate(-130%, -50%); }
+    100% { transform: translate(-50%, -50%); }
+}
+
+@keyframes start-intro-slide-right {
+    0% { transform: translate(40%, -50%); }
+    100% { transform: translate(-50%, -50%); }
+}
+
+@keyframes start-intro-float-in {
+    0% { opacity: 0; transform: translate(-50%, -35%) scale(0.9); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes start-intro-group-in {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(1.3); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes start-intro-overload {
+    0% { transform: translate(-52%, -50%) skew(-1deg); filter: drop-shadow(-7px 0 #f00); }
+    100% { transform: translate(-48%, -50%) skew(1deg); filter: drop-shadow(7px 0 #00ffff); }
+}
+
+@keyframes start-intro-static {
+    0% { transform: translate(-3%, -2%); opacity: 0.75; }
+    100% { transform: translate(3%, 2%); opacity: 0.35; }
+}
+
+@keyframes start-intro-pixel-dissolve {
+    0% { opacity: 1; filter: none; clip-path: inset(0); }
+    70% { opacity: 0.7; filter: contrast(3) saturate(4); clip-path: inset(0 0 35% 0); }
+    100% { opacity: 0; filter: contrast(5); clip-path: inset(0 0 100% 0); }
+}
+
+@keyframes start-intro-screen-glitch {
+    0% { transform: translateX(-2px); filter: hue-rotate(-8deg); }
+    100% { transform: translateX(2px); filter: hue-rotate(8deg); }
+}
+
+@keyframes start-intro-sparkle {
+    0%, 100% { opacity: 0.35; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-8px); }
+}
+
+@keyframes start-intro-concert {
+    0%, 100% { opacity: 0.25; transform: translateX(-5%); }
+    50% { opacity: 0.8; transform: translateX(5%); }
+}
+
+@keyframes start-intro-bsod-blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0.55; }
+}
+
+@media (max-width: 640px) {
+    .start-intro-overlay { padding: 6px; }
+    .start-intro-vn-box,
+    .start-intro-vn-screen { max-height: calc(100dvh - 12px); }
+    .start-intro-vn-screen { min-height: calc(100dvh - 12px); }
+    .start-intro-header {
+        grid-template-columns: 1fr auto;
+        gap: 5px 8px;
+        padding: 7px 9px;
+        font-size: 15px;
+    }
+    .start-intro-skip {
+        grid-column: 1 / -1;
+        min-height: 34px;
+        font-size: 17px;
+    }
+    .start-intro-visual { height: clamp(190px, 34dvh, 310px); }
+    .start-intro-dialogue {
+        align-items: flex-start;
+        margin: 7px;
+        width: calc(100% - 14px);
+        padding: 8px;
+    }
+    .start-intro-portrait { width: 58px; height: 58px; }
+    .start-intro-text {
+        max-height: 8.2em;
+        font-size: 13px;
+        line-height: 1.3;
+    }
+    .start-intro-continue {
+        width: calc(100% - 14px);
+        min-height: 40px;
+        margin: 0 7px 8px;
+        padding: 6px 12px;
+        font-size: 22px;
+    }
+    .start-intro-bsod { padding: 14px; }
+    .start-intro-bsod-brand { margin-bottom: 10px; }
+    .start-intro-bsod-copy,
+    .start-intro-bsod-list,
+    .start-intro-bsod-restart,
+    .start-intro-bsod-code { margin-bottom: 9px; line-height: 1.08; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .start-intro-scene,
+    .start-intro-sprite,
+    .start-intro-sprites,
+    .start-intro-effects::before,
+    .start-intro-effects::after,
+    .start-intro-vn-screen,
+    .start-intro-bsod-restart {
+        animation: none !important;
+        transform: none;
+    }
+    .start-intro-sprite { transform: translate(-50%, -50%); }
+    .start-intro-sprites.is-disintegrating { opacity: 0.72; }
+}

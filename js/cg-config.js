@@ -16,9 +16,25 @@
             chatFunction: "/.netlify/functions/chat"
         },
         storageKeys: {
-            startIntroSeen: "cheatguys.startIntroSeen.v1",
+            startIntroSeen: "cheatguys.startIntroSeen.v2",
+            startWindowSeenSession: "cheatguys.startWindowSeen.v1",
             masterVolume: "cgMasterVolume",
             musicEnabled: "cgMusicEnabled"
+        },
+        startIntro: {
+            enabled: false,
+            version: 2,
+            storageKey: "cheatguys.startIntroSeen.v2",
+            seenDurationMs: 48 * 60 * 60 * 1000,
+            sceneTransitionMs: 280,
+            bsodDurationMs: 1500,
+            blackFadeMs: 320,
+            sfx: {
+                // Rutas opcionales: dejar vacias mantiene la secuencia silenciosa y estable.
+                dialogue: "",
+                glitch: "",
+                error: ""
+            }
         },
         breakpoints: {
             mobile: 768,

@@ -1,6 +1,8 @@
 import { expect, test } from "@playwright/test";
 
 const allowedConsolePatterns = [
+    /itunes\.apple\.com.*blocked by CORS/i,
+    /Failed to load resource: net::ERR_FAILED/i,
     /favicon/i
 ];
 
@@ -24,7 +26,7 @@ async function preparePage(page, options = {}) {
 
     if (options.skipIntro !== false) {
         await page.addInitScript(() => {
-            window.sessionStorage.setItem("cheatguys.startIntroSeen.v1", "1");
+            window.localStorage.setItem("cheatguys.startIntroSeen.v2", String(Date.now()));
         });
     }
 
@@ -32,7 +34,7 @@ async function preparePage(page, options = {}) {
 }
 
 test("index carga, PRESS START existe y el menu lateral funciona", async ({ page }) => {
-    const audit = await preparePage(page, { skipIntro: false });
+    const audit = await preparePage(page);
     await page.goto("/index.html");
     await expect(page.locator("#pressStartBtn")).toHaveText("PRESS START");
     await page.locator("#pressStartBtn").click();
@@ -47,9 +49,43 @@ test("index carga, PRESS START existe y el menu lateral funciona", async ({ page
     expect(audit.failedResources).toEqual([]);
 });
 
+test("garage mixer muestra diez lineas EQ con el acento de cada personaje", async ({ page }) => {
+    const audit = await preparePage(page);
+    await page.goto("/index.html");
+    await page.locator("#pressStartBtn").click();
+    await expect(page.locator(".profile-container")).toBeVisible();
+
+    await expect(page.locator("#mixerWindowTitle")).toHaveText("INFINITY OS // GARAGE_MIXER");
+    await expect(page.locator("#mixerVisualizer .mixer-eq-line")).toHaveCount(10);
+
+    const expectedAccents = {
+        akane: "#8a2be2",
+        rika: "#ff4500",
+        momo: "#ff69b4",
+        jun: "#00bfff"
+    };
+
+    for (const [character, accent] of Object.entries(expectedAccents)) {
+        await page.locator(`[data-cg-mixer="${character}"]`).click();
+        await expect(page.locator("#mixerWindow")).toBeVisible();
+        await expect(page.locator("#mixerWindow")).toHaveAttribute("data-character", character);
+        const renderedAccent = await page.locator("#mixerWindow").evaluate((element) =>
+            getComputedStyle(element).getPropertyValue("--mixer-accent").trim()
+        );
+        expect(renderedAccent.toLowerCase()).toBe(accent);
+        await page.locator("[data-cg-mixer-close]").click();
+        await expect(page.locator("#mixerWindow")).toBeHidden();
+    }
+
+    expect(audit.consoleErrors).toEqual([]);
+    expect(audit.failedResources).toEqual([]);
+});
+
 test("enlaces internos principales responden sin interceptar controles especiales", async ({ page }) => {
     await preparePage(page);
     await page.goto("/index.html");
+    await page.locator("#pressStartBtn").click();
+    await expect(page.locator(".profile-container")).toBeVisible();
 
     const internalLinks = [
         "quienes-somos.html",
@@ -73,6 +109,8 @@ test("enlaces internos principales responden sin interceptar controles especiale
 test("fichas de personajes y archivos secretos abren y cierran con Escape", async ({ page }) => {
     const audit = await preparePage(page);
     await page.goto("/index.html");
+    await page.locator("#pressStartBtn").click();
+    await expect(page.locator(".profile-container")).toBeVisible();
 
     await page.locator(".char-btn.akane").click();
     await expect(page.locator("#charModal")).toHaveAttribute("aria-hidden", "false");
@@ -93,6 +131,36 @@ test("fichas de personajes y archivos secretos abren y cierran con Escape", asyn
 
     expect(audit.consoleErrors).toEqual([]);
     expect(audit.failedResources).toEqual([]);
+});
+
+test("PRESS START aparece solo en la primera entrada de cada sesion", async ({ page }) => {
+    await preparePage(page);
+    await page.goto("/index.html");
+    await expect(page.locator("#pressStartBtn")).toBeVisible();
+    await page.locator("#pressStartBtn").click();
+    await expect(page.locator("body")).toHaveClass(/page-loaded/);
+
+    await page.reload();
+    await expect(page.locator("#startWindow")).toHaveCount(0);
+    await expect(page.locator("body")).toHaveClass(/page-loaded/);
+
+    await page.evaluate(() => sessionStorage.removeItem("cheatguys.startWindowSeen.v1"));
+    await page.reload();
+    await expect(page.locator("#pressStartBtn")).toBeVisible();
+});
+
+test("la novela de Mitsuki sigue independiente despues del nuevo inicio", async ({ page }) => {
+    await preparePage(page);
+    await page.goto("/index.html");
+    await page.locator("#pressStartBtn").click();
+    await expect(page.locator(".profile-container")).toBeVisible();
+    await page.locator(".mitsuki-trigger-container").press("Enter");
+    await expect(page.locator("#mitsukiOverlay")).toHaveAttribute("aria-hidden", "false");
+    await expect(page.locator("#mitsukiStepCounter")).toHaveText("TAB 01/02");
+    await page.locator("#mitsukiContinueBtn").click();
+    await expect(page.locator("#mitsukiStepCounter")).toHaveText("TAB 02/02");
+    await page.locator("#mitsukiContinueBtn").click();
+    await expect(page.locator("#mitsukiOverlay")).toHaveAttribute("aria-hidden", "true");
 });
 
 test("galeria, carruseles y modal de imagen funcionan", async ({ page }) => {

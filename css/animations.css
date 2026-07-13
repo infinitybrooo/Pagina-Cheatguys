@@ -199,79 +199,89 @@ body.page-loaded .animate-in {
     50% { margin-bottom: 4px; }
 }
 
-/* Guerrilla Mixer // ecualizador retro */
-.mixer-bars {
-    height: 35px;
-    display: flex;
-    align-items: flex-end;
-    gap: 6px;
+/* Garage Mixer // trazos de ecualizador retro */
+.mixer-eq {
+    height: 58px;
+    display: grid;
+    grid-template-rows: repeat(10, 1fr);
+    gap: 2px;
     padding: 5px 7px;
+    overflow: hidden;
     background: rgba(0, 0, 0, 0.68);
     border: 2px solid rgba(255, 255, 255, 0.18);
-    box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.08);
+    box-shadow: inset 0 0 10px color-mix(in srgb, var(--mixer-accent) 16%, transparent);
 }
 
-.mixer-bar {
-    width: 9px;
-    height: 23px;
+.mixer-eq-line {
+    --eq-low: 0.18;
+    --eq-mid: 0.74;
+    --eq-high: 0.42;
+    width: 100%;
+    height: 2px;
     display: block;
-    flex: 1 1 0;
-    background: var(--neon-cyan);
-    box-shadow: 0 0 7px rgba(0, 255, 255, 0.55);
-    transform: scaleY(0.18);
-    transform-origin: center bottom;
+    align-self: center;
+    background: var(--mixer-accent);
+    box-shadow: 0 0 6px color-mix(in srgb, var(--mixer-accent) 72%, transparent);
+    opacity: 0.42;
+    transform: scaleX(var(--eq-low));
+    transform-origin: left center;
 }
 
-.mixer-bars.is-playing .mixer-bar,
-.mixer-visualizer.is-playing .mixer-bar {
-    animation-name: mixerJump;
-    animation-duration: 0.46s;
+.mixer-eq-line:nth-child(even) {
+    transform-origin: right center;
+}
+
+.mixer-eq.is-playing .mixer-eq-line,
+.mixer-visualizer.is-playing .mixer-eq-line {
+    animation-name: mixerEqTrace;
+    animation-duration: 0.56s;
     animation-timing-function: steps(5, end);
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
 
-.mixer-bars.is-playing .mixer-bar:nth-child(2),
-.mixer-visualizer.is-playing .mixer-bar:nth-child(2) {
-    animation-duration: 0.62s;
-    animation-delay: -0.18s;
+.mixer-eq-line:nth-child(2) {
+    --eq-low: 0.34;
+    --eq-mid: 0.92;
+    --eq-high: 0.58;
+    animation-duration: 0.43s !important;
+    animation-delay: -0.21s;
 }
 
-.mixer-bars.is-playing .mixer-bar:nth-child(3),
-.mixer-visualizer.is-playing .mixer-bar:nth-child(3) {
-    animation-duration: 0.39s;
-    animation-delay: -0.31s;
+.mixer-eq-line:nth-child(3) {
+    --eq-low: 0.12;
+    --eq-mid: 0.62;
+    --eq-high: 0.88;
+    animation-duration: 0.68s !important;
+    animation-delay: -0.37s;
 }
 
-.mixer-bars.is-playing .mixer-bar:nth-child(4),
-.mixer-visualizer.is-playing .mixer-bar:nth-child(4) {
-    animation-duration: 0.55s;
-    animation-delay: -0.09s;
+.mixer-eq-line:nth-child(4) {
+    --eq-low: 0.48;
+    --eq-mid: 0.78;
+    --eq-high: 0.25;
+    animation-duration: 0.51s !important;
+    animation-delay: -0.12s;
 }
 
-@keyframes mixerJump {
-    0% {
-        background: var(--neon-cyan);
-        box-shadow: 0 0 7px rgba(0, 255, 255, 0.62);
-        transform: scaleY(0.18);
-    }
-    52% {
-        background: var(--momo-color);
-        box-shadow: 0 0 10px rgba(255, 105, 180, 0.66);
-        transform: scaleY(1);
-    }
-    100% {
-        background: var(--neon-cyan);
-        box-shadow: 0 0 8px rgba(0, 255, 255, 0.58);
-        transform: scaleY(0.48);
-    }
+.mixer-eq-line:nth-child(5) { --eq-low: 0.22; --eq-mid: 0.98; --eq-high: 0.67; animation-duration: 0.74s !important; animation-delay: -0.46s; }
+.mixer-eq-line:nth-child(6) { --eq-low: 0.56; --eq-mid: 0.81; --eq-high: 0.31; animation-duration: 0.47s !important; animation-delay: -0.28s; }
+.mixer-eq-line:nth-child(7) { --eq-low: 0.29; --eq-mid: 0.69; --eq-high: 0.94; animation-duration: 0.63s !important; animation-delay: -0.52s; }
+.mixer-eq-line:nth-child(8) { --eq-low: 0.43; --eq-mid: 0.87; --eq-high: 0.53; animation-duration: 0.39s !important; animation-delay: -0.17s; }
+.mixer-eq-line:nth-child(9) { --eq-low: 0.16; --eq-mid: 0.57; --eq-high: 0.79; animation-duration: 0.59s !important; animation-delay: -0.33s; }
+.mixer-eq-line:nth-child(10) { --eq-low: 0.51; --eq-mid: 0.95; --eq-high: 0.36; animation-duration: 0.70s !important; animation-delay: -0.41s; }
+
+@keyframes mixerEqTrace {
+    0% { opacity: 0.48; transform: scaleX(var(--eq-low)); }
+    52% { opacity: 1; transform: scaleX(var(--eq-mid)); }
+    100% { opacity: 0.76; transform: scaleX(var(--eq-high)); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .mixer-bars.is-playing .mixer-bar,
-    .mixer-visualizer.is-playing .mixer-bar {
+    .mixer-eq.is-playing .mixer-eq-line,
+    .mixer-visualizer.is-playing .mixer-eq-line {
         animation: none;
-        background: var(--neon-cyan);
-        transform: scaleY(0.72);
+        opacity: 0.8;
+        transform: scaleX(var(--eq-high));
     }
 }
