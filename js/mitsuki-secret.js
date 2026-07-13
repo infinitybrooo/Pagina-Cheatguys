@@ -24,9 +24,19 @@
             mitsukiPaso = 0;
             prepararBotonesCompartirMitsuki();
             mostrarPasoMitsuki();
-            document.getElementById('mitsukiOverlay').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            if (typeof setFloatingUiHidden === 'function') setFloatingUiHidden(true);
+            if (window.CGOverlay) {
+                window.CGOverlay.open('mitsukiOverlay', {
+                    mode: 'display',
+                    display: 'flex',
+                    focusElement: document.getElementById('mitsukiContinueBtn'),
+                    closeOthers: false,
+                    onEscape: () => cerrarMitsuki()
+                });
+            } else {
+                document.getElementById('mitsukiOverlay').style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                if (typeof setFloatingUiHidden === 'function') setFloatingUiHidden(true);
+            }
         }
 
         function mostrarPasoMitsuki() {
@@ -97,7 +107,11 @@
 
         function cerrarMitsuki(e) {
             if (e && e.target.id !== 'mitsukiOverlay') return;
-            document.getElementById('mitsukiOverlay').style.display = 'none';
-            document.body.style.overflow = 'auto';
-            if (typeof actualizarUiFlotantePorOverlays === 'function') actualizarUiFlotantePorOverlays();
+            if (window.CGOverlay) {
+                window.CGOverlay.close('mitsukiOverlay');
+            } else {
+                document.getElementById('mitsukiOverlay').style.display = 'none';
+                document.body.style.overflow = 'auto';
+                if (typeof actualizarUiFlotantePorOverlays === 'function') actualizarUiFlotantePorOverlays();
+            }
         }

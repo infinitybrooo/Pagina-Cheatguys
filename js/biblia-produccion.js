@@ -1,8 +1,9 @@
-import * as pdfjsLib from "https://cdn.jsdelivr.net/npm/pdfjs-dist@5.7.284/build/pdf.min.mjs";
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdn.jsdelivr.net/npm/pdfjs-dist@5.7.284/build/pdf.worker.min.mjs";
-
-const PDF_URL = "assets/pdf/pitch-bible.pdf";
+const CONFIG = window.CG_CONFIG || {};
+const PDF_CONFIG = CONFIG.pdf || {};
+const CG_LOG = window.CG_LOG || null;
+const PDF_URL = PDF_CONFIG.url || CONFIG.routes?.pdf || "assets/pdf/pitch-bible.pdf";
+const PDFJS_URL = PDF_CONFIG.pdfJsUrl || "https://cdn.jsdelivr.net/npm/pdfjs-dist@5.7.284/build/pdf.min.mjs";
+const PDFJS_WORKER_URL = PDF_CONFIG.workerUrl || "https://cdn.jsdelivr.net/npm/pdfjs-dist@5.7.284/build/pdf.worker.min.mjs";
 const LOADING_MESSAGES = [
     "Inicializando visor...",
     "Leyendo documento...",
@@ -16,7 +17,9 @@ const state = {
     zoom: 1,
     renderTask: null,
     renderVersion: 0,
-    resizeTimer: null
+    resizeTimer: null,
+    pdfjsLib: null,
+    pdfjsLoadPromise: null
 };
 
 const elements = {
@@ -43,6 +46,48 @@ function wait(milliseconds) {
     return new Promise((resolve) => window.setTimeout(resolve, milliseconds));
 }
 
+async function loadPdfJs() {
+    if (state.pdfjsLib) return state.pdfjsLib;
+    if (!state.pdfjsLoadPromise) {
+        state.pdfjsLoadPromise = import(PDFJS_URL)
+            .then((module) => {
+                module.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_URL;
+                state.pdfjsLib = module;
+                return module;
+            })
+            .catch((error) => {
+                state.pdfjsLoadPromise = null;
+                if (CG_LOG) CG_LOG.error("PDF", "CG-PDF-001", "No se pudo cargar PDF.js.", error);
+                throw error;
+            });
+    }
+
+    return state.pdfjsLoadPromise;
+}
+
+function cancelCurrentRender() {
+    if (!state.renderTask) return;
+
+    try {
+        state.renderTask.cancel();
+    } catch (error) {
+        if (CG_LOG) CG_LOG.warn("PDF", "No se pudo cancelar el render anterior.", error);
+    }
+
+    state.renderTask = null;
+}
+
+function showPdfError(code, publicMessage, error) {
+    const fallbackMessage = publicMessage || "No se pudo abrir el archivo. Puedes descargar el PDF mientras tanto.";
+    if (CG_LOG) CG_LOG.error("PDF", code, fallbackMessage, error);
+
+    if (elements.loadingMessage) elements.loadingMessage.textContent = fallbackMessage;
+    if (elements.renderStatus) {
+        elements.renderStatus.textContent = fallbackMessage;
+        elements.renderStatus.hidden = false;
+    }
+}
+
 async function runLoadingSequence() {
     for (const message of LOADING_MESSAGES) {
         elements.loadingMessage.textContent = message;
@@ -66,11 +111,9 @@ async function renderPage() {
 
     const renderVersion = ++state.renderVersion;
     elements.renderStatus.hidden = false;
+    elements.renderStatus.textContent = "CARGANDO_PÁGINA...";
 
-    if (state.renderTask) {
-        state.renderTask.cancel();
-        state.renderTask = null;
-    }
+    cancelCurrentRender();
 
     try {
         const page = await state.document.getPage(state.page);
@@ -96,14 +139,15 @@ async function renderPage() {
             ? null
             : [outputScale, 0, 0, outputScale, 0, 0];
 
-        state.renderTask = page.render({
+        const task = page.render({
             canvasContext: context,
             transform,
             viewport
         });
+        state.renderTask = task;
 
-        await state.renderTask.promise;
-        state.renderTask = null;
+        await task.promise;
+        if (state.renderTask === task) state.renderTask = null;
 
         if (renderVersion === state.renderVersion) {
             elements.stage.scrollTo({ top: 0, left: 0 });
@@ -111,9 +155,7 @@ async function renderPage() {
         }
     } catch (error) {
         if (error?.name === "RenderingCancelledException") return;
-        console.error("INFINITY_OS // PDF_RENDER_ERROR", error);
-        elements.renderStatus.textContent = "ERROR_AL_CARGAR_PÁGINA";
-        elements.renderStatus.hidden = false;
+        showPdfError("CG-PDF-002", "ERROR_AL_CARGAR_PÁGINA", error);
     }
 }
 
@@ -123,6 +165,7 @@ async function openDocument() {
     elements.fileLoading.hidden = false;
 
     try {
+        const pdfjsLib = await loadPdfJs();
         const loadingTask = pdfjsLib.getDocument(PDF_URL);
         const [pdfDocument] = await Promise.all([
             loadingTask.promise,
@@ -141,9 +184,10 @@ async function openDocument() {
         await renderPage();
         elements.stage.focus({ preventScroll: true });
     } catch (error) {
-        console.error("INFINITY_OS // PDF_ACCESS_ERROR", error);
-        elements.loadingMessage.textContent = "No se pudo abrir el archivo. Reintenta la conexión.";
+        cancelCurrentRender();
+        showPdfError("CG-PDF-003", "No se pudo abrir el archivo. Puedes descargar el PDF mientras tanto.", error);
         elements.openButton.disabled = false;
+        elements.fileDetails.hidden = false;
     }
 }
 
@@ -151,6 +195,8 @@ function changePage(offset) {
     if (!state.document) return;
     const nextPage = Math.min(Math.max(state.page + offset, 1), state.document.numPages);
     if (nextPage === state.page) return;
+    ++state.renderVersion;
+    cancelCurrentRender();
     state.page = nextPage;
     updateControls();
     renderPage();
@@ -159,6 +205,8 @@ function changePage(offset) {
 function changeZoom(offset) {
     const nextZoom = Math.min(Math.max(Number((state.zoom + offset).toFixed(1)), 0.6), 2.4);
     if (nextZoom === state.zoom) return;
+    ++state.renderVersion;
+    cancelCurrentRender();
     state.zoom = nextZoom;
     updateControls();
     renderPage();

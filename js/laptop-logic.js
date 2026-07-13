@@ -3,6 +3,15 @@
 // =====================================================
 
 (function () {
+    const CONFIG = window.CG_CONFIG || {};
+    const CHAT_CONFIG = CONFIG.chat || {};
+    const CHAT_ROUTE = CONFIG.routes?.chatFunction || "/.netlify/functions/chat";
+    const ALLOWED_CHARACTERS = new Set(CHAT_CONFIG.allowedCharacters || ["akane", "rika", "momo", "jun"]);
+    const MAX_MESSAGE_LENGTH = CHAT_CONFIG.maxMessageLength || 500;
+    const MAX_HISTORY_ITEMS = CHAT_CONFIG.maxHistoryItems || 8;
+    const REQUEST_TIMEOUT_MS = CHAT_CONFIG.requestTimeoutMs || 12000;
+    const CG_LOG = window.CG_LOG || null;
+
     const characters = {
         akane: {
             name: "Akane",
@@ -92,10 +101,10 @@
     }
 
     function rememberMessage(role, text) {
-        chatHistory.push({ role, text });
+        chatHistory.push({ role, text: String(text || "").slice(0, MAX_MESSAGE_LENGTH) });
 
-        if (chatHistory.length > 10) {
-            chatHistory = chatHistory.slice(-10);
+        if (chatHistory.length > MAX_HISTORY_ITEMS) {
+            chatHistory = chatHistory.slice(-MAX_HISTORY_ITEMS);
         }
     }
 
@@ -144,6 +153,11 @@
     }
 
     function openChat(characterId, els) {
+        if (!ALLOWED_CHARACTERS.has(characterId)) {
+            if (CG_LOG) CG_LOG.error("LAPTOP", "CG-LAPTOP-001", "Personaje no permitido.", { characterId });
+            return;
+        }
+
         const character = characters[characterId] || characters.akane;
         currentCharacter = character;
 
@@ -206,15 +220,17 @@
     }
 
     function getFriendlyErrorMessage(errorText) {
-        if (/quota|credits|depleted|billing|prepayment|429|overloaded|503|unavailable|timeout|fetch/i.test(errorText || "")) {
-            return "La senal con Neo Teno se saturo. Dale otro intento en unos segundos.";
-        }
+        return "La senal con Neo Teno se saturo. Dale otro intento en unos segundos.";
+    }
 
-        if (/api key|gemini_api_key|groq_api_key|invalid api key/i.test(errorText || "")) {
-            return "La conexion con Neo Teno esta fallando por una llave de API. Revisa las variables en Netlify.";
-        }
+    function getCurrentCharacterId() {
+        return Object.keys(characters).find((key) => characters[key] === currentCharacter) || "akane";
+    }
 
-        return "La laptop hizo corto circuito. Intenta otra vez.";
+    function createTimeoutSignal() {
+        const controller = new AbortController();
+        const timeoutId = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+        return { controller, timeoutId };
     }
 
     async function sendMessage(els) {
@@ -222,6 +238,10 @@
 
         const message = els.input.value.trim();
         if (!message) return;
+        if (message.length > MAX_MESSAGE_LENGTH) {
+            appendMessage(els.history, `Mensaje demasiado largo. Maximo ${MAX_MESSAGE_LENGTH} caracteres.`, "bot");
+            return;
+        }
 
         els.input.value = "";
         appendMessage(els.history, message, "user");
@@ -232,17 +252,20 @@
         els.history.appendChild(typing);
         scrollHistory(els.history);
 
+        const { controller, timeoutId } = createTimeoutSignal();
+
         try {
             const minimumTypingTime = new Promise((resolve) => window.setTimeout(resolve, 700));
-            const response = await fetch("/.netlify/functions/chat", {
+            const response = await fetch(CHAT_ROUTE, {
                 method: "POST",
+                signal: controller.signal,
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
                     mensaje: message,
-                    personaje: Object.keys(characters).find((key) => characters[key] === currentCharacter) || "akane",
-                    historial: chatHistory
+                    personaje: getCurrentCharacterId(),
+                    historial: chatHistory.slice(-MAX_HISTORY_ITEMS)
                 })
             });
 
@@ -252,6 +275,10 @@
             typing.remove();
 
             if (!response.ok) {
+                if (CG_LOG) CG_LOG.error("LAPTOP", data.code || "CG-LAPTOP-002", "Fallo la respuesta del chat.", {
+                    status: response.status,
+                    code: data.code
+                });
                 appendMessage(els.history, getFriendlyErrorMessage(data.error), "bot");
                 return;
             }
@@ -260,8 +287,10 @@
             rememberMessage("model", data.respuesta || "...");
         } catch (error) {
             typing.remove();
-            appendMessage(els.history, "No pude conectar con la terminal de Neo Teno. Revisa netlify dev.", "bot");
+            if (CG_LOG) CG_LOG.error("LAPTOP", "CG-LAPTOP-003", "No se pudo conectar con el chat.", error);
+            appendMessage(els.history, getFriendlyErrorMessage(), "bot");
         } finally {
+            window.clearTimeout(timeoutId);
             setSendingState(els, false);
             els.input.focus();
         }
@@ -272,6 +301,9 @@
         if (!els.bunker || !els.desktop || !els.chatRoom || !els.form) return;
 
         updateLaptopMobileScale(els);
+        if (els.input) {
+            els.input.maxLength = MAX_MESSAGE_LENGTH;
+        }
 
         els.characterButtons.forEach((button) => {
             button.addEventListener("click", () => {

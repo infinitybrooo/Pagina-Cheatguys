@@ -51,7 +51,7 @@
         });
 
         document.addEventListener("keydown", (event) => {
-            if (event.key === "Escape") cerrarInfoImageModal();
+            if (!window.CGOverlay && event.key === "Escape") cerrarInfoImageModal();
         });
     }
 
@@ -65,11 +65,21 @@
         image.src = src;
         image.alt = title;
         heading.innerHTML = title + ' <span class="cursor-blink">█</span>';
-        modal.classList.add("is-open");
-        modal.setAttribute("aria-hidden", "false");
+        if (window.CGOverlay) {
+            window.CGOverlay.open("infoImageModal", {
+                mode: "class",
+                openClass: "is-open",
+                focusElement: modal.querySelector(".info-modal-close"),
+                closeOthers: false,
+                onEscape: () => cerrarInfoImageModal()
+            });
+        } else {
+            modal.classList.add("is-open");
+            modal.setAttribute("aria-hidden", "false");
 
-        if (typeof setFloatingUiHidden === "function") {
-            setFloatingUiHidden(true);
+            if (typeof setFloatingUiHidden === "function") {
+                setFloatingUiHidden(true);
+            }
         }
     };
 
@@ -81,18 +91,24 @@
 
         if (!modal) return;
 
-        modal.classList.remove("is-open");
-        modal.setAttribute("aria-hidden", "true");
+        if (window.CGOverlay) {
+            window.CGOverlay.close("infoImageModal");
+        } else {
+            modal.classList.remove("is-open");
+            modal.setAttribute("aria-hidden", "true");
+        }
 
         if (image) {
             image.removeAttribute("src");
             image.alt = "";
         }
 
-        if (typeof actualizarUiFlotantePorOverlays === "function") {
-            actualizarUiFlotantePorOverlays();
-        } else if (typeof setFloatingUiHidden === "function") {
-            setFloatingUiHidden(false);
+        if (!window.CGOverlay) {
+            if (typeof actualizarUiFlotantePorOverlays === "function") {
+                actualizarUiFlotantePorOverlays();
+            } else if (typeof setFloatingUiHidden === "function") {
+                setFloatingUiHidden(false);
+            }
         }
     };
 

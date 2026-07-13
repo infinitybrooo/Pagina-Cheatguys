@@ -2,8 +2,9 @@
 // AUDIO GLOBAL - Control unico desde la barra lateral
 // =====================================================
 (function () {
-    const STORAGE_VOLUME = "cgMasterVolume";
-    const STORAGE_ENABLED = "cgMusicEnabled";
+    const CONFIG = window.CG_CONFIG || {};
+    const STORAGE_VOLUME = CONFIG.storageKeys?.masterVolume || "cgMasterVolume";
+    const STORAGE_ENABLED = CONFIG.storageKeys?.musicEnabled || "cgMusicEnabled";
     const DEFAULT_VOLUME = 0.4;
 
     let currentTrack = null;

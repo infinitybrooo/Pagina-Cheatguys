@@ -23,6 +23,14 @@ const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 const GEMINI_API_KEY = (process.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY_PRIMARY || "").trim();
 const GROQ_MODEL = process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
 const GROQ_API_KEY = (process.env.GROQ_API_KEY || "").trim();
+const ALLOWED_CHARACTERS = new Set(["akane", "rika", "momo", "jun"]);
+const MAX_MESSAGE_LENGTH = 500;
+const MAX_HISTORY_ITEMS = 8;
+const MAX_HISTORY_TEXT_LENGTH = 700;
+const PROVIDER_TIMEOUT_MS = 12000;
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 18;
+const rateLimitBuckets = new Map();
 
 const CHARACTER_FALLBACKS = {
   akane: "S-soy Akane Hoshizora... vocalista y guitarra de CheatGuys!. Mi HUD social esta temblando, pero sigo aqui.",
@@ -61,18 +69,79 @@ function jsonResponse(statusCode, body) {
   };
 }
 
+function getClientIp(event) {
+  return event.headers["client-ip"]
+    || event.headers["x-nf-client-connection-ip"]
+    || event.headers["x-forwarded-for"]?.split(",")[0]?.trim()
+    || "unknown";
+}
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const bucket = rateLimitBuckets.get(ip) || { count: 0, resetAt: now + RATE_LIMIT_WINDOW_MS };
+
+  if (now > bucket.resetAt) {
+    bucket.count = 0;
+    bucket.resetAt = now + RATE_LIMIT_WINDOW_MS;
+  }
+
+  bucket.count += 1;
+  rateLimitBuckets.set(ip, bucket);
+
+  if (rateLimitBuckets.size > 500) {
+    for (const [key, value] of rateLimitBuckets.entries()) {
+      if (now > value.resetAt) rateLimitBuckets.delete(key);
+    }
+  }
+
+  return bucket.count > RATE_LIMIT_MAX_REQUESTS;
+}
+
+function sanitizeHistory(historial) {
+  if (!Array.isArray(historial)) return [];
+
+  return historial
+    .filter((item) => item && (item.role === "user" || item.role === "model") && typeof item.text === "string")
+    .slice(-MAX_HISTORY_ITEMS)
+    .map((item) => ({
+      role: item.role,
+      text: item.text.trim().slice(0, MAX_HISTORY_TEXT_LENGTH)
+    }))
+    .filter((item) => item.text);
+}
+
+function createProviderSignal() {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), PROVIDER_TIMEOUT_MS);
+  return { signal: controller.signal, timeout };
+}
+
+async function fetchWithTimeout(url, options = {}) {
+  const { signal, timeout } = createProviderSignal();
+  try {
+    return await fetch(url, { ...options, signal });
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+function logServerError(code, message, details) {
+  console.error("[CG:LAPTOP]", code, message, details || "");
+}
+
+function publicChatError(statusCode, code) {
+  return jsonResponse(statusCode, {
+    code,
+    error: "La senal con Neo Teno se saturo. Dale otro intento en unos segundos."
+  });
+}
+
 function getSystemPrompt(characterPrompt) {
   return `${GENERAL_CONTEXT}\n\n${characterPrompt}`;
 }
 
 function getRecentHistory(historial, mensaje) {
-  const recentHistory = historial
-    .filter((item) => item && (item.role === "user" || item.role === "model") && typeof item.text === "string")
-    .slice(-8)
-    .map((item) => ({
-      role: item.role,
-      text: item.text.slice(0, 700)
-    }));
+  const recentHistory = sanitizeHistory(historial);
 
   if (recentHistory.length === 0 || recentHistory[recentHistory.length - 1].role !== "user") {
     recentHistory.push({
@@ -89,7 +158,7 @@ function normalizeProviderError(data, fallbackMessage) {
 }
 
 async function callGroq({ systemPrompt, recentHistory }) {
-  const groqResponse = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+  const groqResponse = await fetchWithTimeout("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
     headers: {
       "Authorization": `Bearer ${GROQ_API_KEY}`,
@@ -133,7 +202,7 @@ async function callGemini({ systemPrompt, recentHistory }) {
     ]
   }));
 
-  const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`, {
+  const geminiResponse = await fetchWithTimeout(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -164,10 +233,6 @@ async function callGemini({ systemPrompt, recentHistory }) {
     const message = normalizeProviderError(data, "Gemini no pudo responder.");
     const normalizedMessage = String(message).toLowerCase();
 
-    if (normalizedMessage.includes("api key not valid") || normalizedMessage.includes("api_key_invalid")) {
-      throw new Error("La API key de Gemini no es valida. Revisa que el valor en Netlify este completo y sin espacios.");
-    }
-
     throw new Error(message);
   }
 
@@ -187,7 +252,13 @@ exports.handler = async function handler(event) {
   }
 
   if (event.httpMethod !== "POST") {
-    return jsonResponse(405, { error: "Metodo no permitido." });
+    return jsonResponse(405, { code: "CG-LAPTOP-405", error: "Metodo no permitido." });
+  }
+
+  const clientIp = getClientIp(event);
+  if (isRateLimited(clientIp)) {
+    logServerError("CG-LAPTOP-429", "Rate limit excedido.", { clientIp });
+    return publicChatError(429, "CG-LAPTOP-429");
   }
 
   let payload;
@@ -195,17 +266,26 @@ exports.handler = async function handler(event) {
   try {
     payload = JSON.parse(event.body || "{}");
   } catch (error) {
-    return jsonResponse(400, { error: "JSON invalido." });
+    return jsonResponse(400, { code: "CG-LAPTOP-400", error: "Solicitud invalida." });
   }
 
   const mensaje = String(payload.mensaje || "").trim();
   const personaje = String(payload.personaje || "akane").toLowerCase();
-  const characterPrompt = CHARACTER_PROMPTS[personaje] || CHARACTER_PROMPTS.akane;
-  const fallbackText = CHARACTER_FALLBACKS[personaje] || CHARACTER_FALLBACKS.akane;
+  if (!ALLOWED_CHARACTERS.has(personaje)) {
+    logServerError("CG-LAPTOP-001", "Personaje no permitido.", { personaje });
+    return jsonResponse(400, { code: "CG-LAPTOP-001", error: "Personaje no disponible." });
+  }
+
+  const characterPrompt = CHARACTER_PROMPTS[personaje];
+  const fallbackText = CHARACTER_FALLBACKS[personaje];
   const historial = Array.isArray(payload.historial) ? payload.historial : [];
 
   if (!mensaje) {
-    return jsonResponse(400, { error: "El mensaje no puede estar vacio." });
+    return jsonResponse(400, { code: "CG-LAPTOP-002", error: "El mensaje no puede estar vacio." });
+  }
+
+  if (mensaje.length > MAX_MESSAGE_LENGTH) {
+    return jsonResponse(413, { code: "CG-LAPTOP-003", error: "Mensaje demasiado largo." });
   }
 
   if (isIdentityQuestion(mensaje)) {
@@ -215,7 +295,8 @@ exports.handler = async function handler(event) {
   }
 
   if (!GROQ_API_KEY && !GEMINI_API_KEY) {
-    return jsonResponse(500, { error: "Falta configurar GROQ_API_KEY o GEMINI_API_KEY_PRIMARY en Netlify." });
+    logServerError("CG-LAPTOP-004", "No hay proveedor configurado.");
+    return publicChatError(503, "CG-LAPTOP-004");
   }
 
   const systemPrompt = getSystemPrompt(characterPrompt);
@@ -231,7 +312,8 @@ exports.handler = async function handler(event) {
         provider: "groq"
       });
     } catch (error) {
-      providerErrors.push(`Groq: ${error.message}`);
+      logServerError("CG-LAPTOP-005", "Groq fallo.", { message: error.message, name: error.name });
+      providerErrors.push("groq");
     }
   }
 
@@ -244,14 +326,13 @@ exports.handler = async function handler(event) {
         provider: "gemini"
       });
     } catch (error) {
-      providerErrors.push(`Gemini: ${error.message}`);
+      logServerError("CG-LAPTOP-006", "Gemini fallo.", { message: error.message, name: error.name });
+      providerErrors.push("gemini");
     }
   }
 
   if (providerErrors.length > 0) {
-    return jsonResponse(503, {
-      error: providerErrors.join(" | ")
-    });
+    return publicChatError(503, "CG-LAPTOP-007");
   }
 
   return jsonResponse(200, {

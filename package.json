@@ -1,0 +1,19 @@
+{
+  "name": "cheatguys-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "check": "node tools/check.mjs && eslint .",
+    "test": "playwright test",
+    "build": "node tools/check.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.31.0",
+    "@playwright/test": "^1.54.1",
+    "eslint": "^9.31.0",
+    "globals": "^15.15.0",
+    "http-server": "^14.1.1",
+    "prettier": "^3.6.2"
+  }
+}

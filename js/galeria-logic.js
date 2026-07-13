@@ -490,16 +490,26 @@
 
         const modal = document.getElementById("galleryModal");
         const closeButton = modal.querySelector(".gallery-modal-close");
-        modal.classList.add("is-open");
-        modal.setAttribute("aria-hidden", "false");
         document.body.classList.add("gallery-modal-open");
         stopAllTimers();
 
-        if (typeof window.setFloatingUiHidden === "function") {
-            window.setFloatingUiHidden(true);
+        if (window.CGOverlay) {
+            window.CGOverlay.open("galleryModal", {
+                mode: "class",
+                openClass: "is-open",
+                focusElement: closeButton,
+                returnFocus: lastFocusedElement,
+                closeOthers: false,
+                onEscape: closeGalleryModal
+            });
+        } else {
+            modal.classList.add("is-open");
+            modal.setAttribute("aria-hidden", "false");
+            if (typeof window.setFloatingUiHidden === "function") {
+                window.setFloatingUiHidden(true);
+            }
+            window.requestAnimationFrame(() => closeButton.focus());
         }
-
-        window.requestAnimationFrame(() => closeButton.focus());
     }
 
     function updateModalContent() {
@@ -547,8 +557,12 @@
             ? document.querySelector(`#track-${modalState.category} .gallery-file-card.is-active`)
             : lastFocusedElement;
 
-        modal.classList.remove("is-open");
-        modal.setAttribute("aria-hidden", "true");
+        if (window.CGOverlay) {
+            window.CGOverlay.close("galleryModal", { returnFocus: returnTarget });
+        } else {
+            modal.classList.remove("is-open");
+            modal.setAttribute("aria-hidden", "true");
+        }
         document.body.classList.remove("gallery-modal-open");
         modalState = null;
 
@@ -556,13 +570,13 @@
         image.alt = "";
         image.onload = null;
 
-        if (typeof window.actualizarUiFlotantePorOverlays === "function") {
+        if (!window.CGOverlay && typeof window.actualizarUiFlotantePorOverlays === "function") {
             window.actualizarUiFlotantePorOverlays();
         }
 
         if (!document.hidden) restartAllTimers();
 
-        if (returnTarget && document.contains(returnTarget)) {
+        if (!window.CGOverlay && returnTarget && document.contains(returnTarget)) {
             returnTarget.focus();
         }
     }

@@ -2,7 +2,9 @@
         // AUDIO MANAGER GLOBAL — controlado desde la barra lateral.
         // =====================================================
         const AudioManager = window.AudioManager;
-        const START_INTRO_SESSION_KEY = "cheatguys.startIntroSeen.v1";
+        const CG_CONFIG = window.CG_CONFIG || {};
+        const CG_LOG = window.CG_LOG || null;
+        const START_INTRO_SESSION_KEY = CG_CONFIG.storageKeys?.startIntroSeen || "cheatguys.startIntroSeen.v1";
 
         function hasSeenStartIntro() {
             try {
@@ -396,10 +398,22 @@ Bomba Estéreo - Fuego
             const term = encodeURIComponent(cancion.track + " " + cancion.artist);
             const apiUrl = `https://itunes.apple.com/search?term=${term}&limit=1&entity=musicTrack`;
 
-            elements.window.hidden = false;
-            elements.window.setAttribute("aria-hidden", "false");
+            if (window.CGOverlay) {
+                window.CGOverlay.open("mixerWindow", {
+                    mode: "hidden",
+                    openClass: "is-open",
+                    focusElement: elements.window.querySelector(".mixer-close"),
+                    returnFocus: mixerLastTrigger,
+                    closeOthers: false,
+                    onEscape: detenerMixerPreview
+                });
+            } else {
+                elements.window.hidden = false;
+                elements.window.setAttribute("aria-hidden", "false");
+                elements.window.classList.add("is-open");
+            }
             elements.window.classList.remove("is-error");
-            elements.window.classList.add("is-open", "is-loading");
+            elements.window.classList.add("is-loading");
             elements.window.dataset.character = personaje;
             elements.visualizer.classList.remove("is-playing");
             elements.cover.removeAttribute("src");
@@ -465,6 +479,7 @@ Bomba Estéreo - Fuego
                 elements.window.classList.remove("is-loading");
                 elements.window.classList.add("is-error");
                 elements.visualizer.classList.remove("is-playing");
+                if (CG_LOG) CG_LOG.error("AUDIO", "CG-AUDIO-001", "No se pudo reproducir el preview.", error);
                 if (error.name === "NotAllowedError") {
                     elements.status.textContent = "AUDIO_BLOCKED // PRESS_PREVIEW_TO_RETRY";
                 } else {
@@ -485,9 +500,14 @@ Bomba Estéreo - Fuego
 
             if (elements.visualizer) elements.visualizer.classList.remove("is-playing");
             if (elements.window) {
-                elements.window.classList.remove("is-open", "is-loading", "is-error");
-                elements.window.setAttribute("aria-hidden", "true");
-                elements.window.hidden = true;
+                elements.window.classList.remove("is-loading", "is-error");
+                if (window.CGOverlay) {
+                    window.CGOverlay.close("mixerWindow", { returnFocus: mixerLastTrigger });
+                } else {
+                    elements.window.classList.remove("is-open");
+                    elements.window.setAttribute("aria-hidden", "true");
+                    elements.window.hidden = true;
+                }
             }
 
             if (AudioManager.enabled) AudioManager.resumeLobby();
@@ -508,29 +528,49 @@ Bomba Estéreo - Fuego
             document.body.style.overflow = 'hidden';
             setupStartWindow();
 
-            // Interceptor de Links
-            document.querySelectorAll('a').forEach(link => {
-                const linkUrl = new URL(link.href, window.location.href);
-                const isSamePageHash = linkUrl.hash && linkUrl.origin === window.location.origin && linkUrl.pathname === window.location.pathname;
-                if (link.href && !link.href.startsWith('javascript') && !link.getAttribute('href')?.startsWith('#') && !isSamePageHash) {
-                    link.addEventListener('click', function(e) {
-                        if (this.classList.contains('btn-patreon')) {
-                            e.preventDefault();
-                            showToast("SYSTEM: Función 'Patreon Guild' Coming Soon...");
-                            return;
-                        }
-                        e.preventDefault();
-                        const url = this.href;
-                        const target = this.target;
-                        if (url.startsWith('mailto:')) { window.location.href = url; return; }
-                        showLoadingScreen(() => {
-                            if (target === '_blank') window.open(url, '_blank');
-                            else window.location.href = url;
-                        });
+            setupExplicitLinkTransitions();
+        });
+
+        function shouldUseLoadingTransition(link) {
+            if (!link || link.dataset.cgTransition !== "true") return false;
+            const rawHref = link.getAttribute("href") || "";
+            if (!rawHref || rawHref === "#" || rawHref.startsWith("#")) return false;
+            if (rawHref.startsWith("mailto:") || rawHref.startsWith("tel:") || rawHref.startsWith("javascript:")) return false;
+            if (link.target === "_blank" || link.hasAttribute("download")) return false;
+
+            let linkUrl;
+            try {
+                linkUrl = new URL(link.href, window.location.href);
+            } catch (error) {
+                return false;
+            }
+
+            const samePageHash = linkUrl.hash
+                && linkUrl.origin === window.location.origin
+                && linkUrl.pathname === window.location.pathname;
+
+            return linkUrl.origin === window.location.origin && !samePageHash;
+        }
+
+        function setupExplicitLinkTransitions() {
+            document.querySelectorAll("a").forEach((link) => {
+                if (link.classList.contains("btn-patreon")) {
+                    link.addEventListener("click", (event) => {
+                        event.preventDefault();
+                        showToast("SYSTEM: Función 'Patreon Guild' Coming Soon...");
                     });
                 }
+
+                if (!shouldUseLoadingTransition(link)) return;
+
+                link.addEventListener("click", (event) => {
+                    event.preventDefault();
+                    showLoadingScreen(() => {
+                        window.location.href = link.href;
+                    });
+                });
             });
-        });
+        }
 
         function setupStartWindow() {
             const startWindow = document.getElementById('startWindow');
@@ -637,22 +677,41 @@ Bomba Estéreo - Fuego
                 // Parar lobby, poner música de ficha
                 AudioManager.playBg('bgMusicChar');
                 const data = charData[charId];
+                if (!data) {
+                    if (CG_LOG) CG_LOG.error("LOBBY", "CG-LOBBY-001", "Ficha no disponible.", { charId });
+                    showToast("SYSTEM: Ficha no disponible por ahora.");
+                    return;
+                }
                 document.getElementById('modalTitle').innerHTML = data.name + ' <span class="cursor-blink">█</span>';
                 document.getElementById('modalRole').innerText = data.role;
                 document.getElementById('modalDesc').innerHTML = data.desc;
                 document.getElementById('modalHeader').style.borderBottomColor = data.color;
                 document.getElementById('modalImg').src = getResponsiveAssetUrl(data.imgUrl);
-                document.getElementById('charModal').style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-                setFloatingUiHidden(true);
+                if (window.CGOverlay) {
+                    window.CGOverlay.open("charModal", {
+                        mode: "display",
+                        display: "flex",
+                        focusElement: document.querySelector("#charModal .close-btn"),
+                        closeOthers: false,
+                        onEscape: () => closeModal(null, "charModal")
+                    });
+                } else {
+                    document.getElementById('charModal').style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                    setFloatingUiHidden(true);
+                }
             });
         }
 
         function closeModal(e, id) {
             if (e && e.target.id !== id) return;
-            document.getElementById(id).style.display = 'none';
-            document.body.style.overflow = 'auto';
-            actualizarUiFlotantePorOverlays();
+            if (window.CGOverlay) {
+                window.CGOverlay.close(id);
+            } else {
+                document.getElementById(id).style.display = 'none';
+                document.body.style.overflow = 'auto';
+                actualizarUiFlotantePorOverlays();
+            }
             // Volver al lobby al cerrar ficha
             AudioManager.resumeLobby();
         }
@@ -663,6 +722,7 @@ Bomba Estéreo - Fuego
             const toast = document.getElementById('systemToast'); toast.innerText = message; toast.classList.add('show');
             clearTimeout(toastTimeout); toastTimeout = setTimeout(() => { toast.classList.remove('show'); }, 2500);
         }
+        window.showToast = showToast;
         
         function registrarClic() {
             const tiempoActual = new Date().getTime();
@@ -705,17 +765,31 @@ Bomba Estéreo - Fuego
                 });
                 document.getElementById('secretFileList').style.display = 'flex'; 
                 document.getElementById('secretViewer').style.display = 'none';
-                document.getElementById('secretModal').style.display = 'flex'; 
-                document.body.style.overflow = 'hidden';
-                setFloatingUiHidden(true);
+                if (window.CGOverlay) {
+                    window.CGOverlay.open("secretModal", {
+                        mode: "display",
+                        display: "flex",
+                        focusElement: document.querySelector("#secretModal .close-btn"),
+                        closeOthers: false,
+                        onEscape: () => closeSecretModal()
+                    });
+                } else {
+                    document.getElementById('secretModal').style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                    setFloatingUiHidden(true);
+                }
             });
         }
 
         function closeSecretModal(e) {
             if (e && e.target.id !== 'secretModal') return;
-            document.getElementById('secretModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-            actualizarUiFlotantePorOverlays();
+            if (window.CGOverlay) {
+                window.CGOverlay.close("secretModal");
+            } else {
+                document.getElementById('secretModal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+                actualizarUiFlotantePorOverlays();
+            }
             AudioManager.resumeLobby();
         }
         function viewSecretFile(i) { const data = secretData[i]; document.getElementById('secretFileList').style.display = 'none'; document.getElementById('secretViewerImg').src = getResponsiveAssetUrl(data.url); document.getElementById('secretViewerDesc').innerHTML = data.desc; document.getElementById('secretViewer').style.display = 'flex'; }
