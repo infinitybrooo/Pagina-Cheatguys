@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CheatGuys! - Biblia de Producci&oacute;n</title>
+    <link rel="icon" type="image/png" href="assets/branding/favicon.webp">
+    <link rel="stylesheet" href="css/fonts.css?v=20260706-localfonts1">
+    <link rel="stylesheet" href="css/variables.css?v=20260706-localfonts1">
+    <link rel="stylesheet" href="css/galeria.css?v=20260712-bible1">
+    <link rel="stylesheet" href="css/biblia-produccion.css?v=20260712-bible1">
+</head>
+<body class="bible-page">
+
+    <audio id="bgMusicPage" src="https://files.catbox.moe/z2ivpr.mp3" loop preload="none"></audio>
+
+    <button id="sidebarToggle" class="cg-sidebar-toggle" onclick="toggleSidebar()" aria-label="Abrir/cerrar menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav id="sidebarNav" class="cg-sidebar" aria-label="Menu principal">
+        <div class="cg-sidebar-header">
+            <img src="assets/branding/mobile/logo-solo.webp" alt="CheatGuys!" class="cg-sidebar-brand-logo">
+        </div>
+
+        <a href="index.html" class="cg-sidebar-link">
+            <span class="cg-sidebar-icon cg-icon-home" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">Inicio</span>
+        </a>
+        <a href="quienes-somos.html" class="cg-sidebar-link">
+            <span class="cg-sidebar-icon cg-icon-about" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">&iquest;Qui&eacute;nes somos?</span>
+        </a>
+        <a href="que-es-cheatguys.html" class="cg-sidebar-link">
+            <span class="cg-sidebar-icon cg-icon-cheatguys" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">&iquest;Qu&eacute; es CheatGuys!?</span>
+        </a>
+        <a href="minijuego.html" class="cg-sidebar-link">
+            <span class="cg-sidebar-icon cg-icon-minigame" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">Minijuego</span>
+        </a>
+        <a href="galeria.html" class="cg-sidebar-link">
+            <span class="cg-sidebar-icon cg-icon-gallery" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">Galer&iacute;a</span>
+        </a>
+        <a href="biblia-produccion.html" class="cg-sidebar-link active">
+            <span class="cg-sidebar-icon cg-icon-bible" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">Biblia de Producci&oacute;n</span>
+        </a>
+
+        <div class="cg-sidebar-audio" aria-label="Control de musica">
+            <button id="musicToggleBtn" class="cg-audio-toggle" title="Musica ON/OFF" onclick="toggleMusic()" aria-label="Activar o desactivar musica" aria-pressed="true">&#9835;</button>
+            <label class="cg-audio-slider-label" for="pageVolumeSlider">VOL</label>
+            <input type="range" id="pageVolumeSlider" min="0" max="1" step="0.01" value="0.4" title="Control de Volumen" aria-label="Volumen de musica">
+        </div>
+    </nav>
+
+    <main id="mainContent" class="bible-main">
+        <header class="bible-page-header">
+            <p>INFINITY_OS // DOCUMENT_ARCHIVE</p>
+            <h1>BIBLIA DE PRODUCCI&Oacute;N <span class="cursor-blink">&#9608;</span></h1>
+        </header>
+
+        <section id="fileWindow" class="infinity-window bible-file-window" aria-labelledby="fileWindowTitle">
+            <div class="infinity-titlebar">
+                <span id="fileWindowTitle">INFINITY OS // FILE MANAGER</span>
+                <span class="infinity-window-lights" aria-hidden="true"><i></i><i></i><i></i></span>
+            </div>
+
+            <div id="fileDetails" class="bible-file-details">
+                <div class="bible-file-icon" aria-hidden="true"><span>PDF</span></div>
+                <div class="bible-file-copy">
+                    <h2>BIBLIA_DE_PRODUCCION.PDF</h2>
+                    <dl>
+                        <div>
+                            <dt>Autor:</dt>
+                            <dd>Infinity Brothers</dd>
+                        </div>
+                        <div>
+                            <dt>Versi&oacute;n:</dt>
+                            <dd>v1.0</dd>
+                        </div>
+                        <div>
+                            <dt>Estado:</dt>
+                            <dd class="bible-confidential">CONFIDENCIAL</dd>
+                        </div>
+                    </dl>
+                    <button id="openBibleButton" class="infinity-action-button" type="button">[ ABRIR ARCHIVO ]</button>
+                </div>
+            </div>
+
+            <div id="fileLoading" class="bible-file-loading" aria-live="polite" hidden>
+                <div class="bible-loading-mark" aria-hidden="true">
+                    <span></span><span></span><span></span><span></span>
+                </div>
+                <p id="loadingMessage">Inicializando visor...</p>
+                <div class="bible-loading-bar" aria-hidden="true"><span></span></div>
+            </div>
+        </section>
+
+        <section id="pdfViewerWindow" class="infinity-window bible-viewer-window" aria-labelledby="viewerWindowTitle" hidden>
+            <div class="infinity-titlebar">
+                <span id="viewerWindowTitle">INFINITY OS // BIBLIA_DE_PRODUCCION.PDF</span>
+                <span class="infinity-window-lights" aria-hidden="true"><i></i><i></i><i></i></span>
+            </div>
+
+            <div id="pdfStage" class="bible-pdf-stage" tabindex="0" aria-label="P&aacute;gina del documento PDF">
+                <div class="bible-canvas-shell">
+                    <canvas id="pdfCanvas"></canvas>
+                </div>
+                <div id="pageRenderStatus" class="bible-render-status" aria-live="polite" hidden>CARGANDO_P&Aacute;GINA...</div>
+            </div>
+
+            <div class="bible-viewer-controls" aria-label="Controles del visor PDF">
+                <button id="previousPageButton" type="button" aria-label="P&aacute;gina anterior">[ &#9664; ANTERIOR ]</button>
+                <span class="bible-page-counter">P&Aacute;GINA <strong id="currentPage">1</strong> / <strong id="totalPages">9</strong></span>
+                <button id="nextPageButton" type="button" aria-label="P&aacute;gina siguiente">[ SIGUIENTE &#9654; ]</button>
+                <span class="bible-controls-separator" aria-hidden="true"></span>
+                <button id="zoomOutButton" type="button" aria-label="Alejar">[ ZOOM - ]</button>
+                <span id="zoomLevel" class="bible-zoom-level">100%</span>
+                <button id="zoomInButton" type="button" aria-label="Acercar">[ ZOOM + ]</button>
+                <button id="fullscreenButton" type="button">[ PANTALLA COMPLETA ]</button>
+                <a href="assets/pdf/pitch-bible.pdf" download="BIBLIA_DE_PRODUCCION.pdf">[ DESCARGAR PDF ]</a>
+            </div>
+        </section>
+
+        <footer class="bible-footer">
+            <img src="assets/branding/mobile/logo-studio-blanco.webp" alt="Infinity Brothers Logo" loading="lazy" decoding="async">
+            <p>CheatGuys! is a series owned by Infinity Brothers Studios TM. All artwork, descriptions, documents, characters, music, and story are the property of the studio and are protected by copyright.</p>
+            <p>Interactive components (including character chat simulations) utilize experimental AI for entertainment and narrative purposes only. Leaderboard submissions are stored locally for gameplay experience.</p>
+            <p>CheatGuys! &copy; 2026 Infinity Brothers Studios TM. All rights reserved</p>
+        </footer>
+    </main>
+
+    <script src="js/audio-global.js?v=20260623-refresh2"></script>
+    <script src="js/ui-global.js?v=20260707-ui1"></script>
+    <script type="module" src="js/biblia-produccion.js?v=20260712-bible1"></script>
+</body>
+</html>

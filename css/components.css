@@ -45,6 +45,10 @@
 .ld-jun { background-image: url('../assets/icons/icon-jun.webp'); animation-delay: 0.45s; }
 
 /* Start Window */
+html.start-intro-seen .start-window {
+    display: none;
+}
+
 .start-window {
     position: fixed;
     inset: 0;

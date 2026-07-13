@@ -7,7 +7,18 @@
     <link rel="icon" type="image/png" href="assets/branding/favicon.webp">
     <link rel="stylesheet" href="css/fonts.css?v=20260706-localfonts1">
     
-    <link rel="stylesheet" href="css/style.css?v=20260709-startwindow1">
+    <script>
+        (() => {
+            try {
+                if (sessionStorage.getItem("cheatguys.startIntroSeen.v1") === "1") {
+                    document.documentElement.classList.add("start-intro-seen");
+                }
+            } catch (_) {
+                // Si el almacenamiento no esta disponible, se conserva el flujo completo.
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="css/style.css?v=20260712-sessionintro1">
     <link rel="stylesheet" href="css/galeria.css?v=20260629-sidebar-logo1">
 
     <!-- Open Graph / Facebook / WhatsApp -->
@@ -76,6 +87,11 @@
             <span class="cg-sidebar-label">Galer&iacute;a</span>
         </a>
 
+        <a href="biblia-produccion.html" class="cg-sidebar-link">
+            <span class="cg-sidebar-icon cg-icon-bible" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">Biblia de Producci&oacute;n</span>
+        </a>
+
         <div class="cg-sidebar-audio" aria-label="Control de musica">
             <button id="musicToggleBtn" class="cg-audio-toggle" title="Musica ON/OFF" onclick="toggleMusic()" aria-label="Activar o desactivar musica" aria-pressed="true">&#9835;</button>
             <label class="cg-audio-slider-label" for="pageVolumeSlider">VOL</label>
@@ -90,7 +106,7 @@
         <div class="start-crt-flash" aria-hidden="true"></div>
         <section class="start-boot-panel" aria-hidden="true">
             <img src="assets/branding/mobile/logo-studio-blanco.webp" alt="" class="start-studio-logo" decoding="async">
-            <div class="start-os-label">InfinityOS</div>
+            <div class="start-os-label">Infinity OS</div>
         </section>
         <section class="start-title-panel" aria-label="Inicio del videojuego">
             <video class="start-bg-video" src="assets/start-window/loop-fondo-clean.mp4" autoplay muted loop playsinline preload="auto"></video>
@@ -166,7 +182,7 @@
     <div class="links-container">
         <div id="system-files" class="menu-box box-main animate-in delay-2">
             <div class="section-title">SYSTEM_FILES <span class="cursor-blink">█</span></div>
-            <a href="https://drive.google.com/file/d/1SonB_djMHOB4hJ8E7r-vTR7WhIlLRfpF/view?usp=drivesdk" target="_blank" class="link-btn btn-pitch"><img loading="lazy" src="assets/social/pitch.webp" class="icon-img" alt="Pitch" decoding="async"><div class="text-container"><span class="btn-title">Official Pitch Bible</span><span class="btn-subtitle">READ_PRODUCTION_DECK.EXE</span></div></a>
+            <a href="biblia-produccion.html" class="link-btn btn-pitch"><img loading="lazy" src="assets/social/pitch.webp" class="icon-img" alt="Pitch" decoding="async"><div class="text-container"><span class="btn-title">Official Pitch Bible</span><span class="btn-subtitle">READ_PRODUCTION_DECK.EXE</span></div></a>
             <a href="https://x.com/infinitybrooo" target="_blank" class="link-btn btn-x"><img loading="lazy" src="assets/social/Xnews.webp" class="icon-img" alt="X" decoding="async"><div class="text-container"><span class="btn-title">Infinity Brothers on X</span><span class="btn-subtitle">FOLLOW_STUDIO_UPDATES</span></div></a>
             <a href="https://www.tiktok.com/@infinitybrooo" target="_blank" class="link-btn btn-tiktok"><img loading="lazy" src="assets/social/tik-tok.webp" class="icon-img" alt="TikTok" decoding="async"><div class="text-container"><span class="btn-title">TikTok Animatics</span><span class="btn-subtitle">BEHIND_THE_SCENES_VIDEO</span></div></a>
         </div>
@@ -207,8 +223,9 @@
 
     <div class="footer animate-in delay-7">
         <img loading="lazy" src="assets/branding/mobile/logo-studio-blanco.webp" alt="Infinity Brothers Logo" class="footer-logo" decoding="async">
-        <p>CheatGuys! is a series owned by Infinity Brothers Studios TM. All artwork, descriptions, documents, characters, and story are the property of the studio and are protected by copyright.</p>
-        <p>CheatGuys! &copy; 2026 Infinity Brothers Studios TM. All rights reserved.</p>
+        <p>CheatGuys! is a series owned by Infinity Brothers Studios TM. All artwork, descriptions, documents, characters, music, and story are the property of the studio and are protected by copyright.</p>
+        <p>Interactive components (including character chat simulations) utilize experimental AI for entertainment and narrative purposes only. Leaderboard submissions are stored locally for gameplay experience.</p>
+        <p>CheatGuys! &copy; 2026 Infinity Brothers Studios TM. All rights reserved</p>
     </div>
 
     <!-- =========================================
@@ -273,7 +290,7 @@
          ========================================= -->
     <script src="js/audio-global.js?v=20260623-refresh2"></script>
     <script src="js/ui-global.js?v=20260707-ui1"></script>
-    <script src="js/lobby-logic.js?v=20260709-startwindow1"></script>
+    <script src="js/lobby-logic.js?v=20260712-sessionintro1"></script>
     <script src="js/mitsuki-secret.js?v=20260624-discord1"></script>
     <script>
         (() => {

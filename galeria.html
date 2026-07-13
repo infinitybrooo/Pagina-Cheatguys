@@ -2,12 +2,12 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CheatGuys! - Galer&iacute;a</title>
     <link rel="icon" type="image/png" href="assets/branding/favicon.webp">
     <link rel="stylesheet" href="css/fonts.css?v=20260706-localfonts1">
     <link rel="stylesheet" href="css/variables.css?v=20260706-localfonts1">
-    <link rel="stylesheet" href="css/galeria.css?v=20260629-sidebar-logo1">
+    <link rel="stylesheet" href="css/galeria.css?v=20260712-visualarchive1">
 </head>
 <body class="gallery-page">
 
@@ -49,6 +49,11 @@
             <span class="cg-sidebar-label">Galer&iacute;a</span>
         </a>
 
+        <a href="biblia-produccion.html" class="cg-sidebar-link">
+            <span class="cg-sidebar-icon cg-icon-bible" aria-hidden="true"></span>
+            <span class="cg-sidebar-label">Biblia de Producci&oacute;n</span>
+        </a>
+
         <div class="cg-sidebar-audio" aria-label="Control de musica">
             <button id="musicToggleBtn" class="cg-audio-toggle" title="Musica ON/OFF" onclick="toggleMusic()" aria-label="Activar o desactivar musica" aria-pressed="true">&#9835;</button>
             <label class="cg-audio-slider-label" for="pageVolumeSlider">VOL</label>
@@ -61,83 +66,176 @@
          ========================================= -->
     <main id="mainContent" class="gallery-main">
         <header class="gallery-header">
-            <h1 class="gallery-title">GALER&Iacute;A <span class="cursor-blink">█</span></h1>
-            <p class="gallery-subtitle">ARCHIVO_VISUAL // CHEATGUYS!</p>
+            <div class="gallery-heading">
+                <p class="gallery-kicker" aria-hidden="true">INFINITY_OS // DIRECTORY_04</p>
+                <h1 class="gallery-title">GALER&Iacute;A <span class="cursor-blink">█</span></h1>
+                <p class="gallery-subtitle">ARCHIVO_VISUAL // CHEATGUYS!</p>
+            </div>
+
+            <section class="archive-console" aria-label="Informaci&oacute;n del archivo visual">
+                <div class="archive-console-title">
+                    <span>VISUAL_ARCHIVE //</span>
+                    <strong id="archiveCharacterName">AKANE_HOSHIZORA</strong>
+                    <span class="archive-console-lights" aria-hidden="true"><i></i><i></i><i></i></span>
+                </div>
+                <dl class="archive-console-grid">
+                    <div>
+                        <dt>COLOR_ID</dt>
+                        <dd id="archiveColor">VIOLETA // #8A2BE2</dd>
+                    </div>
+                    <div>
+                        <dt>FILES_FOUND</dt>
+                        <dd id="archiveFileCount">16</dd>
+                    </div>
+                </dl>
+                <p class="archive-system-status"><span>STATUS:</span> <strong id="archiveStatus">ANXIETY_RENDERED_SUCCESSFULLY</strong></p>
+                <p id="galleryMicrodialog" class="gallery-microdialog" aria-live="polite">&ldquo;Esos bocetos todav&iacute;a no estaban terminados&hellip;&rdquo;</p>
+            </section>
         </header>
 
-        <div class="char-selector" aria-label="Selector de personaje">
-            <button class="char-select-btn active" data-character="akane" onclick="seleccionarPersonaje('akane')" aria-label="Akane">
-                <img src="assets/icons/icon-akane.webp" alt="Akane" loading="lazy" decoding="async">
+        <div class="char-selector" role="group" aria-label="Seleccionar personaje del archivo">
+            <button class="char-select-btn active" type="button" data-character="akane" aria-label="Ver archivos de Akane" aria-pressed="true">
+                <span class="char-portrait-frame"><img src="assets/icons/icon-akane.webp" alt="" loading="eager" decoding="async"></span>
+                <span class="char-select-name">AKANE</span>
+                <span class="char-select-state">ACTIVE</span>
             </button>
-            <button class="char-select-btn" data-character="rika" onclick="seleccionarPersonaje('rika')" aria-label="Rika">
-                <img src="assets/icons/icon-rika.webp" alt="Rika" loading="lazy" decoding="async">
+            <button class="char-select-btn" type="button" data-character="rika" aria-label="Ver archivos de Rika" aria-pressed="false">
+                <span class="char-portrait-frame"><img src="assets/icons/icon-rika.webp" alt="" loading="lazy" decoding="async"></span>
+                <span class="char-select-name">RIKA</span>
+                <span class="char-select-state">READY</span>
             </button>
-            <button class="char-select-btn" data-character="momo" onclick="seleccionarPersonaje('momo')" aria-label="Momo">
-                <img src="assets/icons/icon-momo.webp" alt="Momo" loading="lazy" decoding="async">
+            <button class="char-select-btn" type="button" data-character="momo" aria-label="Ver archivos de Momo" aria-pressed="false">
+                <span class="char-portrait-frame"><img src="assets/icons/icon-momo.webp" alt="" loading="lazy" decoding="async"></span>
+                <span class="char-select-name">MOMO</span>
+                <span class="char-select-state">READY</span>
             </button>
-            <button class="char-select-btn" data-character="jun" onclick="seleccionarPersonaje('jun')" aria-label="Jun">
-                <img src="assets/icons/icon-jun.webp" alt="Jun" loading="lazy" decoding="async">
+            <button class="char-select-btn" type="button" data-character="jun" aria-label="Ver archivos de Jun" aria-pressed="false">
+                <span class="char-portrait-frame"><img src="assets/icons/icon-jun.webp" alt="" loading="lazy" decoding="async"></span>
+                <span class="char-select-name">JUN</span>
+                <span class="char-select-state">READY</span>
             </button>
         </div>
 
-        <section class="carousel-section">
-            <h2 class="carousel-title">VESTIMENTAS</h2>
-            <div class="carousel-row">
-                <button class="carousel-arrow carousel-arrow-left" onclick="moverCarrusel('clothes', -1, true)" aria-label="Anterior">&#9664;</button>
-                <div class="carousel-window">
-                    <div id="track-clothes" class="carousel-track" aria-live="polite"></div>
+        <section class="carousel-section category-clothes" data-category="clothes" aria-labelledby="title-clothes">
+            <header class="carousel-module-header">
+                <div>
+                    <span class="carousel-system-label">WARDROBE_DIRECTORY</span>
+                    <h2 id="title-clothes" class="carousel-title">VESTIMENTAS</h2>
                 </div>
-                <button class="carousel-arrow carousel-arrow-right" onclick="moverCarrusel('clothes', 1, true)" aria-label="Siguiente">&#9654;</button>
+                <div class="carousel-file-count"><span>FILES</span><strong id="count-clothes">06</strong></div>
+            </header>
+            <div class="carousel-row">
+                <button class="carousel-arrow carousel-arrow-left" type="button" data-category="clothes" data-direction="-1" aria-label="Vestimenta anterior" aria-controls="track-clothes">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 4 7 12l9.5 8V4Z"/></svg>
+                </button>
+                <div class="carousel-window" data-category="clothes" tabindex="0" role="region" aria-label="Carrusel de vestimentas; usa las flechas izquierda y derecha">
+                    <div id="track-clothes" class="carousel-track"></div>
+                </div>
+                <button class="carousel-arrow carousel-arrow-right" type="button" data-category="clothes" data-direction="1" aria-label="Vestimenta siguiente" aria-controls="track-clothes">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7.5 4 9.5 8-9.5 8V4Z"/></svg>
+                </button>
             </div>
+            <footer class="carousel-statusbar" aria-live="polite">
+                <span id="position-clothes" class="carousel-position">01 / 06</span>
+                <strong id="filename-clothes" class="carousel-filename">CLOTHES_AKANE_01.WEBP</strong>
+                <span id="dots-clothes" class="carousel-pixels" aria-hidden="true"></span>
+            </footer>
         </section>
 
-        <section class="carousel-section">
-            <h2 class="carousel-title">TURNAROUNDS</h2>
-            <div class="carousel-row">
-                <button class="carousel-arrow carousel-arrow-left" onclick="moverCarrusel('thurn', -1, true)" aria-label="Anterior">&#9664;</button>
-                <div class="carousel-window">
-                    <div id="track-thurn" class="carousel-track" aria-live="polite"></div>
+        <section class="carousel-section category-thurn" data-category="thurn" aria-labelledby="title-thurn">
+            <header class="carousel-module-header">
+                <div>
+                    <span class="carousel-system-label">MODEL_SHEETS</span>
+                    <h2 id="title-thurn" class="carousel-title">TURNAROUNDS</h2>
                 </div>
-                <button class="carousel-arrow carousel-arrow-right" onclick="moverCarrusel('thurn', 1, true)" aria-label="Siguiente">&#9654;</button>
+                <div class="carousel-file-count"><span>FILES</span><strong id="count-thurn">04</strong></div>
+            </header>
+            <div class="carousel-row">
+                <button class="carousel-arrow carousel-arrow-left" type="button" data-category="thurn" data-direction="-1" aria-label="Turnaround anterior" aria-controls="track-thurn">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 4 7 12l9.5 8V4Z"/></svg>
+                </button>
+                <div class="carousel-window" data-category="thurn" tabindex="0" role="region" aria-label="Carrusel de turnarounds; usa las flechas izquierda y derecha">
+                    <div id="track-thurn" class="carousel-track"></div>
+                </div>
+                <button class="carousel-arrow carousel-arrow-right" type="button" data-category="thurn" data-direction="1" aria-label="Turnaround siguiente" aria-controls="track-thurn">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7.5 4 9.5 8-9.5 8V4Z"/></svg>
+                </button>
             </div>
+            <footer class="carousel-statusbar" aria-live="polite">
+                <span id="position-thurn" class="carousel-position">01 / 04</span>
+                <strong id="filename-thurn" class="carousel-filename">THURN_AKANE_01.WEBP</strong>
+                <span id="dots-thurn" class="carousel-pixels" aria-hidden="true"></span>
+            </footer>
         </section>
 
-        <section class="carousel-section">
-            <h2 class="carousel-title">BOCETOS</h2>
-            <div class="carousel-row">
-                <button class="carousel-arrow carousel-arrow-left" onclick="moverCarrusel('sketch', -1, true)" aria-label="Anterior">&#9664;</button>
-                <div class="carousel-window">
-                    <div id="track-sketch" class="carousel-track" aria-live="polite"></div>
+        <section class="carousel-section category-sketch" data-category="sketch" aria-labelledby="title-sketch">
+            <header class="carousel-module-header">
+                <div>
+                    <span class="carousel-system-label">ROUGH_SKETCHES</span>
+                    <h2 id="title-sketch" class="carousel-title">BOCETOS</h2>
                 </div>
-                <button class="carousel-arrow carousel-arrow-right" onclick="moverCarrusel('sketch', 1, true)" aria-label="Siguiente">&#9654;</button>
+                <div class="carousel-file-count"><span>FILES</span><strong id="count-sketch">06</strong></div>
+            </header>
+            <div class="carousel-row">
+                <button class="carousel-arrow carousel-arrow-left" type="button" data-category="sketch" data-direction="-1" aria-label="Boceto anterior" aria-controls="track-sketch">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 4 7 12l9.5 8V4Z"/></svg>
+                </button>
+                <div class="carousel-window" data-category="sketch" tabindex="0" role="region" aria-label="Carrusel de bocetos; usa las flechas izquierda y derecha">
+                    <div id="track-sketch" class="carousel-track"></div>
+                </div>
+                <button class="carousel-arrow carousel-arrow-right" type="button" data-category="sketch" data-direction="1" aria-label="Boceto siguiente" aria-controls="track-sketch">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7.5 4 9.5 8-9.5 8V4Z"/></svg>
+                </button>
             </div>
+            <footer class="carousel-statusbar" aria-live="polite">
+                <span id="position-sketch" class="carousel-position">01 / 06</span>
+                <strong id="filename-sketch" class="carousel-filename">SKETCH_AKANE_01.WEBP</strong>
+                <span id="dots-sketch" class="carousel-pixels" aria-hidden="true"></span>
+            </footer>
         </section>
 
         <footer class="gallery-footer">
             <img loading="lazy" src="assets/branding/mobile/logo-studio-blanco.webp" alt="Infinity Brothers Logo" class="gallery-footer-logo" decoding="async">
-            <p>CheatGuys! is a series owned by Infinity Brothers Studios TM. All artwork, descriptions, documents, characters, and story are the property of the studio and are protected by copyright.</p>
-            <p>CheatGuys! &copy; 2026 Infinity Brothers Studios TM. All rights reserved.</p>
+            <p>CheatGuys! is a series owned by Infinity Brothers Studios TM. All artwork, descriptions, documents, characters, music, and story are the property of the studio and are protected by copyright.</p>
+            <p>Interactive components (including character chat simulations) utilize experimental AI for entertainment and narrative purposes only. Leaderboard submissions are stored locally for gameplay experience.</p>
+            <p>CheatGuys! &copy; 2026 Infinity Brothers Studios TM. All rights reserved</p>
         </footer>
     </main>
 
     <!-- =========================================
          MODAL RETRO
          ========================================= -->
-    <div id="galleryModal" class="gallery-modal" onclick="cerrarModalGaleria(event)" aria-hidden="true">
-        <div class="gallery-modal-box" onclick="event.stopPropagation()" role="dialog" aria-modal="true" aria-label="Imagen de galeria">
+    <div id="galleryModal" class="gallery-modal" aria-hidden="true">
+        <div class="gallery-modal-box" role="dialog" aria-modal="true" aria-labelledby="galleryModalTitle" tabindex="-1">
             <div class="gallery-modal-header">
                 <h2 id="galleryModalTitle" class="gallery-modal-title">IMAGE_VIEWER <span class="cursor-blink">█</span></h2>
-                <button class="gallery-modal-close" onclick="cerrarModalGaleria()">[X]</button>
+                <button class="gallery-modal-close" type="button" aria-label="Cerrar visor de imagen">[X]</button>
+            </div>
+            <div class="gallery-modal-context">
+                <span id="galleryModalCharacter">AKANE_HOSHIZORA</span>
+                <strong id="galleryModalFile">CLOTHES_AKANE_01.WEBP</strong>
+                <span id="galleryModalCategory">VESTIMENTAS</span>
+                <span id="galleryModalCounter">01 / 06</span>
             </div>
             <div class="gallery-modal-body">
-                <img id="galleryModalImg" alt="" class="gallery-modal-img">
+                <button class="gallery-modal-nav gallery-modal-prev" type="button" aria-label="Imagen anterior">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 4 7 12l9.5 8V4Z"/></svg>
+                </button>
+                <figure class="gallery-modal-figure">
+                    <span class="gallery-modal-loader" aria-hidden="true">LOADING_FILE...</span>
+                    <img id="galleryModalImg" alt="" class="gallery-modal-img">
+                </figure>
+                <button class="gallery-modal-nav gallery-modal-next" type="button" aria-label="Imagen siguiente">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7.5 4 9.5 8-9.5 8V4Z"/></svg>
+                </button>
             </div>
+            <p class="gallery-modal-help">ESC: CLOSE // &larr; &rarr;: NAVIGATE // ORIGINAL_RENDER</p>
         </div>
     </div>
 
     <script src="js/audio-global.js?v=20260623-refresh2"></script>
     <script src="js/ui-global.js?v=20260707-ui1"></script>
-    <script src="js/galeria-logic.js?v=20260623-refresh2"></script>
+    <script src="js/galeria-logic.js?v=20260712-visualarchive1"></script>
     <script>
         (() => {
             const sys = "color:#ff3df2;background:#16001f;border:1px solid #ff3df2;padding:2px 6px;font-family:monospace;text-shadow:0 0 8px #ff3df2;";

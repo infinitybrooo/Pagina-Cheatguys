@@ -2,6 +2,23 @@
         // AUDIO MANAGER GLOBAL — controlado desde la barra lateral.
         // =====================================================
         const AudioManager = window.AudioManager;
+        const START_INTRO_SESSION_KEY = "cheatguys.startIntroSeen.v1";
+
+        function hasSeenStartIntro() {
+            try {
+                return sessionStorage.getItem(START_INTRO_SESSION_KEY) === "1";
+            } catch (_) {
+                return false;
+            }
+        }
+
+        function rememberStartIntro() {
+            try {
+                sessionStorage.setItem(START_INTRO_SESSION_KEY, "1");
+            } catch (_) {
+                // La introduccion sigue funcionando aunque el almacenamiento este bloqueado.
+            }
+        }
 
         // Animación Inicial al Entrar
         document.addEventListener("DOMContentLoaded", () => {
@@ -36,6 +53,16 @@
             const startWindow = document.getElementById('startWindow');
             const pressStartBtn = document.getElementById('pressStartBtn');
 
+            if (hasSeenStartIntro()) {
+                if (startWindow) startWindow.remove();
+                showLoadingScreen(() => {
+                    document.body.style.overflow = 'auto';
+                    document.body.classList.remove('start-window-active');
+                    document.body.classList.add('page-loaded');
+                });
+                return;
+            }
+
             if (!startWindow || !pressStartBtn) {
                 showLoadingScreen(() => {
                     document.body.style.overflow = 'auto';
@@ -54,6 +81,7 @@
             const startLobby = () => {
                 pressStartBtn.disabled = true;
                 document.removeEventListener('keydown', startOnKey);
+                rememberStartIntro();
                 startWindow.classList.add('is-finished');
                 showLoadingScreen(() => {
                     document.body.style.overflow = 'auto';
