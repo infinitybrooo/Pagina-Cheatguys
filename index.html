@@ -150,7 +150,7 @@
         <p class="subtitle">Infinity Brothers Studio</p>
 
         <div class="home-hero-split">
-            <button class="bottom-art-container animate-in delay-2" type="button" onclick="registrarClic()" aria-label="Revisar poster secreto de CheatGuys">
+            <button class="bottom-art-container animate-in delay-2" type="button" data-cg-secret-trigger aria-label="Revisar poster secreto de CheatGuys">
                 <img loading="lazy" src="assets/characters/mobile/lineup-team.webp" alt="CheatGuys Team" class="bottom-art" decoding="async">
                 <span class="bottom-art-tag">SECRET_GARAGE_ARCHIVES.WEBP</span>
             </button>
@@ -164,10 +164,10 @@
         <section class="character-arcade-frame animate-in delay-4" aria-label="Seleccion de personaje">
             <div class="arcade-frame-label">SELECCIONA_TU_PERSONAJE.EXE</div>
             <div class="character-select">
-                <button class="char-btn akane" onclick="abrirFichaPersonaje('akane')" title="Akane Hoshizora"></button>
-                <button class="char-btn rika" onclick="abrirFichaPersonaje('rika')" title="Rika Tanaka"></button>
-                <button class="char-btn momo" onclick="abrirFichaPersonaje('momo')" title="Momo Fujiwara"></button>
-                <button class="char-btn jun" onclick="abrirFichaPersonaje('jun')" title="Junpei Sakamoto"></button>
+                <button class="char-btn akane" data-cg-character="akane" title="Akane Hoshizora"></button>
+                <button class="char-btn rika" data-cg-character="rika" title="Rika Tanaka"></button>
+                <button class="char-btn momo" data-cg-character="momo" title="Momo Fujiwara"></button>
+                <button class="char-btn jun" data-cg-character="jun" title="Junpei Sakamoto"></button>
             </div>
         </section>
 
@@ -205,22 +205,22 @@
             <div class="music-card card-akane">
                 <div class="card-header"><img loading="lazy" src="assets/characters/posters/thumbs/poster-akane.webp" class="cover-art" alt="Playlist de Akane" decoding="async"><div class="text-container"><span class="btn-title">Akane: Noise I Can't Say Out Loud</span></div></div>
                 <div class="platform-links"><a href="https://music.youtube.com/playlist?list=PLjimL7gdf7217m1FLAFeRCeqellB_wLlE&si=Ih13VcRduZ3dAQvz" target="_blank" class="plat-btn yt-btn">▶ YouTube</a><a href="https://open.spotify.com/playlist/7eayTb4jbfExCeT8r8rGAr?si=wWNnrpIdSVuDp0lz3m-6Dg&pi=1-2rYg0BSaicf" target="_blank" class="plat-btn sp-btn">🎧 Spotify</a></div>
-                <button type="button" class="btn-preview-mixer" onclick="activarMixerPreview('akane')" aria-label="Reproducir preview aleatorio de Akane">[ PREVIEW ]</button>
+                <button type="button" class="btn-preview-mixer" data-cg-mixer="akane" aria-label="Reproducir preview aleatorio de Akane">[ PREVIEW ]</button>
             </div>
             <div class="music-card card-rika">
                 <div class="card-header"><img loading="lazy" src="assets/characters/posters/thumbs/poster-rika.webp" class="cover-art" alt="Playlist de Rika" decoding="async"><div class="text-container"><span class="btn-title">Rika: Volume First, Consequences Later</span></div></div>
                 <div class="platform-links"><a href="https://music.youtube.com/playlist?list=PLjimL7gdf721v4C-hyzBO0tudRQG4mgWt&si=VgP4OuLfqwMg_Mqi" target="_blank" class="plat-btn yt-btn">▶ YouTube</a><a href="https://open.spotify.com/playlist/5xOhRBBW6qfcxgvpGZLjaI?si=Ngwlrq4eRmybcuSlObTiEA" target="_blank" class="plat-btn sp-btn">🎧 Spotify</a></div>
-                <button type="button" class="btn-preview-mixer" onclick="activarMixerPreview('rika')" aria-label="Reproducir preview aleatorio de Rika">[ PREVIEW ]</button>
+                <button type="button" class="btn-preview-mixer" data-cg-mixer="rika" aria-label="Reproducir preview aleatorio de Rika">[ PREVIEW ]</button>
             </div>
             <div class="music-card card-momo">
                 <div class="card-header"><img loading="lazy" src="assets/characters/posters/thumbs/poster-momo.webp" class="cover-art" alt="Playlist de Momo" decoding="async"><div class="text-container"><span class="btn-title">Momo: Pink City Lights</span></div></div>
                 <div class="platform-links"><a href="https://music.youtube.com/playlist?list=PLjimL7gdf720e-jVoBcLJ7HCw3Mzj6Wbx&si=HuNmgHbie30p18Jv" target="_blank" class="plat-btn yt-btn">▶ YouTube</a><a href="https://open.spotify.com/playlist/5ra2tvSpzrYs8f96ArFqg3?si=93s0Nn_jSNih3-bJSZPI4A&pi=vun3-nXiT_Kul" target="_blank" class="plat-btn sp-btn">🎧 Spotify</a></div>
-                <button type="button" class="btn-preview-mixer" onclick="activarMixerPreview('momo')" aria-label="Reproducir preview aleatorio de Momo">[ PREVIEW ]</button>
+                <button type="button" class="btn-preview-mixer" data-cg-mixer="momo" aria-label="Reproducir preview aleatorio de Momo">[ PREVIEW ]</button>
             </div>
             <div class="music-card card-jun">
                 <div class="card-header"><img loading="lazy" src="assets/characters/posters/thumbs/poster-jun.webp" class="cover-art" alt="Playlist de Jun" decoding="async"><div class="text-container"><span class="btn-title">Jun: Sleepy Groove, Sharp Timing</span></div></div>
                 <div class="platform-links"><a href="https://music.youtube.com/playlist?list=PLjimL7gdf720rFPx-tIPhw2SLfLLktTIV&si=bfoLuYhmp6rHxh7t" target="_blank" class="plat-btn yt-btn">▶ YouTube</a><a href="https://open.spotify.com/playlist/5I3zRnkbCrhdFzEYsNR2aV?si=UNxF8a1aTIWck4FvjEPr2g&pi=ONRT_DSNQCS4A" target="_blank" class="plat-btn sp-btn">🎧 Spotify</a></div>
-                <button type="button" class="btn-preview-mixer" onclick="activarMixerPreview('jun')" aria-label="Reproducir preview aleatorio de Jun">[ PREVIEW ]</button>
+                <button type="button" class="btn-preview-mixer" data-cg-mixer="jun" aria-label="Reproducir preview aleatorio de Jun">[ PREVIEW ]</button>
             </div>
         </div>
 
@@ -234,7 +234,7 @@
     <section id="mixerWindow" class="mixer-window" role="dialog" aria-modal="false" aria-labelledby="mixerWindowTitle" aria-hidden="true" hidden>
         <header class="mixer-titlebar">
             <span id="mixerWindowTitle">INFINITY OS // GUERRILLA_MIXER</span>
-            <button type="button" class="mixer-close" onclick="detenerMixerPreview()" aria-label="Cerrar mixer y detener preview">[X]</button>
+            <button type="button" class="mixer-close" data-cg-mixer-close aria-label="Cerrar mixer y detener preview">[X]</button>
         </header>
         <div class="mixer-content">
             <div class="mixer-cover-frame">
@@ -289,7 +289,7 @@
             <div class="modal-header"><h2 class="modal-title" style="color: #ffaaac;">SECRET_ARCHIVES_MENU <span class="cursor-blink">█</span></h2><button class="close-btn" onclick="closeSecretModal()">[X]</button></div>
             <div class="secret-body">
                 <div class="file-list" id="secretFileList"></div>
-                <div class="secret-viewer" id="secretViewer"><div class="secret-viewer-header"><button class="btn-back" onclick="backToSecretList()">[ < VOLVER_A_LISTA ]</button></div>
+                <div class="secret-viewer" id="secretViewer"><div class="secret-viewer-header"><button class="btn-back" data-cg-secret-back>[ < VOLVER_A_LISTA ]</button></div>
                 <img loading="lazy" id="secretViewerImg" src="" class="secret-img-large glitch-effect" decoding="async"><div class="secret-lore-text" id="secretViewerDesc"></div></div>
             </div>
         </div>
@@ -334,6 +334,8 @@
     <script src="js/cg-diagnostics.js?v=20260713-maint1"></script>
     <script src="js/audio-global.js?v=20260713-maint1"></script>
     <script src="js/ui-global.js?v=20260707-ui1"></script>
+    <script src="js/lobby-start.js?v=20260713-maint1"></script>
+    <script src="js/lobby-data.js?v=20260713-maint1"></script>
     <script src="js/lobby-logic.js?v=20260713-playlist2"></script>
     <script src="js/mitsuki-secret.js?v=20260624-discord1"></script>
     <script>
