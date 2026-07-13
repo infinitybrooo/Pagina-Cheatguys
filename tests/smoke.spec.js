@@ -1,7 +1,6 @@
 import { expect, test } from "@playwright/test";
 
 const allowedConsolePatterns = [
-    /Failed to load resource.*catbox/i,
     /itunes\.apple\.com.*blocked by CORS/i,
     /Failed to load resource: net::ERR_FAILED/i,
     /favicon/i
@@ -134,52 +133,6 @@ test("fichas de personajes y archivos secretos abren y cierran con Escape", asyn
     expect(audit.failedResources).toEqual([]);
 });
 
-test("primera visita completa novela, BSOD, loader y lobby sin saltos dobles", async ({ page }) => {
-    const audit = await preparePage(page, { skipIntro: false });
-    await page.goto("/index.html");
-    await page.locator("#pressStartBtn").click();
-    await expect(page.locator("#startIntroOverlay")).toHaveAttribute("aria-hidden", "false");
-    await expect(page.locator("#startIntroCounter")).toHaveText("TAB 01/08");
-    await page.waitForTimeout(320);
-
-    await page.locator("#startIntroContinueBtn").evaluate((button) => {
-        button.click();
-        button.click();
-    });
-    await expect(page.locator("#startIntroCounter")).toHaveText("TAB 02/08");
-    await page.waitForTimeout(320);
-
-    for (let step = 3; step <= 7; step += 1) {
-        await page.locator("#startIntroContinueBtn").click();
-        await expect(page.locator("#startIntroCounter")).toHaveText(`TAB ${String(step).padStart(2, "0")}/08`);
-        await page.waitForTimeout(step === 7 ? 1200 : 320);
-    }
-
-    await page.locator("#startIntroContinueBtn").click();
-    await expect(page.locator("#startIntroScreen")).toHaveClass(/is-bsod/);
-    await expect(page.locator("#startIntroBsod")).toContainText("0xCHEATGUYS_ARCADE_CRASH");
-    await expect(page.locator("#startIntroOverlay")).toHaveAttribute("aria-hidden", "true", { timeout: 6000 });
-    await expect(page.locator("body")).toHaveClass(/page-loaded/, { timeout: 6000 });
-    await expect(page.locator(".profile-container")).toBeVisible({ timeout: 6000 });
-
-    const storedTimestamp = await page.evaluate(() => Number(localStorage.getItem("cheatguys.startIntroSeen.v2")));
-    expect(storedTimestamp).toBeGreaterThan(0);
-    expect(audit.consoleErrors).toEqual([]);
-    expect(audit.failedResources).toEqual([]);
-});
-
-test("omitir intro guarda timestamp y llega al lobby sin recargar", async ({ page }) => {
-    await preparePage(page, { skipIntro: false });
-    await page.goto("/index.html");
-    const initialNavigationEntries = await page.evaluate(() => performance.getEntriesByType("navigation").length);
-    await page.locator("#pressStartBtn").click();
-    await page.locator("#startIntroSkipBtn").click();
-    await expect(page.locator(".profile-container")).toBeVisible();
-    await expect(page.locator("#startIntroOverlay")).toHaveAttribute("aria-hidden", "true");
-    expect(await page.evaluate(() => performance.getEntriesByType("navigation").length)).toBe(initialNavigationEntries);
-    expect(await page.evaluate(() => Number(localStorage.getItem("cheatguys.startIntroSeen.v2")))).toBeGreaterThan(0);
-});
-
 test("PRESS START aparece solo en la primera entrada de cada sesion", async ({ page }) => {
     await preparePage(page);
     await page.goto("/index.html");
@@ -194,114 +147,6 @@ test("PRESS START aparece solo en la primera entrada de cada sesion", async ({ p
     await page.evaluate(() => sessionStorage.removeItem("cheatguys.startWindowSeen.v1"));
     await page.reload();
     await expect(page.locator("#pressStartBtn")).toBeVisible();
-});
-
-test("timestamp reciente omite novela y timestamp vencido vuelve a mostrarla", async ({ page }) => {
-    await preparePage(page);
-    await page.goto("/index.html");
-    await page.locator("#pressStartBtn").click();
-    await expect(page.locator(".profile-container")).toBeVisible();
-    await expect(page.locator("#startIntroOverlay")).toHaveAttribute("aria-hidden", "true");
-
-    await page.addInitScript(() => {
-        localStorage.setItem("cheatguys.startIntroSeen.v2", String(Date.now() - (49 * 60 * 60 * 1000)));
-        sessionStorage.removeItem("cheatguys.startWindowSeen.v1");
-    });
-    await page.reload();
-    await page.locator("#pressStartBtn").click();
-    await expect(page.locator("#startIntroOverlay")).toHaveAttribute("aria-hidden", "false");
-    await page.locator("#startIntroSkipBtn").click();
-    await expect(page.locator(".profile-container")).toBeVisible();
-});
-
-test("localStorage bloqueado conserva el flujo y el fallback de omitir", async ({ page }) => {
-    await page.addInitScript(() => {
-        Storage.prototype.getItem = () => { throw new Error("Storage blocked for test"); };
-        Storage.prototype.setItem = () => { throw new Error("Storage blocked for test"); };
-    });
-    await page.goto("/index.html");
-    await page.locator("#pressStartBtn").click();
-    await expect(page.locator("#startIntroOverlay")).toHaveAttribute("aria-hidden", "false");
-    await page.locator("#startIntroSkipBtn").click();
-    await expect(page.locator(".profile-container")).toBeVisible();
-});
-
-test("la intro responde a teclado y cabe en viewport movil", async ({ page }) => {
-    await page.setViewportSize({ width: 390, height: 844 });
-    await preparePage(page, { skipIntro: false });
-    await page.goto("/index.html");
-    await page.locator("#pressStartBtn").click();
-    await expect(page.locator("#startIntroOverlay")).toHaveAttribute("aria-hidden", "false");
-    await page.waitForTimeout(320);
-    await page.keyboard.press("Space");
-    await expect(page.locator("#startIntroCounter")).toHaveText("TAB 02/08");
-
-    const layout = await page.evaluate(() => {
-        const screen = document.getElementById("startIntroScreen").getBoundingClientRect();
-        const skip = document.getElementById("startIntroSkipBtn").getBoundingClientRect();
-        return {
-            screenLeft: screen.left,
-            screenRight: screen.right,
-            skipLeft: skip.left,
-            skipRight: skip.right,
-            viewportWidth: document.documentElement.clientWidth,
-            hasHorizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth
-        };
-    });
-    expect(layout.screenLeft).toBeGreaterThanOrEqual(0);
-    expect(layout.skipLeft).toBeGreaterThanOrEqual(0);
-    expect(layout.screenRight).toBeLessThanOrEqual(layout.viewportWidth);
-    expect(layout.skipRight).toBeLessThanOrEqual(layout.viewportWidth);
-    expect(layout.hasHorizontalOverflow).toBe(false);
-
-    await page.locator("#startIntroSkipBtn").click();
-    await expect(page.locator("body")).toHaveClass(/page-loaded/);
-});
-
-test("boton secreto ejecuta BSOD, limpia contadores y reinicia el flujo", async ({ page }) => {
-    await page.goto("/index.html");
-    await page.evaluate(() => localStorage.setItem("cheatguys.startIntroSeen.v2", String(Date.now())));
-    await page.reload();
-    await page.locator("#pressStartBtn").click();
-    await expect(page.locator("body")).toHaveClass(/page-loaded/);
-
-    const reloaded = page.waitForEvent("framenavigated");
-    await page.locator("#footerIntroResetBtn").click();
-    await expect(page.locator("#startIntroScreen")).toHaveClass(/is-bsod/);
-    await expect(page.locator("#startIntroBsod")).toContainText("0xCHEATGUYS_ARCADE_CRASH");
-    await reloaded;
-
-    await expect(page.locator("#pressStartBtn")).toBeVisible();
-    expect(await page.evaluate(() => localStorage.getItem("cheatguys.startIntroSeen.v2"))).toBeNull();
-    expect(await page.evaluate(() => sessionStorage.getItem("cheatguys.startWindowSeen.v1"))).toBeNull();
-    await page.locator("#pressStartBtn").click();
-    await expect(page.locator("#startIntroOverlay")).toHaveAttribute("aria-hidden", "false");
-    await expect(page.locator("#startIntroCounter")).toHaveText("TAB 01/08");
-    await page.locator("#startIntroSkipBtn").click();
-});
-
-test("boton secreto limpia el fundido residual despues de completar la novela", async ({ page }) => {
-    await preparePage(page, { skipIntro: false });
-    await page.goto("/index.html");
-    await page.locator("#pressStartBtn").click();
-    await page.waitForTimeout(320);
-
-    for (let step = 2; step <= 7; step += 1) {
-        await page.locator("#startIntroContinueBtn").click();
-        await page.waitForTimeout(step === 7 ? 1200 : 320);
-    }
-
-    await page.locator("#startIntroContinueBtn").click();
-    await expect(page.locator("#startIntroOverlay")).toHaveAttribute("aria-hidden", "true", { timeout: 6000 });
-    await expect(page.locator("body")).toHaveClass(/page-loaded/, { timeout: 6000 });
-
-    await page.locator("#footerIntroResetBtn").click();
-    await expect(page.locator("#startIntroScreen")).toHaveClass(/is-bsod/);
-    await expect(page.locator("#startIntroScreen")).not.toHaveClass(/is-fading-black/);
-    await expect(page.locator("#startIntroOverlay")).not.toHaveClass(/is-blackout/);
-    await page.waitForTimeout(350);
-    await expect(page.locator(".start-intro-blackout")).toHaveCSS("opacity", "0");
-    await expect(page.locator("#startIntroBsod")).toContainText("0xCHEATGUYS_ARCADE_CRASH");
 });
 
 test("la novela de Mitsuki sigue independiente despues del nuevo inicio", async ({ page }) => {

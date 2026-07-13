@@ -13,6 +13,22 @@
     const BLACK_FADE_MS = CONFIG.blackFadeMs || 320;
     const PLACEHOLDER = "assets/start-window/novel/placeholder.webp";
 
+    if (CONFIG.enabled === false) {
+        window.CG = window.CG || {};
+        window.CG.startIntro = Object.freeze({
+            start: () => false,
+            skip: () => {},
+            shouldShow: () => false,
+            resetSeen: () => {},
+            triggerResetCrash: () => false,
+            restartExperience: () => {},
+            storageKey: STORAGE_KEY,
+            seenDurationMs: SEEN_DURATION_MS
+        });
+        window.CGStartIntro = window.CG.startIntro;
+        return;
+    }
+
     const PORTRAITS = Object.freeze({
         akane: "assets/icons/icon-akane.webp",
         rika: "assets/icons/icon-rika.webp",

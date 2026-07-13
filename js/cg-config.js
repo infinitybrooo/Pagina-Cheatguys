@@ -22,6 +22,7 @@
             musicEnabled: "cgMusicEnabled"
         },
         startIntro: {
+            enabled: false,
             version: 2,
             storageKey: "cheatguys.startIntroSeen.v2",
             seenDurationMs: 48 * 60 * 60 * 1000,

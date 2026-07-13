@@ -19,7 +19,8 @@
         bgMusicSecret: 1,
         bgMusicChar: 0.9,
         bgMusicSuddenDeath: 1.25,
-        bgMusicGameOver: 1.1
+        bgMusicGameOver: 1.1,
+        bgMusicVictory: 1.1
     };
 
     function getAudio(id) {

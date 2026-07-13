@@ -96,7 +96,8 @@
 
             try {
                 const intro = window.CGStartIntro;
-                if (!intro || !intro.shouldShow()) {
+                const introEnabled = CONFIG.startIntro?.enabled === true;
+                if (!introEnabled || !intro || !intro.shouldShow()) {
                     revealLobby();
                     return;
                 }
