@@ -198,3 +198,80 @@ body.page-loaded .animate-in {
     0%, 100% { margin-bottom: 0; }
     50% { margin-bottom: 4px; }
 }
+
+/* Guerrilla Mixer // ecualizador retro */
+.mixer-bars {
+    height: 35px;
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    padding: 5px 7px;
+    background: rgba(0, 0, 0, 0.68);
+    border: 2px solid rgba(255, 255, 255, 0.18);
+    box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.08);
+}
+
+.mixer-bar {
+    width: 9px;
+    height: 23px;
+    display: block;
+    flex: 1 1 0;
+    background: var(--neon-cyan);
+    box-shadow: 0 0 7px rgba(0, 255, 255, 0.55);
+    transform: scaleY(0.18);
+    transform-origin: center bottom;
+}
+
+.mixer-bars.is-playing .mixer-bar,
+.mixer-visualizer.is-playing .mixer-bar {
+    animation-name: mixerJump;
+    animation-duration: 0.46s;
+    animation-timing-function: steps(5, end);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.mixer-bars.is-playing .mixer-bar:nth-child(2),
+.mixer-visualizer.is-playing .mixer-bar:nth-child(2) {
+    animation-duration: 0.62s;
+    animation-delay: -0.18s;
+}
+
+.mixer-bars.is-playing .mixer-bar:nth-child(3),
+.mixer-visualizer.is-playing .mixer-bar:nth-child(3) {
+    animation-duration: 0.39s;
+    animation-delay: -0.31s;
+}
+
+.mixer-bars.is-playing .mixer-bar:nth-child(4),
+.mixer-visualizer.is-playing .mixer-bar:nth-child(4) {
+    animation-duration: 0.55s;
+    animation-delay: -0.09s;
+}
+
+@keyframes mixerJump {
+    0% {
+        background: var(--neon-cyan);
+        box-shadow: 0 0 7px rgba(0, 255, 255, 0.62);
+        transform: scaleY(0.18);
+    }
+    52% {
+        background: var(--momo-color);
+        box-shadow: 0 0 10px rgba(255, 105, 180, 0.66);
+        transform: scaleY(1);
+    }
+    100% {
+        background: var(--neon-cyan);
+        box-shadow: 0 0 8px rgba(0, 255, 255, 0.58);
+        transform: scaleY(0.48);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mixer-bars.is-playing .mixer-bar,
+    .mixer-visualizer.is-playing .mixer-bar {
+        animation: none;
+        background: var(--neon-cyan);
+        transform: scaleY(0.72);
+    }
+}

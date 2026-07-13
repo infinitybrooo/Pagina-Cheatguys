@@ -384,6 +384,269 @@ p.subtitle { font-family: var(--font-pixel); color: #d3d3d3; font-size: 15px; ma
 .yt-btn:hover { border-color: #fff; background-color: var(--yt-color); color: #fff; }
 .sp-btn:hover { border-color: #fff; background-color: var(--spotify-color); color: #fff; }
 
+.btn-preview-mixer {
+    width: 100%;
+    min-height: 34px;
+    margin-top: 10px;
+    padding: 6px 10px;
+    color: var(--neon-cyan);
+    background:
+        linear-gradient(90deg, rgba(0,255,255,0.08), transparent 45%, rgba(255,105,180,0.08)),
+        #07070b;
+    border: 2px solid currentColor;
+    border-radius: 2px;
+    box-shadow: 3px 3px 0 #000;
+    font-family: var(--font-pixel);
+    font-size: 10px;
+    line-height: 1;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: transform 0.12s steps(2), color 0.12s ease, background-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.card-akane .btn-preview-mixer { color: #c58cff; }
+.card-rika .btn-preview-mixer { color: #ff7a43; }
+.card-momo .btn-preview-mixer { color: #ff7fbd; }
+.card-jun .btn-preview-mixer { color: #53d7ff; }
+
+.btn-preview-mixer:hover {
+    color: #fff;
+    background-color: rgba(255,255,255,0.08);
+    box-shadow: -3px 3px 0 currentColor, 0 0 11px currentColor;
+    transform: translate(3px, -2px);
+}
+
+.btn-preview-mixer:active {
+    transform: translate(3px, 3px);
+    box-shadow: none;
+}
+
+.btn-preview-mixer:focus-visible,
+.mixer-window button:focus-visible,
+.mixer-store-link:focus-visible {
+    outline: 3px dashed #fff;
+    outline-offset: 3px;
+}
+
+/* Infinity OS // Guerrilla Mixer */
+.mixer-window {
+    --mixer-accent: var(--neon-cyan);
+    position: fixed;
+    z-index: 100150;
+    right: 24px;
+    bottom: 24px;
+    width: min(410px, calc(100vw - 32px));
+    overflow: hidden;
+    color: #fff;
+    background:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+        #08070b;
+    background-size: 18px 18px, 18px 18px, auto;
+    border: 3px solid #fff;
+    border-radius: 4px;
+    box-shadow: 9px 9px 0 #000, 0 0 22px color-mix(in srgb, var(--mixer-accent) 58%, transparent);
+    animation: cg-panel-boot 0.24s steps(4);
+}
+
+.mixer-window[hidden] {
+    display: none;
+}
+
+.mixer-window[data-character="akane"] { --mixer-accent: var(--akane-color); }
+.mixer-window[data-character="rika"] { --mixer-accent: var(--rika-color); }
+.mixer-window[data-character="momo"] { --mixer-accent: var(--momo-color); }
+.mixer-window[data-character="jun"] { --mixer-accent: var(--jun-color); }
+
+.mixer-titlebar {
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 7px 8px 7px 12px;
+    color: #fff;
+    background:
+        linear-gradient(90deg, color-mix(in srgb, var(--mixer-accent) 22%, transparent), transparent 72%),
+        #100d14;
+    border-bottom: 3px solid var(--mixer-accent);
+    font-family: var(--font-terminal);
+    font-size: 19px;
+    line-height: 1;
+}
+
+.mixer-titlebar > span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mixer-close {
+    flex: 0 0 auto;
+    min-width: 43px;
+    min-height: 28px;
+    padding: 3px 7px;
+    color: #fff;
+    background: #b50032;
+    border: 2px solid #fff;
+    border-radius: 2px;
+    box-shadow: 3px 3px 0 #000;
+    font-family: var(--font-terminal);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.mixer-content {
+    display: grid;
+    grid-template-columns: 132px minmax(0, 1fr);
+    gap: 13px;
+    padding: 13px;
+}
+
+.mixer-cover-frame {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    background:
+        linear-gradient(rgba(0,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,105,180,0.04) 1px, transparent 1px),
+        #020203;
+    background-size: 13px 13px, 13px 13px, auto;
+    border: 3px solid var(--mixer-accent);
+    box-shadow: 4px 4px 0 #000, inset 0 0 16px rgba(0,0,0,0.8);
+}
+
+.mixer-cover-frame img {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    opacity: 1;
+}
+
+.mixer-cover-frame img:not([src]) {
+    opacity: 0;
+}
+
+.mixer-cover-placeholder {
+    position: absolute;
+    z-index: 1;
+    color: #6f6877;
+    font-family: var(--font-pixel);
+    font-size: 9px;
+    line-height: 1.35;
+    text-align: center;
+}
+
+.mixer-cover-frame img[src] + .mixer-cover-placeholder {
+    opacity: 0;
+}
+
+.mixer-readout {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 8px;
+}
+
+.mixer-channel-label,
+.mixer-status,
+.mixer-footer {
+    font-family: var(--font-terminal);
+    line-height: 1;
+}
+
+.mixer-channel-label {
+    color: var(--mixer-accent);
+    font-size: 15px;
+}
+
+#mixerTrackTitle {
+    min-height: 36px;
+    overflow-wrap: anywhere;
+    color: #fff;
+    font-family: var(--font-pixel);
+    font-size: 11px;
+    line-height: 1.35;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.mixer-status {
+    padding: 5px 7px;
+    overflow: hidden;
+    color: #c5bdcc;
+    background: #030304;
+    border-left: 3px solid var(--mixer-accent);
+    font-size: 14px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mixer-window.is-error .mixer-status {
+    color: #ff9fb5;
+    border-left-color: #ff0044;
+}
+
+.mixer-store-link {
+    width: fit-content;
+    color: var(--mixer-accent);
+    font-family: var(--font-terminal);
+    font-size: 15px;
+    line-height: 1;
+    text-decoration: none;
+}
+
+.mixer-store-link:hover {
+    color: #fff;
+    text-shadow: 0 0 8px var(--mixer-accent);
+}
+
+.mixer-footer {
+    padding: 7px 10px;
+    color: #7d7585;
+    background: #030304;
+    border-top: 2px solid rgba(255,255,255,0.12);
+    font-size: 12px;
+    text-align: center;
+}
+
+@media (max-width: 520px) {
+    .mixer-window {
+        right: 10px;
+        bottom: 10px;
+        width: calc(100vw - 20px);
+        box-shadow: 6px 6px 0 #000, 0 0 16px color-mix(in srgb, var(--mixer-accent) 48%, transparent);
+    }
+
+    .mixer-titlebar {
+        font-size: 16px;
+    }
+
+    .mixer-content {
+        grid-template-columns: 104px minmax(0, 1fr);
+        gap: 10px;
+        padding: 10px;
+    }
+
+    #mixerTrackTitle {
+        font-size: 9px;
+    }
+
+    .mixer-channel-label,
+    .mixer-status,
+    .mixer-store-link {
+        font-size: 13px;
+    }
+}
+
 /* Bottom Art */
 .bottom-art-container {
     box-sizing: border-box;
