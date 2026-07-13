@@ -5,6 +5,7 @@
     const CONFIG = window.CG_CONFIG || {};
     const STORAGE_VOLUME = CONFIG.storageKeys?.masterVolume || "cgMasterVolume";
     const STORAGE_ENABLED = CONFIG.storageKeys?.musicEnabled || "cgMusicEnabled";
+    const SFX_CONFIG = CONFIG.sfx || {};
     const DEFAULT_VOLUME = 0.4;
 
     let currentTrack = null;
@@ -15,12 +16,13 @@
 
     const multipliers = {
         bgMusicPage: 1,
-        bgMusicArcade: 1.35,
+        bgMusicArcade: 1,
         bgMusicSecret: 1,
-        bgMusicChar: 0.9,
-        bgMusicSuddenDeath: 1.25,
-        bgMusicGameOver: 1.1,
-        bgMusicVictory: 1.1
+        bgMusicChar: 1,
+        bgMusicStart: 1,
+        bgMusicSuddenDeath: 1,
+        bgMusicGameOver: 1,
+        bgMusicVictory: 1
     };
 
     function getAudio(id) {
@@ -128,6 +130,10 @@
             activeSfx.clear();
         },
 
+        playUiButton() {
+            this.playSfx(SFX_CONFIG.uiButton, { volume: 0.45 });
+        },
+
         pauseCurrent() {
             if (currentTrack) pauseAudio(currentTrack, false);
         },
@@ -178,8 +184,15 @@
         updateButton(button);
         applyVolume();
 
-        const defaultTrack = document.body.classList.contains("arcade-page") ? "bgMusicArcade" : "bgMusicPage";
+        const getDefaultTrack = () => {
+            if (document.body.classList.contains("arcade-page")) return "bgMusicArcade";
+            const startWindow = document.getElementById("startWindow");
+            if (startWindow && document.getElementById("bgMusicStart")) return "bgMusicStart";
+            return "bgMusicPage";
+        };
+
         const unlockAudio = () => {
+            const defaultTrack = getDefaultTrack();
             if (musicEnabled && getAudio(defaultTrack)) {
                 manager.playBg(defaultTrack);
             }
@@ -191,5 +204,11 @@
         document.addEventListener("click", unlockAudio, true);
         document.addEventListener("touchend", unlockAudio, { capture: true, passive: true });
         document.addEventListener("keydown", unlockAudio, true);
+
+        document.addEventListener("click", (event) => {
+            const control = event.target.closest?.("button, a, [role='button']");
+            if (!control || control.disabled || control.getAttribute("aria-disabled") === "true") return;
+            manager.playUiButton();
+        }, true);
     });
 })();

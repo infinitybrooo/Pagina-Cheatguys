@@ -626,6 +626,7 @@ body.laptop-program-lock {
     border: 5px solid #fff;
     box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.78), 0 0 28px rgba(0, 255, 255, 0.44);
     transform: translate(-50%, -50%);
+    animation: laptop-window-open 0.26s steps(5, end);
 }
 
 .laptop-bunker.is-mobile-program-open .laptop-screen::before {
@@ -694,10 +695,12 @@ body.laptop-program-lock {
         url('../assets/images/cheatguys-info/fondo-ado.jpg') center / cover no-repeat;
     background-size: auto, 100% 4px, cover;
     border: 2px solid rgba(255, 255, 255, 0.16);
+    isolation: isolate;
+    animation: laptop-desktop-boot 0.32s steps(5, end);
 }
 
 .laptop-desktop::after {
-    content: "AKANE_OS  //  ADO_WALLPAPER.JPG  //  WIFI: ANXIETY";
+    content: "START  |  AKANE_OS  |  ADO_WALLPAPER.JPG  |  WIFI: ANXIETY  |  03:33";
     position: absolute;
     left: 0;
     right: 0;
@@ -714,6 +717,21 @@ body.laptop-program-lock {
     font-size: 10px;
     line-height: 1.2;
     text-shadow: none;
+}
+
+.laptop-desktop::before {
+    content: "";
+    position: absolute;
+    inset: auto 18px 48px auto;
+    z-index: 2;
+    width: 160px;
+    height: 54px;
+    border: 3px solid rgba(255, 255, 255, 0.74);
+    background:
+        linear-gradient(90deg, rgba(0, 255, 255, 0.24), transparent 45%),
+        rgba(5, 0, 10, 0.72);
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.72);
+    opacity: 0.82;
 }
 
 .laptop-topbar,
@@ -737,8 +755,9 @@ body.laptop-program-lock {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 18px;
     position: relative;
-    z-index: 3;
+    z-index: 4;
     padding: 34px 18px 52px;
+    width: min(100%, 430px);
 }
 
 .laptop-app-icon {
@@ -789,10 +808,117 @@ body.laptop-program-lock {
     box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.74);
 }
 
+.laptop-desktop-window,
+.laptop-desktop-widget {
+    position: absolute;
+    z-index: 3;
+    color: #05000a;
+    font-family: var(--font-pixel);
+    text-shadow: none;
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.76);
+}
+
+.laptop-desktop-window {
+    background: #ece8f6;
+    border: 3px solid #fff;
+    outline: 2px solid #05000a;
+}
+
+.laptop-akane-panel {
+    right: 24px;
+    top: 78px;
+    width: 232px;
+    transform: rotate(1deg);
+}
+
+.laptop-status-panel {
+    right: 82px;
+    bottom: 76px;
+    width: 178px;
+    transform: rotate(-1.5deg);
+}
+
+.laptop-window-titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    min-height: 24px;
+    padding: 3px 6px;
+    color: #fff;
+    background: linear-gradient(90deg, #1d188f, #8a2be2);
+    border-bottom: 2px solid #05000a;
+    font-size: 10px;
+}
+
+.laptop-window-body {
+    padding: 7px 8px 9px;
+    background:
+        linear-gradient(rgba(138, 43, 226, 0.08) 1px, transparent 1px),
+        #f7f2ff;
+    background-size: 100% 12px;
+}
+
+.laptop-window-body p {
+    margin: 0 0 5px;
+    font-size: 9px;
+    line-height: 1.18;
+}
+
+.laptop-sticky-note {
+    left: 28px;
+    bottom: 64px;
+    width: 150px;
+    min-height: 72px;
+    padding: 10px 9px;
+    background: #fff36a;
+    border: 3px solid #fff;
+    outline: 2px solid #05000a;
+    transform: rotate(-4deg);
+}
+
+.laptop-sticky-note strong,
+.laptop-sticky-note span {
+    display: block;
+    font-size: 10px;
+    line-height: 1.15;
+}
+
+.laptop-sticky-note span {
+    margin-top: 7px;
+}
+
+.laptop-mini-eq {
+    right: 38px;
+    bottom: 58px;
+    display: flex;
+    align-items: end;
+    gap: 5px;
+    width: 82px;
+    height: 42px;
+    padding: 7px;
+    background: rgba(5, 0, 10, 0.78);
+    border: 3px solid var(--info-cyan);
+}
+
+.laptop-mini-eq span {
+    width: 8px;
+    background: var(--info-hot);
+    box-shadow: 0 0 8px var(--info-hot);
+    animation: laptop-eq-pulse 0.82s steps(4, end) infinite;
+}
+
+.laptop-mini-eq span:nth-child(1) { height: 42%; animation-delay: -0.1s; }
+.laptop-mini-eq span:nth-child(2) { height: 78%; animation-delay: -0.3s; }
+.laptop-mini-eq span:nth-child(3) { height: 54%; animation-delay: -0.5s; }
+.laptop-mini-eq span:nth-child(4) { height: 92%; animation-delay: -0.2s; }
+.laptop-mini-eq span:nth-child(5) { height: 36%; animation-delay: -0.4s; }
+
 .laptop-chat-room {
     display: grid;
     grid-template-rows: auto minmax(0, 1fr) auto;
     gap: 12px;
+    animation: laptop-panel-open 0.2s steps(4, end);
 }
 
 .laptop-chat-room[hidden],
@@ -1012,6 +1138,48 @@ body.laptop-program-lock {
     background: rgba(0, 0, 0, 0.28);
     border: 2px solid rgba(255, 255, 255, 0.38);
     border-radius: 3px;
+}
+
+@keyframes laptop-window-open {
+    0% {
+        opacity: 0;
+        filter: contrast(1.8) brightness(1.35);
+        clip-path: inset(46% 46% 46% 46%);
+    }
+    60% {
+        opacity: 1;
+        filter: contrast(1.25) brightness(1.18);
+        clip-path: inset(0 0 0 0);
+    }
+    100% {
+        opacity: 1;
+        filter: none;
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes laptop-panel-open {
+    0% {
+        opacity: 0;
+        transform: translateY(8px);
+        filter: brightness(1.35);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: none;
+    }
+}
+
+@keyframes laptop-desktop-boot {
+    0% { opacity: 0; filter: brightness(1.8) saturate(0.2); }
+    45% { opacity: 1; filter: brightness(1.35) saturate(1.4); }
+    100% { opacity: 1; filter: none; }
+}
+
+@keyframes laptop-eq-pulse {
+    0%, 100% { transform: scaleY(0.62); }
+    50% { transform: scaleY(1); }
 }
 
 .info-image-modal {

@@ -1,0 +1,365 @@
+.arcade-stage-panel-selector {
+    width: min(94vw, 880px);
+    min-height: min(620px, calc(100dvh - 96px));
+    gap: 10px;
+    padding: 20px 26px 22px;
+}
+
+.arcade-stage-panel-selector .arcade-title {
+    font-size: clamp(50px, 7vw, 70px);
+}
+
+.arcade-game-selector {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.arcade-game-option {
+    min-width: 0;
+    min-height: 210px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 10px;
+    padding: 13px 12px 11px;
+    color: #f8f4ff;
+    font-family: 'VT323', monospace;
+    background: #07040e;
+    border: 3px solid rgba(0, 255, 255, 0.42);
+    border-radius: 4px;
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.85), inset 0 0 18px rgba(0, 255, 255, 0.06);
+    cursor: pointer;
+    transition: border-color 120ms steps(2), color 120ms steps(2), transform 120ms steps(2), box-shadow 120ms steps(2);
+}
+
+.arcade-game-option:nth-child(2) {
+    border-color: rgba(255, 105, 180, 0.46);
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.85), inset 0 0 18px rgba(255, 105, 180, 0.07);
+}
+
+.arcade-game-option:hover,
+.arcade-game-option:focus-visible {
+    color: #fff;
+    border-color: #fff;
+    outline: 0;
+    transform: translateY(-2px);
+}
+
+.arcade-game-option.is-selected {
+    border-color: var(--neon-cyan);
+    box-shadow: 6px 6px 0 var(--akane-color), 0 0 16px rgba(0, 255, 255, 0.28), inset 0 0 20px rgba(0, 255, 255, 0.09);
+}
+
+.arcade-game-option:nth-child(2).is-selected {
+    border-color: var(--neon-magenta);
+    box-shadow: 6px 6px 0 var(--neon-cyan), 0 0 16px rgba(255, 105, 180, 0.26), inset 0 0 20px rgba(255, 105, 180, 0.08);
+}
+
+.arcade-game-option-title {
+    font-size: clamp(25px, 3vw, 34px);
+    line-height: 1;
+    color: var(--neon-cyan);
+    text-shadow: 2px 2px 0 #000, 0 0 10px rgba(0, 255, 255, 0.34);
+}
+
+.arcade-game-option:nth-child(2) .arcade-game-option-title {
+    color: var(--neon-magenta);
+    text-shadow: 2px 2px 0 #000, 0 0 10px rgba(255, 105, 180, 0.34);
+}
+
+.arcade-game-icon {
+    position: relative;
+    width: min(100%, 168px);
+    min-height: 118px;
+    justify-self: center;
+    display: grid;
+    place-items: center;
+    isolation: isolate;
+}
+
+.arcade-game-icon::before {
+    content: "";
+    position: absolute;
+    inset: 16px 14px 10px;
+    z-index: -1;
+    background:
+        linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 105, 180, 0.08) 1px, transparent 1px),
+        rgba(2, 0, 6, 0.86);
+    background-size: 12px 12px;
+    border: 2px solid rgba(255, 255, 255, 0.26);
+    transform: skew(-4deg);
+}
+
+.arcade-game-icon img {
+    display: block;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.arcade-icon-main {
+    width: 92px;
+    height: 96px;
+    filter: drop-shadow(0 0 7px rgba(0, 255, 255, 0.45));
+}
+
+.arcade-space-icon .arcade-icon-main {
+    width: 96px;
+    height: 84px;
+}
+
+.arcade-maze-icon .arcade-icon-main {
+    width: 78px;
+    height: 106px;
+}
+
+.arcade-icon-badge {
+    position: absolute;
+    right: 4px;
+    bottom: 12px;
+    width: 52px;
+    height: 50px;
+    filter: drop-shadow(0 0 6px rgba(255, 105, 180, 0.42));
+}
+
+.arcade-space-icon .arcade-icon-badge {
+    right: 3px;
+    bottom: 22px;
+    width: 58px;
+    height: 48px;
+}
+
+.arcade-icon-note {
+    position: absolute;
+    left: 9px;
+    bottom: 17px;
+    width: 35px;
+    height: 38px;
+    filter: drop-shadow(0 0 5px rgba(255, 211, 42, 0.5));
+}
+
+.arcade-game-option-meta {
+    min-width: 0;
+    padding: 5px 7px;
+    overflow: hidden;
+    color: #dcb8ff;
+    background: rgba(0, 0, 0, 0.64);
+    border-top: 1px dashed rgba(255, 255, 255, 0.34);
+    font-size: 17px;
+    line-height: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.arcade-stage-panel-selector .arcade-stage-stats {
+    width: 100%;
+    max-width: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px 10px;
+}
+
+.arcade-stage-panel-selector .arcade-stage-stats span {
+    min-height: 27px;
+    font-size: 17px;
+}
+
+[data-arcade-overall-record].is-akane-beaten,
+#arcadeRecordStatus.is-akane-beaten {
+    color: #ffd32a;
+    text-shadow: 0 0 8px rgba(255, 211, 42, 0.55);
+}
+
+.arcade-stage-panel-selector .arcade-buttons-wrapper {
+    max-width: 560px;
+}
+
+#arcadeGameScreen .canvas-container {
+    width: 100%;
+}
+
+#arcadeGameScreen #akaneMazeCanvas {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    image-rendering: pixelated;
+    background: #030008;
+}
+
+.maze-mobile-controls {
+    width: 100%;
+    min-height: 58px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 9px;
+}
+
+.maze-direction-btn {
+    min-width: 0;
+    min-height: 56px;
+    padding: 4px;
+    color: var(--neon-cyan);
+    font-family: 'VT323', monospace;
+    font-size: 28px;
+    line-height: 1;
+    background: #09050f;
+    border: 3px solid rgba(0, 255, 255, 0.72);
+    border-radius: 4px;
+    box-shadow: 0 5px 0 #25104d, 4px 7px 0 rgba(0, 0, 0, 0.78), inset 0 0 12px rgba(138, 43, 226, 0.18);
+    cursor: pointer;
+    touch-action: none;
+    user-select: none;
+}
+
+.maze-direction-btn:hover,
+.maze-direction-btn:focus-visible {
+    color: #fff;
+    border-color: var(--neon-magenta);
+    outline: 0;
+}
+
+.maze-direction-btn:active,
+.maze-direction-btn.is-pressed {
+    transform: translate(2px, 4px);
+    box-shadow: 0 1px 0 #25104d, 2px 3px 0 rgba(0, 0, 0, 0.82), inset 0 0 16px rgba(255, 105, 180, 0.22);
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media (max-height: 760px) and (min-width: 621px) {
+    .arcade-stage-panel-selector {
+        min-height: calc(100dvh - 82px);
+        padding: 14px 22px 16px;
+        gap: 7px;
+    }
+
+    .arcade-stage-panel-selector .arcade-title {
+        font-size: 54px;
+    }
+
+    .arcade-game-option {
+        min-height: 188px;
+        padding: 8px;
+    }
+
+    .arcade-game-icon {
+        min-height: 102px;
+    }
+
+    .arcade-game-option-title {
+        font-size: 28px;
+    }
+
+    .maze-mobile-controls {
+        min-height: 52px;
+        gap: 7px;
+    }
+
+    .maze-direction-btn {
+        min-height: 50px;
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 620px) {
+    .arcade-stage-panel-selector {
+        width: min(100%, 440px);
+        min-height: calc(100dvh - 92px);
+        padding: 12px 10px 14px;
+        gap: 7px;
+    }
+
+    .arcade-stage-panel-selector .arcade-title {
+        font-size: clamp(38px, 12vw, 50px);
+    }
+
+    .arcade-game-selector {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .arcade-game-option {
+        min-height: 164px;
+        gap: 5px;
+        padding: 7px;
+    }
+
+    .arcade-game-icon {
+        width: min(100%, 136px);
+        min-height: 86px;
+    }
+
+    .arcade-icon-main {
+        width: 72px;
+        height: 76px;
+    }
+
+    .arcade-space-icon .arcade-icon-main {
+        width: 76px;
+        height: 64px;
+    }
+
+    .arcade-maze-icon .arcade-icon-main {
+        width: 58px;
+        height: 78px;
+    }
+
+    .arcade-icon-badge {
+        width: 38px;
+        height: 37px;
+        right: 3px;
+        bottom: 9px;
+    }
+
+    .arcade-icon-note {
+        width: 27px;
+        height: 29px;
+        left: 6px;
+        bottom: 13px;
+    }
+
+    .arcade-game-option-title {
+        font-size: clamp(19px, 5.6vw, 25px);
+    }
+
+    .arcade-game-option-meta {
+        padding-left: 3px;
+        padding-right: 3px;
+        font-size: 13px;
+    }
+
+    .arcade-stage-panel-selector .arcade-stage-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    .arcade-stage-panel-selector .arcade-stage-stats span {
+        font-size: 14px;
+    }
+
+    .arcade-stage-panel-selector .arcade-btn {
+        min-height: 48px;
+        font-size: 22px;
+    }
+
+    .maze-mobile-controls {
+        min-height: 50px;
+        gap: 6px;
+    }
+
+    .maze-direction-btn {
+        min-height: 48px;
+        font-size: 24px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .arcade-game-option,
+    .maze-direction-btn {
+        transition: none;
+    }
+}

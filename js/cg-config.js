@@ -30,11 +30,15 @@
             bsodDurationMs: 1500,
             blackFadeMs: 320,
             sfx: {
-                // Rutas opcionales: dejar vacias mantiene la secuencia silenciosa y estable.
-                dialogue: "",
-                glitch: "",
-                error: ""
+                dialogue: "assets/audio/later/botones.wav",
+                glitch: "assets/audio/later/colapso_akane.mp3",
+                error: "assets/audio/later/colapso_akane.mp3"
             }
+        },
+        sfx: {
+            uiButton: "assets/audio/later/botones.wav",
+            laptop: "assets/audio/later/laptop_akane.mp3",
+            powerUp: "assets/audio/later/powerup_minijuego.wav"
         },
         breakpoints: {
             mobile: 768,

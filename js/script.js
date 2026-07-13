@@ -21,7 +21,8 @@
         const SHOOT_SFX_POOL_SIZE = 5;
         const SHOOT_SFX_MIN_INTERVAL = 38;
         const SHOOT_SFX_BASE_VOLUME = 0.2;
-        const AKANE_MAX_SCORE = 99999;
+        const AKANE_MAX_SCORE = window.ArcadeRecords?.AKANE_SCORE || 99999;
+        const POWERUP_SFX_URL = window.CG_CONFIG?.sfx?.powerUp || 'assets/audio/later/powerup_minijuego.wav';
         const shootSfxPool = [];
         let shootSfxIndex = 0;
         let lastShootSfxTime = 0;
@@ -111,7 +112,7 @@
                 this._volume = value;
                 ['bgMusicArcade', 'bgMusicSuddenDeath', 'bgMusicGameOver', 'bgMusicVictory'].forEach((id) => {
                     const el = document.getElementById(id);
-                    if (el) el.volume = Math.min(value * (id === 'bgMusicArcade' ? 1.35 : 1.1), 1);
+                    if (el) el.volume = Math.min(value, 1);
                 });
             },
             playBg(id) {
@@ -178,6 +179,17 @@
             shootSfxIndex = (shootSfxIndex + 1) % shootSfxPool.length;
             audio.volume = SHOOT_SFX_BASE_VOLUME * getCurrentArcadeVolume();
             audio.currentTime = 0;
+            audio.play().catch(() => {});
+        }
+
+        function playPowerUpSfx() {
+            if (window.AudioManager?.playSfx) {
+                window.AudioManager.playSfx(POWERUP_SFX_URL, { volume: 0.55 });
+                return;
+            }
+
+            const audio = new Audio(POWERUP_SFX_URL);
+            audio.volume = Math.min(getCurrentArcadeVolume() * 0.55, 1);
             audio.play().catch(() => {});
         }
 
@@ -397,7 +409,7 @@
         }
 
         function updateNewRecordState() {
-            if (!newRecordReached && score >= AKANE_MAX_SCORE) {
+            if (!newRecordReached && score > AKANE_MAX_SCORE) {
                 newRecordReached = true;
                 showWaveBanner('NUEVO RECORD // SIGUE VIVO', '#FFD32A');
                 addFloatingText('NUEVO RECORD', canvas.width / 2, 286, '#FFD32A', 26);
@@ -482,7 +494,15 @@
         function gameOver() {
             detenerJuego();
             playArcadeBg('bgMusicGameOver');
-            document.getElementById('finalScoreText').innerText = `PUNTUACIÓN FINAL: ${score}`;
+            window.ArcadeRecords?.record(window.ArcadeRecords.GAME_IDS.SPACE, score);
+            const formattedScore = window.ArcadeRecords?.format(score) || String(score);
+            document.getElementById('finalScoreText').innerText = `PUNTUACIÓN FINAL: ${formattedScore}`;
+            const modeLabel = document.getElementById('arcadeGameOverMode');
+            if (modeLabel) modeLabel.innerText = `SPACE INVADERS // WAVE ${String(Math.max(waveCount, 1)).padStart(2, '0')}`;
+            const copy = document.getElementById('arcadeGameOverCopy');
+            if (copy) copy.innerText = score > AKANE_MAX_SCORE
+                ? 'Akane ya vio tu record. Ahora intentara recuperarlo.'
+                : 'La Demonio del Arcade sigue invicta.';
             showScreen('over');
         }
 
@@ -1120,7 +1140,9 @@
         }
 
         function actualizarScore() {
-            document.getElementById('currentScore').innerText = `SCORE: ${score}`;
+            window.ArcadeRecords?.record(window.ArcadeRecords.GAME_IDS.SPACE, score);
+            const formattedScore = window.ArcadeRecords?.format(score) || String(score);
+            document.getElementById('currentScore').innerText = `SCORE: ${formattedScore}`;
             updateNewRecordState();
             const livesContainer = document.getElementById('livesDisplay');
             livesContainer.innerHTML = '';
@@ -1298,6 +1320,7 @@
         }
 
         function applyPowerUp(powerUp) {
+            playPowerUpSfx();
             if (powerUp.type === 'double') powerDoubleTimer = 620;
             if (powerUp.type === 'slow') powerSlowTimer = 520;
             if (powerUp.type === 'pierce') powerPierceTimer = 520;

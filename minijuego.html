@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/fonts.css?v=20260706-localfonts1">
     <link rel="stylesheet" href="css/style.css?v=20260629-noideatoon1">
     <link rel="stylesheet" href="css/galeria.css?v=20260629-sidebar-logo1">
+    <link rel="stylesheet" href="css/minijuego.css?v=20260713-akane-maze1">
 </head>
 <body class="arcade-page">
 
@@ -65,19 +66,36 @@
         <button class="arcade-close-master" onclick="cerrarArcade()" title="Volver al lobby">[X]</button>
 
         <div id="arcadeStartScreen" class="arcade-screen arcade-menu-screen active">
-            <div class="arcade-stage-panel arcade-stage-panel-start">
+            <div class="arcade-stage-panel arcade-stage-panel-start arcade-stage-panel-selector">
                 <span class="arcade-stage-tag">INSERT COIN // AKANE_ARCADE</span>
-                <h1 class="arcade-title">ARCADE STAGE</h1>
-                <div class="arcade-character-frame">
-                    <img loading="lazy" src="assets/arcade/mobile/arcade-start-akane.webp" alt="Demon Akane" class="arcade-img-start glitch-effect" decoding="async">
+                <h1 class="arcade-title">ARCADE SELECT</h1>
+                <div class="arcade-game-selector" role="group" aria-label="Selecciona un minijuego">
+                    <button type="button" class="arcade-game-option is-selected" data-arcade-game="space-invaders" aria-pressed="true">
+                        <span class="arcade-game-option-title">SPACE INVADERS</span>
+                        <span class="arcade-game-icon arcade-space-icon" aria-hidden="true">
+                            <img src="assets/arcade/sprites/custom-akane.png" alt="" class="arcade-icon-main">
+                            <img src="assets/arcade/sprites/custom-nave-roja-hoshi.png" alt="" class="arcade-icon-badge">
+                        </span>
+                        <span class="arcade-game-option-meta">PURPLE RUN // RECORD <b data-arcade-game-record="space-invaders">0</b></span>
+                    </button>
+                    <button type="button" class="arcade-game-option" data-arcade-game="akane-maze" aria-pressed="false">
+                        <span class="arcade-game-option-title">AKANE MAZE</span>
+                        <span class="arcade-game-icon arcade-maze-icon" aria-hidden="true">
+                            <img src="assets/arcade/pacman/sprites/akane-down.png" alt="" class="arcade-icon-main">
+                            <img src="assets/arcade/pacman/sprites/ghost-red.png" alt="" class="arcade-icon-badge">
+                            <img src="assets/arcade/pacman/sprites/note.png" alt="" class="arcade-icon-note">
+                        </span>
+                        <span class="arcade-game-option-meta">ENDLESS MAZE // RECORD <b data-arcade-game-record="akane-maze">0</b></span>
+                    </button>
                 </div>
-                <p class="arcade-text">&iquest;Crees que puedas superar la m&aacute;xima puntuaci&oacute;n de la Demonio del Arcade?<br>&iexcl;Int&eacute;ntalo!... Si te atreves...</p>
                 <div class="arcade-stage-stats" aria-label="Datos de la partida">
-                    <span>RECORD: 99,999</span>
-                    <span>MODE: PURPLE RUN</span>
+                    <span>AKANE: 99,999</span>
+                    <span>TU RECORD: <b data-arcade-overall-record>0</b></span>
+                    <span id="arcadeRecordStatus">AKANE SIGUE ARRIBA</span>
+                    <span>MODE: <b id="arcadeSelectedMode">SPACE INVADERS</b></span>
                 </div>
                 <div class="arcade-buttons-wrapper">
-                    <button type="button" class="arcade-btn" onclick="iniciarJuegoArcade()">[ INICIAR_JUEGO ]</button>
+                    <button type="button" class="arcade-btn" onclick="iniciarJuegoSeleccionado()">[ INICIAR_JUEGO ]</button>
                 </div>
             </div>
         </div>
@@ -101,8 +119,9 @@
                 <div id="arcadeStatusLine" class="arcade-status-line">WAVE 01 // READY</div>
                 <div class="canvas-container">
                     <canvas id="spaceInvadersCanvas" width="400" height="500"></canvas>
+                    <canvas id="akaneMazeCanvas" width="400" height="500" hidden></canvas>
                 </div>
-                <div class="mobile-controls">
+                <div class="mobile-controls" data-space-controls>
                     <button type="button" class="m-btn m-btn-shoot" data-arcade-action="shoot" aria-label="Disparar">
                         <span class="arcade-control-icon icon-fire" aria-hidden="true"></span>
                         <span>FIRE</span>
@@ -113,6 +132,12 @@
                         </div>
                     </div>
                 </div>
+                <div class="maze-mobile-controls" data-maze-controls hidden aria-label="Controles de Akane Maze">
+                    <button type="button" class="maze-direction-btn maze-up" data-maze-direction="up" aria-label="Mover arriba">&#9650;</button>
+                    <button type="button" class="maze-direction-btn maze-left" data-maze-direction="left" aria-label="Mover izquierda">&#9664;</button>
+                    <button type="button" class="maze-direction-btn maze-down" data-maze-direction="down" aria-label="Mover abajo">&#9660;</button>
+                    <button type="button" class="maze-direction-btn maze-right" data-maze-direction="right" aria-label="Mover derecha">&#9654;</button>
+                </div>
                 <div id="arcadePauseMenu" class="arcade-pause-menu" aria-hidden="true">
                     <div class="arcade-pause-panel">
                         <span class="arcade-stage-tag">PAUSE // INSERT SNACK</span>
@@ -122,7 +147,7 @@
                                 <span class="arcade-control-icon icon-play" aria-hidden="true"></span>
                                 <span>REANUDAR</span>
                             </button>
-                            <button type="button" class="arcade-btn arcade-pause-action" onclick="iniciarJuegoArcade()">
+                            <button type="button" class="arcade-btn arcade-pause-action" onclick="reiniciarJuegoArcade()">
                                 <span class="arcade-control-icon icon-restart" aria-hidden="true"></span>
                                 <span>REINICIAR</span>
                             </button>
@@ -138,19 +163,19 @@
 
         <div id="arcadeGameOverScreen" class="arcade-screen arcade-menu-screen">
             <div class="arcade-stage-panel arcade-stage-panel-over">
-                <span class="arcade-stage-tag">RUN FAILED // SCORE_LOG</span>
+                <span class="arcade-stage-tag" id="arcadeGameOverMode">RUN FAILED // SCORE_LOG</span>
                 <h1 class="arcade-title game-over-title">GAME OVER</h1>
                 <div class="arcade-character-frame">
                     <img loading="lazy" src="assets/arcade/mobile/arcade-gameover-rika.webp" alt="Defeat - Rika" class="game-over-img glitch-effect" decoding="async">
                 </div>
                 <p class="arcade-text arcade-final-score" id="finalScoreText">PUNTUACI&Oacute;N FINAL: 0</p>
-                <p class="arcade-text arcade-game-over-copy">La Demonio del Arcade sigue invicta.</p>
+                <p class="arcade-text arcade-game-over-copy" id="arcadeGameOverCopy">La Demonio del Arcade sigue invicta.</p>
                 <div class="arcade-stage-stats" aria-label="Estado de la partida">
                     <span>AKANE: 99,999</span>
-                    <span>STATUS: CONTINUE?</span>
+                    <span>TU RECORD: <b data-arcade-overall-record>0</b></span>
                 </div>
                 <div class="arcade-buttons-wrapper">
-                    <button type="button" class="arcade-btn" onclick="iniciarJuegoArcade()">[ &iquest;OTRA FICHA? ]</button>
+                    <button type="button" class="arcade-btn" onclick="reiniciarJuegoArcade()">[ &iquest;OTRA FICHA? ]</button>
                 </div>
             </div>
         </div>
@@ -178,7 +203,10 @@
     <script src="js/cg-diagnostics.js?v=20260713-maint1"></script>
     <script src="js/audio-global.js?v=20260713-maint1"></script>
     <script src="js/ui-global.js?v=20260707-ui1"></script>
-    <script src="js/script.js?v=20260706-pause1"></script>
+    <script src="js/arcade-records.js?v=20260713-akane-maze1"></script>
+    <script src="js/arcade-pacman.js?v=20260713-akane-maze1"></script>
+    <script src="js/script.js?v=20260713-akane-maze1"></script>
+    <script src="js/arcade-controller.js?v=20260713-akane-maze1"></script>
     <script>
         (() => {
             const sys = "color:#ff3df2;background:#16001f;border:1px solid #ff3df2;padding:2px 6px;font-family:monospace;text-shadow:0 0 8px #ff3df2;";

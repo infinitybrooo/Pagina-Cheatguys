@@ -205,9 +205,57 @@ test("minijuego inicia sin 404 principales", async ({ page }) => {
     await page.goto("/minijuego.html");
 
     await expect(page.locator("#arcadeStartScreen")).toHaveClass(/active/);
+    await expect(page.locator("[data-arcade-game]")).toHaveCount(2);
     await page.locator("button", { hasText: "[ INICIAR_JUEGO ]" }).first().click();
     await expect(page.locator("#arcadeGameScreen")).toHaveClass(/active/);
     await expect(page.locator("#spaceInvadersCanvas")).toBeVisible();
+
+    expect(audit.consoleErrors).toEqual([]);
+    expect(audit.failedResources).toEqual([]);
+});
+
+test("Akane Maze inicia y conserva el record en localStorage", async ({ page }) => {
+    const audit = await preparePage(page);
+    await page.goto("/minijuego.html?game=maze");
+
+    const mazeOption = page.locator('[data-arcade-game="akane-maze"]');
+    await expect(mazeOption).toHaveAttribute("aria-pressed", "true");
+    await expect(mazeOption.locator(".arcade-game-icon img")).toHaveCount(3);
+    await expect(page.locator("#akaneMazePreview")).toHaveCount(0);
+    await page.locator("button", { hasText: "[ INICIAR_JUEGO ]" }).first().click();
+    await expect(page.locator("#arcadeGameScreen")).toHaveClass(/active/);
+    await expect(page.locator("#akaneMazeCanvas")).toBeVisible();
+    await expect(page.locator("#spaceInvadersCanvas")).toBeHidden();
+    await expect(page.locator("#arcadeStatusLine")).toContainText("LEVEL 01");
+    await page.waitForTimeout(1400);
+
+    const readMazeState = async () => page.evaluate(() => window.__akaneMazeDebugState());
+    const directions = ["ArrowUp", "ArrowLeft", "ArrowRight", "ArrowDown"];
+    let movement = null;
+    for (const direction of directions) {
+        const before = await readMazeState();
+        await page.keyboard.down(direction);
+        await page.waitForTimeout(650);
+        const during = await readMazeState();
+        await page.keyboard.up(direction);
+        await page.waitForTimeout(650);
+        const after = await readMazeState();
+        const moved = Math.hypot(during.player.c - before.player.c, during.player.r - before.player.r);
+        const driftAfterRelease = Math.hypot(after.player.c - during.player.c, after.player.r - during.player.r);
+        if (moved > 0.12) {
+            movement = { moved, driftAfterRelease };
+            break;
+        }
+    }
+    expect(movement?.moved).toBeGreaterThan(0.12);
+    expect(movement.driftAfterRelease).toBeLessThan(0.08);
+
+    await page.evaluate(() => {
+        window.ArcadeRecords.record(window.ArcadeRecords.GAME_IDS.MAZE, 123456);
+    });
+    await page.reload();
+    await expect(page.locator("[data-arcade-overall-record]").first()).toHaveText("123,456");
+    await expect(page.locator("#arcadeRecordStatus")).toHaveText("TU RECORD SUPERA A AKANE");
 
     expect(audit.consoleErrors).toEqual([]);
     expect(audit.failedResources).toEqual([]);

@@ -10,6 +10,7 @@
     const MAX_MESSAGE_LENGTH = CHAT_CONFIG.maxMessageLength || 500;
     const MAX_HISTORY_ITEMS = CHAT_CONFIG.maxHistoryItems || 8;
     const REQUEST_TIMEOUT_MS = CHAT_CONFIG.requestTimeoutMs || 12000;
+    const LAPTOP_SFX = CONFIG.sfx?.laptop || "assets/audio/later/laptop_akane.mp3";
     const CG_LOG = window.CG_LOG || null;
 
     const characters = {
@@ -159,6 +160,7 @@
         }
 
         const character = characters[characterId] || characters.akane;
+        window.AudioManager?.playSfx?.(LAPTOP_SFX, { volume: 0.6 });
         currentCharacter = character;
 
         els.chatAvatar.src = character.icon;
@@ -206,6 +208,7 @@
 
     function openMobileProgramWindow(els) {
         if (!els.bunker) return;
+        window.AudioManager?.playSfx?.(LAPTOP_SFX, { volume: 0.45 });
         els.bunker.classList.add("is-mobile-program-open");
         document.body.classList.add("laptop-program-lock");
         if (els.screen) els.screen.scrollTop = 0;
@@ -299,16 +302,19 @@
     function setupLaptop() {
         const els = getElements();
         if (!els.bunker || !els.desktop || !els.chatRoom || !els.form) return;
+        els.bunker.dataset.ready = "true";
 
         updateLaptopMobileScale(els);
         if (els.input) {
             els.input.maxLength = MAX_MESSAGE_LENGTH;
         }
 
-        els.characterButtons.forEach((button) => {
-            button.addEventListener("click", () => {
-                openChat(button.dataset.laptopCharacter, els);
-            });
+        els.bunker.addEventListener("click", (event) => {
+            const characterButton = event.target.closest?.("[data-laptop-character]");
+            if (!characterButton || !els.bunker.contains(characterButton)) return;
+            event.preventDefault();
+            event.stopPropagation();
+            openChat(characterButton.dataset.laptopCharacter, els);
         });
 
         els.closeButton.addEventListener("click", () => closeChat(els));
@@ -316,6 +322,8 @@
         if (els.screen) {
             els.screen.addEventListener("click", (event) => {
                 if (els.bunker.classList.contains("is-mobile-program-open")) return;
+                if (!window.matchMedia("(max-width: 620px)").matches) return;
+                if (event.target.closest?.("button, a, input, textarea, select, [role='button']")) return;
 
                 event.preventDefault();
                 event.stopPropagation();
@@ -349,5 +357,9 @@
         setMode("desktop", els);
     }
 
-    document.addEventListener("DOMContentLoaded", setupLaptop);
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", setupLaptop);
+    } else {
+        setupLaptop();
+    }
 })();

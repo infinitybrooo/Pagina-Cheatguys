@@ -86,6 +86,7 @@
                 document.body.classList.remove("start-window-active");
                 document.body.classList.add("page-loaded");
                 startWindow.remove();
+                window.AudioManager?.playBg("bgMusicPage");
             });
         };
 
