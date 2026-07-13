@@ -109,7 +109,7 @@
             _volume: 0.45,
             setVolume(value) {
                 this._volume = value;
-                ['bgMusicArcade', 'bgMusicSuddenDeath', 'bgMusicGameOver'].forEach((id) => {
+                ['bgMusicArcade', 'bgMusicSuddenDeath', 'bgMusicGameOver', 'bgMusicVictory'].forEach((id) => {
                     const el = document.getElementById(id);
                     if (el) el.volume = Math.min(value * (id === 'bgMusicArcade' ? 1.35 : 1.1), 1);
                 });
@@ -128,7 +128,7 @@
                 next.play().catch(() => {});
             },
             stopAll() {
-                ['bgMusicArcade', 'bgMusicSuddenDeath', 'bgMusicGameOver'].forEach((id) => {
+                ['bgMusicArcade', 'bgMusicSuddenDeath', 'bgMusicGameOver', 'bgMusicVictory'].forEach((id) => {
                     const el = document.getElementById(id);
                     if (el) el.pause();
                 });
@@ -446,7 +446,10 @@
             if(screen === 'start') screenStart.classList.add('active');
             if(screen === 'game') screenGame.classList.add('active');
             if(screen === 'over') screenOver.classList.add('active');
-            if(screen === 'win') screenWin.classList.add('active');
+            if(screen === 'win') {
+                screenWin.classList.add('active');
+                playArcadeBg('bgMusicVictory');
+            }
         }
 
         function iniciarJuegoArcade() {

@@ -1,7 +1,6 @@
 import { expect, test } from "@playwright/test";
 
 const allowedConsolePatterns = [
-    /Failed to load resource.*catbox/i,
     /favicon/i
 ];
 
