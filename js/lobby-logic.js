@@ -506,6 +506,142 @@ Bomba Estéreo - Fuego
             }
         });
 
+        const xFeedState = {
+            scriptPromise: null,
+            lastTrigger: null,
+            mobileQuery: window.matchMedia ? window.matchMedia("(max-width: 860px)") : null
+        };
+
+        function getXFeedElements() {
+            return {
+                window: document.getElementById("xFeedWindow"),
+                container: document.querySelector("[data-cg-x-feed-container]"),
+                openButton: document.querySelector("[data-cg-x-feed-open]"),
+                closeButton: document.querySelector("[data-cg-x-feed-close]")
+            };
+        }
+
+        function isXFeedMobileMode() {
+            return Boolean(xFeedState.mobileQuery && xFeedState.mobileQuery.matches);
+        }
+
+        function loadXFeedWidget() {
+            const elements = getXFeedElements();
+            if (!elements.container) return Promise.resolve();
+            if (navigator.webdriver) {
+                elements.container.dataset.cgXWidgetDisabled = "automation";
+                return Promise.resolve();
+            }
+
+            if (window.twttr?.widgets) {
+                window.twttr.widgets.load(elements.container);
+                return Promise.resolve();
+            }
+
+            if (!xFeedState.scriptPromise) {
+                xFeedState.scriptPromise = new Promise((resolve, reject) => {
+                    const existingScript = document.querySelector("script[src='https://platform.twitter.com/widgets.js']");
+                    if (existingScript) {
+                        existingScript.addEventListener("load", resolve, { once: true });
+                        existingScript.addEventListener("error", reject, { once: true });
+                        return;
+                    }
+
+                    const script = document.createElement("script");
+                    script.src = "https://platform.twitter.com/widgets.js";
+                    script.async = true;
+                    script.charset = "utf-8";
+                    script.onload = resolve;
+                    script.onerror = reject;
+                    document.head.appendChild(script);
+                }).then(() => {
+                    if (window.twttr?.widgets) window.twttr.widgets.load(elements.container);
+                }).catch((error) => {
+                    if (CG_LOG) CG_LOG.warn("X_FEED", "No se pudo cargar el timeline de X.", error);
+                });
+            }
+
+            return xFeedState.scriptPromise;
+        }
+
+        function syncXFeedMode() {
+            const elements = getXFeedElements();
+            if (!elements.window) return;
+
+            const mobile = isXFeedMobileMode();
+            if (!mobile) {
+                elements.window.classList.remove("is-open");
+                elements.window.setAttribute("aria-hidden", "false");
+                elements.window.inert = false;
+                window.setTimeout(loadXFeedWidget, 900);
+                return;
+            }
+
+            const isOpen = elements.window.classList.contains("is-open");
+            elements.window.setAttribute("aria-hidden", String(!isOpen));
+            elements.window.inert = !isOpen;
+        }
+
+        function openXFeedWindow() {
+            const elements = getXFeedElements();
+            if (!elements.window) return;
+
+            xFeedState.lastTrigger = document.activeElement;
+            loadXFeedWidget();
+
+            if (window.CGOverlay && isXFeedMobileMode()) {
+                window.CGOverlay.open("xFeedWindow", {
+                    mode: "class",
+                    openClass: "is-open",
+                    focusElement: elements.closeButton,
+                    returnFocus: xFeedState.lastTrigger,
+                    closeOthers: false,
+                    onEscape: closeXFeedWindow
+                });
+                elements.window.inert = false;
+            } else {
+                elements.window.classList.add("is-open");
+                elements.window.setAttribute("aria-hidden", "false");
+                elements.window.inert = false;
+            }
+        }
+
+        function closeXFeedWindow() {
+            const elements = getXFeedElements();
+            if (!elements.window || !isXFeedMobileMode()) return;
+
+            if (window.CGOverlay) {
+                window.CGOverlay.close("xFeedWindow", { returnFocus: xFeedState.lastTrigger });
+                elements.window.inert = true;
+            } else {
+                elements.window.classList.remove("is-open");
+                elements.window.setAttribute("aria-hidden", "true");
+                elements.window.inert = true;
+                if (xFeedState.lastTrigger && document.contains(xFeedState.lastTrigger)) {
+                    xFeedState.lastTrigger.focus({ preventScroll: true });
+                }
+            }
+            xFeedState.lastTrigger = null;
+        }
+
+        function setupXFeedWindow() {
+            const elements = getXFeedElements();
+            if (!elements.window) return;
+
+            elements.openButton?.addEventListener("click", openXFeedWindow);
+            elements.closeButton?.addEventListener("click", closeXFeedWindow);
+
+            if (xFeedState.mobileQuery) {
+                if (typeof xFeedState.mobileQuery.addEventListener === "function") {
+                    xFeedState.mobileQuery.addEventListener("change", syncXFeedMode);
+                } else if (typeof xFeedState.mobileQuery.addListener === "function") {
+                    xFeedState.mobileQuery.addListener(syncXFeedMode);
+                }
+            }
+
+            syncXFeedMode();
+        }
+
         // Animación Inicial al Entrar
         document.addEventListener("DOMContentLoaded", () => {
             if (window.CGLobbyStart) {
@@ -526,6 +662,8 @@ Bomba Estéreo - Fuego
             document.querySelectorAll("[data-cg-mixer-close]").forEach((button) => {
                 button.addEventListener("click", detenerMixerPreview);
             });
+
+            setupXFeedWindow();
 
             document.querySelectorAll("[data-cg-secret-trigger]").forEach((button) => {
                 button.addEventListener("click", registrarClic);

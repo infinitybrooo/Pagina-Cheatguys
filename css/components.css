@@ -955,6 +955,115 @@ p.subtitle { font-family: var(--font-pixel); color: #d3d3d3; font-size: 15px; ma
     text-align: center;
 }
 
+/* Infinity OS // X Feed */
+.x-feed-window {
+    --mixer-accent: var(--neon-cyan);
+    position: fixed;
+    z-index: 100020;
+    right: 18px;
+    top: 94px;
+    width: min(330px, calc(100vw - 32px));
+    max-height: calc(100vh - 126px);
+    overflow: hidden;
+    color: #fff;
+    background:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+        #07080c;
+    background-size: 18px 18px, 18px 18px, auto;
+    border: 3px solid #fff;
+    border-radius: 4px;
+    box-shadow: 8px 8px 0 #000, 0 0 20px color-mix(in srgb, var(--mixer-accent) 50%, transparent);
+    animation: cg-panel-boot 0.24s steps(4);
+}
+
+.x-feed-titlebar {
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 7px 8px 7px 12px;
+    color: #fff;
+    background:
+        linear-gradient(90deg, color-mix(in srgb, var(--mixer-accent) 22%, transparent), transparent 72%),
+        #100d14;
+    border-bottom: 3px solid var(--mixer-accent);
+    font-family: var(--font-terminal);
+    font-size: 17px;
+    line-height: 1;
+}
+
+.x-feed-titlebar > span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.x-feed-close {
+    display: none;
+}
+
+.x-feed-content {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    padding: 12px;
+}
+
+.x-feed-frame {
+    min-height: 270px;
+    max-height: min(460px, calc(100vh - 260px));
+    overflow: auto;
+    overscroll-behavior: contain;
+    background:
+        linear-gradient(rgba(0,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,105,180,0.032) 1px, transparent 1px),
+        #020203;
+    background-size: 13px 13px, 13px 13px, auto;
+    border: 3px solid var(--mixer-accent);
+    box-shadow: 4px 4px 0 #000, inset 0 0 16px rgba(0,0,0,0.8);
+}
+
+.x-feed-frame::before {
+    content: "LOADING_X_SIGNAL...";
+    display: grid;
+    min-height: 270px;
+    place-items: center;
+    padding: 18px;
+    color: #6f6877;
+    font-family: var(--font-pixel);
+    font-size: 9px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.x-feed-frame:has(iframe)::before {
+    display: none;
+}
+
+.x-feed-frame iframe {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.x-feed-direct {
+    align-self: flex-start;
+}
+
+.x-feed-mobile-launch {
+    display: none;
+}
+
+@media (min-width: 1380px) {
+    .profile-container {
+        margin-left: max(36px, calc((100vw - 1310px) / 2));
+        margin-right: auto;
+    }
+}
+
 @media (max-width: 520px) {
     .mixer-window {
         right: 10px;
@@ -981,6 +1090,59 @@ p.subtitle { font-family: var(--font-pixel); color: #d3d3d3; font-size: 15px; ma
     .mixer-status,
     .mixer-store-link {
         font-size: 13px;
+    }
+}
+
+@media (max-width: 1379px) {
+    .x-feed-window {
+        top: auto;
+        right: 10px;
+        bottom: 10px;
+        width: calc(100% - 20px);
+        max-height: min(78vh, 620px);
+        transform: translateY(calc(100% + 24px));
+        opacity: 0;
+        pointer-events: none;
+        box-shadow: 6px 6px 0 #000, 0 0 16px color-mix(in srgb, var(--mixer-accent) 48%, transparent);
+        transition: transform 0.18s steps(4), opacity 0.18s steps(4);
+    }
+
+    .x-feed-window.is-open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .x-feed-titlebar {
+        font-size: 16px;
+    }
+
+    .x-feed-close {
+        display: inline-block;
+    }
+
+    .x-feed-frame {
+        min-height: 320px;
+        max-height: calc(78vh - 138px);
+    }
+
+    .x-feed-frame::before {
+        min-height: 320px;
+    }
+
+    .x-feed-mobile-launch {
+        display: flex;
+        justify-content: center;
+        margin: 18px auto 12px;
+        padding: 0 16px;
+    }
+
+    .x-feed-launch-btn {
+        width: min(100%, 360px);
+        color: var(--neon-cyan);
+        background: rgba(0, 255, 255, 0.08);
+        border-color: var(--neon-cyan);
+        box-shadow: 4px 4px 0 #000, 0 0 12px rgba(0,255,255,0.28);
     }
 }
 
