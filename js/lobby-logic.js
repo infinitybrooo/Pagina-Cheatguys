@@ -5,6 +5,21 @@
         const CG_CONFIG = window.CG_CONFIG || {};
         const CG_LOG = window.CG_LOG || null;
 
+        function applyActiveLanguage(root) {
+            if (window.CGLanguage && typeof window.CGLanguage.refresh === "function") {
+                window.CGLanguage.refresh(root);
+            } else if (window.CGLanguage && typeof window.CGLanguage.apply === "function") {
+                window.CGLanguage.apply(root);
+            }
+        }
+
+        function translateUiText(text) {
+            if (window.CGLanguage && typeof window.CGLanguage.translate === "function") {
+                return window.CGLanguage.translate(text);
+            }
+            return text;
+        }
+
         // =====================================================
         // GARAGE MIXER // previews promocionales de iTunes
         // =====================================================
@@ -765,6 +780,7 @@ Bomba Estéreo - Fuego
                 document.getElementById('modalDesc').innerHTML = data.desc;
                 document.getElementById('modalHeader').style.borderBottomColor = data.color;
                 document.getElementById('modalImg').src = getResponsiveAssetUrl(data.imgUrl);
+                applyActiveLanguage(document.getElementById('charModal'));
                 if (window.CGOverlay) {
                     window.CGOverlay.open("charModal", {
                         mode: "display",
@@ -797,7 +813,7 @@ Bomba Estéreo - Fuego
         // --- SISTEMA EASTER EGG ---
         let clicsConsecutivos = 0; let ultimoClicTiempo = 0; const TIEMPO_MAXIMO = 1500; let toastTimeout;
         function showToast(message) {
-            const toast = document.getElementById('systemToast'); toast.innerText = message; toast.classList.add('show');
+            const toast = document.getElementById('systemToast'); toast.innerText = translateUiText(message); toast.classList.add('show');
             clearTimeout(toastTimeout); toastTimeout = setTimeout(() => { toast.classList.remove('show'); }, 2500);
         }
         window.showToast = showToast;
@@ -831,6 +847,7 @@ Bomba Estéreo - Fuego
                 });
                 document.getElementById('secretFileList').style.display = 'flex'; 
                 document.getElementById('secretViewer').style.display = 'none';
+                applyActiveLanguage(document.getElementById('secretModal'));
                 if (window.CGOverlay) {
                     window.CGOverlay.open("secretModal", {
                         mode: "display",
@@ -858,5 +875,5 @@ Bomba Estéreo - Fuego
             }
             AudioManager.resumeLobby();
         }
-        function viewSecretFile(i) { const data = secretData[i]; document.getElementById('secretFileList').style.display = 'none'; document.getElementById('secretViewerImg').src = getResponsiveAssetUrl(data.url); document.getElementById('secretViewerDesc').innerHTML = data.desc; document.getElementById('secretViewer').style.display = 'flex'; }
-        function backToSecretList() { document.getElementById('secretViewer').style.display = 'none'; document.getElementById('secretFileList').style.display = 'flex'; }
+        function viewSecretFile(i) { const data = secretData[i]; document.getElementById('secretFileList').style.display = 'none'; document.getElementById('secretViewerImg').src = getResponsiveAssetUrl(data.url); document.getElementById('secretViewerDesc').innerHTML = data.desc; document.getElementById('secretViewer').style.display = 'flex'; applyActiveLanguage(document.getElementById('secretViewer')); }
+        function backToSecretList() { document.getElementById('secretViewer').style.display = 'none'; document.getElementById('secretFileList').style.display = 'flex'; applyActiveLanguage(document.getElementById('secretModal')); }

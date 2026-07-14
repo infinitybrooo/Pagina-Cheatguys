@@ -438,7 +438,85 @@
 
         "Infinity brothers sigue trabajando! CheatGuys sigue en produccion y preparacion de promocionales y otras cosas raras. Sigan la cuenta para seguir viendo este extrano grupo. #CheatGuys #OC #Pixelatl #Ideatoon": "Infinity Brothers keeps working! CheatGuys is still in production and preparing promos and other strange things. Follow the account to keep seeing this odd group. #CheatGuys #OC #Pixelatl #Ideatoon",
         "Esto apenas es el medio tiempo! Nos vemos en noviembre en el festival @Pixelatl para presentar la version mas solida y caotica de nuestro proyecto. Felicidades a los seleccionados! Conoce el lobby oficial: cheatguysinfinity.netlify.app": "This is only halftime! See you in November at the @Pixelatl festival to present the strongest and most chaotic version of our project. Congratulations to the selected projects! Visit the official lobby: cheatguysinfinity.netlify.app",
-        "A alguien mas le ha pasado? Pobrecita Akane. CheatGuys! #Ideatoon2026 #Pixelatl": "Has this happened to anyone else? Poor Akane. CheatGuys! #Ideatoon2026 #Pixelatl"
+        "A alguien mas le ha pasado? Pobrecita Akane. CheatGuys! #Ideatoon2026 #Pixelatl": "Has this happened to anyone else? Poor Akane. CheatGuys! #Ideatoon2026 #Pixelatl",
+
+        "Fundadora, Vocalista Principal y Guitarra Rítmica (Lvl. 15)": "Founder, Lead Vocalist, and Rhythm Guitarist (Lvl. 15)",
+        "Guitarra Principal, Compositora y Musicalización (Lvl. 16)": "Lead Guitarist, Composer, and Music Direction (Lvl. 16)",
+        "Bajista, Encargada Estética y Corista (Lvl. 15)": "Bassist, Visual Style Lead, and Backing Vocalist (Lvl. 15)",
+        "Baterista y Percusionista (Lvl. 16)": "Drummer and Percussionist (Lvl. 16)",
+        "COLOR: VIOLETA": "COLOR: VIOLET",
+        "APODO: LA DEMONIO DEL ARCADE": "NICKNAME: THE ARCADE DEMON",
+        "BUILD: HUD_SOCIAL_JRPG": "BUILD: SOCIAL_JRPG_HUD",
+        "Akane no quería ser protagonista de nada.": "Akane never wanted to be the protagonist of anything.",
+        "Es introvertida, silenciosa y socialmente torpe; su ansiedad convierte cualquier interacción en un menú de opciones tipo videojuego, con consecuencias que su cerebro exagera al 300%.": "She is introverted, quiet, and socially awkward; her anxiety turns every interaction into a videogame-style choice menu, with consequences her brain exaggerates by 300%.",
+        "Detrás de su expresión neutral vive una mente brillante, observadora y creativa. Se estresa por pedir salsa extra, pero puede cantar en un escenario si alguien importante la necesita. Es el núcleo emocional de CheatGuys!, aunque ella siga intentando pasar desapercibida.": "Behind her neutral expression lives a brilliant, observant, creative mind. She panics over asking for extra salsa, but she can sing onstage if someone important needs her. She is the emotional core of CheatGuys!, even while she keeps trying to go unnoticed.",
+        "Canta con una profundidad enorme cuando se siente segura.": "She sings with enormous depth when she feels safe.",
+        "Toca guitarra rítmica con precisión emocional.": "She plays rhythm guitar with emotional precision.",
+        "Tiene los puntajes más altos del arcade del colegio bajo seudónimo.": "She holds the school's highest arcade scores under a pseudonym.",
+        "Su lugar seguro es el garaje convertido en cuartel de la banda.": "Her safe place is the garage turned into the band's headquarters.",
+        "COLOR: NARANJA": "COLOR: ORANGE",
+        "APODOS: MANDARINA / TERROR TANAKA": "NICKNAMES: MANDARIN / TERROR TANAKA",
+        "BUILD: VOLUME_MAX": "BUILD: MAX_VOLUME",
+        "Rika es una bomba emocional con guitarra.": "Rika is an emotional bomb with a guitar.",
+        "Extrovertida, intensa, impulsiva y profundamente pasional; vive en volumen alto y no tiene filtro, ni ganas de conseguir uno.": "Extroverted, intense, impulsive, and deeply passionate; she lives at full volume and has no filter, or any interest in getting one.",
+        "Su caos viene con talento real: toca de oído, improvisa riffs únicos y arrastra a la gente a sus ideas aunque tengan la estabilidad de una mesa con tres patas. Con Akane funciona como escudo, motor y guitarra gemela, normalmente gritando.": "Her chaos comes with real talent: she plays by ear, improvises unique riffs, and drags people into ideas with the stability of a three-legged table. For Akane, she acts as shield, engine, and twin guitar, usually while yelling.",
+        "Virtuosa de la guitarra eléctrica e instinto escénico natural.": "Electric guitar virtuoso with natural stage instincts.",
+        "Compone desde la emoción pura, sin pedir permiso.": "She composes from pure emotion, without asking permission.",
+        "Admira a Kaede Ayase y teme no estar a la altura.": "She admires Kaede Ayase and fears not being good enough.",
+        "Su ropa cambia según su estado de ánimo.": "Her clothes change with her mood.",
+        "COLOR: ROSA MEXICANO": "COLOR: MEXICAN PINK",
+        "APODO: PULGA": "NICKNAME: FLEA",
+        "BUILD: SOFT_BASS_HEALER": "BUILD: SOFT_BASS_HEALER",
+        "Momo es el corazón dulce y risueño de CheatGuys!.": "Momo is the sweet, giggly heart of CheatGuys!.",
+        "Pequeña, estética y con alma de algodón de azúcar, vive entre colores, accesorios, ideas bonitas y distracciones que llegan sin avisar.": "Tiny, stylish, and cotton-candy-hearted, she lives among colors, accessories, pretty ideas, and distractions that arrive without warning.",
+        "Puede parecer perdida, pero lee emociones con una precisión que nadie le enseñó. Su bajo no busca aplastar la canción: la abraza. Es la primera en dar apoyo, llorar con alguien o decir “yo te creo” aunque no sepa de qué están hablando.": "She may seem lost, but she reads emotions with a precision no one taught her. Her bass does not try to crush the song: it hugs it. She is the first to offer support, cry with someone, or say \"I believe you\" even when she does not know what is going on.",
+        "Su bajo se llama Sina y a veces le pide consejos.": "Her bass is named Sina, and sometimes she asks it for advice.",
+        "Tiene oído armónico y detecta disonancias con facilidad.": "She has harmonic hearing and detects dissonance easily.",
+        "Ayuda a definir el estilo visual de la banda.": "She helps define the band's visual style.",
+        "Calma a Jun y reconforta a Akane casi sin intentarlo.": "She calms Jun and comforts Akane almost without trying.",
+        "COLOR: CIAN": "COLOR: CYAN",
+        "APODO: MONJE DEL RAMEN": "NICKNAME: RAMEN MONK",
+        "BUILD: LUCKY_SLEEP_MODE": "BUILD: LUCKY_SLEEP_MODE",
+        "Jun es el rey del desgane carismático.": "Jun is the king of charismatic laziness.",
+        "Relajado, sarcástico y con vibra de “todo saldrá bien... probablemente”, evita cualquier cosa que huela a responsabilidad, pero su talento musical roza lo absurdo.": "Relaxed, sarcastic, and radiating \"everything will be fine... probably,\" he avoids anything that smells like responsibility, but his musical talent is almost absurd.",
+        "Cuida a sus amigos desde la esquina, con comentarios secos y una calma casi mística. Parece operar en ahorro de energía, hasta que la banda realmente lo necesita y aparece el baterista preciso, intuitivo y sospechosamente afortunado.": "He watches over his friends from the corner, with dry comments and an almost mystical calm. He seems to run on power-saving mode, until the band truly needs him and the precise, intuitive, suspiciously lucky drummer appears.",
+        "Escucha una canción una vez y suele recordarla.": "He hears a song once and usually remembers it.",
+        "Tiene ritmo natural incluso caminando.": "He has natural rhythm, even while walking.",
+        "Defiende “el sillón de Jun” con flojera pasivo-agresiva.": "He defends \"Jun's couch\" with passive-aggressive laziness.",
+        "Siempre trae un snack misterioso en la mochila.": "He always carries a mysterious snack in his backpack.",
+        "[ ARCHIVO 001 ]": "[ FILE 001 ]",
+        "[ ARCHIVO 002 ]": "[ FILE 002 ]",
+        "[ ARCHIVO 003 ]": "[ FILE 003 ]",
+        "[ ARCHIVO 004 ]": "[ FILE 004 ]",
+        "[ ARCHIVO 005 ]": "[ FILE 005 ]",
+        "[ ARCHIVO 006 ]": "[ FILE 006 ]",
+        "[ ARCHIVO 007 ]": "[ FILE 007 ]",
+        "[ ARCHIVO 008 ]": "[ FILE 008 ]",
+        "[ ARCHIVO 009 ]": "[ FILE 009 ]",
+        "[ ARCHIVO 010 ]": "[ FILE 010 ]",
+        "[ ARCHIVO 011 ]": "[ FILE 011 ]",
+        "[ ARCHIVO 012 ]": "[ FILE 012 ]",
+        "[ ARCHIVO 013 ]": "[ FILE 013 ]",
+        "[ ARCHIVO 014 ]": "[ FILE 014 ]",
+        "Conceptos iniciales y pruebas de estilo para los personajes. Antes de definir las personalidades finales, el caos reinaba en los bocetos de Neo Teno. Se puede apreciar la búsqueda de esa estética 'anime 2000s'.": "Early concepts and style tests for the characters. Before the final personalities were defined, chaos ruled the Neo Teno sketches. You can see the search for that '2000s anime' aesthetic.",
+        "El origen de 'La Demonio del Arcade'. Nótese la falta de su HUD característico y un estilo ligeramente más genérico antes de inyectarle toda su ansiedad gótico-otaku.": "The origin of 'The Arcade Demon.' Notice the missing signature HUD and a slightly more generic style before all her gothic-otaku anxiety was injected.",
+        "Arte promocional descartado. El estudio decidió que la vibra no encajaba con el lore actual, o quizá Aio Sakamoto accidentalmente borró los archivos de la campaña mientras formateaba el servidor.": "Discarded promotional art. The studio decided the vibe did not fit the current lore, or maybe Aio Sakamoto accidentally deleted the campaign files while formatting the server.",
+        "El HUD mental de Akane superando el límite de procesamiento. Esto ocurre generalmente cuando Kenji respira muy fuerte cerca de ella o cuando le toca hablar en público.": "Akane's mental HUD exceeding its processing limit. This usually happens when Kenji breathes too loudly near her or when she has to speak in public.",
+        "Akane canalizando su diva virtual interior. Un easter egg recurrente en sus streams clandestinos de juegos de ritmo a las 3 AM.": "Akane channeling her inner virtual diva. A recurring easter egg in her secret 3 AM rhythm game streams.",
+        "Exploración de estilo emulando vibras de sci-fi vintage. Probablemente un dibujo que hizo Kenji en clase de matemáticas soñando con Akane pilotando un mecha.": "A style exploration emulating vintage sci-fi vibes. Probably something Kenji drew in math class while dreaming of Akane piloting a mecha.",
+        "Calidad: -100. Humor: +1000. Arte puro resultante del cansancio de los animadores a las 4 AM con exceso de cafeína. No hacer contacto visual directo.": "Quality: -100. Humor: +1000. Pure art born from animator exhaustion at 4 AM with too much caffeine. Do not make direct eye contact.",
+        "Una mirada a lo que podría ser... o quizás solo un sueño febril inducido por las locas teorías sobre ships de Love en los pasillos de Infinity Brothers.": "A look at what could be... or maybe just a fever dream caused by Love's wild shipping theories in the Infinity Brothers hallways.",
+        "Renders para el festival de Año Nuevo. Momo se ve increíble con ese peinado y Akane está usando su abanico para esconder que está procesando tres crisis existenciales al mismo tiempo. Estética 10/10, estabilidad mental 0/10.": "New Year festival renders. Momo looks incredible with that hairstyle, and Akane is using her fan to hide that she is processing three existential crises at the same time. Aesthetic 10/10, mental stability 0/10.",
+        "POV: Intentaste hablarle a Akane sobre tus planes de Telcel y Rika apareció de la nada dispuesta a morderte la yugular. Momo está modo tiesa y Jun guardando energía para el ensayo. Un día normal en el Colegio Jacarandas.": "POV: You tried to talk to Akane about your Telcel plans and Rika appeared out of nowhere ready to bite your jugular. Momo is frozen and Jun is saving energy for rehearsal. A normal day at Jacarandas School.",
+        "El camión coreano vs. La Demonio del Arcade. Archivo ultra secreto que los creadores hicieron a las 4 AM después de tres tazas de mate soluble. No pregunten por el lore de esto, es un meme y ya está, no nos metan en un Isekai todavía.": "The Korean truck vs. The Arcade Demon. An ultra-secret file the creators made at 4 AM after three cups of instant mate. Do not ask about the lore here, it is just a meme, do not throw us into an isekai yet.",
+        "La foto de portada que costó tres peleas, un bajeo desafinado y que Jun se despertara de su siesta mística. Los cuatro incompatibles favoritos de Neo Teno listos para romperla... o para romper la maquinita del arcade, lo que pase primero.": "The cover photo that cost three fights, an out-of-tune bassline, and Jun waking up from his mystical nap. Neo Teno's four favorite incompatible teens are ready to crush it... or break the arcade cabinet, whichever happens first.",
+        "El momento exacto donde el HUD JRPG de Akane tiró un pantallazo azul en vivo. Ese signo de exclamación significa que está a dos segundos de salir corriendo del escenario o de vomitar, lo que pase primero.": "The exact moment Akane's JRPG HUD blue-screened live. That exclamation mark means she is two seconds away from running offstage or throwing up, whichever happens first.",
+        "¡Milagro en Neo Teno! Akane tocando la guitarra sin estar temblando como licuadora descompuesta. Se rumorea que para lograr este arte, los animadores tuvieron que prometerle que nadie la vería a los ojos durante tres días.": "Miracle in Neo Teno! Akane playing guitar without shaking like a broken blender. Rumor says the animators had to promise no one would look her in the eyes for three days to make this art happen.",
+        "¡Te dije que no lo presionaras, niño baboso!": "I told you not to press it, you little brat!",
+        "Bueno, ya que estás aquí puedes compartir la página para que más personas lo vean, así tu curiosidad sirve de algo...": "Well, since you are here, you can share the page so more people see it. That way your curiosity is useful for something...",
+        "¡Rompí la página de CheatGuys! por andar de curioso. Escanea el código o entra al arcade aquí: https://cheatguysinfinity.netlify.app/": "I broke the CheatGuys! page by being too curious. Scan the code or enter the arcade here: https://cheatguysinfinity.netlify.app/",
+        "¡Copiado para Discord! Pégalo en tu chat.": "Copied for Discord! Paste it in your chat.",
+        "No se pudo copiar. Intenta manualmente.": "Could not copy. Try manually."
     };
 
     const PREFIX_RULES = {
@@ -544,6 +622,29 @@
             else translateAttributes(node);
             node = walker.nextNode();
         }
+    }
+
+    function resetOriginals(root) {
+        if (!root) return;
+        if (root.nodeType === Node.TEXT_NODE) {
+            textOriginals.delete(root);
+            return;
+        }
+        if (root.nodeType !== Node.ELEMENT_NODE && root.nodeType !== Node.DOCUMENT_NODE) return;
+
+        if (root.nodeType === Node.ELEMENT_NODE) attrOriginals.delete(root);
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT);
+        let node = walker.nextNode();
+        while (node) {
+            if (node.nodeType === Node.TEXT_NODE) textOriginals.delete(node);
+            else attrOriginals.delete(node);
+            node = walker.nextNode();
+        }
+    }
+
+    function refresh(root = document.body) {
+        resetOriginals(root);
+        walk(root);
     }
 
     function updateControl() {
@@ -660,6 +761,9 @@
 
     window.CGLanguage = Object.freeze({
         set: setLanguage,
-        get: () => currentMode
+        get: () => currentMode,
+        translate: (value) => translateRaw(value, currentMode),
+        apply: (root = document.body) => walk(root),
+        refresh
     });
 })();

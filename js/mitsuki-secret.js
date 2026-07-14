@@ -8,6 +8,21 @@
 
         let mitsukiPaso = 0;
 
+        function traducirTextoMitsuki(texto) {
+            if (window.CGLanguage && typeof window.CGLanguage.translate === 'function') {
+                return window.CGLanguage.translate(texto);
+            }
+            return texto;
+        }
+
+        function aplicarIdiomaMitsuki(root) {
+            if (window.CGLanguage && typeof window.CGLanguage.refresh === 'function') {
+                window.CGLanguage.refresh(root);
+            } else if (window.CGLanguage && typeof window.CGLanguage.apply === 'function') {
+                window.CGLanguage.apply(root);
+            }
+        }
+
         const mitsukiDialogo = [
             { img: "assets/mitsuki/pestana-1-mitsuki.webp", texto: "¡Te dije que no lo presionaras, niño baboso!" },
             { img: "assets/mitsuki/pestana-2-mitsuki.webp", texto: "Bueno, ya que estás aquí puedes compartir la página para que más personas lo vean, así tu curiosidad sirve de algo..." }
@@ -47,6 +62,7 @@
             document.getElementById('mitsukiText').textContent = paso.texto;
             document.getElementById('mitsukiStepCounter').textContent = "TAB " + String(mitsukiPaso + 1).padStart(2, '0') + "/02";
             document.getElementById('mitsukiShareButtons').style.display = esUltimaPestana ? 'flex' : 'none';
+            aplicarIdiomaMitsuki(document.getElementById('mitsukiOverlay'));
         }
 
         // Boton CONTINUAR -> avanza el guion o cierra al terminar la segunda pestana
@@ -61,7 +77,7 @@
 
         // Prepara los links para que aparezcan dentro de la segunda pestana
         function prepararBotonesCompartirMitsuki() {
-            const textoCodificado = encodeURIComponent(MITSUKI_SHARE_TEXT);
+            const textoCodificado = encodeURIComponent(traducirTextoMitsuki(MITSUKI_SHARE_TEXT));
             const urlCodificada = encodeURIComponent(MITSUKI_SHARE_URL);
 
             document.getElementById('mitsukiShareWA').href = "https://api.whatsapp.com/send?text=" + textoCodificado;
@@ -72,8 +88,9 @@
 
         // Discord no tiene un link de compartir universal: se abre Discord y se copia el texto.
         function compartirEnDiscord(event) {
+            const textoCompartir = traducirTextoMitsuki(MITSUKI_SHARE_TEXT);
             if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(MITSUKI_SHARE_TEXT)
+                navigator.clipboard.writeText(textoCompartir)
                     .then(() => showToast('¡Copiado para Discord! Pégalo en tu chat.'))
                     .catch(() => copiarParaDiscordFallback());
             } else {
@@ -83,8 +100,9 @@
 
         // Fallback para navegadores/contextos sin Clipboard API (ej. http sin SSL)
         function copiarParaDiscordFallback() {
+            const textoCompartir = traducirTextoMitsuki(MITSUKI_SHARE_TEXT);
             const textarea = document.createElement('textarea');
-            textarea.value = MITSUKI_SHARE_TEXT;
+            textarea.value = textoCompartir;
             textarea.style.position = 'fixed';
             textarea.style.opacity = '0';
             document.body.appendChild(textarea);
