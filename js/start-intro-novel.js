@@ -89,7 +89,7 @@
             speaker: "JUN",
             portrait: PORTRAITS.jun,
             // REVISAR GUION: la frase fuente termina en "somos pobres" y no tiene cierre.
-            dialogue: "Ya que están aquí... abajo están los links para tirar el paro. Pueden compartir el búnker con sus amigos, viciarse un rato en el minijuego de arcade o, si les sobra algo de platita, somos pobres",
+            dialogue: "Ya que están aquí... abajo están los links para tirar el paro. Pueden compartir el garaje con sus amigos, viciarse un rato en el minijuego de arcade o, si les sobra algo de platita, somos pobres",
             editorNote: "TEXTO_INCOMPLETO_EN_GUION: confirmar cierre de la viñeta 5.",
             background: PLACEHOLDER,
             sprites: [{ src: PLACEHOLDER, alt: "Composición provisional de Jun", position: "52% 50%", size: "min(77%, 610px)", entrance: "slide-right" }],

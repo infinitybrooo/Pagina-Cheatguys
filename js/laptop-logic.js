@@ -50,10 +50,10 @@
 
     function getElements() {
         return {
-            bunker: document.getElementById("laptop-bunker"),
+            garage: document.getElementById("laptop-garage"),
             desktop: document.getElementById("laptopDesktop"),
             chatRoom: document.getElementById("laptopChatRoom"),
-            screen: document.querySelector("#laptop-bunker .laptop-screen"),
+            screen: document.querySelector("#laptop-garage .laptop-screen"),
             mobileWindowClose: document.getElementById("laptopMobileWindowClose"),
             characterButtons: document.querySelectorAll("[data-laptop-character]"),
             closeButton: document.getElementById("laptopCloseChat"),
@@ -150,7 +150,7 @@
         const isChat = mode === "chat";
         els.desktop.hidden = isChat;
         els.chatRoom.hidden = !isChat;
-        els.bunker.dataset.mode = mode;
+        els.garage.dataset.mode = mode;
     }
 
     function openChat(characterId, els) {
@@ -194,24 +194,24 @@
     }
 
     function updateLaptopMobileScale(els) {
-        if (!els.bunker) return;
+        if (!els.garage) return;
 
         if (!window.matchMedia("(max-width: 620px)").matches) {
-            els.bunker.style.removeProperty("--laptop-mobile-scale");
-            els.bunker.style.removeProperty("--laptop-mobile-height");
+            els.garage.style.removeProperty("--laptop-mobile-scale");
+            els.garage.style.removeProperty("--laptop-mobile-height");
             return;
         }
 
         const scale = Math.min(1, Math.max(0.1, (window.innerWidth - 20) / 720));
-        els.bunker.style.setProperty("--laptop-mobile-scale", scale.toFixed(4));
-        els.bunker.style.setProperty("--laptop-mobile-height", `${Math.ceil((598 * scale) + 18)}px`);
+        els.garage.style.setProperty("--laptop-mobile-scale", scale.toFixed(4));
+        els.garage.style.setProperty("--laptop-mobile-height", `${Math.ceil((598 * scale) + 18)}px`);
     }
 
     function openMobileProgramWindow(els) {
-        if (!els.bunker) return;
+        if (!els.garage) return;
         window.AudioManager?.unlockSfx?.();
         window.AudioManager?.playSfx?.(LAPTOP_SFX, { volume: 0.8 });
-        els.bunker.classList.add("is-mobile-program-open");
+        els.garage.classList.add("is-mobile-program-open");
         document.body.classList.add("laptop-program-lock");
         if (els.screen) els.screen.scrollTop = 0;
         if (els.desktop) els.desktop.scrollTop = 0;
@@ -219,8 +219,8 @@
     }
 
     function closeMobileProgramWindow(els) {
-        if (!els.bunker) return;
-        els.bunker.classList.remove("is-mobile-program-open");
+        if (!els.garage) return;
+        els.garage.classList.remove("is-mobile-program-open");
         document.body.classList.remove("laptop-program-lock");
     }
 
@@ -303,17 +303,17 @@
 
     function setupLaptop() {
         const els = getElements();
-        if (!els.bunker || !els.desktop || !els.chatRoom || !els.form) return;
-        els.bunker.dataset.ready = "true";
+        if (!els.garage || !els.desktop || !els.chatRoom || !els.form) return;
+        els.garage.dataset.ready = "true";
 
         updateLaptopMobileScale(els);
         if (els.input) {
             els.input.maxLength = MAX_MESSAGE_LENGTH;
         }
 
-        els.bunker.addEventListener("click", (event) => {
+        els.garage.addEventListener("click", (event) => {
             const characterButton = event.target.closest?.("[data-laptop-character]");
-            if (!characterButton || !els.bunker.contains(characterButton)) return;
+            if (!characterButton || !els.garage.contains(characterButton)) return;
             event.preventDefault();
             event.stopPropagation();
             openChat(characterButton.dataset.laptopCharacter, els);
@@ -323,7 +323,7 @@
 
         if (els.screen) {
             els.screen.addEventListener("click", (event) => {
-                if (els.bunker.classList.contains("is-mobile-program-open")) return;
+                if (els.garage.classList.contains("is-mobile-program-open")) return;
                 if (!window.matchMedia("(max-width: 620px)").matches) return;
                 if (event.target.closest?.("button, a, input, textarea, select, [role='button']")) return;
 

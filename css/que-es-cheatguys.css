@@ -494,7 +494,7 @@ body.cheatguys-info-page::after {
     width: min(100%, 1040px);
 }
 
-.laptop-bunker {
+.laptop-garage {
     width: min(100%, 1040px);
     margin: 0 auto 54px;
     display: grid;
@@ -605,16 +605,16 @@ body.laptop-program-lock {
     overflow: hidden;
 }
 
-.laptop-bunker.is-mobile-program-open {
+.laptop-garage.is-mobile-program-open {
     transform: none !important;
 }
 
-.laptop-bunker.is-mobile-program-open .pixel-laptop {
+.laptop-garage.is-mobile-program-open .pixel-laptop {
     filter: none;
     transform: none !important;
 }
 
-.laptop-bunker.is-mobile-program-open .laptop-screen {
+.laptop-garage.is-mobile-program-open .laptop-screen {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -635,11 +635,11 @@ body.laptop-program-lock {
     animation: laptop-window-open 0.26s steps(5, end);
 }
 
-.laptop-bunker.is-mobile-program-open .laptop-screen::before {
+.laptop-garage.is-mobile-program-open .laptop-screen::before {
     display: none;
 }
 
-.laptop-bunker.is-mobile-program-open .laptop-mobile-window-close {
+.laptop-garage.is-mobile-program-open .laptop-mobile-window-close {
     position: absolute;
     top: 18px;
     right: 18px;
@@ -659,17 +659,17 @@ body.laptop-program-lock {
     cursor: pointer;
 }
 
-.laptop-bunker.is-mobile-program-open .laptop-desktop,
-.laptop-bunker.is-mobile-program-open .laptop-chat-room {
+.laptop-garage.is-mobile-program-open .laptop-desktop,
+.laptop-garage.is-mobile-program-open .laptop-chat-room {
     min-height: 0;
     height: 100%;
 }
 
-.laptop-bunker.is-mobile-program-open .laptop-desktop {
+.laptop-garage.is-mobile-program-open .laptop-desktop {
     overflow-y: auto;
 }
 
-.laptop-bunker.is-mobile-program-open .laptop-chat-header {
+.laptop-garage.is-mobile-program-open .laptop-chat-header {
     padding-right: 58px;
 }
 
@@ -830,8 +830,8 @@ body.laptop-program-lock {
     outline: 2px solid #05000a;
 }
 
-#laptop-bunker[data-mode="desktop"] .laptop-desktop-window,
-#laptop-bunker[data-mode="desktop"] .laptop-desktop-widget {
+#laptop-garage[data-mode="desktop"] .laptop-desktop-window,
+#laptop-garage[data-mode="desktop"] .laptop-desktop-widget {
     position: absolute !important;
     z-index: 3 !important;
     display: block;
@@ -841,13 +841,13 @@ body.laptop-program-lock {
     box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.76) !important;
 }
 
-#laptop-bunker[data-mode="desktop"] .laptop-desktop-window {
+#laptop-garage[data-mode="desktop"] .laptop-desktop-window {
     background: #ece8f6 !important;
     border: 3px solid #fff !important;
     outline: 2px solid #05000a !important;
 }
 
-#laptop-bunker[data-mode="desktop"] .laptop-window-titlebar {
+#laptop-garage[data-mode="desktop"] .laptop-window-titlebar {
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
@@ -858,7 +858,7 @@ body.laptop-program-lock {
     border-bottom: 2px solid #05000a !important;
 }
 
-#laptop-bunker[data-mode="desktop"] .laptop-window-body {
+#laptop-garage[data-mode="desktop"] .laptop-window-body {
     display: block !important;
     padding: 7px 8px 9px !important;
     background:
@@ -867,7 +867,7 @@ body.laptop-program-lock {
     background-size: 100% 12px !important;
 }
 
-#laptop-bunker[data-mode="desktop"] .laptop-mini-eq {
+#laptop-garage[data-mode="desktop"] .laptop-mini-eq {
     display: flex !important;
     align-items: end !important;
 }
@@ -1370,7 +1370,7 @@ body.laptop-program-lock {
         min-height: 0;
     }
 
-    .laptop-bunker {
+    .laptop-garage {
         grid-template-columns: 1fr;
     }
 
@@ -1486,7 +1486,7 @@ body.laptop-program-lock {
         font-size: 23px;
     }
 
-    .laptop-bunker {
+    .laptop-garage {
         --laptop-mobile-scale: 1;
         --laptop-mobile-height: 616px;
         width: 100%;
@@ -1617,7 +1617,7 @@ body.laptop-program-lock {
         pointer-events: none;
     }
 
-    .laptop-bunker.is-mobile-program-open .laptop-screen {
+    .laptop-garage.is-mobile-program-open .laptop-screen {
         top: 10px;
         left: 10px;
         width: calc(100dvw - 20px) !important;
@@ -1629,42 +1629,42 @@ body.laptop-program-lock {
         transform: none;
     }
 
-    .laptop-bunker.is-mobile-program-open .laptop-mobile-window-close {
+    .laptop-garage.is-mobile-program-open .laptop-mobile-window-close {
         top: 16px;
         right: 16px;
     }
 
-    .laptop-bunker.is-mobile-program-open .laptop-topbar {
+    .laptop-garage.is-mobile-program-open .laptop-topbar {
         padding-right: 58px;
     }
 
-    .laptop-bunker.is-mobile-program-open .laptop-icons-grid {
+    .laptop-garage.is-mobile-program-open .laptop-icons-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         align-content: start;
         gap: 14px;
         padding: 24px 12px 56px;
     }
 
-    .laptop-bunker.is-mobile-program-open .laptop-chat-header {
+    .laptop-garage.is-mobile-program-open .laptop-chat-header {
         flex-direction: column;
         align-items: stretch;
         padding-right: 58px;
     }
 
-    .laptop-bunker.is-mobile-program-open .laptop-close-app {
+    .laptop-garage.is-mobile-program-open .laptop-close-app {
         width: 100%;
     }
 
-    .laptop-bunker.is-mobile-program-open .chat-history {
+    .laptop-garage.is-mobile-program-open .chat-history {
         max-height: none;
         min-height: 0;
     }
 
-    .laptop-bunker.is-mobile-program-open .laptop-chat-form {
+    .laptop-garage.is-mobile-program-open .laptop-chat-form {
         grid-template-columns: 1fr;
     }
 
-    .laptop-bunker.is-mobile-program-open .laptop-chat-form button {
+    .laptop-garage.is-mobile-program-open .laptop-chat-form button {
         min-height: 42px;
     }
 }
