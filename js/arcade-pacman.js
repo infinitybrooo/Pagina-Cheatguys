@@ -2,6 +2,8 @@
     const COLS = 19;
     const ROWS = 23;
     const TILE = 20;
+    const FRAME_MS = 1000 / 60;
+    const MAX_DELTA_SECONDS = 0.05;
     const TUNNEL_ROW = 11;
     const PLAYER_SPEED = 5.1;
     const LEVEL_DURATION = 120;
@@ -964,7 +966,12 @@
         function loop(timestamp) {
             if (!running || paused) return;
             if (!lastTime) lastTime = timestamp;
-            const deltaSeconds = Math.min((timestamp - lastTime) / 1000, 0.05);
+            const elapsed = timestamp - lastTime;
+            if (elapsed < FRAME_MS - 0.5) {
+                animationId = requestAnimationFrame(loop);
+                return;
+            }
+            const deltaSeconds = Math.min(elapsed / 1000, MAX_DELTA_SECONDS);
             lastTime = timestamp;
             update(deltaSeconds || 1 / 60);
             draw();

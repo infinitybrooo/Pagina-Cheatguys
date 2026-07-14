@@ -459,6 +459,12 @@ body.gallery-page::after {
     background-size: 100% 4px;
 }
 
+@media (max-width: 768px) {
+    body.gallery-page {
+        background-attachment: scroll;
+    }
+}
+
 .gallery-main {
     position: relative;
     z-index: 1;

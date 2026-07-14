@@ -113,6 +113,12 @@
         sketch: 0
     };
 
+    const carouselVisibility = {
+        clothes: true,
+        thurn: true,
+        sketch: true
+    };
+
     const carouselState = {
         clothes: { index: 0, timer: null, paused: false },
         thurn: { index: 0, timer: null, paused: false },
@@ -430,7 +436,13 @@
         stopTimer(category);
         const modal = document.getElementById("galleryModal");
         const modalOpen = modal && modal.classList.contains("is-open");
-        if (reducedMotionQuery.matches || document.hidden || modalOpen || carouselState[category].paused) return;
+        if (
+            reducedMotionQuery.matches
+            || document.hidden
+            || modalOpen
+            || carouselState[category].paused
+            || carouselVisibility[category] === false
+        ) return;
 
         carouselState[category].timer = window.setInterval(() => {
             moverCarrusel(category, 1, false);
@@ -617,6 +629,23 @@
     // ESTADO GLOBAL
     // =====================================================
     function setupGalleryVisibilityHandling() {
+        if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    const category = entry.target.dataset.category;
+                    if (!category || !carouselState[category]) return;
+
+                    carouselVisibility[category] = entry.isIntersecting;
+                    if (entry.isIntersecting) restartTimer(category);
+                    else stopTimer(category);
+                });
+            }, { rootMargin: "120px 0px", threshold: 0.08 });
+
+            document.querySelectorAll(".carousel-window").forEach((windowElement) => {
+                observer.observe(windowElement);
+            });
+        }
+
         document.addEventListener("visibilitychange", () => {
             if (document.hidden) {
                 stopAllTimers();

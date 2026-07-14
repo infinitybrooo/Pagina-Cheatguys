@@ -351,3 +351,52 @@ body.page-loaded .animate-in {
         transform: scaleX(var(--eq-high));
     }
 }
+
+@keyframes fadeUpRevealMobile {
+    0% { opacity: 0; transform: translateY(28px) scale(0.985); }
+    60% { opacity: 1; transform: translateY(-2px) scale(1.005); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 768px) {
+    body.page-loaded .animate-in {
+        animation-name: fadeUpRevealMobile;
+        animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.16);
+    }
+
+    .start-title-content,
+    .start-monitor-idle {
+        animation: none !important;
+        filter: none !important;
+    }
+
+    .start-series-logo {
+        animation: start-title-pulse 3.1s ease-in-out infinite !important;
+    }
+
+    .main-logo {
+        animation: logo-idle-float 6s ease-in-out infinite !important;
+    }
+
+    .press-start-btn {
+        animation: start-press-blink 1.25s steps(2, end) infinite !important;
+        filter: none !important;
+    }
+
+    .press-start-btn::after,
+    .start-title-content::after {
+        animation-duration: 5.6s !important;
+    }
+
+    .mitsuki-trigger-btn {
+        animation: none !important;
+    }
+
+    .glitch-effect {
+        animation-duration: 4.8s;
+    }
+
+    .menu-box::after {
+        animation-duration: 10s;
+    }
+}

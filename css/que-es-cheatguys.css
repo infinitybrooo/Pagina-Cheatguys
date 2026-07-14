@@ -63,6 +63,12 @@ body.cheatguys-info-page::after {
     background-size: 100% 4px;
 }
 
+@media (max-width: 768px) {
+    body.cheatguys-info-page {
+        background-attachment: scroll;
+    }
+}
+
 .info-scroll-meter {
     position: fixed;
     top: 0;

@@ -286,6 +286,10 @@
         let mobileFireTimer = null;
         const joystick = { active: false, pointerId: null, x: 0, y: 0 };
         const pointerMove = { active: false, pointerId: null, hasTarget: false, x: 0, y: 0 };
+        const inputRects = { canvas: null, joystick: null };
+        let inputFramePending = false;
+        let pendingJoystickInput = null;
+        let pendingPointerMoveInput = null;
 
         // Puntos por fila: fila 0 (superior)=100, fila 1 (media)=20, fila 2+ (inferior)=10
         function puntajeEnemigo(enemy) {
@@ -968,6 +972,7 @@
             joystick.pointerId = null;
             joystick.x = 0;
             joystick.y = 0;
+            pendingJoystickInput = null;
             const joystickEl = document.querySelector('[data-arcade-joystick]');
             const knob = joystickEl?.querySelector('.arcade-joystick-knob');
             joystickEl?.classList.remove('is-active');
@@ -978,13 +983,69 @@
             pointerMove.active = false;
             pointerMove.pointerId = null;
             pointerMove.hasTarget = false;
+            pendingPointerMoveInput = null;
         }
 
-        function updatePointerMoveTarget(event) {
-            const rect = canvas.getBoundingClientRect();
-            pointerMove.x = (event.clientX - rect.left) * (canvas.width / rect.width);
-            pointerMove.y = (event.clientY - rect.top) * (canvas.height / rect.height);
+        function clearInputRects() {
+            inputRects.canvas = null;
+            inputRects.joystick = null;
+        }
+
+        function getCanvasInputRect() {
+            if (!inputRects.canvas) inputRects.canvas = canvas.getBoundingClientRect();
+            return inputRects.canvas;
+        }
+
+        function getJoystickInputRect(joystickEl) {
+            if (!inputRects.joystick) inputRects.joystick = joystickEl.getBoundingClientRect();
+            return inputRects.joystick;
+        }
+
+        function cacheInputRects(joystickEl) {
+            inputRects.canvas = canvas.getBoundingClientRect();
+            if (joystickEl) inputRects.joystick = joystickEl.getBoundingClientRect();
+        }
+
+        function toPointerPoint(event) {
+            return {
+                clientX: event.clientX,
+                clientY: event.clientY,
+                pointerId: event.pointerId,
+                pointerType: event.pointerType
+            };
+        }
+
+        function scheduleInputFlush() {
+            if (inputFramePending) return;
+            inputFramePending = true;
+            window.requestAnimationFrame(() => {
+                inputFramePending = false;
+                if (pendingJoystickInput) {
+                    applyJoystickInput(pendingJoystickInput.point, pendingJoystickInput.joystickEl);
+                    pendingJoystickInput = null;
+                }
+                if (pendingPointerMoveInput) {
+                    applyPointerMoveTarget(pendingPointerMoveInput);
+                    pendingPointerMoveInput = null;
+                }
+            });
+        }
+
+        function applyPointerMoveTarget(point) {
+            const rect = getCanvasInputRect();
+            pointerMove.x = (point.clientX - rect.left) * (canvas.width / rect.width);
+            pointerMove.y = (point.clientY - rect.top) * (canvas.height / rect.height);
             pointerMove.hasTarget = true;
+        }
+
+        function updatePointerMoveTarget(event, immediate = false) {
+            const point = toPointerPoint(event);
+            if (immediate) {
+                applyPointerMoveTarget(point);
+                return;
+            }
+            pendingPointerMoveInput = point;
+            scheduleInputFlush();
         }
 
         function getPointerMoveVector() {
@@ -1002,14 +1063,14 @@
             };
         }
 
-        function updateJoystickFromEvent(event, joystickEl) {
-            const rect = joystickEl.getBoundingClientRect();
+        function applyJoystickInput(point, joystickEl) {
+            const rect = getJoystickInputRect(joystickEl);
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
             const visualDistance = Math.min(rect.width, rect.height) * 0.34;
             const inputDistance = Math.min(rect.width, rect.height) * 0.18;
-            const rawX = event.clientX - centerX;
-            const rawY = event.clientY - centerY;
+            const rawX = point.clientX - centerX;
+            const rawY = point.clientY - centerY;
             const distance = Math.hypot(rawX, rawY);
             const clampedDistance = Math.min(distance, visualDistance);
             const angle = Math.atan2(rawY, rawX);
@@ -1024,6 +1085,16 @@
                 joystick.y = 0;
             }
             if (knob) knob.style.transform = `translate(calc(-50% + ${knobX}px), calc(-50% + ${knobY}px))`;
+        }
+
+        function updateJoystickFromEvent(event, joystickEl, immediate = false) {
+            const point = toPointerPoint(event);
+            if (immediate) {
+                applyJoystickInput(point, joystickEl);
+                return;
+            }
+            pendingJoystickInput = { point, joystickEl };
+            scheduleInputFlush();
         }
 
         function bindMobileControls() {
@@ -1060,11 +1131,12 @@
                 joystickEl.addEventListener('pointerdown', (event) => {
                     if (!canUseGameplayInput()) return;
                     event.preventDefault();
+                    cacheInputRects(joystickEl);
                     joystick.active = true;
                     joystick.pointerId = event.pointerId;
                     joystickEl.setPointerCapture?.(event.pointerId);
                     joystickEl.classList.add('is-active');
-                    updateJoystickFromEvent(event, joystickEl);
+                    updateJoystickFromEvent(event, joystickEl, true);
                 });
                 joystickEl.addEventListener('pointermove', (event) => {
                     if (!joystick.active || joystick.pointerId !== event.pointerId) return;
@@ -1089,10 +1161,11 @@
             canvas.addEventListener('pointerdown', (event) => {
                 if (!canUseGameplayInput() || event.pointerType === 'mouse') return;
                 event.preventDefault();
+                cacheInputRects(joystickEl);
                 pointerMove.active = true;
                 pointerMove.pointerId = event.pointerId;
                 canvas.setPointerCapture?.(event.pointerId);
-                updatePointerMoveTarget(event);
+                updatePointerMoveTarget(event, true);
             });
             canvas.addEventListener('pointermove', (event) => {
                 if (!canUseGameplayInput()) return;
@@ -1121,6 +1194,8 @@
                 if (event.pointerType === 'mouse') resetPointerMove();
             });
             canvas.addEventListener('lostpointercapture', resetPointerMove);
+            window.addEventListener('resize', clearInputRects, { passive: true });
+            window.addEventListener('orientationchange', clearInputRects);
         }
 
         function disparar() {
@@ -2451,7 +2526,12 @@
         function loop(timestamp) {
             if (!isGameRunning) return;
             if (!lastFrameTime) lastFrameTime = timestamp;
-            const deltaFrames = Math.min((timestamp - lastFrameTime) / FRAME_MS, MAX_FRAME_DELTA);
+            const elapsed = timestamp - lastFrameTime;
+            if (elapsed < FRAME_MS - 0.5) {
+                animationId = requestAnimationFrame(loop);
+                return;
+            }
+            const deltaFrames = Math.min(elapsed / FRAME_MS, MAX_FRAME_DELTA);
             lastFrameTime = timestamp;
 
             if (isGamePaused) {
