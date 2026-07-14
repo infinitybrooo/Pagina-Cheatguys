@@ -6,7 +6,7 @@
     <title>CheatGuys! - Multiplayer Lobby</title>
     <link rel="icon" type="image/png" href="assets/branding/favicon.webp">
     <link rel="stylesheet" href="css/fonts.css?v=20260706-localfonts1">
-    <link rel="stylesheet" href="css/style.css?v=20260713-mixer2">
+    <link rel="stylesheet" href="css/style.css?v=20260714-start-polish2">
     <link rel="stylesheet" href="css/start-intro-novel.css?v=20260713-v3">
     <link rel="stylesheet" href="css/galeria.css?v=20260629-sidebar-logo1">
 
@@ -95,12 +95,43 @@
     <div id="startWindow" class="start-window" aria-label="Pantalla de inicio CheatGuys">
         <div class="start-crt-flash" aria-hidden="true"></div>
         <section class="start-boot-panel" aria-hidden="true">
-            <img src="assets/branding/mobile/logo-studio-blanco.webp" alt="" class="start-studio-logo" decoding="async">
-            <div class="start-os-label">Infinity OS</div>
+            <div class="start-boot-window">
+                <div class="start-os-titlebar">
+                    <span>INFINITY_OS_BOOT.SYS</span>
+                    <span>MEM 640K</span>
+                </div>
+                <img src="assets/branding/mobile/logo-studio-blanco.webp" alt="" class="start-studio-logo" decoding="async">
+                <div class="start-os-label">Infinity OS</div>
+                <div class="start-boot-log">
+                    <span>CHECKING CREATIVE_CORE...</span>
+                    <span>LOADING GARAGE_DRIVERS...</span>
+                    <span>SYNCING AKANE_INPUT...</span>
+                </div>
+                <div class="start-boot-progress"><span></span></div>
+            </div>
         </section>
         <section class="start-title-panel" aria-label="Inicio del videojuego">
             <video class="start-bg-video" src="assets/start-window/loop-fondo-clean.mp4" autoplay muted loop playsinline preload="auto"></video>
             <div class="start-title-content">
+                <div class="start-window-titlebar" aria-hidden="true">
+                    <span>CHEATGUYS_START.EXE</span>
+                    <span class="start-window-controls"><i></i><i></i><i></i></span>
+                </div>
+                <div class="start-desktop-widgets" aria-hidden="true">
+                    <div class="start-widget start-widget-log">
+                        <span>BOOT_LOG</span>
+                        <b></b>
+                        <b></b>
+                        <b></b>
+                    </div>
+                    <div class="start-widget start-widget-signal">
+                        <span>SIGNAL</span>
+                        <b></b>
+                        <b></b>
+                        <b></b>
+                        <b></b>
+                    </div>
+                </div>
                 <div class="start-player-row">
                     <span>PLAYER ONE</span>
                     <span>READY</span>
@@ -112,6 +143,11 @@
                 </div>
                 <div class="start-runner-track" aria-hidden="true">
                     <div class="start-akane-runner"></div>
+                </div>
+                <div class="start-console-footer" aria-hidden="true">
+                    <span>CPU: CREATIVE_CORE</span>
+                    <span>INPUT: KEYBOARD / TOUCH</span>
+                    <span>STATUS: WAITING</span>
                 </div>
             </div>
         </section>

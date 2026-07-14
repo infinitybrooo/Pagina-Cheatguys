@@ -105,17 +105,7 @@
 }
 
 .arcade-game-icon::before {
-    content: "";
-    position: absolute;
-    inset: 7px 6px 5px;
-    z-index: -1;
-    background:
-        linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 105, 180, 0.08) 1px, transparent 1px),
-        rgba(2, 0, 6, 0.86);
-    background-size: 12px 12px;
-    border: 2px solid rgba(255, 255, 255, 0.26);
-    transform: skew(-4deg);
+    content: none;
 }
 
 .arcade-game-icon img {
@@ -133,19 +123,19 @@
 }
 
 .arcade-icon-main {
-    width: 44px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
     filter: drop-shadow(0 0 7px rgba(0, 255, 255, 0.45));
 }
 
 .arcade-space-icon .arcade-icon-main {
-    width: 47px;
-    height: 38px;
+    width: 56px;
+    height: 48px;
 }
 
 .arcade-maze-icon .arcade-icon-main {
-    width: 36px;
-    height: 48px;
+    width: 40px;
+    height: 54px;
 }
 
 .arcade-icon-ghost-stack {
@@ -690,18 +680,18 @@
     }
 
     .arcade-icon-main {
-        width: 37px;
-        height: 41px;
+        width: 44px;
+        height: 44px;
     }
 
     .arcade-space-icon .arcade-icon-main {
-        width: 39px;
-        height: 32px;
+        width: 47px;
+        height: 40px;
     }
 
     .arcade-maze-icon .arcade-icon-main {
-        width: 31px;
-        height: 42px;
+        width: 34px;
+        height: 46px;
     }
 
     .arcade-icon-ghost-stack {
