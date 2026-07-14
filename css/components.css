@@ -1013,6 +1013,7 @@ p.subtitle { font-family: var(--font-pixel); color: #d3d3d3; font-size: 15px; ma
 }
 
 .x-feed-frame {
+    position: relative;
     min-height: 270px;
     max-height: min(460px, calc(100vh - 260px));
     overflow: auto;
@@ -1028,8 +1029,10 @@ p.subtitle { font-family: var(--font-pixel); color: #d3d3d3; font-size: 15px; ma
 
 .x-feed-frame::before {
     content: "LOADING_X_SIGNAL...";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
     display: grid;
-    min-height: 270px;
     place-items: center;
     padding: 18px;
     color: #6f6877;
@@ -1039,14 +1042,120 @@ p.subtitle { font-family: var(--font-pixel); color: #d3d3d3; font-size: 15px; ma
     text-align: center;
 }
 
-.x-feed-frame:has(iframe)::before {
+.x-feed-frame.is-loaded::before,
+.x-feed-frame.is-fallback::before {
     display: none;
 }
 
-.x-feed-frame iframe {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
+.x-feed-posts {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+}
+
+.x-feed-fallback {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: none;
+    place-content: center;
+    gap: 10px;
+    padding: 22px;
+    color: #c5bdcc;
+    font-family: var(--font-terminal);
+    font-size: 14px;
+    line-height: 1.25;
+    text-align: center;
+}
+
+.x-feed-fallback strong {
+    color: var(--mixer-accent);
+    font-family: var(--font-pixel);
+    font-size: 11px;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.x-feed-fallback a {
+    color: var(--mixer-accent);
+    text-decoration: none;
+}
+
+.x-feed-fallback a:hover {
+    color: #fff;
+    text-shadow: 0 0 8px var(--mixer-accent);
+}
+
+.x-feed-frame.is-fallback .x-feed-fallback {
+    display: grid;
+}
+
+.x-feed-post {
+    display: grid;
+    gap: 8px;
+    padding: 10px;
+    color: #fff;
+    background:
+        linear-gradient(90deg, rgba(0,255,255,0.06), rgba(255,61,242,0.04)),
+        rgba(5, 5, 8, 0.92);
+    border: 2px solid rgba(255,255,255,0.28);
+    box-shadow: 3px 3px 0 #000, inset 0 0 12px rgba(0,0,0,0.55);
+}
+
+.x-feed-post-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: var(--mixer-accent);
+    font-family: var(--font-terminal);
+    font-size: 12px;
+    line-height: 1;
+}
+
+.x-feed-post-tag {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.x-feed-post-date {
+    flex: 0 0 auto;
+    color: #8f8798;
+}
+
+.x-feed-post-title {
+    color: #fff;
+    font-family: var(--font-pixel);
+    font-size: 10px;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.x-feed-post-text {
+    margin: 0;
+    color: #d8d3df;
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.35;
+}
+
+.x-feed-post-link {
+    width: fit-content;
+    color: var(--mixer-accent);
+    font-family: var(--font-terminal);
+    font-size: 13px;
+    line-height: 1;
+    text-decoration: none;
+}
+
+.x-feed-post-link:hover,
+.x-feed-post-link:focus-visible {
+    color: #fff;
+    text-shadow: 0 0 8px var(--mixer-accent);
 }
 
 .x-feed-direct {
@@ -1128,6 +1237,14 @@ p.subtitle { font-family: var(--font-pixel); color: #d3d3d3; font-size: 15px; ma
 
     .x-feed-frame::before {
         min-height: 320px;
+    }
+
+    .x-feed-posts {
+        padding: 9px;
+    }
+
+    .x-feed-post-text {
+        font-size: 13px;
     }
 
     .x-feed-mobile-launch {

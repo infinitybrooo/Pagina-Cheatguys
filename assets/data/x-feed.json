@@ -1,0 +1,31 @@
+{
+  "profileUrl": "https://x.com/infinitybrooo",
+  "handle": "@infinitybrooo",
+  "updatedLabel": "MANUAL_SYNC // 2026-07-14",
+  "posts": [
+    {
+      "id": "cg-site-x-feed",
+      "date": "2026-07-14",
+      "tag": "SITE_UPDATE",
+      "title": "X_FEED_WINDOW_ONLINE",
+      "text": "Probando una ventana estilo Infinity OS para seguir las actualizaciones de CheatGuys! sin depender del embed roto de X.",
+      "url": "https://x.com/infinitybrooo"
+    },
+    {
+      "id": "cg-lobby-update",
+      "date": "2026-07-14",
+      "tag": "LOBBY_PATCH",
+      "title": "CHEATGUYS_LOBBY_REFRESH",
+      "text": "El lobby sigue sumando detalles: neón, CRT, audio, navegación móvil y pequeñas ventanas de sistema para que todo se sienta más vivo.",
+      "url": "https://x.com/infinitybrooo"
+    },
+    {
+      "id": "cg-follow-profile",
+      "date": "2026-07-14",
+      "tag": "FOLLOW_SIGNAL",
+      "title": "OPEN_PROFILE_FOR_REAL_TIME_POSTS",
+      "text": "Para publicaciones en tiempo real, abre el perfil oficial de Infinity Brothers en X. Esta terminal muestra posts destacados curados manualmente.",
+      "url": "https://x.com/infinitybrooo"
+    }
+  ]
+}

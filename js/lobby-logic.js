@@ -507,15 +507,19 @@ Bomba Estéreo - Fuego
         });
 
         const xFeedState = {
-            scriptPromise: null,
+            postsLoaded: false,
+            requestPromise: null,
             lastTrigger: null,
-            mobileQuery: window.matchMedia ? window.matchMedia("(max-width: 860px)") : null
+            mobileQuery: window.matchMedia ? window.matchMedia("(max-width: 1379px)") : null
         };
 
         function getXFeedElements() {
             return {
                 window: document.getElementById("xFeedWindow"),
                 container: document.querySelector("[data-cg-x-feed-container]"),
+                frameShell: document.querySelector(".x-feed-frame"),
+                posts: document.querySelector("[data-cg-x-feed-posts]"),
+                updated: document.querySelector("[data-cg-x-feed-updated]"),
                 openButton: document.querySelector("[data-cg-x-feed-open]"),
                 closeButton: document.querySelector("[data-cg-x-feed-close]")
             };
@@ -525,43 +529,92 @@ Bomba Estéreo - Fuego
             return Boolean(xFeedState.mobileQuery && xFeedState.mobileQuery.matches);
         }
 
-        function loadXFeedWidget() {
+        function showXFeedFallback() {
             const elements = getXFeedElements();
-            if (!elements.container) return Promise.resolve();
-            if (navigator.webdriver) {
-                elements.container.dataset.cgXWidgetDisabled = "automation";
-                return Promise.resolve();
+            if (!elements.frameShell || xFeedState.postsLoaded) return;
+            elements.frameShell.classList.remove("is-loading");
+            elements.frameShell.classList.add("is-fallback");
+        }
+
+        function createXFeedPost(post) {
+            const article = document.createElement("article");
+            article.className = "x-feed-post";
+
+            const meta = document.createElement("div");
+            meta.className = "x-feed-post-meta";
+
+            const tag = document.createElement("span");
+            tag.className = "x-feed-post-tag";
+            tag.textContent = post.tag || "X_SIGNAL";
+
+            const date = document.createElement("time");
+            date.className = "x-feed-post-date";
+            date.dateTime = post.date || "";
+            date.textContent = post.date || "LIVE";
+
+            const title = document.createElement("strong");
+            title.className = "x-feed-post-title";
+            title.textContent = post.title || "POST_BUFFER";
+
+            const text = document.createElement("p");
+            text.className = "x-feed-post-text";
+            text.textContent = post.text || "";
+
+            const link = document.createElement("a");
+            link.className = "x-feed-post-link";
+            link.href = post.url || "https://x.com/infinitybrooo";
+            link.target = "_blank";
+            link.rel = "noopener";
+            link.textContent = "[ OPEN_POST ]";
+
+            meta.append(tag, date);
+            article.append(meta, title, text, link);
+            return article;
+        }
+
+        function renderXFeed(data) {
+            const elements = getXFeedElements();
+            const posts = Array.isArray(data?.posts) ? data.posts : [];
+            if (!elements.frameShell || !elements.posts || posts.length === 0) {
+                showXFeedFallback();
+                return;
             }
 
-            if (window.twttr?.widgets) {
-                window.twttr.widgets.load(elements.container);
-                return Promise.resolve();
+            elements.posts.replaceChildren(...posts.map(createXFeedPost));
+            elements.frameShell.classList.remove("is-loading", "is-fallback");
+            elements.frameShell.classList.add("is-loaded");
+            xFeedState.postsLoaded = true;
+
+            if (elements.updated && data.updatedLabel) {
+                elements.updated.textContent = `X/TWITTER SIGNAL // ${data.updatedLabel}`;
+            }
+        }
+
+        function loadXFeedPosts() {
+            const elements = getXFeedElements();
+            if (!elements.frameShell) return Promise.resolve();
+            if (xFeedState.postsLoaded) return Promise.resolve();
+
+            elements.frameShell.classList.add("is-loading");
+            elements.frameShell.classList.remove("is-loaded", "is-fallback");
+
+            if (!xFeedState.requestPromise) {
+                xFeedState.requestPromise = fetch("assets/data/x-feed.json", {
+                    cache: "no-store",
+                    headers: { Accept: "application/json" }
+                })
+                    .then((response) => {
+                        if (!response.ok) throw new Error(`Feed manual respondio ${response.status}`);
+                        return response.json();
+                    })
+                    .then(renderXFeed)
+                    .catch((error) => {
+                        if (CG_LOG) CG_LOG.warn("X_FEED", "No se pudo cargar el feed manual.", error);
+                        showXFeedFallback();
+                    });
             }
 
-            if (!xFeedState.scriptPromise) {
-                xFeedState.scriptPromise = new Promise((resolve, reject) => {
-                    const existingScript = document.querySelector("script[src='https://platform.twitter.com/widgets.js']");
-                    if (existingScript) {
-                        existingScript.addEventListener("load", resolve, { once: true });
-                        existingScript.addEventListener("error", reject, { once: true });
-                        return;
-                    }
-
-                    const script = document.createElement("script");
-                    script.src = "https://platform.twitter.com/widgets.js";
-                    script.async = true;
-                    script.charset = "utf-8";
-                    script.onload = resolve;
-                    script.onerror = reject;
-                    document.head.appendChild(script);
-                }).then(() => {
-                    if (window.twttr?.widgets) window.twttr.widgets.load(elements.container);
-                }).catch((error) => {
-                    if (CG_LOG) CG_LOG.warn("X_FEED", "No se pudo cargar el timeline de X.", error);
-                });
-            }
-
-            return xFeedState.scriptPromise;
+            return xFeedState.requestPromise;
         }
 
         function syncXFeedMode() {
@@ -573,7 +626,7 @@ Bomba Estéreo - Fuego
                 elements.window.classList.remove("is-open");
                 elements.window.setAttribute("aria-hidden", "false");
                 elements.window.inert = false;
-                window.setTimeout(loadXFeedWidget, 900);
+                window.setTimeout(loadXFeedPosts, 900);
                 return;
             }
 
@@ -587,7 +640,7 @@ Bomba Estéreo - Fuego
             if (!elements.window) return;
 
             xFeedState.lastTrigger = document.activeElement;
-            loadXFeedWidget();
+            loadXFeedPosts();
 
             if (window.CGOverlay && isXFeedMobileMode()) {
                 window.CGOverlay.open("xFeedWindow", {
