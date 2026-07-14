@@ -824,6 +824,48 @@ body.laptop-program-lock {
     outline: 2px solid #05000a;
 }
 
+#laptop-bunker[data-mode="desktop"] .laptop-desktop-window,
+#laptop-bunker[data-mode="desktop"] .laptop-desktop-widget {
+    position: absolute !important;
+    z-index: 3 !important;
+    display: block;
+    color: #05000a !important;
+    font-family: var(--font-pixel) !important;
+    text-shadow: none !important;
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.76) !important;
+}
+
+#laptop-bunker[data-mode="desktop"] .laptop-desktop-window {
+    background: #ece8f6 !important;
+    border: 3px solid #fff !important;
+    outline: 2px solid #05000a !important;
+}
+
+#laptop-bunker[data-mode="desktop"] .laptop-window-titlebar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    min-height: 24px !important;
+    padding: 3px 6px !important;
+    color: #fff !important;
+    background: linear-gradient(90deg, #1d188f, #8a2be2) !important;
+    border-bottom: 2px solid #05000a !important;
+}
+
+#laptop-bunker[data-mode="desktop"] .laptop-window-body {
+    display: block !important;
+    padding: 7px 8px 9px !important;
+    background:
+        linear-gradient(rgba(138, 43, 226, 0.08) 1px, transparent 1px),
+        #f7f2ff !important;
+    background-size: 100% 12px !important;
+}
+
+#laptop-bunker[data-mode="desktop"] .laptop-mini-eq {
+    display: flex !important;
+    align-items: end !important;
+}
+
 .laptop-akane-panel {
     right: 24px;
     top: 78px;
