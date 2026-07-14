@@ -9,7 +9,7 @@
     const originalPauseSpace = window.pausarJuegoArcade;
     const originalResumeSpace = window.reanudarJuegoArcade;
     const originalCloseArcade = window.cerrarArcade;
-    let selectedGame = games.SPACE;
+    let selectedGame = null;
     let maze = null;
 
     function formatScore(value) {
@@ -53,6 +53,8 @@
         document.querySelectorAll("[data-arcade-game-record]").forEach((element) => {
             element.textContent = formatScore(snapshot.games[element.dataset.arcadeGameRecord] || 0);
         });
+        const selectedRecord = byId("arcadeSelectedGameRecord");
+        if (selectedRecord) selectedRecord.textContent = formatScore(snapshot.games[selectedGame] || 0);
 
         const status = byId("arcadeRecordStatus");
         if (status) {
@@ -68,14 +70,19 @@
     }
 
     function updateSelection(game) {
-        selectedGame = game === games.MAZE ? games.MAZE : games.SPACE;
+        selectedGame = game === games.MAZE || game === games.SPACE ? game : null;
         document.querySelectorAll("[data-arcade-game]").forEach((option) => {
             const selected = option.dataset.arcadeGame === selectedGame;
             option.classList.toggle("is-selected", selected);
             option.setAttribute("aria-pressed", selected ? "true" : "false");
         });
+        const selection = byId("arcadeSelectedGame");
+        if (selection) selection.hidden = !selectedGame;
+        const name = byId("arcadeSelectedGameName");
+        if (name) name.textContent = selectedGame === games.MAZE ? "AKANE MAZE" : selectedGame === games.SPACE ? "SPACE INVADERS" : "";
         const mode = byId("arcadeSelectedMode");
-        if (mode) mode.textContent = selectedGame === games.MAZE ? "AKANE MAZE" : "SPACE INVADERS";
+        if (mode) mode.textContent = selectedGame === games.MAZE ? "ENDLESS MAZE" : selectedGame === games.SPACE ? "PURPLE RUN" : "";
+        updateRecords();
     }
 
     function setGameplayMode(game) {
@@ -120,6 +127,25 @@
         updateRecords();
     }
 
+    function pulseArcadeClass(className, duration = 620) {
+        const screen = byId("arcadeGameScreen");
+        if (!screen) return;
+        screen.classList.remove(className);
+        void screen.offsetWidth;
+        screen.classList.add(className);
+        window.setTimeout(() => screen.classList.remove(className), duration);
+    }
+
+    function handleMazePickup(event) {
+        if (event.type === "energy") pulseArcadeClass("is-maze-energy-pickup", 760);
+        else if (event.type === "bonus") pulseArcadeClass("is-maze-bonus-pickup", 920);
+        else if (event.type === "ghost") pulseArcadeClass("is-maze-ghost-eaten", 680);
+    }
+
+    function handleMazeDeath() {
+        pulseArcadeClass("is-maze-death", 1320);
+    }
+
     function handleMazeGameOver(result) {
         records?.record(games.MAZE, result.score);
         const finalScore = byId("finalScoreText");
@@ -144,6 +170,7 @@
     }
 
     async function startSelectedGame() {
+        if (!selectedGame) return;
         setPauseVisible(false);
         if (selectedGame === games.SPACE) {
             maze?.stop();
@@ -185,6 +212,8 @@
         maze = window.AkaneMazeGame.create(mazeCanvas, {
             onState: updateMazeState,
             onGameOver: handleMazeGameOver,
+            onPickup: handleMazePickup,
+            onDeath: handleMazeDeath,
             onAssetError: handleMazeAssetError,
             onTogglePause() {
                 if (maze?.isPaused()) resumeSelectedGame();
@@ -193,6 +222,9 @@
         });
         if (["127.0.0.1", "localhost"].includes(window.location.hostname)) {
             window.__akaneMazeDebugState = () => maze?.getDebugState();
+            window.__akaneMazeDebugKill = () => maze?.debugTriggerDeath();
+            window.__akaneMazeDebugGhostEyes = (index) => maze?.debugTriggerGhostEyes(index);
+            window.__akaneMazeDebugFrightened = () => maze?.debugTriggerFrightened();
         }
 
         document.querySelectorAll("[data-arcade-game]").forEach((option) => {
@@ -216,7 +248,7 @@
         });
 
         const requestedGame = new URLSearchParams(window.location.search).get("game");
-        updateSelection(requestedGame === "maze" ? games.MAZE : games.SPACE);
+        updateSelection(requestedGame === "maze" ? games.MAZE : requestedGame === "space" ? games.SPACE : null);
         updateRecords();
         window.addEventListener("cheatguys:arcade-record", updateRecords);
         document.addEventListener("visibilitychange", () => {

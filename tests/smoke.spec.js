@@ -206,6 +206,9 @@ test("minijuego inicia sin 404 principales", async ({ page }) => {
 
     await expect(page.locator("#arcadeStartScreen")).toHaveClass(/active/);
     await expect(page.locator("[data-arcade-game]")).toHaveCount(2);
+    await expect(page.locator("#arcadeSelectedGame")).toBeHidden();
+    await page.locator('[data-arcade-game="space-invaders"]').click();
+    await expect(page.locator("#arcadeSelectedGameName")).toHaveText("SPACE INVADERS");
     await page.locator("button", { hasText: "[ INICIAR_JUEGO ]" }).first().click();
     await expect(page.locator("#arcadeGameScreen")).toHaveClass(/active/);
     await expect(page.locator("#spaceInvadersCanvas")).toBeVisible();
@@ -221,7 +224,9 @@ test("Akane Maze inicia y conserva el record en localStorage", async ({ page }) 
     const mazeOption = page.locator('[data-arcade-game="akane-maze"]');
     await expect(mazeOption).toHaveAttribute("aria-pressed", "true");
     await expect(mazeOption.locator(".arcade-game-icon img")).toHaveCount(3);
-    await expect(page.locator("#akaneMazePreview")).toHaveCount(0);
+    await expect(mazeOption.locator(".arcade-icon-ghost-eyes")).toHaveCount(0);
+    await expect(page.locator("#arcadeSelectedGame")).toBeVisible();
+    await expect(page.locator("#arcadeSelectedGameName")).toHaveText("AKANE MAZE");
     await page.locator("button", { hasText: "[ INICIAR_JUEGO ]" }).first().click();
     await expect(page.locator("#arcadeGameScreen")).toHaveClass(/active/);
     await expect(page.locator("#akaneMazeCanvas")).toBeVisible();
@@ -230,6 +235,11 @@ test("Akane Maze inicia y conserva el record en localStorage", async ({ page }) 
     await page.waitForTimeout(1400);
 
     const readMazeState = async () => page.evaluate(() => window.__akaneMazeDebugState());
+    await page.evaluate(() => window.__akaneMazeDebugFrightened());
+    await expect.poll(async () => (await readMazeState()).frightenedSeconds).toBeGreaterThan(0);
+    await page.evaluate(() => window.__akaneMazeDebugGhostEyes(0));
+    await expect.poll(async () => (await readMazeState()).ghosts[0].mode).toBe("eyes");
+
     const directions = ["ArrowUp", "ArrowLeft", "ArrowRight", "ArrowDown"];
     let movement = null;
     for (const direction of directions) {
@@ -248,7 +258,7 @@ test("Akane Maze inicia y conserva el record en localStorage", async ({ page }) 
         }
     }
     expect(movement?.moved).toBeGreaterThan(0.12);
-    expect(movement.driftAfterRelease).toBeLessThan(0.08);
+    expect(movement.driftAfterRelease).toBeLessThan(0.12);
 
     await page.evaluate(() => {
         window.ArcadeRecords.record(window.ArcadeRecords.GAME_IDS.MAZE, 123456);

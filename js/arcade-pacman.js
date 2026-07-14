@@ -23,22 +23,27 @@
         ArrowDown: DIRECTIONS.down,
         KeyS: DIRECTIONS.down
     };
-    const GHOST_TYPES = ["red", "pink", "blue", "orange"];
+    const GHOST_TYPES = ["purple", "orange", "pink", "blue"];
     const SPRITE_PATH = "assets/arcade/pacman/sprites/";
     const assets = {
         akaneRight: loadImage(`${SPRITE_PATH}akane-right.png`),
         akaneLeft: loadImage(`${SPRITE_PATH}akane-left.png`),
         akaneUp: loadImage(`${SPRITE_PATH}akane-up.png`),
         akaneDown: loadImage(`${SPRITE_PATH}akane-down.png`),
+        akaneDeath: loadImage(`${SPRITE_PATH}akane-death.png`),
+        purple: loadImage(`${SPRITE_PATH}ghost-purple.png`),
         orange: loadImage(`${SPRITE_PATH}ghost-orange.png`),
-        red: loadImage(`${SPRITE_PATH}ghost-red.png`),
         pink: loadImage(`${SPRITE_PATH}ghost-pink.png`),
         blue: loadImage(`${SPRITE_PATH}ghost-blue.png`),
-        frightened: loadImage(`${SPRITE_PATH}ghost-frightened.png`),
+        purpleVulnerable: loadImage(`${SPRITE_PATH}ghost-purple-vulnerable.png`),
+        orangeVulnerable: loadImage(`${SPRITE_PATH}ghost-orange-vulnerable.png`),
+        pinkVulnerable: loadImage(`${SPRITE_PATH}ghost-pink-vulnerable.png`),
+        blueVulnerable: loadImage(`${SPRITE_PATH}ghost-blue-vulnerable.png`),
+        ghostEyes: loadImage(`${SPRITE_PATH}ghost-eyes.png`),
         note: loadImage(`${SPRITE_PATH}note.png`),
         energy: loadImage(`${SPRITE_PATH}energy-can.png`),
         gameboy: loadImage(`${SPRITE_PATH}gameboy-color.png`),
-        wall: loadImage("assets/arcade/pacman/maze-wall.png")
+        wall: loadImage("assets/arcade/pacman/maze-wall-locker.png")
     };
     const assetsReady = Promise.all(Object.values(assets));
 
@@ -99,6 +104,8 @@
         let frightenedChain = 0;
         let readyTimer = 0;
         let transitionTimer = 0;
+        let deathTimer = 0;
+        let pendingLifeReset = false;
         let bonus = null;
         let bonusSpawned = false;
         let animationId = null;
@@ -268,10 +275,12 @@
             ghosts = GHOST_TYPES.map((type, index) => createMover(
                 ghostStarts[index],
                 index % 2 ? DIRECTIONS.right : DIRECTIONS.left,
-                { type, index, respawnTimer: 0.7 + index * 0.65 }
+                { type, index, mode: "ghost", respawnTimer: 0.7 + index * 0.65 }
             ));
             frightenedChain = 0;
             readyTimer = 1.25;
+            deathTimer = 0;
+            pendingLifeReset = false;
         }
 
         function setDirection(direction) {
@@ -319,6 +328,12 @@
             const withoutReverse = choices.filter((direction) => !isReverse(direction, ghost.direction));
             if (withoutReverse.length) choices = withoutReverse;
             if (!choices.length) return null;
+
+            if (ghost.mode === "eyes") {
+                return choices
+                    .map((direction) => ({ direction, distance: pathDistance(neighbor(ghost.cell, direction), ghostStarts[ghost.index]) }))
+                    .sort((a, b) => a.distance - b.distance || directionPriority(a.direction) - directionPriority(b.direction))[0].direction;
+            }
 
             if (frightenedTimer > 0 || random() < Math.max(0.04, 0.2 - level * 0.006)) {
                 return choices[Math.floor(random() * choices.length)];
@@ -396,6 +411,11 @@
                     entity.target = null;
                     entity.progress = 0;
                     onEnter?.(entity.cell, entity);
+                    if (entity.mode === "eyes" && cellKey(entity.cell) === cellKey(ghostStarts[entity.index])) {
+                        entity.mode = "ghost";
+                        entity.direction = entity.index % 2 ? DIRECTIONS.right : DIRECTIONS.left;
+                        entity.respawnTimer = 1.2;
+                    }
                 }
             }
         }
@@ -428,12 +448,14 @@
                 frightenedTimer = Math.max(4.25, 9 - level * 0.16);
                 frightenedChain = 0;
                 changed = true;
+                callbacks.onPickup?.({ type: "energy", score, level });
                 playPickupSfx(0.42);
             }
             if (bonus && bonus.key === key) {
                 score += Math.min(5000, 1000 + level * 125);
                 bonus = null;
                 changed = true;
+                callbacks.onPickup?.({ type: "bonus", score, level });
                 playPickupSfx(0.58);
             }
 
@@ -489,6 +511,20 @@
         }
 
         function update(deltaSeconds) {
+            if (deathTimer > 0) {
+                deathTimer = Math.max(0, deathTimer - deltaSeconds);
+                if (deathTimer === 0) {
+                    if (pendingLifeReset) {
+                        resetEntities();
+                        emitState();
+                    } else {
+                        window.ArcadeRecords?.record(window.ArcadeRecords.GAME_IDS.MAZE, score);
+                        stop();
+                        callbacks.onGameOver?.({ score, level });
+                    }
+                }
+                return;
+            }
             if (readyTimer > 0) {
                 readyTimer = Math.max(0, readyTimer - deltaSeconds);
                 return;
@@ -520,7 +556,7 @@
                     ghost.respawnTimer = Math.max(0, ghost.respawnTimer - deltaSeconds);
                     return;
                 }
-                const speed = frightenedTimer > 0 ? ghostSpeed * 0.72 : ghostSpeed;
+                const speed = ghost.mode === "eyes" ? ghostSpeed * 1.35 : frightenedTimer > 0 ? ghostSpeed * 0.72 : ghostSpeed;
                 moveEntity(ghost, speed, deltaSeconds, chooseGhostDirection);
             });
 
@@ -535,6 +571,7 @@
         function checkCollisions() {
             const playerPosition = moverPosition(player);
             for (const ghost of ghosts) {
+                if (ghost.mode === "eyes") continue;
                 if (ghost.respawnTimer > 0) continue;
                 const ghostPosition = moverPosition(ghost);
                 let deltaC = Math.abs(playerPosition.c - ghostPosition.c);
@@ -548,25 +585,54 @@
                     frightenedChain += 1;
                     const points = 200 * Math.pow(2, Math.min(frightenedChain - 1, 3));
                     score += points;
-                    ghost.cell = { ...ghostStarts[ghost.index] };
+                    ghost.mode = "eyes";
                     ghost.target = null;
                     ghost.progress = 0;
-                    ghost.respawnTimer = 1.8;
+                    ghost.respawnTimer = 0;
+                    ghost.direction = chooseGhostDirection(ghost) || ghost.direction;
+                    callbacks.onPickup?.({ type: "ghost", score, level, points });
                     saveAndEmit();
                     return;
                 }
 
                 lives -= 1;
+                pressedDirection = null;
+                deathTimer = 1.35;
+                pendingLifeReset = lives > 0;
+                callbacks.onDeath?.({ lives, score, level });
                 emitState();
-                if (lives <= 0) {
-                    window.ArcadeRecords?.record(window.ArcadeRecords.GAME_IDS.MAZE, score);
-                    stop();
-                    callbacks.onGameOver?.({ score, level });
-                    return;
-                }
-                resetEntities();
                 return;
             }
+        }
+
+        function triggerDeath() {
+            if (!running || deathTimer > 0) return;
+            lives = Math.max(0, lives - 1);
+            pressedDirection = null;
+            deathTimer = 1.35;
+            pendingLifeReset = lives > 0;
+            callbacks.onDeath?.({ lives, score, level });
+            emitState();
+            draw();
+        }
+
+        function triggerGhostEyes(index = 0) {
+            const ghost = ghosts[index];
+            if (!running || !ghost) return;
+            ghost.mode = "eyes";
+            ghost.respawnTimer = 0;
+            ghost.target = null;
+            ghost.progress = 0;
+            ghost.direction = chooseGhostDirection(ghost) || ghost.direction;
+            draw();
+        }
+
+        function triggerFrightened() {
+            if (!running) return;
+            frightenedTimer = 8;
+            frightenedChain = 0;
+            emitState();
+            draw();
         }
 
         function drawSprite(name, x, y, width, height, options = {}) {
@@ -620,10 +686,6 @@
                     if (grid[r][c] !== 1) continue;
                     ctx.drawImage(
                         wallImage,
-                        205,
-                        165,
-                        850,
-                        850,
                         offsetX + c * TILE,
                         offsetY + r * TILE,
                         TILE,
@@ -681,25 +743,48 @@
             const playerX = offsetX + playerPosition.c * TILE + TILE / 2;
             const playerY = offsetY + playerPosition.r * TILE + TILE / 2;
             const bob = Math.sin(Date.now() / 90) * 1.2;
-            const directionName = player.direction?.name || "down";
-            const akaneSprite = `akane${directionName.charAt(0).toUpperCase()}${directionName.slice(1)}`;
-            drawSprite(akaneSprite, playerX - 14, playerY - 17 + bob, 28, 34);
+            if (deathTimer > 0) {
+                const pulse = 1 + Math.sin(Date.now() / 70) * 0.06;
+                drawSprite("akaneDeath", playerX - 16 * pulse, playerY - 17 * pulse + bob, 32 * pulse, 35 * pulse);
+            } else {
+                const directionName = player.direction?.name || "down";
+                const akaneSprite = `akane${directionName.charAt(0).toUpperCase()}${directionName.slice(1)}`;
+                drawSprite(akaneSprite, playerX - 14, playerY - 17 + bob, 28, 34);
+            }
 
             ghosts.forEach((ghost) => {
                 if (ghost.respawnTimer > 0 && Math.floor(ghost.respawnTimer * 8) % 2 === 0) return;
                 const position = moverPosition(ghost);
                 const x = offsetX + position.c * TILE + TILE / 2;
                 const y = offsetY + position.r * TILE + TILE / 2;
-                const sprite = frightenedTimer > 0 ? "frightened" : ghost.type;
+                if (ghost.mode === "eyes") {
+                    drawGhostEyes(x, y, ghost.direction);
+                    return;
+                }
+                const sprite = frightenedTimer > 0
+                    ? `${ghost.type}Vulnerable`
+                    : ghost.type;
                 drawSprite(sprite, x - 12, y - 13, 24, 26, {
                     alpha: ghost.respawnTimer > 0 ? 0.55 : 1
                 });
             });
         }
 
+        function drawGhostEyes(x, y, direction = DIRECTIONS.left) {
+            drawSprite("ghostEyes", x - 8, y - 9, 16, 9);
+            const dx = direction?.x || 0;
+            const dy = direction?.y || 0;
+            ctx.save();
+            ctx.fillStyle = "#05000b";
+            ctx.fillRect(x - 5 + dx * 1.4, y - 7 + dy * 1.2, 3, 4);
+            ctx.fillRect(x + 3 + dx * 1.4, y - 7 + dy * 1.2, 3, 4);
+            ctx.restore();
+        }
+
         function drawOverlayMessage() {
             let message = "";
-            if (transitionTimer > 0) message = `LEVEL ${String(level).padStart(2, "0")} CLEAR`;
+            if (deathTimer > 0) message = lives > 0 ? "MISS // TRY AGAIN" : "AKANE DOWN";
+            else if (transitionTimer > 0) message = `LEVEL ${String(level).padStart(2, "0")} CLEAR`;
             else if (readyTimer > 0) message = `LEVEL ${String(level).padStart(2, "0")} // READY`;
             if (!message) return;
 
@@ -777,6 +862,8 @@
             level = 1;
             frightenedTimer = 0;
             transitionTimer = 0;
+            deathTimer = 0;
+            pendingLifeReset = false;
             lastStatusSecond = -1;
             generateMaze();
             resetEntities();
@@ -839,8 +926,25 @@
                     score,
                     level,
                     notesRemaining: notes.size + energy.size,
-                    ghostHouse: ghostHouse.map((cell) => ({ ...cell }))
+                    frightenedSeconds: Math.max(0, frightenedTimer),
+                    deathTimer,
+                    ghostHouse: ghostHouse.map((cell) => ({ ...cell })),
+                    ghosts: ghosts.map((ghost) => ({
+                        type: ghost.type,
+                        mode: ghost.mode,
+                        position: moverPosition(ghost),
+                        direction: ghost.direction?.name || null
+                    }))
                 };
+            },
+            debugTriggerDeath() {
+                triggerDeath();
+            },
+            debugTriggerGhostEyes(index) {
+                triggerGhostEyes(index);
+            },
+            debugTriggerFrightened() {
+                triggerFrightened();
             },
             draw() {
                 draw();
@@ -855,9 +959,9 @@
         ctx.fillStyle = "#030008";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         try {
-            const images = await assetsReady;
+            const settledImages = await Promise.allSettled(Object.values(assets));
             Object.keys(assets).forEach((key, index) => {
-                assets[key].__image = images[index];
+                if (settledImages[index].status === "fulfilled") assets[key].__image = settledImages[index].value;
             });
             const wallImage = getResolvedImage(assets.wall);
 
@@ -880,7 +984,14 @@
             pattern.forEach((row, r) => {
                 [...row].forEach((value, c) => {
                     if (value !== "1") return;
-                    ctx.drawImage(wallImage, 205, 165, 850, 850, startX + c * cell, startY + r * cell, cell, cell);
+                    if (wallImage) {
+                        ctx.drawImage(wallImage, startX + c * cell, startY + r * cell, cell, cell);
+                    } else {
+                        ctx.fillStyle = "#8a2be2";
+                        ctx.fillRect(startX + c * cell + 1, startY + r * cell + 1, cell - 2, cell - 2);
+                        ctx.fillStyle = "#00ffff";
+                        ctx.fillRect(startX + c * cell + 3, startY + r * cell + 4, cell - 6, 2);
+                    }
                 });
             });
 
