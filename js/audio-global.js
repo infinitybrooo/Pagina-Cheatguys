@@ -17,6 +17,7 @@
     const multipliers = {
         bgMusicPage: 1,
         bgMusicArcade: 1,
+        bgMusicPacman: 1,
         bgMusicSecret: 1,
         bgMusicChar: 1,
         bgMusicStart: 1,
@@ -185,7 +186,7 @@
         applyVolume();
 
         const getDefaultTrack = () => {
-            if (document.body.classList.contains("arcade-page")) return "bgMusicArcade";
+            if (document.body.classList.contains("arcade-page")) return null;
             const startWindow = document.getElementById("startWindow");
             if (startWindow && document.getElementById("bgMusicStart")) return "bgMusicStart";
             return "bgMusicPage";
@@ -193,7 +194,7 @@
 
         const unlockAudio = () => {
             const defaultTrack = getDefaultTrack();
-            if (musicEnabled && getAudio(defaultTrack)) {
+            if (musicEnabled && defaultTrack && getAudio(defaultTrack)) {
                 manager.playBg(defaultTrack);
             }
             document.removeEventListener("click", unlockAudio, true);

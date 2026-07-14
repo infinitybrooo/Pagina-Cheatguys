@@ -209,9 +209,11 @@ test("minijuego inicia sin 404 principales", async ({ page }) => {
     await expect(page.locator("#arcadeSelectedGame")).toBeHidden();
     await page.locator('[data-arcade-game="space-invaders"]').click();
     await expect(page.locator("#arcadeSelectedGameName")).toHaveText("SPACE INVADERS");
+    await expect.poll(() => page.locator("#bgMusicArcade").evaluate((audio) => audio.paused)).toBe(true);
     await page.locator("button", { hasText: "[ INICIAR_JUEGO ]" }).first().click();
     await expect(page.locator("#arcadeGameScreen")).toHaveClass(/active/);
     await expect(page.locator("#spaceInvadersCanvas")).toBeVisible();
+    await expect.poll(() => page.locator("#bgMusicArcade").evaluate((audio) => audio.paused)).toBe(false);
 
     expect(audit.consoleErrors).toEqual([]);
     expect(audit.failedResources).toEqual([]);
@@ -266,6 +268,48 @@ test("Akane Maze inicia y conserva el record en localStorage", async ({ page }) 
     await page.reload();
     await expect(page.locator("[data-arcade-overall-record]").first()).toHaveText("123,456");
     await expect(page.locator("#arcadeRecordStatus")).toHaveText("TU RECORD SUPERA A AKANE");
+
+    expect(audit.consoleErrors).toEqual([]);
+    expect(audit.failedResources).toEqual([]);
+});
+
+test("Akane Maze aplica reloj, aprobacion al 60% y muerte subita", async ({ page }) => {
+    const audit = await preparePage(page);
+    await page.goto("/minijuego.html?game=maze");
+    await page.locator("button", { hasText: "[ INICIAR_JUEGO ]" }).first().click();
+    await expect(page.locator("#akaneMazeCanvas")).toBeVisible();
+    await expect(page.locator("#arcadeStatusLine")).toContainText("TIME 2:00");
+    await expect(page.locator("#bgMusicPacman")).toHaveAttribute("src", "assets/audio/pacman_minijuego.mp3");
+    await page.waitForTimeout(1400);
+
+    const readMazeState = async () => page.evaluate(() => window.__akaneMazeDebugState());
+    const initial = await readMazeState();
+    expect(initial.totalNotes).toBeGreaterThan(0);
+    expect(initial.timeRemaining).toBeLessThanOrEqual(120);
+
+    await page.evaluate(() => window.__akaneMazeDebugLevelOutcome(0.59));
+    await expect.poll(async () => (await readMazeState()).lives).toBe(2);
+    await expect.poll(async () => (await readMazeState()).deathTimer, { timeout: 3000 }).toBe(0);
+    expect((await readMazeState()).level).toBe(1);
+
+    await page.evaluate(() => window.__akaneMazeDebugLevelOutcome(0.6));
+    await expect.poll(async () => (await readMazeState()).level, { timeout: 3500 }).toBe(2);
+
+    await page.evaluate(() => window.__akaneMazeDebugFrightened());
+    await expect.poll(async () => (await readMazeState()).frightenedSeconds).toBeGreaterThan(0);
+    await page.evaluate(() => window.__akaneMazeDebugSuddenDeath());
+    await expect(page.locator("#arcadeGameScreen")).toHaveClass(/is-maze-sudden-death/);
+    const sudden = await readMazeState();
+    expect(sudden.lives).toBe(0);
+    expect(sudden.suddenDeath).toBe(true);
+    expect(sudden.frightenedSeconds).toBe(0);
+    await expect(page.locator("#arcadeStatusLine")).toContainText("SUDDEN DEATH");
+
+    await page.waitForTimeout(1450);
+    await page.evaluate(() => window.__akaneMazeDebugFrightened());
+    expect((await readMazeState()).frightenedSeconds).toBe(0);
+    await page.evaluate(() => window.__akaneMazeDebugKill());
+    await expect(page.locator("#arcadeGameOverScreen")).toHaveClass(/active/, { timeout: 3000 });
 
     expect(audit.consoleErrors).toEqual([]);
     expect(audit.failedResources).toEqual([]);

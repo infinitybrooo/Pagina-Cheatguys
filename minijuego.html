@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="css/fonts.css?v=20260706-localfonts1">
     <link rel="stylesheet" href="css/style.css?v=20260629-noideatoon1">
     <link rel="stylesheet" href="css/galeria.css?v=20260629-sidebar-logo1">
-    <link rel="stylesheet" href="css/minijuego.css?v=20260713-arcade-select2">
+    <link rel="stylesheet" href="css/minijuego.css?v=20260713-maze-rules1">
 </head>
 <body class="arcade-page">
 
     <audio id="bgMusicArcade" src="assets/audio/minijuego_space.mp3" loop preload="none"></audio>
+    <audio id="bgMusicPacman" src="assets/audio/pacman_minijuego.mp3" loop preload="none"></audio>
     <audio id="bgMusicSuddenDeath" src="assets/audio/muerte_subita.mp3" loop preload="none"></audio>
     <audio id="bgMusicGameOver" src="assets/audio/derrota_minijuego.mp3" preload="none"></audio>
     <audio id="bgMusicVictory" src="assets/audio/victoria_minijuego.mp3" preload="none"></audio>
@@ -209,12 +210,12 @@
 
     <script src="js/cg-config.js?v=20260713-maint1"></script>
     <script src="js/cg-diagnostics.js?v=20260713-maint1"></script>
-    <script src="js/audio-global.js?v=20260713-maint1"></script>
+    <script src="js/audio-global.js?v=20260713-arcade-lobby1"></script>
     <script src="js/ui-global.js?v=20260707-ui1"></script>
     <script src="js/arcade-records.js?v=20260713-akane-maze1"></script>
-    <script src="js/arcade-pacman.js?v=20260713-custom-ghosts2"></script>
+    <script src="js/arcade-pacman.js?v=20260713-maze-rules1"></script>
     <script src="js/script.js?v=20260713-akane-maze1"></script>
-    <script src="js/arcade-controller.js?v=20260713-arcade-select2"></script>
+    <script src="js/arcade-controller.js?v=20260713-maze-rules1"></script>
     <script>
         (() => {
             const sys = "color:#ff3df2;background:#16001f;border:1px solid #ff3df2;padding:2px 6px;font-family:monospace;text-shadow:0 0 8px #ff3df2;";

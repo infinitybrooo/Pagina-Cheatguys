@@ -518,6 +518,10 @@
     animation: maze-ghost-zap 620ms steps(6) both;
 }
 
+#arcadeGameScreen.is-maze-line-combo .canvas-container {
+    animation: maze-line-combo 760ms steps(7) both;
+}
+
 #arcadeGameScreen.is-maze-death .canvas-container {
     animation: maze-death-shake 1320ms steps(10) both;
 }
@@ -538,6 +542,26 @@
     content: "EYES RETURN";
     color: #ffffff;
     animation: maze-pickup-label 620ms steps(6) both;
+}
+
+#arcadeGameScreen.is-maze-line-combo .canvas-container::after {
+    content: "LINE CLEAR!";
+    color: #ffd32a;
+    animation: maze-pickup-label 760ms steps(7) both;
+}
+
+#arcadeGameScreen.is-maze-sudden-death .canvas-container::before {
+    content: "";
+    opacity: 1;
+    background: rgba(255, 0, 45, 0.16);
+    animation: maze-sudden-flash 720ms steps(2, end) infinite;
+}
+
+#arcadeGameScreen.is-maze-sudden-death .scoreboard,
+#arcadeGameScreen.is-maze-sudden-death .arcade-status-line {
+    border-color: #ff234f;
+    color: #ff6b86;
+    animation: maze-sudden-hud 720ms steps(2, end) infinite;
 }
 
 #arcadeGameScreen.is-maze-death .canvas-container::before {
@@ -865,6 +889,10 @@
     .arcade-stage-panel-selector,
     .arcade-preview-panel,
     #arcadeGameScreen .canvas-container,
+    #arcadeGameScreen .canvas-container::before,
+    #arcadeGameScreen .canvas-container::after,
+    #arcadeGameScreen .scoreboard,
+    #arcadeGameScreen .arcade-status-line,
     #arcadeGameScreen #akaneMazeCanvas {
         transition: none;
         animation: none !important;
@@ -897,6 +925,22 @@
 @keyframes maze-ghost-zap {
     0%, 100% { filter: none; }
     35% { filter: brightness(1.75) contrast(1.2); }
+}
+
+@keyframes maze-line-combo {
+    0%, 100% { filter: none; transform: translateX(0); }
+    32% { filter: brightness(1.5) drop-shadow(0 0 16px rgba(255, 211, 42, 0.7)); transform: translateX(3px); }
+    58% { transform: translateX(-3px); }
+}
+
+@keyframes maze-sudden-flash {
+    0%, 100% { background: rgba(255, 0, 45, 0.08); }
+    50% { background: rgba(255, 0, 45, 0.28); }
+}
+
+@keyframes maze-sudden-hud {
+    0%, 100% { filter: none; }
+    50% { filter: brightness(1.55) drop-shadow(0 0 7px rgba(255, 35, 79, 0.8)); }
 }
 
 @keyframes maze-preview-eyes {

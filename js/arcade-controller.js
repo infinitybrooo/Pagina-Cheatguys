@@ -96,6 +96,7 @@
         if (spaceControls) spaceControls.hidden = isMaze;
         if (mazeControls) mazeControls.hidden = !isMaze;
         byId("arcadeGameScreen")?.setAttribute("data-active-game", isMaze ? "maze" : "space");
+        if (!isMaze) byId("arcadeGameScreen")?.classList.remove("is-maze-sudden-death");
     }
 
     function renderLives(lives) {
@@ -119,11 +120,20 @@
         const badge = byId("newRecordBadge");
         badge?.classList.toggle("is-visible", state.beatAkane);
 
-        const parts = [`LEVEL ${String(state.level).padStart(2, "0")}`, `NOTES ${state.notesRemaining}`];
+        const minutes = Math.floor(state.timeRemaining / 60);
+        const seconds = String(state.timeRemaining % 60).padStart(2, "0");
+        const parts = [
+            `LEVEL ${String(state.level).padStart(2, "0")}`,
+            `TIME ${minutes}:${seconds}`,
+            `NOTES ${state.notesCollected}/${state.totalNotes} ${state.notePercent}%`
+        ];
         if (state.frightenedSeconds > 0) parts.push(`ENERGY ${state.frightenedSeconds}s`);
         if (state.bonusVisible) parts.push("GAME BOY ONLINE");
+        if (state.comboLabel) parts.push(state.comboLabel);
+        if (state.suddenDeath) parts.push("SUDDEN DEATH");
         const statusLine = byId("arcadeStatusLine");
         if (statusLine) statusLine.textContent = parts.join(" // ");
+        byId("arcadeGameScreen")?.classList.toggle("is-maze-sudden-death", state.suddenDeath);
         updateRecords();
     }
 
@@ -140,10 +150,16 @@
         if (event.type === "energy") pulseArcadeClass("is-maze-energy-pickup", 760);
         else if (event.type === "bonus") pulseArcadeClass("is-maze-bonus-pickup", 920);
         else if (event.type === "ghost") pulseArcadeClass("is-maze-ghost-eaten", 680);
+        else if (event.type === "line") pulseArcadeClass("is-maze-line-combo", 760);
     }
 
     function handleMazeDeath() {
         pulseArcadeClass("is-maze-death", 1320);
+    }
+
+    function handleMazeSuddenDeath() {
+        byId("arcadeGameScreen")?.classList.add("is-maze-sudden-death");
+        window.AudioManager?.playBg("bgMusicSuddenDeath");
     }
 
     function handleMazeGameOver(result) {
@@ -181,7 +197,7 @@
 
         setGameplayMode(games.MAZE);
         setScreen("game");
-        window.AudioManager?.playBg("bgMusicArcade");
+        window.AudioManager?.playBg("bgMusicPacman");
         await maze?.start();
     }
 
@@ -214,6 +230,7 @@
             onGameOver: handleMazeGameOver,
             onPickup: handleMazePickup,
             onDeath: handleMazeDeath,
+            onSuddenDeath: handleMazeSuddenDeath,
             onAssetError: handleMazeAssetError,
             onTogglePause() {
                 if (maze?.isPaused()) resumeSelectedGame();
@@ -225,6 +242,8 @@
             window.__akaneMazeDebugKill = () => maze?.debugTriggerDeath();
             window.__akaneMazeDebugGhostEyes = (index) => maze?.debugTriggerGhostEyes(index);
             window.__akaneMazeDebugFrightened = () => maze?.debugTriggerFrightened();
+            window.__akaneMazeDebugSuddenDeath = () => maze?.debugTriggerSuddenDeath();
+            window.__akaneMazeDebugLevelOutcome = (ratio) => maze?.debugSetLevelOutcome(ratio);
         }
 
         document.querySelectorAll("[data-arcade-game]").forEach((option) => {

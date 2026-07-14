@@ -4,6 +4,10 @@
     const TILE = 20;
     const TUNNEL_ROW = 11;
     const PLAYER_SPEED = 5.1;
+    const LEVEL_DURATION = 120;
+    const LEVEL_PASS_RATIO = 0.6;
+    const NOTE_LINE_WINDOW = 8;
+    const GHOST_COMBO_WINDOW = 4;
     const AKANE_SCORE = window.ArcadeRecords?.AKANE_SCORE || 99999;
     const POWER_SFX = window.CG_CONFIG?.sfx?.powerUp || "assets/audio/later/powerup_minijuego.wav";
     const DIRECTIONS = Object.freeze({
@@ -90,6 +94,10 @@
         let floorCells = [];
         let notes = new Set();
         let energy = new Set();
+        let noteLines = [];
+        let noteLineLookup = new Map();
+        let totalNotes = 0;
+        let notesCollected = 0;
         let totalCollectibles = 0;
         let score = 0;
         let lives = 3;
@@ -102,10 +110,17 @@
         let pressedDirection = null;
         let frightenedTimer = 0;
         let frightenedChain = 0;
+        let ghostComboTimer = 0;
+        let ghostComboCount = 0;
+        let comboLabel = "";
+        let comboTimer = 0;
+        let levelTimeRemaining = LEVEL_DURATION;
+        let suddenDeath = false;
         let readyTimer = 0;
         let transitionTimer = 0;
         let deathTimer = 0;
         let pendingLifeReset = false;
+        let pendingMazeReset = false;
         let bonus = null;
         let bonusSpawned = false;
         let animationId = null;
@@ -219,9 +234,52 @@
                 energy.add(key);
             });
 
+            if (suddenDeath) energy.clear();
+
+            totalNotes = notes.size;
+            notesCollected = 0;
             totalCollectibles = notes.size + energy.size;
+            levelTimeRemaining = LEVEL_DURATION;
+            buildNoteLines();
             bonus = null;
             bonusSpawned = false;
+        }
+
+        function buildNoteLines() {
+            noteLines = [];
+            noteLineLookup = new Map();
+            const addLine = (keys) => {
+                if (keys.length < 3) return;
+                const line = { keys: new Set(keys), startedAt: null, completed: false };
+                const index = noteLines.push(line) - 1;
+                keys.forEach((key) => {
+                    const indexes = noteLineLookup.get(key) || [];
+                    indexes.push(index);
+                    noteLineLookup.set(key, indexes);
+                });
+            };
+            for (let r = 0; r < ROWS; r += 1) {
+                let run = [];
+                for (let c = 0; c <= COLS; c += 1) {
+                    const key = `${c},${r}`;
+                    if (c < COLS && notes.has(key)) run.push(key);
+                    else {
+                        addLine(run);
+                        run = [];
+                    }
+                }
+            }
+            for (let c = 0; c < COLS; c += 1) {
+                let run = [];
+                for (let r = 0; r <= ROWS; r += 1) {
+                    const key = `${c},${r}`;
+                    if (r < ROWS && notes.has(key)) run.push(key);
+                    else {
+                        addLine(run);
+                        run = [];
+                    }
+                }
+            }
         }
 
         function closestFloor(target, predicate = () => true) {
@@ -278,9 +336,12 @@
                 { type, index, mode: "ghost", respawnTimer: 0.7 + index * 0.65 }
             ));
             frightenedChain = 0;
+            ghostComboTimer = 0;
+            ghostComboCount = 0;
             readyTimer = 1.25;
             deathTimer = 0;
             pendingLifeReset = false;
+            pendingMazeReset = false;
         }
 
         function setDirection(direction) {
@@ -335,7 +396,19 @@
                     .sort((a, b) => a.distance - b.distance || directionPriority(a.direction) - directionPriority(b.direction))[0].direction;
             }
 
-            if (frightenedTimer > 0 || random() < Math.max(0.04, 0.2 - level * 0.006)) {
+            if (frightenedTimer > 0) {
+                const playerPosition = moverPosition(player);
+                const playerCell = { c: Math.round(playerPosition.c), r: Math.round(playerPosition.r) };
+                return choices
+                    .map((direction) => ({
+                        direction,
+                        distance: pathDistance(neighbor(ghost.cell, direction), playerCell),
+                        jitter: random()
+                    }))
+                    .sort((a, b) => b.distance - a.distance || b.jitter - a.jitter)[0].direction;
+            }
+
+            if (random() < Math.max(0.04, 0.2 - level * 0.006)) {
                 return choices[Math.floor(random() * choices.length)];
             }
 
@@ -358,10 +431,10 @@
                 return closestFloor({ c: playerCell.c + direction.x * 4, r: playerCell.r + direction.y * 4 }) || playerCell;
             }
             if (ghost.type === "blue") {
-                const red = ghosts.find((item) => item.type === "red");
-                const redCell = red ? red.cell : playerCell;
+                const purple = ghosts.find((item) => item.type === "purple");
+                const purpleCell = purple ? purple.cell : playerCell;
                 const pivot = { c: playerCell.c + direction.x * 2, r: playerCell.r + direction.y * 2 };
-                return closestFloor({ c: pivot.c * 2 - redCell.c, r: pivot.r * 2 - redCell.r }) || playerCell;
+                return closestFloor({ c: pivot.c * 2 - purpleCell.c, r: pivot.r * 2 - purpleCell.r }) || playerCell;
             }
             if (ghost.type === "orange" && distanceManhattan(ghost.cell, playerCell) < 7) {
                 return closestFloor({ c: 1, r: ROWS - 2 }) || playerCell;
@@ -440,10 +513,12 @@
             const key = cellKey(cell);
             let changed = false;
             if (notes.delete(key)) {
-                score += 10;
+                score += 25;
+                notesCollected += 1;
+                checkNoteLineCombos(key);
                 changed = true;
             }
-            if (energy.delete(key)) {
+            if (!suddenDeath && energy.delete(key)) {
                 score += 50;
                 frightenedTimer = Math.max(4.25, 9 - level * 0.16);
                 frightenedChain = 0;
@@ -451,7 +526,7 @@
                 callbacks.onPickup?.({ type: "energy", score, level });
                 playPickupSfx(0.42);
             }
-            if (bonus && bonus.key === key) {
+            if (!suddenDeath && bonus && bonus.key === key) {
                 score += Math.min(5000, 1000 + level * 125);
                 bonus = null;
                 changed = true;
@@ -464,14 +539,42 @@
                 maybeSpawnBonus();
             }
 
-            if (notes.size + energy.size === 0 && transitionTimer <= 0) {
-                score += level * 1000;
-                saveAndEmit();
-                transitionTimer = 1.8;
-            }
+            if (notes.size === 0 && transitionTimer <= 0) beginLevelClear();
+        }
+
+        function checkNoteLineCombos(key) {
+            const elapsed = LEVEL_DURATION - levelTimeRemaining;
+            (noteLineLookup.get(key) || []).forEach((index) => {
+                const line = noteLines[index];
+                if (!line || line.completed) return;
+                if (line.startedAt === null) line.startedAt = elapsed;
+                const complete = [...line.keys].every((lineKey) => !notes.has(lineKey));
+                if (!complete) return;
+                line.completed = true;
+                if (elapsed - line.startedAt > NOTE_LINE_WINDOW) return;
+                const points = 250 + line.keys.size * 75;
+                score += points;
+                setCombo(`LINE x${line.keys.size} +${points}`, 2.4);
+                callbacks.onPickup?.({ type: "line", score, level, points });
+            });
+        }
+
+        function setCombo(label, duration = 2) {
+            comboLabel = label;
+            comboTimer = duration;
+        }
+
+        function beginLevelClear() {
+            if (transitionTimer > 0) return;
+            const completionBonus = level * 1500 + Math.round(levelTimeRemaining) * 20;
+            score += completionBonus;
+            setCombo(`LEVEL CLEAR +${completionBonus}`, 2);
+            saveAndEmit();
+            transitionTimer = 1.8;
         }
 
         function maybeSpawnBonus() {
+            if (suddenDeath) return;
             const remaining = notes.size + energy.size;
             if (bonusSpawned || totalCollectibles <= 0 || remaining > totalCollectibles * 0.55) return;
             const occupied = new Set([cellKey(player.cell), ...ghosts.map((ghost) => cellKey(ghost.cell))]);
@@ -504,8 +607,14 @@
                 lives,
                 level,
                 notesRemaining: notes.size + energy.size,
+                notesCollected,
+                totalNotes,
+                notePercent: totalNotes > 0 ? Math.round((notesCollected / totalNotes) * 100) : 100,
+                timeRemaining: Math.max(0, Math.ceil(levelTimeRemaining)),
                 frightenedSeconds: Math.max(0, Math.ceil(frightenedTimer)),
                 bonusVisible: Boolean(bonus),
+                comboLabel: comboTimer > 0 ? comboLabel : "",
+                suddenDeath,
                 beatAkane: score >= AKANE_SCORE
             });
         }
@@ -515,6 +624,7 @@
                 deathTimer = Math.max(0, deathTimer - deltaSeconds);
                 if (deathTimer === 0) {
                     if (pendingLifeReset) {
+                        if (pendingMazeReset) generateMaze();
                         resetEntities();
                         emitState();
                     } else {
@@ -541,6 +651,16 @@
             }
 
             frightenedTimer = Math.max(0, frightenedTimer - deltaSeconds);
+            ghostComboTimer = Math.max(0, ghostComboTimer - deltaSeconds);
+            comboTimer = Math.max(0, comboTimer - deltaSeconds);
+            if (ghostComboTimer === 0) ghostComboCount = 0;
+            levelTimeRemaining = Math.max(0, levelTimeRemaining - deltaSeconds);
+            if (levelTimeRemaining === 0) {
+                const ratio = totalNotes > 0 ? notesCollected / totalNotes : 1;
+                if (ratio >= LEVEL_PASS_RATIO) beginLevelClear();
+                else loseLife({ resetMaze: true, reason: "time" });
+                return;
+            }
             if (bonus) {
                 bonus.timer -= deltaSeconds;
                 if (bonus.timer <= 0) {
@@ -561,7 +681,7 @@
             });
 
             checkCollisions();
-            const statusSecond = Math.ceil(frightenedTimer);
+            const statusSecond = `${Math.ceil(levelTimeRemaining)}:${Math.ceil(frightenedTimer)}:${Math.ceil(comboTimer)}`;
             if (statusSecond !== lastStatusSecond) {
                 lastStatusSecond = statusSecond;
                 emitState();
@@ -583,8 +703,11 @@
 
                 if (frightenedTimer > 0) {
                     frightenedChain += 1;
-                    const points = 200 * Math.pow(2, Math.min(frightenedChain - 1, 3));
+                    ghostComboCount = ghostComboTimer > 0 ? ghostComboCount + 1 : 1;
+                    ghostComboTimer = GHOST_COMBO_WINDOW;
+                    const points = [300, 900, 1800, 3600][Math.min(ghostComboCount - 1, 3)];
                     score += points;
+                    setCombo(`GHOST x${ghostComboCount} +${points}`, GHOST_COMBO_WINDOW);
                     ghost.mode = "eyes";
                     ghost.target = null;
                     ghost.progress = 0;
@@ -595,25 +718,42 @@
                     return;
                 }
 
-                lives -= 1;
-                pressedDirection = null;
-                deathTimer = 1.35;
-                pendingLifeReset = lives > 0;
-                callbacks.onDeath?.({ lives, score, level });
-                emitState();
+                loseLife();
                 return;
             }
         }
 
         function triggerDeath() {
             if (!running || deathTimer > 0) return;
-            lives = Math.max(0, lives - 1);
+            loseLife();
+            draw();
+        }
+
+        function loseLife(options = {}) {
+            if (deathTimer > 0) return;
+            const wasSuddenDeath = suddenDeath;
+            if (!suddenDeath) lives = Math.max(0, lives - 1);
             pressedDirection = null;
             deathTimer = 1.35;
-            pendingLifeReset = lives > 0;
-            callbacks.onDeath?.({ lives, score, level });
+            pendingMazeReset = Boolean(options.resetMaze);
+            pendingLifeReset = !wasSuddenDeath;
+            if (!wasSuddenDeath && lives === 0) enterSuddenDeath();
+            callbacks.onDeath?.({ lives, score, level, reason: options.reason || "ghost", suddenDeath });
             emitState();
-            draw();
+        }
+
+        function enterSuddenDeath() {
+            suddenDeath = true;
+            frightenedTimer = 0;
+            frightenedChain = 0;
+            ghostComboTimer = 0;
+            ghostComboCount = 0;
+            comboTimer = 0;
+            comboLabel = "";
+            energy.clear();
+            bonus = null;
+            bonusSpawned = true;
+            callbacks.onSuddenDeath?.({ score, level });
         }
 
         function triggerGhostEyes(index = 0) {
@@ -628,7 +768,7 @@
         }
 
         function triggerFrightened() {
-            if (!running) return;
+            if (!running || suddenDeath) return;
             frightenedTimer = 8;
             frightenedChain = 0;
             emitState();
@@ -674,6 +814,7 @@
             drawGhostHouse();
             drawCollectibles();
             drawActors();
+            drawSuddenDeath();
             drawOverlayMessage();
             ctx.restore();
         }
@@ -783,7 +924,7 @@
 
         function drawOverlayMessage() {
             let message = "";
-            if (deathTimer > 0) message = lives > 0 ? "MISS // TRY AGAIN" : "AKANE DOWN";
+            if (deathTimer > 0) message = suddenDeath ? "SUDDEN DEATH // NO MODS" : "MISS // TRY AGAIN";
             else if (transitionTimer > 0) message = `LEVEL ${String(level).padStart(2, "0")} CLEAR`;
             else if (readyTimer > 0) message = `LEVEL ${String(level).padStart(2, "0")} // READY`;
             if (!message) return;
@@ -798,6 +939,17 @@
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
             ctx.fillText(message, canvas.width / 2, canvas.height / 2);
+        }
+
+        function drawSuddenDeath() {
+            if (!suddenDeath) return;
+            const alpha = 0.08 + 0.06 * Math.sin(Date.now() / 150);
+            ctx.fillStyle = `rgba(255,0,0,${alpha})`;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = `rgba(255,55,75,${0.72 + 0.28 * Math.sin(Date.now() / 190)})`;
+            ctx.font = "20px VT323, monospace";
+            ctx.textAlign = "center";
+            ctx.fillText("SUDDEN DEATH // NO MODS", canvas.width / 2, 19);
         }
 
         function drawLoading() {
@@ -860,6 +1012,8 @@
             score = 0;
             lives = 3;
             level = 1;
+            suddenDeath = false;
+            levelTimeRemaining = LEVEL_DURATION;
             frightenedTimer = 0;
             transitionTimer = 0;
             deathTimer = 0;
@@ -924,9 +1078,17 @@
                     player: moverPosition(player),
                     pressedDirection: pressedDirection?.name || null,
                     score,
+                    lives,
                     level,
                     notesRemaining: notes.size + energy.size,
+                    notesCollected,
+                    totalNotes,
+                    notePercent: totalNotes > 0 ? Math.round((notesCollected / totalNotes) * 100) : 100,
+                    timeRemaining: levelTimeRemaining,
                     frightenedSeconds: Math.max(0, frightenedTimer),
+                    ghostComboCount,
+                    comboLabel: comboTimer > 0 ? comboLabel : "",
+                    suddenDeath,
                     deathTimer,
                     ghostHouse: ghostHouse.map((cell) => ({ ...cell })),
                     ghosts: ghosts.map((ghost) => ({
@@ -945,6 +1107,17 @@
             },
             debugTriggerFrightened() {
                 triggerFrightened();
+            },
+            debugTriggerSuddenDeath() {
+                lives = 1;
+                triggerDeath();
+            },
+            debugSetLevelOutcome(ratio) {
+                const targetCollected = Math.ceil(totalNotes * Math.max(0, Math.min(1, ratio)));
+                [...notes].slice(0, Math.max(0, targetCollected - notesCollected)).forEach((key) => notes.delete(key));
+                notesCollected = totalNotes - notes.size;
+                levelTimeRemaining = 0.05;
+                emitState();
             },
             draw() {
                 draw();
@@ -1005,7 +1178,7 @@
             [[2, 3], [5, 1], [10, 3], [13, 8], [3, 8], [8, 5]].forEach(([c, r]) => drawPreviewSprite("note", c, r, 10, 12));
             drawPreviewSprite("akaneDown", 8, 7, 32, 36);
             drawPreviewSprite("orange", 2, 1, 27, 28);
-            drawPreviewSprite("red", 13, 1, 27, 28);
+            drawPreviewSprite("purple", 13, 1, 27, 28);
             drawPreviewSprite("pink", 2, 9, 27, 28);
             drawPreviewSprite("blue", 13, 9, 27, 28);
             drawPreviewSprite("energy", 11, 5, 18, 23);
