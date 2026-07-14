@@ -560,6 +560,14 @@ Bomba Estéreo - Fuego
             text.className = "x-feed-post-text";
             text.textContent = post.text || "";
 
+            const media = document.createElement("img");
+            media.className = "x-feed-post-media";
+            media.loading = "lazy";
+            media.decoding = "async";
+            media.src = post.image || "";
+            media.alt = post.imageAlt || "";
+            media.hidden = !post.image;
+
             const link = document.createElement("a");
             link.className = "x-feed-post-link";
             link.href = post.url || "https://x.com/infinitybrooo";
@@ -568,7 +576,9 @@ Bomba Estéreo - Fuego
             link.textContent = "[ OPEN_POST ]";
 
             meta.append(tag, date);
-            article.append(meta, title, text, link);
+            article.append(meta, title, text);
+            if (post.image) article.append(media);
+            article.append(link);
             return article;
         }
 

@@ -1,31 +1,37 @@
 {
   "profileUrl": "https://x.com/infinitybrooo",
   "handle": "@infinitybrooo",
-  "updatedLabel": "MANUAL_SYNC // 2026-07-14",
+  "updatedLabel": "POST_LINK_SYNC // 2026-07-14",
   "posts": [
     {
-      "id": "cg-site-x-feed",
+      "id": "2055810837776887958",
       "date": "2026-07-14",
-      "tag": "SITE_UPDATE",
-      "title": "X_FEED_WINDOW_ONLINE",
-      "text": "Probando una ventana estilo Infinity OS para seguir las actualizaciones de CheatGuys! sin depender del embed roto de X.",
-      "url": "https://x.com/infinitybrooo"
+      "tag": "CHEATGUYS_UPDATE",
+      "title": "CHEATGUYS_SIGUE_EN_PRODUCCION",
+      "text": "Infinity brothers sigue trabajando! CheatGuys sigue en produccion y preparacion de promocionales y otras cosas raras. Sigan la cuenta para seguir viendo este extrano grupo. #CheatGuys #OC #Pixelatl #Ideatoon",
+      "url": "https://x.com/i/status/2055810837776887958",
+      "image": "assets/x-feed/cheatguys-production.webp",
+      "imageAlt": "Ilustracion del grupo CheatGuys con sus personajes principales."
     },
     {
-      "id": "cg-lobby-update",
-      "date": "2026-07-14",
-      "tag": "LOBBY_PATCH",
-      "title": "CHEATGUYS_LOBBY_REFRESH",
-      "text": "El lobby sigue sumando detalles: neón, CRT, audio, navegación móvil y pequeñas ventanas de sistema para que todo se sienta más vivo.",
-      "url": "https://x.com/infinitybrooo"
+      "id": "2071450321201647711",
+      "date": "2026-06-28",
+      "tag": "PIXELATL_BOOTCAMP",
+      "title": "NOS_VEMOS_EN_NOVIEMBRE",
+      "text": "Esto apenas es el medio tiempo! Nos vemos en noviembre en el festival @Pixelatl para presentar la version mas solida y caotica de nuestro proyecto. Felicidades a los seleccionados! Conoce el lobby oficial: cheatguysinfinity.netlify.app",
+      "url": "https://x.com/i/status/2071450321201647711",
+      "image": "assets/x-feed/ideatoon-bootcamp.webp",
+      "imageAlt": "Arte de seleccionados bootcamp Pixelatl e Ideatoon con personaje de CheatGuys."
     },
     {
-      "id": "cg-follow-profile",
-      "date": "2026-07-14",
-      "tag": "FOLLOW_SIGNAL",
-      "title": "OPEN_PROFILE_FOR_REAL_TIME_POSTS",
-      "text": "Para publicaciones en tiempo real, abre el perfil oficial de Infinity Brothers en X. Esta terminal muestra posts destacados curados manualmente.",
-      "url": "https://x.com/infinitybrooo"
+      "id": "2042304382134354219",
+      "date": "2026-04-09",
+      "tag": "AKANE_POSTING",
+      "title": "POBRECITA_AKANE",
+      "text": "A alguien mas le ha pasado? Pobrecita Akane. CheatGuys! #Ideatoon2026 #Pixelatl",
+      "url": "https://x.com/i/status/2042304382134354219",
+      "image": "assets/x-feed/akane-pollo-agua.webp",
+      "imageAlt": "Meme de Akane con una olla de agua y una pechuga de pollo."
     }
   ]
 }

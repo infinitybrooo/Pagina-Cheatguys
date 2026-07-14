@@ -1143,6 +1143,17 @@ p.subtitle { font-family: var(--font-pixel); color: #d3d3d3; font-size: 15px; ma
     line-height: 1.35;
 }
 
+.x-feed-post-media {
+    width: 100%;
+    max-height: 230px;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border: 2px solid rgba(0,255,255,0.65);
+    box-shadow: 3px 3px 0 #000;
+    background: #020203;
+}
+
 .x-feed-post-link {
     width: fit-content;
     color: var(--mixer-accent);
@@ -1245,6 +1256,10 @@ p.subtitle { font-family: var(--font-pixel); color: #d3d3d3; font-size: 15px; ma
 
     .x-feed-post-text {
         font-size: 13px;
+    }
+
+    .x-feed-post-media {
+        max-height: 260px;
     }
 
     .x-feed-mobile-launch {
