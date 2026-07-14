@@ -160,7 +160,8 @@
         }
 
         const character = characters[characterId] || characters.akane;
-        window.AudioManager?.playSfx?.(LAPTOP_SFX, { volume: 0.6 });
+        window.AudioManager?.unlockSfx?.();
+        window.AudioManager?.playSfx?.(LAPTOP_SFX, { volume: 0.9 });
         currentCharacter = character;
 
         els.chatAvatar.src = character.icon;
@@ -208,7 +209,8 @@
 
     function openMobileProgramWindow(els) {
         if (!els.bunker) return;
-        window.AudioManager?.playSfx?.(LAPTOP_SFX, { volume: 0.45 });
+        window.AudioManager?.unlockSfx?.();
+        window.AudioManager?.playSfx?.(LAPTOP_SFX, { volume: 0.8 });
         els.bunker.classList.add("is-mobile-program-open");
         document.body.classList.add("laptop-program-lock");
         if (els.screen) els.screen.scrollTop = 0;

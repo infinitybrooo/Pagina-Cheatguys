@@ -7,9 +7,12 @@
     const STORAGE_ENABLED = CONFIG.storageKeys?.musicEnabled || "cgMusicEnabled";
     const SFX_CONFIG = CONFIG.sfx || {};
     const DEFAULT_VOLUME = 0.4;
+    const SFX_POOL_SIZE = 4;
 
     let currentTrack = null;
     const activeSfx = new Set();
+    const sfxBank = new Map();
+    let sfxBankUnlocked = false;
     let musicEnabled = safeGetStorage(STORAGE_ENABLED) !== "false";
     let masterVolume = Number.parseFloat(safeGetStorage(STORAGE_VOLUME) || String(DEFAULT_VOLUME));
     if (!Number.isFinite(masterVolume)) masterVolume = DEFAULT_VOLUME;
@@ -70,6 +73,54 @@
         if (reset) audio.currentTime = 0;
     }
 
+    function getConfiguredSfxUrls() {
+        return Array.from(new Set(Object.values(SFX_CONFIG).filter(Boolean)));
+    }
+
+    function createSfxEntry(url) {
+        const pool = Array.from({ length: SFX_POOL_SIZE }, () => {
+            const audio = new Audio(url);
+            audio.preload = "auto";
+            audio.volume = 0;
+            return audio;
+        });
+        return { url, pool, index: 0 };
+    }
+
+    function warmSfxBank() {
+        getConfiguredSfxUrls().forEach((url) => {
+            if (!sfxBank.has(url)) sfxBank.set(url, createSfxEntry(url));
+        });
+    }
+
+    function unlockSfxBank() {
+        if (sfxBankUnlocked) return;
+        warmSfxBank();
+        sfxBankUnlocked = true;
+
+        sfxBank.forEach((entry) => {
+            const unlocker = new Audio(entry.url);
+            unlocker.muted = true;
+            unlocker.volume = 0;
+            unlocker.play()
+                .then(() => {
+                    unlocker.pause();
+                    unlocker.currentTime = 0;
+                })
+                .catch(() => {});
+        });
+    }
+
+    function getPooledSfx(url) {
+        warmSfxBank();
+        const entry = sfxBank.get(url);
+        if (!entry) return null;
+
+        const audio = entry.pool[entry.index % entry.pool.length];
+        entry.index += 1;
+        return audio;
+    }
+
     const manager = {
         get volume() {
             return masterVolume;
@@ -108,11 +159,15 @@
 
         playSfx(url, options = {}) {
             if (!musicEnabled || !url) return null;
-            const audio = new Audio(url);
+            const audio = getPooledSfx(url) || new Audio(url);
             const entry = {
                 audio,
                 multiplier: Number.isFinite(options.volume) ? options.volume : 1
             };
+
+            audio.pause();
+            audio.currentTime = 0;
+            audio.muted = false;
             activeSfx.add(entry);
             audio.preload = "auto";
             audio.volume = Math.min(masterVolume * entry.multiplier, 1);
@@ -132,7 +187,11 @@
         },
 
         playUiButton() {
-            this.playSfx(SFX_CONFIG.uiButton, { volume: 0.45 });
+            this.playSfx(SFX_CONFIG.uiButton, { volume: 0.68 });
+        },
+
+        unlockSfx() {
+            unlockSfxBank();
         },
 
         pauseCurrent() {
@@ -184,6 +243,7 @@
 
         updateButton(button);
         applyVolume();
+        warmSfxBank();
 
         const getDefaultTrack = () => {
             if (document.body.classList.contains("arcade-page")) return null;
@@ -193,6 +253,7 @@
         };
 
         const unlockAudio = () => {
+            manager.unlockSfx();
             const defaultTrack = getDefaultTrack();
             if (musicEnabled && defaultTrack && getAudio(defaultTrack)) {
                 manager.playBg(defaultTrack);
