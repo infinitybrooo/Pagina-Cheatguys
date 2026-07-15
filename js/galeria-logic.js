@@ -41,10 +41,10 @@
             color: "VIOLETA // #8A2BE2",
             status: "ANXIETY_RENDERED_SUCCESSFULLY",
             dialog: {
-                default: "Esos bocetos todavía no estaban terminados…",
-                clothes: "No abras el archivo que dice outfit_final_final.",
-                thurn: "¿Era necesario verme desde todos los ángulos?",
-                sketch: "Esos bocetos todavía no estaban terminados…"
+                default: "Esos bocetos todavía no estaban terminados… mi HUD pidió censura.",
+                clothes: "No abras el archivo que dice outfit_final_final. Es una trampa.",
+                thurn: "¿Era necesario verme desde todos los ángulos? Pregunta seria.",
+                sketch: "Ese trazo todavía estaba procesando ansiedad social."
             }
         },
         rika: {
@@ -53,10 +53,10 @@
             color: "NARANJA // #FF4500",
             status: "ORANGE_LEVELS_OVER_LIMIT",
             dialog: {
-                default: "¡Abre el outfit cuatro! Ese tiene presencia.",
-                clothes: "¡Abre el outfit cuatro! Ese tiene presencia.",
-                thurn: "La pose también cuenta como argumento.",
-                sketch: "Ese trazo necesitaba más energía. Y naranja."
+                default: "¡Abre el outfit cuatro! Ese sí entra con distorsión.",
+                clothes: "¡Ese outfit necesita escenario, humo y cero permisos!",
+                thurn: "La pose también cuenta como argumento. Y como amenaza.",
+                sketch: "Ese trazo necesitaba más energía, más naranja y menos miedo."
             }
         },
         momo: {
@@ -65,10 +65,10 @@
             color: "ROSA // #FF69B4",
             status: "CUTE_FILENAMES_VALIDATED",
             dialog: {
-                default: "Guardé algunos con nombres bonitos.",
-                clothes: "Este directorio combina sorprendentemente bien.",
+                default: "Guardé algunos con nombres bonitos. Sina aprobó tres.",
+                clothes: "Este directorio combina sorprendentemente bien. Qué alivio pastel.",
                 thurn: "Giré despacito para que no se mareara el archivo.",
-                sketch: "Guardé algunos con nombres bonitos."
+                sketch: "Estos bocetos todavía huelen a lápiz, sueño y azúcar."
             }
         },
         jun: {
@@ -77,10 +77,10 @@
             color: "CIAN // #00BFFF",
             status: "SIMILAR_FILES_DETECTED",
             dialog: {
-                default: "Hay tres casi iguales. No preguntes.",
-                clothes: "Sí, son distintos. Técnicamente.",
+                default: "Hay tres casi iguales. Uno tiene más flojera.",
+                clothes: "Sí, son distintos. Técnicamente. No me hagas defenderlo.",
                 thurn: "La rotación terminó. Yo no.",
-                sketch: "Hay tres casi iguales. No preguntes."
+                sketch: "Ese boceto está cansado. Lo respeto."
             }
         }
     };

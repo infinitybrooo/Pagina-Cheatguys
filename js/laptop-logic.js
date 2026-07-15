@@ -19,28 +19,28 @@
             fullName: "Akane Hoshizora",
             icon: "assets/icons/icon-akane.webp",
             loaderClass: "ld-akane",
-            greeting: "H-Hola... seleccionaste mi app... creo que eso cuenta como iniciar dialogo."
+            greeting: "H-Hola... seleccionaste mi app. Eso cuenta como interacción social, ¿verdad?"
         },
         rika: {
             name: "Rika",
             fullName: "Rika Tanaka",
             icon: "assets/icons/icon-rika.webp",
             loaderClass: "ld-rika",
-            greeting: "QUE ONDA. Soy Rika. Habla rapido antes de que la laptop explote."
+            greeting: "¡QUÉ ONDA! Habla rápido antes de que esta laptop se rinda."
         },
         momo: {
             name: "Momo",
             fullName: "Momo Fujiwara",
             icon: "assets/icons/icon-momo.webp",
             loaderClass: "ld-momo",
-            greeting: "Holi holi, soy Momo. Sina tambien esta leyendo contigo."
+            greeting: "Holi holi. Sina también está leyendo, pero no juzga."
         },
         jun: {
             name: "Jun",
             fullName: "Junpei Sakamoto",
             icon: "assets/icons/icon-jun.webp",
             loaderClass: "ld-jun",
-            greeting: "hey... soy jun. escribe algo si quieres, supongo."
+            greeting: "hey... soy Jun. escribe algo si quieres. si no, también es válido."
         }
     };
 

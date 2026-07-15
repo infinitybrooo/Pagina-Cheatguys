@@ -104,9 +104,7 @@
             characters: ["jun"],
             speaker: "JUN",
             portrait: PORTRAITS.jun,
-            // REVISAR GUION: la frase fuente termina en "somos pobres" y no tiene cierre.
-            dialogue: "Ya que están aquí... abajo están los links para tirar el paro. Pueden compartir el garaje con sus amigos, viciarse un rato en el minijuego de arcade o, si les sobra algo de platita, somos pobres",
-            editorNote: "TEXTO_INCOMPLETO_EN_GUION: confirmar cierre de la viñeta 5.",
+            dialogue: "Ya que están aquí... abajo están los links para tirar el paro. Compartan el garaje, piérdanse en el arcade o, si les sobra platita, apóyennos antes de que Rika intente vender el amplificador de nuevo.",
             background: null,
             sprites: [{ src: NOVEL_IMAGES.junReality, mobileSrc: NOVEL_IMAGES.junRealityMobile, alt: "Jun señalando los links de apoyo", position: "50% 59%", mobilePosition: "50% 59%", size: "min(78%, 520px)", mobileSize: "min(84%, 520px)", entrance: "slide-right" }],
             effects: []
@@ -117,7 +115,7 @@
             characters: ["rika", "momo", "jun"],
             speaker: "RIKA / MOMO / JUN",
             portrait: PORTRAITS.rika,
-            dialogue: "¡Así que exploren todo lo que quieran, exploren lo que no deben y ayúdennos a hacer ruido en Neo Teno! 🎸🔥",
+            dialogue: "¡Exploren lo permitido, piquen lo que claramente no deberían y ayúdennos a hacer ruido en Neo Teno! Si algo truena, fue parte del lore. 🎸🔥",
             background: null,
             sprites: [
                 { src: NOVEL_IMAGES.junReality, mobileSrc: NOVEL_IMAGES.junRealityMobile, alt: "Jun junto al grupo", position: "22% 60%", mobilePosition: "22% 60%", size: "min(44%, 330px)", mobileSize: "min(52%, 330px)", entrance: "group" },
