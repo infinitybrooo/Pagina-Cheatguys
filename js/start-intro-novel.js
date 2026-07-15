@@ -62,7 +62,7 @@
             portrait: PORTRAITS.akane,
             dialogue: "¡C-Cierra la ventana! ¡Espera! ¡No veas nada todavía! A-A la página le faltan retoques en el código y mi barra de estamina social está en cero...",
             background: null,
-            sprites: [{ src: NOVEL_IMAGES.akanePanic, mobileSrc: NOVEL_IMAGES.akanePanicMobile, alt: "Akane entrando en pánico", position: "50% 50%", size: "min(64%, 440px)", entrance: "pop" }],
+            sprites: [{ src: NOVEL_IMAGES.akanePanic, mobileSrc: NOVEL_IMAGES.akanePanicMobile, alt: "Akane entrando en pánico", position: "50% 50%", mobilePosition: "50% 57%", size: "min(64%, 440px)", mobileSize: "min(88%, 560px)", entrance: "pop" }],
             effects: []
         },
         {
@@ -73,7 +73,7 @@
             portrait: PORTRAITS.rika,
             dialogue: "¡Ignoren a la chica morada ansiosa! ¡Bienvenidos al centro de operaciones de CheatGuys! Aquí van a encontrar el lore real, los diseños y toda la música que nos costó sudor y sangre!",
             background: null,
-            sprites: [{ src: NOVEL_IMAGES.rikaKick, mobileSrc: NOVEL_IMAGES.rikaKickMobile, alt: "Rika interrumpiendo la introducción", position: "53% 50%", size: "min(58%, 390px)", entrance: "kick" }],
+            sprites: [{ src: NOVEL_IMAGES.rikaKick, mobileSrc: NOVEL_IMAGES.rikaKickMobile, alt: "Rika interrumpiendo la introducción", position: "53% 50%", mobilePosition: "53% 58%", size: "min(58%, 390px)", mobileSize: "min(82%, 500px)", entrance: "kick" }],
             effects: []
         },
         {
@@ -84,7 +84,7 @@
             portrait: PORTRAITS.akane,
             dialogue: "¡N-No es seguro! Rika, la base de datos está atada con alambres... Por favor, regresen… en… en unas tres semanas...",
             background: null,
-            sprites: [{ src: NOVEL_IMAGES.akaneSabotage, mobileSrc: NOVEL_IMAGES.akaneSabotageMobile, alt: "Akane intentando detener la bienvenida", position: "49% 50%", size: "min(61%, 420px)", entrance: "slide-left" }],
+            sprites: [{ src: NOVEL_IMAGES.akaneSabotage, mobileSrc: NOVEL_IMAGES.akaneSabotageMobile, alt: "Akane intentando detener la bienvenida", position: "49% 50%", mobilePosition: "49% 58%", size: "min(61%, 420px)", mobileSize: "min(84%, 520px)", entrance: "slide-left" }],
             effects: []
         },
         {
@@ -95,7 +95,7 @@
             portrait: PORTRAITS.momo,
             dialogue: "¡Siii! Y no olviden que pueden revisar nuestra galería de arte interactiva, chismosear los secretos de la banda y platicar con nosotras en tiempo real desde la laptop de Akane. ¡Sean amables con ella! ✨💖",
             background: null,
-            sprites: [{ src: NOVEL_IMAGES.momoPastel, mobileSrc: NOVEL_IMAGES.momoPastelMobile, alt: "Momo presentando las funciones de la página", position: "51% 49%", size: "min(66%, 460px)", entrance: "float" }],
+            sprites: [{ src: NOVEL_IMAGES.momoPastel, mobileSrc: NOVEL_IMAGES.momoPastelMobile, alt: "Momo presentando las funciones de la página", position: "51% 49%", mobilePosition: "51% 58%", size: "min(66%, 460px)", mobileSize: "min(88%, 560px)", entrance: "float" }],
             effects: ["pastel-sparkles"]
         },
         {
@@ -108,7 +108,7 @@
             dialogue: "Ya que están aquí... abajo están los links para tirar el paro. Pueden compartir el garaje con sus amigos, viciarse un rato en el minijuego de arcade o, si les sobra algo de platita, somos pobres",
             editorNote: "TEXTO_INCOMPLETO_EN_GUION: confirmar cierre de la viñeta 5.",
             background: null,
-            sprites: [{ src: NOVEL_IMAGES.junReality, mobileSrc: NOVEL_IMAGES.junRealityMobile, alt: "Jun señalando los links de apoyo", position: "50% 50%", size: "min(59%, 410px)", entrance: "slide-right" }],
+            sprites: [{ src: NOVEL_IMAGES.junReality, mobileSrc: NOVEL_IMAGES.junRealityMobile, alt: "Jun señalando los links de apoyo", position: "50% 50%", mobilePosition: "50% 59%", size: "min(59%, 410px)", mobileSize: "min(84%, 520px)", entrance: "slide-right" }],
             effects: []
         },
         {
@@ -120,9 +120,9 @@
             dialogue: "¡Así que exploren todo lo que quieran, exploren lo que no deben y ayúdennos a hacer ruido en Neo Teno! 🎸🔥",
             background: null,
             sprites: [
-                { src: NOVEL_IMAGES.junReality, mobileSrc: NOVEL_IMAGES.junRealityMobile, alt: "Jun junto al grupo", position: "23% 53%", size: "min(36%, 270px)", entrance: "group" },
-                { src: NOVEL_IMAGES.rikaUltimatum, mobileSrc: NOVEL_IMAGES.rikaUltimatumMobile, alt: "Rika junto al grupo", position: "50% 55%", size: "min(45%, 360px)", entrance: "group" },
-                { src: NOVEL_IMAGES.momoPastel, mobileSrc: NOVEL_IMAGES.momoPastelMobile, alt: "Momo junto al grupo", position: "77% 53%", size: "min(39%, 300px)", entrance: "group" }
+                { src: NOVEL_IMAGES.junReality, mobileSrc: NOVEL_IMAGES.junRealityMobile, alt: "Jun junto al grupo", position: "23% 53%", mobilePosition: "22% 60%", size: "min(36%, 270px)", mobileSize: "min(52%, 330px)", entrance: "group" },
+                { src: NOVEL_IMAGES.momoPastel, mobileSrc: NOVEL_IMAGES.momoPastelMobile, alt: "Momo junto al grupo", position: "77% 53%", mobilePosition: "77% 60%", size: "min(39%, 300px)", mobileSize: "min(54%, 350px)", entrance: "group" },
+                { src: NOVEL_IMAGES.rikaUltimatum, mobileSrc: NOVEL_IMAGES.rikaUltimatumMobile, alt: "Rika junto al grupo", position: "50% 55%", mobilePosition: "50% 64%", size: "min(45%, 360px)", mobileSize: "min(72%, 470px)", entrance: "group" }
             ],
             effects: ["concert-flash"]
         },
@@ -136,7 +136,7 @@
             dialogue: "¡AAAAH! ¡DEMASIADA INTERACCIÓN SOCIAL NO PROGRAMADAAAA! EROOOOOORRR-1!",
             editorNote: "PUNTUACION_INCOMPLETA_EN_GUION: confirmar cierre de la viñeta 7.",
             background: null,
-            sprites: [{ src: NOVEL_IMAGES.akaneOverload, mobileSrc: NOVEL_IMAGES.akaneOverloadMobile, alt: "Akane colapsando con distorsión visual", position: "50% 50%", size: "min(82%, 640px)", entrance: "overload" }],
+            sprites: [{ src: NOVEL_IMAGES.akaneOverload, mobileSrc: NOVEL_IMAGES.akaneOverloadMobile, alt: "Akane colapsando con distorsión visual", position: "50% 50%", mobilePosition: "50% 60%", size: "min(82%, 640px)", mobileSize: "min(102%, 680px)", entrance: "overload" }],
             effects: ["red-static", "persistent-glitch", "glitch", "anxious-overload"],
             transitionDuration: 1150
         },
@@ -238,8 +238,9 @@
     function playConfiguredSfx(name, volume) {
         const url = CONFIG.sfx?.[name];
         if (url && window.AudioManager?.playSfx) {
-            window.AudioManager.playSfx(url, { volume });
+            return window.AudioManager.playSfx(url, { volume });
         }
+        return null;
     }
 
     function renderSprites(scene) {
@@ -251,11 +252,13 @@
             image.src = prefersMobileArt && sprite.mobileSrc ? sprite.mobileSrc : sprite.src;
             image.alt = sprite.alt || "";
             image.decoding = "async";
-            const [x = "50%", y = "50%"] = String(sprite.position || "50% 50%").split(/\s+/);
+            const spritePosition = prefersMobileArt && sprite.mobilePosition ? sprite.mobilePosition : sprite.position;
+            const spriteSize = prefersMobileArt && sprite.mobileSize ? sprite.mobileSize : sprite.size;
+            const [x = "50%", y = "50%"] = String(spritePosition || "50% 50%").split(/\s+/);
             image.style.setProperty("--intro-sprite-x", x);
             image.style.setProperty("--intro-sprite-y", y);
-            image.style.setProperty("--intro-sprite-position", sprite.position || "50% 50%");
-            image.style.setProperty("--intro-sprite-size", sprite.size || "min(80%, 640px)");
+            image.style.setProperty("--intro-sprite-position", spritePosition || "50% 50%");
+            image.style.setProperty("--intro-sprite-size", spriteSize || "min(80%, 640px)");
             image.style.setProperty("--intro-sprite-layer", String(index + 1));
             image.addEventListener("error", () => image.remove(), { once: true });
             elements.startIntroSprites.appendChild(image);
@@ -329,14 +332,34 @@
         elements.startIntroBsod.appendChild(list);
         appendBsodText(elements.startIntroBsod, "p", "start-intro-bsod-restart", scene.bsod.restart);
         appendBsodText(elements.startIntroBsod, "p", "start-intro-bsod-code", scene.bsod.code);
-        playConfiguredSfx("scream", 0.95);
+        const scream = playConfiguredSfx("scream", 0.95);
+        let bsodFinishQueued = false;
+        const queueBsodFinish = (delay) => {
+            if (bsodFinishQueued) return;
+            bsodFinishQueued = true;
+            schedule(() => {
+                if (!active) return;
+                elements.startIntroScreen.classList.add("is-fading-black");
+                elements.startIntroOverlay.classList.add("is-blackout");
+                schedule(() => finish("complete"), BLACK_FADE_MS);
+            }, delay);
+        };
 
-        schedule(() => {
-            if (!active) return;
-            elements.startIntroScreen.classList.add("is-fading-black");
-            elements.startIntroOverlay.classList.add("is-blackout");
-            schedule(() => finish("complete"), BLACK_FADE_MS);
-        }, scene.autoDuration || BSOD_DURATION_MS);
+        const queueFromAudioDuration = () => {
+            const audioDurationMs = scream && Number.isFinite(scream.duration) && scream.duration > 0
+                ? Math.ceil(scream.duration * 1000) + 500
+                : null;
+            queueBsodFinish(audioDurationMs || scene.autoDuration || BSOD_DURATION_MS);
+        };
+
+        if (scream && (!Number.isFinite(scream.duration) || scream.duration <= 0)) {
+            scream.addEventListener("loadedmetadata", queueFromAudioDuration, { once: true });
+            scream.addEventListener("durationchange", queueFromAudioDuration, { once: true });
+            scream.addEventListener("error", () => queueBsodFinish(scene.autoDuration || BSOD_DURATION_MS), { once: true });
+            schedule(() => queueBsodFinish(scene.autoDuration || BSOD_DURATION_MS), scene.autoDuration || BSOD_DURATION_MS);
+        } else {
+            queueFromAudioDuration();
+        }
     }
 
     function advance() {

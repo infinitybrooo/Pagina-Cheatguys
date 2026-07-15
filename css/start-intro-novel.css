@@ -96,6 +96,7 @@
     height: clamp(250px, 52dvh, 490px);
     background-position: center;
     background-size: cover;
+    overflow: hidden;
     isolation: isolate;
 }
 
@@ -428,7 +429,7 @@
     .start-intro-visual { height: clamp(250px, 42dvh, 360px); }
     .start-intro-sprite {
         max-width: 98%;
-        max-height: 96%;
+        max-height: 112%;
     }
     .start-intro-dialogue {
         align-items: flex-start;

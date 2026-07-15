@@ -27,7 +27,7 @@
             storageKey: "cheatguys.startIntroSeen.v2",
             seenDurationMs: 48 * 60 * 60 * 1000,
             sceneTransitionMs: 280,
-            bsodDurationMs: 1500,
+            bsodDurationMs: 6250,
             blackFadeMs: 320,
             sfx: {
                 dialogue: "assets/audio/later/botones.wav",
