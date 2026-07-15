@@ -22,6 +22,7 @@
         const SHOOT_SFX_MIN_INTERVAL = 38;
         const SHOOT_SFX_BASE_VOLUME = 0.2;
         const AKANE_MAX_SCORE = window.ArcadeRecords?.AKANE_SCORE || 99999;
+        const ARCADE_TRACK_IDS = ["bgMusicArcade", "bgMusicPacman", "bgMusicSuddenDeath", "bgMusicGameOver", "bgMusicVictory"];
         const POWERUP_SFX_URL = window.CG_CONFIG?.sfx?.powerUp || 'assets/audio/later/powerup_minijuego.wav';
         const shootSfxPool = [];
         let shootSfxIndex = 0;
@@ -110,12 +111,12 @@
             _volume: 0.45,
             setVolume(value) {
                 this._volume = value;
-                ['bgMusicArcade', 'bgMusicSuddenDeath', 'bgMusicGameOver', 'bgMusicVictory'].forEach((id) => {
+                ARCADE_TRACK_IDS.forEach((id) => {
                     const el = document.getElementById(id);
                     if (el) el.volume = Math.min(value, 1);
                 });
             },
-            playBg(id) {
+            playBg(id, options = {}) {
                 const next = document.getElementById(id);
                 if (!next) return;
                 if (this._current && this._current !== id) {
@@ -126,22 +127,31 @@
                     }
                 }
                 this._current = id;
+                if (options.restart) next.currentTime = 0;
+                if (next.readyState === 0) next.load();
                 next.play().catch(() => {});
             },
             stopAll() {
-                ['bgMusicArcade', 'bgMusicSuddenDeath', 'bgMusicGameOver', 'bgMusicVictory'].forEach((id) => {
+                ARCADE_TRACK_IDS.forEach((id) => {
                     const el = document.getElementById(id);
                     if (el) el.pause();
                 });
             }
         };
 
-        function playArcadeBg(id) {
+        function playArcadeBg(id, options = {}) {
+            const track = document.getElementById(id);
+            if (track && options.restart) track.currentTime = 0;
+            if (track && track.readyState === 0) track.load();
             if (window.AudioManager) {
                 window.AudioManager.playBg(id);
             } else {
-                localArcadeAudio.playBg(id);
+                localArcadeAudio.playBg(id, options);
             }
+        }
+
+        function playVictoryMusic() {
+            playArcadeBg("bgMusicVictory", { restart: true });
         }
 
         function exitArcadeAudio() {
@@ -282,6 +292,7 @@
         let edgeCooldown = 0; // evita doble-inversión de dirección en frames consecutivos
         
         const keys = { ArrowLeft: false, ArrowRight: false, ArrowUp: false, ArrowDown: false, KeyA: false, KeyD: false, KeyW: false, KeyS: false, Space: false };
+        const spaceDirections = { left: false, right: false, up: false, down: false };
         let canShoot = true; 
         let mobileFireTimer = null;
         const joystick = { active: false, pointerId: null, x: 0, y: 0 };
@@ -401,19 +412,31 @@
             return isGameRunning && !isGamePaused && resumeCountdown <= 0;
         }
 
+        function capturePointer(element, pointerId) {
+            try {
+                element?.setPointerCapture?.(pointerId);
+            } catch (_error) {
+                // Some synthetic/WebView pointer events do not expose an active pointer capture target.
+            }
+        }
+
         function pauseGameplayControls() {
             stopMobileFire();
             resetJoystick();
             resetPointerMove();
             Object.keys(keys).forEach((key) => { keys[key] = false; });
+            Object.keys(spaceDirections).forEach((direction) => { spaceDirections[direction] = false; });
             canShoot = true;
             document.querySelectorAll('[data-arcade-action].is-pressed').forEach((button) => {
+                button.classList.remove('is-pressed');
+            });
+            document.querySelectorAll('[data-space-direction].is-pressed').forEach((button) => {
                 button.classList.remove('is-pressed');
             });
         }
 
         function updateNewRecordState() {
-            if (!newRecordReached && score > AKANE_MAX_SCORE) {
+            if (!newRecordReached && isVictoryScore(score)) {
                 newRecordReached = true;
                 showWaveBanner('NUEVO RECORD // SIGUE VIVO', '#FFD32A');
                 addFloatingText('NUEVO RECORD', canvas.width / 2, 286, '#FFD32A', 26);
@@ -464,8 +487,12 @@
             if(screen === 'over') screenOver.classList.add('active');
             if(screen === 'win') {
                 screenWin.classList.add('active');
-                playArcadeBg('bgMusicVictory');
+                playVictoryMusic();
             }
+        }
+
+        function isVictoryScore(value) {
+            return Number(value || 0) >= AKANE_MAX_SCORE;
         }
 
         function iniciarJuegoArcade() {
@@ -497,14 +524,18 @@
 
         function gameOver() {
             detenerJuego();
-            playArcadeBg('bgMusicGameOver');
             window.ArcadeRecords?.record(window.ArcadeRecords.GAME_IDS.SPACE, score);
+            if (isVictoryScore(score)) {
+                showScreen('win');
+                return;
+            }
+            playArcadeBg('bgMusicGameOver');
             const formattedScore = window.ArcadeRecords?.format(score) || String(score);
             document.getElementById('finalScoreText').innerText = `PUNTUACIÓN FINAL: ${formattedScore}`;
             const modeLabel = document.getElementById('arcadeGameOverMode');
             if (modeLabel) modeLabel.innerText = `SPACE INVADERS // WAVE ${String(Math.max(waveCount, 1)).padStart(2, '0')}`;
             const copy = document.getElementById('arcadeGameOverCopy');
-            if (copy) copy.innerText = score > AKANE_MAX_SCORE
+            if (copy) copy.innerText = isVictoryScore(score)
                 ? 'Akane ya vio tu record. Ahora intentara recuperarlo.'
                 : 'La Demonio del Arcade sigue invicta.';
             showScreen('over');
@@ -979,6 +1010,15 @@
             if (knob) knob.style.transform = 'translate(-50%, -50%)';
         }
 
+        function setSpaceDirection(direction, active) {
+            if (!Object.prototype.hasOwnProperty.call(spaceDirections, direction)) return;
+            spaceDirections[direction] = active;
+        }
+
+        function hasSpaceDirectionInput() {
+            return Object.values(spaceDirections).some(Boolean);
+        }
+
         function resetPointerMove() {
             pointerMove.active = false;
             pointerMove.pointerId = null;
@@ -1105,7 +1145,7 @@
 
                 button.addEventListener('pointerdown', (event) => {
                     event.preventDefault();
-                    button.setPointerCapture?.(event.pointerId);
+                    capturePointer(button, event.pointerId);
                     button.classList.add('is-pressed');
 
                     if (action === 'shoot') startMobileFire(button);
@@ -1125,6 +1165,34 @@
                 });
             });
 
+            document.querySelectorAll('[data-space-direction]').forEach((button) => {
+                const direction = button.dataset.spaceDirection;
+
+                button.addEventListener('contextmenu', (event) => event.preventDefault());
+
+                button.addEventListener('pointerdown', (event) => {
+                    if (!canUseGameplayInput()) return;
+                    event.preventDefault();
+                    capturePointer(button, event.pointerId);
+                    button.classList.add('is-pressed');
+                    setSpaceDirection(direction, true);
+                });
+
+                const release = (event) => {
+                    event.preventDefault();
+                    button.classList.remove('is-pressed');
+                    setSpaceDirection(direction, false);
+                };
+
+                button.addEventListener('pointerup', release);
+                button.addEventListener('pointercancel', release);
+                button.addEventListener('pointerleave', release);
+                button.addEventListener('lostpointercapture', () => {
+                    button.classList.remove('is-pressed');
+                    setSpaceDirection(direction, false);
+                });
+            });
+
             const joystickEl = document.querySelector('[data-arcade-joystick]');
             if (joystickEl) {
                 joystickEl.addEventListener('contextmenu', (event) => event.preventDefault());
@@ -1134,7 +1202,7 @@
                     cacheInputRects(joystickEl);
                     joystick.active = true;
                     joystick.pointerId = event.pointerId;
-                    joystickEl.setPointerCapture?.(event.pointerId);
+                    capturePointer(joystickEl, event.pointerId);
                     joystickEl.classList.add('is-active');
                     updateJoystickFromEvent(event, joystickEl, true);
                 });
@@ -1164,7 +1232,7 @@
                 cacheInputRects(joystickEl);
                 pointerMove.active = true;
                 pointerMove.pointerId = event.pointerId;
-                canvas.setPointerCapture?.(event.pointerId);
+                capturePointer(canvas, event.pointerId);
                 updatePointerMoveTarget(event, true);
             });
             canvas.addEventListener('pointermove', (event) => {
@@ -1557,7 +1625,12 @@
 
             let moveX = 0;
             let moveY = 0;
-            if (joystick.active) {
+            if (hasSpaceDirectionInput()) {
+                if (spaceDirections.left) moveX -= 1;
+                if (spaceDirections.right) moveX += 1;
+                if (spaceDirections.up) moveY -= 1;
+                if (spaceDirections.down) moveY += 1;
+            } else if (joystick.active) {
                 moveX = joystick.x;
                 moveY = joystick.y;
             } else if (pointerMove.hasTarget) {

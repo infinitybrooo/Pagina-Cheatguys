@@ -20,6 +20,21 @@
         return document.getElementById(id);
     }
 
+    function playArcadeTrack(id, options = {}) {
+        const track = byId(id);
+        if (track && options.restart) track.currentTime = 0;
+        if (track && track.readyState === 0) track.load();
+        if (window.AudioManager?.playBg) {
+            window.AudioManager.playBg(id);
+            return;
+        }
+        track?.play?.().catch(() => {});
+    }
+
+    function playVictoryMusic() {
+        playArcadeTrack("bgMusicVictory", { restart: true });
+    }
+
     function setScreen(name) {
         const screens = {
             start: byId("arcadeStartScreen"),
@@ -30,6 +45,7 @@
         Object.values(screens).forEach((screen) => screen?.classList.remove("active"));
         screens[name]?.classList.add("active");
         if (name !== "game") setPauseVisible(false);
+        if (name === "win") playVictoryMusic();
     }
 
     function setPauseVisible(visible) {
@@ -37,6 +53,14 @@
         if (!menu) return;
         menu.classList.toggle("is-active", visible);
         menu.setAttribute("aria-hidden", visible ? "false" : "true");
+    }
+
+    function capturePointer(element, pointerId) {
+        try {
+            element?.setPointerCapture?.(pointerId);
+        } catch (_error) {
+            // Synthetic/WebView pointer events can lack an active capture target.
+        }
     }
 
     function updateRecords() {
@@ -67,6 +91,10 @@
             const best = Math.max(akaneScore, snapshot.overall.score);
             highScore.textContent = `${snapshot.beatAkane ? "RECORD" : "AKANE"}: ${formatScore(best)}`;
         }
+    }
+
+    function isVictoryScore(value) {
+        return Number(value || 0) >= akaneScore;
     }
 
     function updateSelection(game) {
@@ -164,17 +192,22 @@
 
     function handleMazeGameOver(result) {
         records?.record(games.MAZE, result.score);
+        if (isVictoryScore(result.score)) {
+            updateRecords();
+            setScreen("win");
+            return;
+        }
         const finalScore = byId("finalScoreText");
         const finalCopy = byId("arcadeGameOverCopy");
         const finalMode = byId("arcadeGameOverMode");
         if (finalScore) finalScore.textContent = `PUNTUACION FINAL: ${formatScore(result.score)}`;
-        if (finalCopy) finalCopy.textContent = result.score > akaneScore
+        if (finalCopy) finalCopy.textContent = isVictoryScore(result.score)
             ? "Akane ya vio tu record. Ahora intentara recuperarlo."
             : "La Demonio del Arcade sigue invicta.";
         if (finalMode) finalMode.textContent = `AKANE MAZE // LEVEL ${String(result.level).padStart(2, "0")}`;
         updateRecords();
         setScreen("over");
-        window.AudioManager?.playBg("bgMusicGameOver");
+        playArcadeTrack("bgMusicGameOver", { restart: true });
     }
 
     function handleMazeAssetError() {
@@ -222,6 +255,14 @@
         originalCloseArcade?.();
     }
 
+    function returnToGameMenu() {
+        maze?.stop();
+        setPauseVisible(false);
+        setScreen("start");
+        updateRecords();
+        playArcadeTrack("bgMusicArcade");
+    }
+
     function setup() {
         const mazeCanvas = byId("akaneMazeCanvas");
         if (!mazeCanvas || !window.AkaneMazeGame) return;
@@ -255,6 +296,7 @@
                 event.preventDefault();
                 maze?.setDirection(direction);
                 button.classList.add("is-pressed");
+                capturePointer(button, event.pointerId);
             };
             const release = () => {
                 maze?.releaseDirection(direction);
@@ -280,6 +322,7 @@
     window.seleccionarJuegoArcade = updateSelection;
     window.iniciarJuegoSeleccionado = startSelectedGame;
     window.reiniciarJuegoArcade = startSelectedGame;
+    window.volverMenuArcade = returnToGameMenu;
     window.pausarJuegoArcade = pauseSelectedGame;
     window.reanudarJuegoArcade = resumeSelectedGame;
     window.cerrarArcade = closeArcade;

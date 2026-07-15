@@ -67,7 +67,7 @@
             akaneScore: AKANE_SCORE,
             overall: { ...source.overall },
             games: { ...source.games },
-            beatAkane: source.overall.score > AKANE_SCORE
+            beatAkane: source.overall.score >= AKANE_SCORE
         };
     }
 

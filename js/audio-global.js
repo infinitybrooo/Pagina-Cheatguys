@@ -154,6 +154,7 @@
 
             currentTrack = id;
             applyVolume();
+            if (next.readyState === 0) next.load();
             next.play().catch(() => {});
         },
 
