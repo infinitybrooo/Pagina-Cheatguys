@@ -566,10 +566,10 @@
 
 .maze-mobile-controls {
     width: 100%;
-    min-height: 58px;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 9px;
+    min-height: 132px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .maze-direction-btn {
@@ -639,8 +639,7 @@
     }
 
     .maze-mobile-controls {
-        min-height: 52px;
-        gap: 7px;
+        min-height: 108px;
     }
 
     .maze-direction-btn {
@@ -863,8 +862,7 @@
     }
 
     .maze-mobile-controls {
-        min-height: 50px;
-        gap: 6px;
+        min-height: 124px;
     }
 
     .maze-direction-btn {

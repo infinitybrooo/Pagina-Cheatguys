@@ -292,7 +292,6 @@
         let edgeCooldown = 0; // evita doble-inversión de dirección en frames consecutivos
         
         const keys = { ArrowLeft: false, ArrowRight: false, ArrowUp: false, ArrowDown: false, KeyA: false, KeyD: false, KeyW: false, KeyS: false, Space: false };
-        const spaceDirections = { left: false, right: false, up: false, down: false };
         let canShoot = true; 
         let mobileFireTimer = null;
         const joystick = { active: false, pointerId: null, x: 0, y: 0 };
@@ -425,12 +424,8 @@
             resetJoystick();
             resetPointerMove();
             Object.keys(keys).forEach((key) => { keys[key] = false; });
-            Object.keys(spaceDirections).forEach((direction) => { spaceDirections[direction] = false; });
             canShoot = true;
             document.querySelectorAll('[data-arcade-action].is-pressed').forEach((button) => {
-                button.classList.remove('is-pressed');
-            });
-            document.querySelectorAll('[data-space-direction].is-pressed').forEach((button) => {
                 button.classList.remove('is-pressed');
             });
         }
@@ -1010,15 +1005,6 @@
             if (knob) knob.style.transform = 'translate(-50%, -50%)';
         }
 
-        function setSpaceDirection(direction, active) {
-            if (!Object.prototype.hasOwnProperty.call(spaceDirections, direction)) return;
-            spaceDirections[direction] = active;
-        }
-
-        function hasSpaceDirectionInput() {
-            return Object.values(spaceDirections).some(Boolean);
-        }
-
         function resetPointerMove() {
             pointerMove.active = false;
             pointerMove.pointerId = null;
@@ -1120,10 +1106,6 @@
 
             joystick.x = inputDistance ? Math.max(-1, Math.min(1, rawX / inputDistance)) : 0;
             joystick.y = inputDistance ? Math.max(-1, Math.min(1, rawY / inputDistance)) : 0;
-            if (distance < 3) {
-                joystick.x = 0;
-                joystick.y = 0;
-            }
             if (knob) knob.style.transform = `translate(calc(-50% + ${knobX}px), calc(-50% + ${knobY}px))`;
         }
 
@@ -1162,34 +1144,6 @@
                 button.addEventListener('lostpointercapture', () => {
                     button.classList.remove('is-pressed');
                     if (action === 'shoot') stopMobileFire();
-                });
-            });
-
-            document.querySelectorAll('[data-space-direction]').forEach((button) => {
-                const direction = button.dataset.spaceDirection;
-
-                button.addEventListener('contextmenu', (event) => event.preventDefault());
-
-                button.addEventListener('pointerdown', (event) => {
-                    if (!canUseGameplayInput()) return;
-                    event.preventDefault();
-                    capturePointer(button, event.pointerId);
-                    button.classList.add('is-pressed');
-                    setSpaceDirection(direction, true);
-                });
-
-                const release = (event) => {
-                    event.preventDefault();
-                    button.classList.remove('is-pressed');
-                    setSpaceDirection(direction, false);
-                };
-
-                button.addEventListener('pointerup', release);
-                button.addEventListener('pointercancel', release);
-                button.addEventListener('pointerleave', release);
-                button.addEventListener('lostpointercapture', () => {
-                    button.classList.remove('is-pressed');
-                    setSpaceDirection(direction, false);
                 });
             });
 
@@ -1625,12 +1579,7 @@
 
             let moveX = 0;
             let moveY = 0;
-            if (hasSpaceDirectionInput()) {
-                if (spaceDirections.left) moveX -= 1;
-                if (spaceDirections.right) moveX += 1;
-                if (spaceDirections.up) moveY -= 1;
-                if (spaceDirections.down) moveY += 1;
-            } else if (joystick.active) {
+            if (joystick.active) {
                 moveX = joystick.x;
                 moveY = joystick.y;
             } else if (pointerMove.hasTarget) {
