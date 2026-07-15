@@ -6,6 +6,7 @@
   "scripts": {
     "cache:bust": "node tools/cache-bust.mjs",
     "cache:check": "node tools/cache-bust.mjs --check",
+    "context:update": "node tools/update-ai-context.mjs",
     "check": "npm run cache:check && node tools/check.mjs && eslint .",
     "test": "playwright test",
     "build": "npm run cache:bust && node tools/check.mjs"
