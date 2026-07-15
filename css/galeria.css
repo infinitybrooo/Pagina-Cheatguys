@@ -1597,6 +1597,10 @@ body.gallery-page {
 }
 
 .cg-sidebar-link {
+    min-height: 54px;
+    margin-bottom: 8px;
+    padding: 8px 10px;
+    gap: 10px;
     background:
         linear-gradient(90deg, rgba(var(--sidebar-purple-rgb),0.08), transparent 46%, rgba(var(--sidebar-magenta-rgb),0.08)),
         rgba(0,0,0,0.5);
@@ -1618,9 +1622,16 @@ body.gallery-page {
 }
 
 .cg-sidebar-icon {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
     background:
         linear-gradient(rgba(255,255,255,0.18), transparent 48%),
         #8b4dff;
+}
+
+.cg-sidebar-label {
+    font-size: 23px;
 }
 
 .cg-icon-minigame::after {
@@ -1660,6 +1671,7 @@ body.gallery-page {
     position: relative;
     display: grid;
     gap: 8px;
+    margin-top: 18px;
     padding: 13px 16px 12px;
     border: 3px solid #ff2bd6;
     border-radius: 4px;
@@ -1743,20 +1755,20 @@ body.gallery-page {
     }
 
     .cg-sidebar-link {
-        min-height: 54px;
-        margin-bottom: 8px;
-        padding: 7px 9px;
-        gap: 10px;
+        min-height: 48px;
+        margin-bottom: 6px;
+        padding: 6px 8px;
+        gap: 8px;
     }
 
     .cg-sidebar-icon {
-        width: 34px;
-        height: 34px;
-        flex-basis: 34px;
+        width: 32px;
+        height: 32px;
+        flex-basis: 32px;
     }
 
     .cg-sidebar-label {
-        font-size: 21px;
+        font-size: 20px;
         line-height: 1;
     }
 
@@ -1764,13 +1776,17 @@ body.gallery-page {
     .cg-sidebar-language {
         width: calc(100% - 4px);
         margin-inline: 2px;
-        padding: 10px 12px 9px;
+        padding: 9px 12px 8px;
     }
 
     .cg-sidebar-audio {
         grid-template-columns: 42px minmax(0, 1fr);
         gap: 6px 10px;
-        margin-top: 8px;
+        margin-top: 6px;
+    }
+
+    .cg-sidebar-language {
+        margin-top: 16px;
     }
 
     .cg-audio-toggle {
@@ -1797,6 +1813,84 @@ body.gallery-page {
         min-height: 30px;
         padding: 4px 3px;
         font-size: 12px;
+    }
+}
+
+@media (max-height: 820px) {
+    .cg-sidebar.is-open {
+        padding-top: 58px;
+        padding-bottom: 12px;
+    }
+
+    .cg-sidebar::before {
+        top: 50px;
+    }
+
+    .cg-sidebar-header {
+        padding-bottom: 10px;
+        margin-bottom: 7px;
+    }
+
+    .cg-sidebar-header::before {
+        margin-bottom: 4px;
+        font-size: 14px;
+    }
+
+    .cg-sidebar-brand-logo {
+        width: min(118px, 62%);
+    }
+
+    .cg-sidebar-link {
+        min-height: 44px;
+        margin-bottom: 6px;
+        padding: 6px 8px;
+        gap: 8px;
+    }
+
+    .cg-sidebar-icon {
+        width: 30px;
+        height: 30px;
+        flex-basis: 30px;
+        border-width: 2px;
+    }
+
+    .cg-sidebar-label {
+        font-size: 19px;
+        line-height: 1;
+    }
+
+    .cg-sidebar-audio {
+        margin-top: 6px;
+        padding: 8px 10px 7px;
+        grid-template-columns: 38px minmax(0, 1fr);
+        gap: 5px 9px;
+    }
+
+    .cg-sidebar-audio::before,
+    .cg-sidebar-language::before {
+        font-size: 10px;
+    }
+
+    .cg-audio-toggle {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        font-size: 24px;
+    }
+
+    .cg-audio-slider-label {
+        padding: 1px 6px;
+        font-size: 10px;
+    }
+
+    .cg-sidebar-language {
+        margin-top: 14px;
+        padding: 8px 10px 7px;
+    }
+
+    .cg-language-options button {
+        min-height: 28px;
+        font-size: 11px;
     }
 }
 
