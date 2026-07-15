@@ -185,8 +185,8 @@
 
 .start-intro-effects.has-persistent-glitch {
     background:
-        linear-gradient(90deg, rgba(0, 255, 255, 0.16), transparent 18%, transparent 82%, rgba(255, 0, 68, 0.18)),
-        repeating-linear-gradient(180deg, transparent 0 8px, rgba(255, 255, 255, 0.08) 9px 10px);
+        linear-gradient(90deg, rgba(0, 255, 255, 0.1), transparent 18%, transparent 82%, rgba(255, 0, 68, 0.12)),
+        repeating-linear-gradient(180deg, transparent 0 9px, rgba(255, 255, 255, 0.04) 10px 11px);
     mix-blend-mode: screen;
     animation: start-intro-persistent-glitch 0.34s steps(2, end) infinite;
 }
@@ -196,8 +196,8 @@
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(90deg, transparent 0 18%, rgba(0, 255, 255, 0.28) 19% 21%, transparent 22% 54%, rgba(255, 0, 68, 0.24) 55% 57%, transparent 58%),
-        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 7px);
+        linear-gradient(90deg, transparent 0 18%, rgba(0, 255, 255, 0.16) 19% 21%, transparent 22% 54%, rgba(255, 0, 68, 0.14) 55% 57%, transparent 58%),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 7px);
     transform: translateX(-2%);
     animation: start-intro-glitch-slice 0.22s steps(2, end) infinite;
 }
@@ -410,7 +410,10 @@
     .start-intro-overlay { padding: 6px; }
     .start-intro-vn-box,
     .start-intro-vn-screen { max-height: calc(100dvh - 12px); }
-    .start-intro-vn-screen { min-height: calc(100dvh - 12px); }
+    .start-intro-vn-screen {
+        height: auto;
+        min-height: 0;
+    }
     .start-intro-header {
         grid-template-columns: 1fr auto;
         gap: 5px 8px;
@@ -422,10 +425,14 @@
         min-height: 34px;
         font-size: 17px;
     }
-    .start-intro-visual { height: clamp(190px, 34dvh, 310px); }
+    .start-intro-visual { height: clamp(250px, 42dvh, 360px); }
+    .start-intro-sprite {
+        max-width: 98%;
+        max-height: 96%;
+    }
     .start-intro-dialogue {
         align-items: flex-start;
-        margin: 7px;
+        margin: 6px 7px;
         width: calc(100% - 14px);
         padding: 8px;
     }
@@ -438,7 +445,7 @@
     .start-intro-continue {
         width: calc(100% - 14px);
         min-height: 40px;
-        margin: 0 7px 8px;
+        margin: 0 7px 10px;
         padding: 6px 12px;
         font-size: 22px;
     }

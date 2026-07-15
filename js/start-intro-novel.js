@@ -137,7 +137,7 @@
             editorNote: "PUNTUACION_INCOMPLETA_EN_GUION: confirmar cierre de la viñeta 7.",
             background: null,
             sprites: [{ src: NOVEL_IMAGES.akaneOverload, mobileSrc: NOVEL_IMAGES.akaneOverloadMobile, alt: "Akane colapsando con distorsión visual", position: "50% 50%", size: "min(82%, 640px)", entrance: "overload" }],
-            effects: ["red-static", "persistent-glitch", "glitch", "pixel-disintegrate", "anxious-overload"],
+            effects: ["red-static", "persistent-glitch", "glitch", "anxious-overload"],
             transitionDuration: 1150
         },
         {
@@ -285,7 +285,7 @@
         elements.startIntroVisual.dataset.characters = scene.characters.join(",");
         renderSprites(scene);
         renderEffects(scene);
-        playConfiguredSfx(scene.effects.includes("glitch") ? "glitch" : "dialogue", 0.7);
+        playConfiguredSfx("dialogue", 0.7);
 
         elements.startIntroScene.classList.remove("is-entering");
         void elements.startIntroScene.offsetWidth;
@@ -329,7 +329,7 @@
         elements.startIntroBsod.appendChild(list);
         appendBsodText(elements.startIntroBsod, "p", "start-intro-bsod-restart", scene.bsod.restart);
         appendBsodText(elements.startIntroBsod, "p", "start-intro-bsod-code", scene.bsod.code);
-        playConfiguredSfx("error", 0.9);
+        playConfiguredSfx("scream", 0.95);
 
         schedule(() => {
             if (!active) return;

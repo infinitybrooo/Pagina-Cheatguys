@@ -31,7 +31,7 @@
             blackFadeMs: 320,
             sfx: {
                 dialogue: "assets/audio/later/botones.wav",
-                glitch: "assets/audio/later/colapso_akane.mp3",
+                scream: "assets/audio/later/colapso_akane.mp3",
                 error: "assets/audio/later/colapso_akane.mp3"
             }
         },
