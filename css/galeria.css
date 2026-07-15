@@ -1768,8 +1768,8 @@ body.gallery-page {
     }
 
     .cg-sidebar-audio {
-        grid-template-columns: 42px 32px minmax(0, 1fr);
-        gap: 6px;
+        grid-template-columns: 42px minmax(0, 1fr);
+        gap: 6px 10px;
         margin-top: 8px;
     }
 
@@ -1785,6 +1785,7 @@ body.gallery-page {
     }
 
     #pageVolumeSlider {
+        width: 100%;
         min-width: 0;
     }
 
