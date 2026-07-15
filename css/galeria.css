@@ -1723,6 +1723,82 @@ body.gallery-page {
     box-shadow: -3px 3px 0 #ff2bd6, 0 0 12px rgba(0,255,255,0.38);
 }
 
+@media (max-width: 520px) {
+    .cg-sidebar.is-open {
+        gap: 8px;
+        padding: 66px 10px 14px;
+    }
+
+    .cg-sidebar::before {
+        top: 56px;
+    }
+
+    .cg-sidebar-header {
+        padding: 0 8px 12px;
+        margin-bottom: 8px;
+    }
+
+    .cg-sidebar-brand-logo {
+        width: min(132px, 68%);
+    }
+
+    .cg-sidebar-link {
+        min-height: 54px;
+        margin-bottom: 8px;
+        padding: 7px 9px;
+        gap: 10px;
+    }
+
+    .cg-sidebar-icon {
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
+    }
+
+    .cg-sidebar-label {
+        font-size: 21px;
+        line-height: 1;
+    }
+
+    .cg-sidebar-audio,
+    .cg-sidebar-language {
+        width: calc(100% - 4px);
+        margin-inline: 2px;
+        padding: 10px 12px 9px;
+    }
+
+    .cg-sidebar-audio {
+        grid-template-columns: 42px 32px minmax(0, 1fr);
+        gap: 6px;
+        margin-top: 8px;
+    }
+
+    .cg-audio-toggle {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+    }
+
+    .cg-audio-slider-label,
+    .cg-sidebar-language::before {
+        font-size: 10px;
+    }
+
+    #pageVolumeSlider {
+        min-width: 0;
+    }
+
+    .cg-language-options {
+        gap: 5px;
+    }
+
+    .cg-language-options button {
+        min-height: 30px;
+        padding: 4px 3px;
+        font-size: 12px;
+    }
+}
+
 /* Sidebar icon polish: CSS-only pixel tiles. */
 .cg-sidebar-icon {
     --icon-accent: var(--neon-cyan);

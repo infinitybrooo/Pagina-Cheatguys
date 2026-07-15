@@ -282,10 +282,14 @@ Bomba Estéreo - Fuego
         let mixerJsonpCancel = null;
         let mixerRequestId = 0;
         let mixerLastTrigger = null;
+        let mixerFadeTimer = null;
+        let mixerFadeInterval = null;
+        const MIXER_PREVIEW_VOLUME = 0.5;
+        const MIXER_FADE_DURATION_MS = 2600;
         const MIXER_AUDIO_UNLOCK_SRC = "data:audio/wav;base64,UklGRnQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YVAAAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgA==";
 
         previewAudio.preload = "none";
-        previewAudio.volume = 0.5;
+        previewAudio.volume = MIXER_PREVIEW_VOLUME;
 
         function getMixerElements() {
             return {
@@ -299,10 +303,53 @@ Bomba Estéreo - Fuego
         }
 
         function clearMixerAudio() {
+            clearMixerFade();
             previewAudio.onended = null;
             previewAudio.pause();
             previewAudio.removeAttribute("src");
             previewAudio.load();
+        }
+
+        function clearMixerFade() {
+            if (mixerFadeTimer) {
+                window.clearTimeout(mixerFadeTimer);
+                mixerFadeTimer = null;
+            }
+            if (mixerFadeInterval) {
+                window.clearInterval(mixerFadeInterval);
+                mixerFadeInterval = null;
+            }
+        }
+
+        function startMixerFadeOut() {
+            clearMixerFade();
+            const startVolume = previewAudio.volume || MIXER_PREVIEW_VOLUME;
+            const startedAt = performance.now();
+
+            const fadeStep = () => {
+                if (previewAudio.paused || !previewAudio.src) return;
+                const timestamp = performance.now();
+                const progress = Math.min((timestamp - startedAt) / MIXER_FADE_DURATION_MS, 1);
+                previewAudio.volume = Math.max(startVolume * (1 - progress), 0);
+                if (progress >= 1 && mixerFadeInterval) {
+                    window.clearInterval(mixerFadeInterval);
+                    mixerFadeInterval = null;
+                }
+            };
+
+            fadeStep();
+            mixerFadeInterval = window.setInterval(fadeStep, 80);
+        }
+
+        function scheduleMixerFadeOut() {
+            clearMixerFade();
+            if (!Number.isFinite(previewAudio.duration) || previewAudio.duration <= 0) {
+                previewAudio.addEventListener("loadedmetadata", scheduleMixerFadeOut, { once: true });
+                return;
+            }
+            const remainingMs = Math.max((previewAudio.duration - previewAudio.currentTime) * 1000, 0);
+            const fadeDelay = Math.max(remainingMs - MIXER_FADE_DURATION_MS, 0);
+            mixerFadeTimer = window.setTimeout(startMixerFadeOut, fadeDelay);
         }
 
         function cancelMixerRequest() {
@@ -454,18 +501,20 @@ Bomba Estéreo - Fuego
                 if (mixerAudioUnlockError) throw mixerAudioUnlockError;
                 previewAudio.pause();
                 previewAudio.src = result.previewUrl;
-                previewAudio.volume = 0.5;
+                previewAudio.volume = MIXER_PREVIEW_VOLUME;
                 await previewAudio.play();
                 if (currentRequestId !== mixerRequestId) {
                     clearMixerAudio();
                     return;
                 }
+                scheduleMixerFadeOut();
 
                 elements.window.classList.remove("is-loading");
                 elements.visualizer.classList.add("is-playing");
                 elements.status.textContent = "STREAMING // ITUNES_PREVIEW";
 
                 previewAudio.onended = () => {
+                    clearMixerFade();
                     elements.visualizer.classList.remove("is-playing");
                     elements.status.textContent = "PREVIEW_COMPLETE // LOBBY_RESUMED";
                     if (AudioManager.enabled) AudioManager.resumeLobby();

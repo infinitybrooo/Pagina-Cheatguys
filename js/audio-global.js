@@ -187,7 +187,7 @@
         },
 
         playUiButton() {
-            this.playSfx(SFX_CONFIG.uiButton, { volume: 0.68 });
+            this.playSfx(SFX_CONFIG.uiButton, { volume: 0.46 });
         },
 
         unlockSfx() {

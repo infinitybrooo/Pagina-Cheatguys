@@ -60,9 +60,9 @@
             characters: ["akane"],
             speaker: "AKANE",
             portrait: PORTRAITS.akane,
-            dialogue: "¡C-Cierra la ventana! ¡Espera! ¡No veas nada todavía! A-A la página le faltan retoques en el código y mi barra de estamina social está en cero...",
+            dialogue: "¡¿C-Cierra la ventana! ¡Espera! ¡No veas nada todavía! A-A la página le faltan retoques en el código y mi barra de estamina social está en cero...",
             background: null,
-            sprites: [{ src: NOVEL_IMAGES.akanePanic, mobileSrc: NOVEL_IMAGES.akanePanicMobile, alt: "Akane entrando en pánico", position: "50% 50%", mobilePosition: "50% 57%", size: "min(64%, 440px)", mobileSize: "min(88%, 560px)", entrance: "pop" }],
+            sprites: [{ src: NOVEL_IMAGES.akanePanic, mobileSrc: NOVEL_IMAGES.akanePanicMobile, alt: "Akane entrando en pánico", position: "50% 57%", mobilePosition: "50% 58%", size: "min(88%, 610px)", mobileSize: "min(94%, 600px)", entrance: "pop" }],
             effects: []
         },
         {
@@ -73,7 +73,7 @@
             portrait: PORTRAITS.rika,
             dialogue: "¡Ignoren a la chica morada ansiosa! ¡Bienvenidos al centro de operaciones de CheatGuys! Aquí van a encontrar el lore real, los diseños y toda la música que nos costó sudor y sangre!",
             background: null,
-            sprites: [{ src: NOVEL_IMAGES.rikaKick, mobileSrc: NOVEL_IMAGES.rikaKickMobile, alt: "Rika interrumpiendo la introducción", position: "53% 50%", mobilePosition: "53% 58%", size: "min(58%, 390px)", mobileSize: "min(82%, 500px)", entrance: "kick" }],
+            sprites: [{ src: NOVEL_IMAGES.rikaKick, mobileSrc: NOVEL_IMAGES.rikaKickMobile, alt: "Rika interrumpiendo la introducción", position: "53% 58%", mobilePosition: "53% 58%", size: "min(76%, 500px)", mobileSize: "min(82%, 500px)", entrance: "kick" }],
             effects: []
         },
         {
@@ -84,7 +84,7 @@
             portrait: PORTRAITS.akane,
             dialogue: "¡N-No es seguro! Rika, la base de datos está atada con alambres... Por favor, regresen… en… en unas tres semanas...",
             background: null,
-            sprites: [{ src: NOVEL_IMAGES.akaneSabotage, mobileSrc: NOVEL_IMAGES.akaneSabotageMobile, alt: "Akane intentando detener la bienvenida", position: "49% 50%", mobilePosition: "49% 58%", size: "min(61%, 420px)", mobileSize: "min(84%, 520px)", entrance: "slide-left" }],
+            sprites: [{ src: NOVEL_IMAGES.akaneSabotage, mobileSrc: NOVEL_IMAGES.akaneSabotageMobile, alt: "Akane intentando detener la bienvenida", position: "49% 58%", mobilePosition: "49% 58%", size: "min(78%, 520px)", mobileSize: "min(84%, 520px)", entrance: "slide-left" }],
             effects: []
         },
         {
@@ -95,7 +95,7 @@
             portrait: PORTRAITS.momo,
             dialogue: "¡Siii! Y no olviden que pueden revisar nuestra galería de arte interactiva, chismosear los secretos de la banda y platicar con nosotras en tiempo real desde la laptop de Akane. ¡Sean amables con ella! ✨💖",
             background: null,
-            sprites: [{ src: NOVEL_IMAGES.momoPastel, mobileSrc: NOVEL_IMAGES.momoPastelMobile, alt: "Momo presentando las funciones de la página", position: "51% 49%", mobilePosition: "51% 58%", size: "min(66%, 460px)", mobileSize: "min(88%, 560px)", entrance: "float" }],
+            sprites: [{ src: NOVEL_IMAGES.momoPastel, mobileSrc: NOVEL_IMAGES.momoPastelMobile, alt: "Momo presentando las funciones de la página", position: "51% 58%", mobilePosition: "51% 58%", size: "min(84%, 560px)", mobileSize: "min(88%, 560px)", entrance: "float" }],
             effects: ["pastel-sparkles"]
         },
         {
@@ -108,7 +108,7 @@
             dialogue: "Ya que están aquí... abajo están los links para tirar el paro. Pueden compartir el garaje con sus amigos, viciarse un rato en el minijuego de arcade o, si les sobra algo de platita, somos pobres",
             editorNote: "TEXTO_INCOMPLETO_EN_GUION: confirmar cierre de la viñeta 5.",
             background: null,
-            sprites: [{ src: NOVEL_IMAGES.junReality, mobileSrc: NOVEL_IMAGES.junRealityMobile, alt: "Jun señalando los links de apoyo", position: "50% 50%", mobilePosition: "50% 59%", size: "min(59%, 410px)", mobileSize: "min(84%, 520px)", entrance: "slide-right" }],
+            sprites: [{ src: NOVEL_IMAGES.junReality, mobileSrc: NOVEL_IMAGES.junRealityMobile, alt: "Jun señalando los links de apoyo", position: "50% 59%", mobilePosition: "50% 59%", size: "min(78%, 520px)", mobileSize: "min(84%, 520px)", entrance: "slide-right" }],
             effects: []
         },
         {
@@ -120,9 +120,9 @@
             dialogue: "¡Así que exploren todo lo que quieran, exploren lo que no deben y ayúdennos a hacer ruido en Neo Teno! 🎸🔥",
             background: null,
             sprites: [
-                { src: NOVEL_IMAGES.junReality, mobileSrc: NOVEL_IMAGES.junRealityMobile, alt: "Jun junto al grupo", position: "23% 53%", mobilePosition: "22% 60%", size: "min(36%, 270px)", mobileSize: "min(52%, 330px)", entrance: "group" },
-                { src: NOVEL_IMAGES.momoPastel, mobileSrc: NOVEL_IMAGES.momoPastelMobile, alt: "Momo junto al grupo", position: "77% 53%", mobilePosition: "77% 60%", size: "min(39%, 300px)", mobileSize: "min(54%, 350px)", entrance: "group" },
-                { src: NOVEL_IMAGES.rikaUltimatum, mobileSrc: NOVEL_IMAGES.rikaUltimatumMobile, alt: "Rika junto al grupo", position: "50% 55%", mobilePosition: "50% 64%", size: "min(45%, 360px)", mobileSize: "min(72%, 470px)", entrance: "group" }
+                { src: NOVEL_IMAGES.junReality, mobileSrc: NOVEL_IMAGES.junRealityMobile, alt: "Jun junto al grupo", position: "22% 60%", mobilePosition: "22% 60%", size: "min(44%, 330px)", mobileSize: "min(52%, 330px)", entrance: "group" },
+                { src: NOVEL_IMAGES.momoPastel, mobileSrc: NOVEL_IMAGES.momoPastelMobile, alt: "Momo junto al grupo", position: "78% 60%", mobilePosition: "77% 60%", size: "min(48%, 350px)", mobileSize: "min(54%, 350px)", entrance: "group" },
+                { src: NOVEL_IMAGES.rikaUltimatum, mobileSrc: NOVEL_IMAGES.rikaUltimatumMobile, alt: "Rika junto al grupo", position: "50% 64%", mobilePosition: "50% 64%", size: "min(62%, 470px)", mobileSize: "min(72%, 470px)", entrance: "group" }
             ],
             effects: ["concert-flash"]
         },
@@ -136,7 +136,7 @@
             dialogue: "¡AAAAH! ¡DEMASIADA INTERACCIÓN SOCIAL NO PROGRAMADAAAA! EROOOOOORRR-1!",
             editorNote: "PUNTUACION_INCOMPLETA_EN_GUION: confirmar cierre de la viñeta 7.",
             background: null,
-            sprites: [{ src: NOVEL_IMAGES.akaneOverload, mobileSrc: NOVEL_IMAGES.akaneOverloadMobile, alt: "Akane colapsando con distorsión visual", position: "50% 50%", mobilePosition: "50% 60%", size: "min(82%, 640px)", mobileSize: "min(102%, 680px)", entrance: "overload" }],
+            sprites: [{ src: NOVEL_IMAGES.akaneOverload, mobileSrc: NOVEL_IMAGES.akaneOverloadMobile, alt: "Akane colapsando con distorsión visual", position: "50% 58%", mobilePosition: "50% 60%", size: "min(98%, 760px)", mobileSize: "min(102%, 680px)", entrance: "overload" }],
             effects: ["red-static", "persistent-glitch", "glitch", "anxious-overload"],
             transitionDuration: 1150
         },
@@ -211,7 +211,7 @@
 
     function cacheElements() {
         const ids = [
-            "startIntroOverlay", "startIntroScreen", "startIntroCounter", "startIntroSkipBtn",
+            "startIntroOverlay", "startIntroScreen", "startIntroTitle", "startIntroCounter", "startIntroSkipBtn",
             "startIntroScene", "startIntroVisual", "startIntroSprites", "startIntroEffects",
             "startIntroDialogueBox", "startIntroPortrait", "startIntroSpeaker", "startIntroText",
             "startIntroContinueBtn", "startIntroBsod"
@@ -277,6 +277,7 @@
         elements.startIntroScene.hidden = false;
         elements.startIntroBsod.hidden = true;
         elements.startIntroScreen.classList.remove("is-bsod", "is-fading-black");
+        elements.startIntroTitle.textContent = "INFINITY_OS // STARTUP_STORY";
         elements.startIntroCounter.textContent = `TAB ${String(sceneIndex + 1).padStart(2, "0")}/08`;
         elements.startIntroSpeaker.textContent = scene.speaker;
         elements.startIntroText.textContent = scene.dialogue;
@@ -284,11 +285,12 @@
         elements.startIntroPortrait.alt = `Retrato de ${scene.speaker}`;
         elements.startIntroDialogueBox.dataset.review = scene.editorNote || "";
         const sceneBackdrop = "radial-gradient(circle at 50% 34%, rgba(255, 0, 118, 0.18), transparent 34%), linear-gradient(rgba(5, 0, 10, 0.18), rgba(5, 0, 10, 0.76))";
-        elements.startIntroVisual.style.backgroundImage = scene.background ? `${sceneBackdrop}, url("${scene.background}")` : sceneBackdrop;
+        elements.startIntroVisual.dataset.scene = scene.id;
+        elements.startIntroVisual.style.backgroundImage = scene.background ? `${sceneBackdrop}, url("${scene.background}")` : "";
         elements.startIntroVisual.dataset.characters = scene.characters.join(",");
         renderSprites(scene);
         renderEffects(scene);
-        playConfiguredSfx("dialogue", 0.7);
+        playConfiguredSfx("dialogue", 0.48);
 
         elements.startIntroScene.classList.remove("is-entering");
         void elements.startIntroScene.offsetWidth;
@@ -306,7 +308,7 @@
         container.appendChild(element);
     }
 
-    function renderBsod(scene) {
+    function renderBsod(scene, options = {}) {
         locked = true;
         elements.startIntroScreen.classList.remove("is-fading-black");
         elements.startIntroOverlay.classList.remove("is-blackout");
@@ -314,6 +316,7 @@
         elements.startIntroBsod.hidden = false;
         elements.startIntroScreen.classList.remove("has-scene-glitch");
         elements.startIntroScreen.classList.add("is-bsod");
+        elements.startIntroTitle.textContent = options.windowTitle || "INFINITY_OS // STARTUP_STORY";
         elements.startIntroCounter.textContent = "FATAL 08/08";
         if (!elements.startIntroSkipBtn.hidden) {
             elements.startIntroSkipBtn.focus({ preventScroll: true });
@@ -504,7 +507,7 @@
             sceneIndex = SCENES.length - 1;
             elements.startIntroSkipBtn.hidden = true;
             elements.startIntroOverlay.classList.remove("is-blackout");
-            renderBsod(SCENES[sceneIndex]);
+            renderBsod(SCENES[sceneIndex], { windowTitle: "Te_lo_dije_xD" });
 
             const opened = openIntroOverlay(elements.startIntroScreen, () => {}, true);
             if (!opened) throw new Error("No se pudo abrir el BSOD de recuperacion.");
@@ -521,6 +524,9 @@
     function restartExperience() {
         const button = document.getElementById("footerIntroResetBtn");
         if (button) button.disabled = true;
+        const confirmButton = document.getElementById("footerIntroConfirmAccept");
+        if (confirmButton) confirmButton.disabled = true;
+        closeResetConfirm({ restoreFocus: false });
 
         const reloadAfterLoader = () => {
             resetSeen();
@@ -540,8 +546,61 @@
         if (!started) reloadAfterLoader();
     }
 
+    function getResetConfirmElements() {
+        return {
+            overlay: document.getElementById("footerIntroConfirm"),
+            accept: document.getElementById("footerIntroConfirmAccept"),
+            cancel: document.getElementById("footerIntroConfirmCancel"),
+            close: document.getElementById("footerIntroConfirmClose")
+        };
+    }
+
+    function closeResetConfirm(options = {}) {
+        const confirm = getResetConfirmElements();
+        if (!confirm.overlay) return;
+        confirm.overlay.hidden = true;
+        confirm.overlay.classList.remove("is-open");
+        confirm.overlay.setAttribute("aria-hidden", "true");
+        const resetButton = document.getElementById("footerIntroResetBtn");
+        if (options.restoreFocus !== false && resetButton && document.contains(resetButton)) resetButton.focus({ preventScroll: true });
+    }
+
+    function openResetConfirm() {
+        const confirm = getResetConfirmElements();
+        if (!confirm.overlay || !confirm.accept) {
+            restartExperience();
+            return;
+        }
+        window.CGLanguage?.refresh?.(confirm.overlay);
+        confirm.overlay.hidden = false;
+        confirm.overlay.setAttribute("aria-hidden", "false");
+        void confirm.overlay.offsetWidth;
+        confirm.overlay.classList.add("is-open");
+        confirm.accept.disabled = false;
+        confirm.accept.focus({ preventScroll: true });
+    }
+
+    function setupResetConfirm() {
+        const footerResetButton = document.getElementById("footerIntroResetBtn");
+        const confirm = getResetConfirmElements();
+        if (footerResetButton) footerResetButton.addEventListener("click", openResetConfirm);
+        if (!confirm.overlay) return;
+        if (confirm.accept) confirm.accept.addEventListener("click", restartExperience);
+        if (confirm.cancel) confirm.cancel.addEventListener("click", closeResetConfirm);
+        if (confirm.close) confirm.close.addEventListener("click", closeResetConfirm);
+        confirm.overlay.addEventListener("click", (event) => {
+            if (event.target === confirm.overlay) closeResetConfirm();
+        });
+        confirm.overlay.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                event.preventDefault();
+                closeResetConfirm();
+            }
+        });
+    }
+
     const footerResetButton = document.getElementById("footerIntroResetBtn");
-    if (footerResetButton) footerResetButton.addEventListener("click", restartExperience, { once: true });
+    if (footerResetButton) setupResetConfirm();
 
     window.CG = window.CG || {};
     window.CG.startIntroScenes = SCENES;

@@ -8,8 +8,8 @@
     <link rel="icon" type="image/png" href="assets/branding/favicon.webp">
     <link rel="stylesheet" href="css/fonts.css?v=ea679c4af9d0">
     <link rel="stylesheet" href="css/style.css?v=5475c03c051b">
-    <link rel="stylesheet" href="css/start-intro-novel.css?v=c885901e1206">
-    <link rel="stylesheet" href="css/galeria.css?v=a81737c3d0af">
+    <link rel="stylesheet" href="css/start-intro-novel.css?v=3408b48585ea">
+    <link rel="stylesheet" href="css/galeria.css?v=0355b543ecaf">
 
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website">
@@ -364,6 +364,20 @@
         <button id="footerIntroResetBtn" class="footer-secret-reset" type="button" aria-label="Reiniciar secretamente la secuencia de introduccion">[ RECOVERY_NODE_0xCG ]</button>
     </div>
 
+    <div id="footerIntroConfirm" class="start-intro-confirm" role="dialog" aria-modal="true" aria-labelledby="footerIntroConfirmTitle" aria-describedby="footerIntroConfirmText" aria-hidden="true" hidden>
+        <div class="start-intro-confirm-box">
+            <div class="start-intro-confirm-titlebar">
+                <span id="footerIntroConfirmTitle">MEMORY_RESET.EXE</span>
+                <button id="footerIntroConfirmClose" class="start-intro-confirm-x" type="button" aria-label="Cancelar reinicio">[X]</button>
+            </div>
+            <p id="footerIntroConfirmText">¿Estas seguro? Algo puede explotar si lo haces... Luego no me vengas a llorar.</p>
+            <div class="start-intro-confirm-actions">
+                <button id="footerIntroConfirmCancel" type="button">[ CANCELAR ]</button>
+                <button id="footerIntroConfirmAccept" type="button">[ REINICIAR ]</button>
+            </div>
+        </div>
+    </div>
+
     <!-- =========================================
          MODALES DE LOBBY (FICHAS Y SECRETOS)
          ========================================= -->
@@ -426,13 +440,13 @@
          ========================================= -->
     <script src="js/cg-config.js?v=8b5cbee3263e"></script>
     <script src="js/cg-diagnostics.js?v=dc102595914c"></script>
-    <script src="js/audio-global.js?v=291d9c4bab8a"></script>
+    <script src="js/audio-global.js?v=f2f29217016f"></script>
     <script src="js/ui-global.js?v=11fa6703ae2b"></script>
-    <script src="js/i18n.js?v=e6d750a90d27"></script>
-    <script src="js/start-intro-novel.js?v=a20671f91b41"></script>
+    <script src="js/i18n.js?v=6af9f5d0dbc3"></script>
+    <script src="js/start-intro-novel.js?v=01dd9fe4f9de"></script>
     <script src="js/lobby-start.js?v=109ce590c12d"></script>
     <script src="js/lobby-data.js?v=ac0481970c7f"></script>
-    <script src="js/lobby-logic.js?v=21c601ae19b9"></script>
+    <script src="js/lobby-logic.js?v=9922b374cc0e"></script>
     <script src="js/mitsuki-secret.js?v=e68e18a49ce5"></script>
     <script>
         (() => {

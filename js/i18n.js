@@ -100,6 +100,11 @@
         "[ CONTINUAR ]": "[ CONTINUAR ]",
         "Omitir la introduccion y continuar al lobby": "Omitir la introducción y continuar al lobby",
         "[ OMITIR_INTRO.EXE ]": "[ OMITIR_INTRO.EXE ]",
+        "Reiniciar secretamente la secuencia de introduccion": "Reiniciar secretamente la secuencia de introducción",
+        "Cancelar reinicio": "Cancelar reinicio",
+        "¿Estas seguro? Algo puede explotar si lo haces... Luego no me vengas a llorar.": "¿Estas seguro? Algo puede explotar si lo haces... Luego no me vengas a llorar.",
+        "[ CANCELAR ]": "[ CANCELAR ]",
+        "[ REINICIAR ]": "[ REINICIAR ]",
 
         "¿QUIÉNES SOMOS?": "¿QUIÉNES SOMOS?",
         "Infinity Brothers Studios es el laboratorio creativo detrás de CheatGuys!: un espacio donde avatares caóticos, narrativa visual y animación tradicional chocan para construir universos excéntricos con alma emocional propia.": "Infinity Brothers Studios es el laboratorio creativo detrás de CheatGuys!: un espacio donde avatares caóticos, narrativa visual y animación tradicional chocan para construir universos excéntricos con alma emocional propia.",
@@ -310,6 +315,11 @@
         "[ CONTINUAR ]": "[ CONTINUE ]",
         "Omitir la introducción y continuar al lobby": "Skip the introduction and continue to the lobby",
         "[ OMITIR_INTRO.EXE ]": "[ SKIP_INTRO.EXE ]",
+        "Reiniciar secretamente la secuencia de introducción": "Secretly restart the intro sequence",
+        "Cancelar reinicio": "Cancel reset",
+        "¿Estas seguro? Algo puede explotar si lo haces... Luego no me vengas a llorar.": "Are you sure? Something might explode if you do this... Do not come crying to me later.",
+        "[ CANCELAR ]": "[ CANCEL ]",
+        "[ REINICIAR ]": "[ RESTART ]",
 
         "¿QUIÉNES SOMOS?": "WHO ARE WE?",
         "Infinity Brothers Studios es el laboratorio creativo detrás de CheatGuys!: un espacio donde avatares caóticos, narrativa visual y animación tradicional chocan para construir universos excéntricos con alma emocional propia.": "Infinity Brothers Studios is the creative lab behind CheatGuys!: a place where chaotic avatars, visual storytelling, and traditional animation collide to build eccentric universes with their own emotional soul.",
