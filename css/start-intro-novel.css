@@ -121,8 +121,8 @@
 .start-intro-sprite {
     position: absolute;
     z-index: var(--intro-sprite-layer);
-    left: 50%;
-    top: 50%;
+    left: var(--intro-sprite-x, 50%);
+    top: var(--intro-sprite-y, 50%);
     width: var(--intro-sprite-size);
     max-width: 94%;
     max-height: 100%;
@@ -181,6 +181,25 @@
     inset: 18% -10%;
     background: rgba(255, 0, 40, 0.24);
     animation-duration: 0.19s;
+}
+
+.start-intro-effects.has-persistent-glitch {
+    background:
+        linear-gradient(90deg, rgba(0, 255, 255, 0.16), transparent 18%, transparent 82%, rgba(255, 0, 68, 0.18)),
+        repeating-linear-gradient(180deg, transparent 0 8px, rgba(255, 255, 255, 0.08) 9px 10px);
+    mix-blend-mode: screen;
+    animation: start-intro-persistent-glitch 0.34s steps(2, end) infinite;
+}
+
+.start-intro-effects.has-persistent-glitch::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, transparent 0 18%, rgba(0, 255, 255, 0.28) 19% 21%, transparent 22% 54%, rgba(255, 0, 68, 0.24) 55% 57%, transparent 58%),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 7px);
+    transform: translateX(-2%);
+    animation: start-intro-glitch-slice 0.22s steps(2, end) infinite;
 }
 
 .start-intro-effects.has-anxious-overload::after {
@@ -358,6 +377,18 @@
 @keyframes start-intro-screen-glitch {
     0% { transform: translateX(-2px); filter: hue-rotate(-8deg); }
     100% { transform: translateX(2px); filter: hue-rotate(8deg); }
+}
+
+@keyframes start-intro-persistent-glitch {
+    0%, 100% { opacity: 0.72; transform: translate(0); }
+    33% { opacity: 0.9; transform: translate(-3px, 1px); }
+    66% { opacity: 0.82; transform: translate(3px, -1px); }
+}
+
+@keyframes start-intro-glitch-slice {
+    0%, 100% { clip-path: inset(0 0 0 0); transform: translateX(-2%); }
+    40% { clip-path: inset(12% 0 58% 0); transform: translateX(3%); }
+    70% { clip-path: inset(62% 0 14% 0); transform: translateX(-4%); }
 }
 
 @keyframes start-intro-sparkle {

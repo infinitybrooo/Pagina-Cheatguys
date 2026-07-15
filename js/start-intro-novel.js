@@ -11,7 +11,23 @@
     const TRANSITION_MS = CONFIG.sceneTransitionMs || 280;
     const BSOD_DURATION_MS = CONFIG.bsodDurationMs || 1500;
     const BLACK_FADE_MS = CONFIG.blackFadeMs || 320;
-    const PLACEHOLDER = "assets/start-window/novel/placeholder.webp";
+    const NOVEL_ASSET_BASE = "assets/start-window/novel/";
+    const NOVEL_IMAGES = Object.freeze({
+        akanePanic: `${NOVEL_ASSET_BASE}intro-akane-panic.webp`,
+        akanePanicMobile: `${NOVEL_ASSET_BASE}intro-akane-panic-mobile.webp`,
+        rikaKick: `${NOVEL_ASSET_BASE}intro-rika-kick.webp`,
+        rikaKickMobile: `${NOVEL_ASSET_BASE}intro-rika-kick-mobile.webp`,
+        akaneSabotage: `${NOVEL_ASSET_BASE}intro-akane-sabotage.webp`,
+        akaneSabotageMobile: `${NOVEL_ASSET_BASE}intro-akane-sabotage-mobile.webp`,
+        momoPastel: `${NOVEL_ASSET_BASE}intro-momo-pastel.webp`,
+        momoPastelMobile: `${NOVEL_ASSET_BASE}intro-momo-pastel-mobile.webp`,
+        junReality: `${NOVEL_ASSET_BASE}intro-jun-reality.webp`,
+        junRealityMobile: `${NOVEL_ASSET_BASE}intro-jun-reality-mobile.webp`,
+        rikaUltimatum: `${NOVEL_ASSET_BASE}intro-rika-ultimatum.webp`,
+        rikaUltimatumMobile: `${NOVEL_ASSET_BASE}intro-rika-ultimatum-mobile.webp`,
+        akaneOverload: `${NOVEL_ASSET_BASE}intro-akane-overload.webp`,
+        akaneOverloadMobile: `${NOVEL_ASSET_BASE}intro-akane-overload-mobile.webp`
+    });
 
     if (CONFIG.enabled === false) {
         window.CG = window.CG || {};
@@ -45,8 +61,8 @@
             speaker: "AKANE",
             portrait: PORTRAITS.akane,
             dialogue: "¡C-Cierra la ventana! ¡Espera! ¡No veas nada todavía! A-A la página le faltan retoques en el código y mi barra de estamina social está en cero...",
-            background: PLACEHOLDER,
-            sprites: [{ src: PLACEHOLDER, alt: "Composición provisional de Akane", position: "50% 50%", size: "min(78%, 620px)", entrance: "pop" }],
+            background: null,
+            sprites: [{ src: NOVEL_IMAGES.akanePanic, mobileSrc: NOVEL_IMAGES.akanePanicMobile, alt: "Akane entrando en pánico", position: "50% 50%", size: "min(64%, 440px)", entrance: "pop" }],
             effects: []
         },
         {
@@ -56,8 +72,8 @@
             speaker: "RIKA",
             portrait: PORTRAITS.rika,
             dialogue: "¡Ignoren a la chica morada ansiosa! ¡Bienvenidos al centro de operaciones de CheatGuys! Aquí van a encontrar el lore real, los diseños y toda la música que nos costó sudor y sangre!",
-            background: PLACEHOLDER,
-            sprites: [{ src: PLACEHOLDER, alt: "Composición provisional de Rika y Akane", position: "58% 50%", size: "min(82%, 650px)", entrance: "kick" }],
+            background: null,
+            sprites: [{ src: NOVEL_IMAGES.rikaKick, mobileSrc: NOVEL_IMAGES.rikaKickMobile, alt: "Rika interrumpiendo la introducción", position: "53% 50%", size: "min(58%, 390px)", entrance: "kick" }],
             effects: []
         },
         {
@@ -67,8 +83,8 @@
             speaker: "AKANE",
             portrait: PORTRAITS.akane,
             dialogue: "¡N-No es seguro! Rika, la base de datos está atada con alambres... Por favor, regresen… en… en unas tres semanas...",
-            background: PLACEHOLDER,
-            sprites: [{ src: PLACEHOLDER, alt: "Composición provisional de Akane y Rika", position: "42% 52%", size: "min(76%, 600px)", entrance: "slide-left" }],
+            background: null,
+            sprites: [{ src: NOVEL_IMAGES.akaneSabotage, mobileSrc: NOVEL_IMAGES.akaneSabotageMobile, alt: "Akane intentando detener la bienvenida", position: "49% 50%", size: "min(61%, 420px)", entrance: "slide-left" }],
             effects: []
         },
         {
@@ -78,8 +94,8 @@
             speaker: "MOMO",
             portrait: PORTRAITS.momo,
             dialogue: "¡Siii! Y no olviden que pueden revisar nuestra galería de arte interactiva, chismosear los secretos de la banda y platicar con nosotras en tiempo real desde la laptop de Akane. ¡Sean amables con ella! ✨💖",
-            background: PLACEHOLDER,
-            sprites: [{ src: PLACEHOLDER, alt: "Composición provisional de Momo y Akane", position: "50% 48%", size: "min(84%, 670px)", entrance: "float" }],
+            background: null,
+            sprites: [{ src: NOVEL_IMAGES.momoPastel, mobileSrc: NOVEL_IMAGES.momoPastelMobile, alt: "Momo presentando las funciones de la página", position: "51% 49%", size: "min(66%, 460px)", entrance: "float" }],
             effects: ["pastel-sparkles"]
         },
         {
@@ -91,8 +107,8 @@
             // REVISAR GUION: la frase fuente termina en "somos pobres" y no tiene cierre.
             dialogue: "Ya que están aquí... abajo están los links para tirar el paro. Pueden compartir el garaje con sus amigos, viciarse un rato en el minijuego de arcade o, si les sobra algo de platita, somos pobres",
             editorNote: "TEXTO_INCOMPLETO_EN_GUION: confirmar cierre de la viñeta 5.",
-            background: PLACEHOLDER,
-            sprites: [{ src: PLACEHOLDER, alt: "Composición provisional de Jun", position: "52% 50%", size: "min(77%, 610px)", entrance: "slide-right" }],
+            background: null,
+            sprites: [{ src: NOVEL_IMAGES.junReality, mobileSrc: NOVEL_IMAGES.junRealityMobile, alt: "Jun señalando los links de apoyo", position: "50% 50%", size: "min(59%, 410px)", entrance: "slide-right" }],
             effects: []
         },
         {
@@ -102,8 +118,12 @@
             speaker: "RIKA / MOMO / JUN",
             portrait: PORTRAITS.rika,
             dialogue: "¡Así que exploren todo lo que quieran, exploren lo que no deben y ayúdennos a hacer ruido en Neo Teno! 🎸🔥",
-            background: PLACEHOLDER,
-            sprites: [{ src: PLACEHOLDER, alt: "Composición provisional de Rika, Momo y Jun", position: "50% 50%", size: "min(86%, 690px)", entrance: "group" }],
+            background: null,
+            sprites: [
+                { src: NOVEL_IMAGES.junReality, mobileSrc: NOVEL_IMAGES.junRealityMobile, alt: "Jun junto al grupo", position: "23% 53%", size: "min(36%, 270px)", entrance: "group" },
+                { src: NOVEL_IMAGES.rikaUltimatum, mobileSrc: NOVEL_IMAGES.rikaUltimatumMobile, alt: "Rika junto al grupo", position: "50% 55%", size: "min(45%, 360px)", entrance: "group" },
+                { src: NOVEL_IMAGES.momoPastel, mobileSrc: NOVEL_IMAGES.momoPastelMobile, alt: "Momo junto al grupo", position: "77% 53%", size: "min(39%, 300px)", entrance: "group" }
+            ],
             effects: ["concert-flash"]
         },
         {
@@ -115,9 +135,9 @@
             // REVISAR GUION: la comilla del diálogo no está cerrada en el archivo fuente.
             dialogue: "¡AAAAH! ¡DEMASIADA INTERACCIÓN SOCIAL NO PROGRAMADAAAA! EROOOOOORRR-1!",
             editorNote: "PUNTUACION_INCOMPLETA_EN_GUION: confirmar cierre de la viñeta 7.",
-            background: PLACEHOLDER,
-            sprites: [{ src: PLACEHOLDER, alt: "Composición provisional del colapso de Akane", position: "50% 50%", size: "min(94%, 740px)", entrance: "overload" }],
-            effects: ["red-static", "glitch", "pixel-disintegrate", "anxious-overload"],
+            background: null,
+            sprites: [{ src: NOVEL_IMAGES.akaneOverload, mobileSrc: NOVEL_IMAGES.akaneOverloadMobile, alt: "Akane colapsando con distorsión visual", position: "50% 50%", size: "min(82%, 640px)", entrance: "overload" }],
+            effects: ["red-static", "persistent-glitch", "glitch", "pixel-disintegrate", "anxious-overload"],
             transitionDuration: 1150
         },
         {
@@ -224,12 +244,16 @@
 
     function renderSprites(scene) {
         elements.startIntroSprites.replaceChildren();
+        const prefersMobileArt = window.matchMedia?.("(max-width: 768px)")?.matches === true;
         scene.sprites.forEach((sprite, index) => {
             const image = document.createElement("img");
             image.className = `start-intro-sprite is-${sprite.entrance || "pop"}`;
-            image.src = sprite.src;
+            image.src = prefersMobileArt && sprite.mobileSrc ? sprite.mobileSrc : sprite.src;
             image.alt = sprite.alt || "";
             image.decoding = "async";
+            const [x = "50%", y = "50%"] = String(sprite.position || "50% 50%").split(/\s+/);
+            image.style.setProperty("--intro-sprite-x", x);
+            image.style.setProperty("--intro-sprite-y", y);
             image.style.setProperty("--intro-sprite-position", sprite.position || "50% 50%");
             image.style.setProperty("--intro-sprite-size", sprite.size || "min(80%, 640px)");
             image.style.setProperty("--intro-sprite-layer", String(index + 1));
@@ -256,7 +280,8 @@
         elements.startIntroPortrait.src = scene.portrait;
         elements.startIntroPortrait.alt = `Retrato de ${scene.speaker}`;
         elements.startIntroDialogueBox.dataset.review = scene.editorNote || "";
-        elements.startIntroVisual.style.backgroundImage = `linear-gradient(rgba(5, 0, 10, 0.42), rgba(5, 0, 10, 0.74)), url("${scene.background}")`;
+        const sceneBackdrop = "radial-gradient(circle at 50% 34%, rgba(255, 0, 118, 0.18), transparent 34%), linear-gradient(rgba(5, 0, 10, 0.18), rgba(5, 0, 10, 0.76))";
+        elements.startIntroVisual.style.backgroundImage = scene.background ? `${sceneBackdrop}, url("${scene.background}")` : sceneBackdrop;
         elements.startIntroVisual.dataset.characters = scene.characters.join(",");
         renderSprites(scene);
         renderEffects(scene);
