@@ -241,6 +241,14 @@
         return null;
     }
 
+    function applyActiveLanguage(root) {
+        if (window.CGLanguage && typeof window.CGLanguage.refresh === "function") {
+            window.CGLanguage.refresh(root);
+        } else if (window.CGLanguage && typeof window.CGLanguage.apply === "function") {
+            window.CGLanguage.apply(root);
+        }
+    }
+
     function renderSprites(scene) {
         elements.startIntroSprites.replaceChildren();
         const prefersMobileArt = window.matchMedia?.("(max-width: 768px)")?.matches === true;
@@ -288,6 +296,9 @@
         elements.startIntroVisual.dataset.characters = scene.characters.join(",");
         renderSprites(scene);
         renderEffects(scene);
+        applyActiveLanguage(elements.startIntroTitle);
+        applyActiveLanguage(elements.startIntroText);
+        applyActiveLanguage(elements.startIntroPortrait);
         playConfiguredSfx("dialogue", 0.48);
 
         elements.startIntroScene.classList.remove("is-entering");
@@ -333,6 +344,8 @@
         elements.startIntroBsod.appendChild(list);
         appendBsodText(elements.startIntroBsod, "p", "start-intro-bsod-restart", scene.bsod.restart);
         appendBsodText(elements.startIntroBsod, "p", "start-intro-bsod-code", scene.bsod.code);
+        applyActiveLanguage(elements.startIntroTitle);
+        applyActiveLanguage(elements.startIntroBsod);
         const scream = playConfiguredSfx("scream", 0.95);
         let bsodFinishQueued = false;
         const queueBsodFinish = (delay) => {
