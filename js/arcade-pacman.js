@@ -32,11 +32,11 @@
     const GHOST_TYPES = ["purple", "orange", "pink", "blue"];
     const SPRITE_PATH = "assets/arcade/pacman/sprites/";
     const assets = {
-        akaneRight: loadImage(`${SPRITE_PATH}akane-right.png`),
-        akaneLeft: loadImage(`${SPRITE_PATH}akane-left.png`),
-        akaneUp: loadImage(`${SPRITE_PATH}akane-up.png`),
-        akaneDown: loadImage(`${SPRITE_PATH}akane-down.png`),
-        akaneDeath: loadImage(`${SPRITE_PATH}akane-death.png`),
+        akaneRight: loadImage(`${SPRITE_PATH}hoshi_derecha.webp`),
+        akaneLeft: loadImage(`${SPRITE_PATH}hoshi_izquierda.webp`),
+        akaneUp: loadImage(`${SPRITE_PATH}hoshi_atras.webp`),
+        akaneDown: loadImage(`${SPRITE_PATH}hoshi_frente.webp`),
+        akaneDeath: loadImage(`${SPRITE_PATH}hoshi_muerte.webp`),
         purple: loadImage(`${SPRITE_PATH}ghost-purple.png`),
         orange: loadImage(`${SPRITE_PATH}ghost-orange.png`),
         pink: loadImage(`${SPRITE_PATH}ghost-pink.png`),

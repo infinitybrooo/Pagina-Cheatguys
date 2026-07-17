@@ -1,0 +1,649 @@
+[paragraph:Heading 3] Información y logística de Mundo, Personajes y Lore
+[paragraph:Heading 1] Personajes
+[paragraph:Heading 2] Principales
+[paragraph:Heading 3] AKANE HOSHIZORA
+[paragraph:normal] Edad: 15 Color representativo: Violeta Rol: Fundadora, vocalista principal y guitarrista rítmica Apodo: La Demonio del Arcade
+[paragraph:normal] Apariencia: Cabello violeta intenso, recogido en dos coletas altas con ligas y dijes decorativos (flores, calaveritas, fresas, llaves). Flequillo recto y mechones largos a los lados. Ojos grandes violeta oscuro. Lleva suéter violeta claro bajo cárdigan oscuro con cinturón ancho, falda corta plisada y calcetas a rayas moradas con botas de plataforma negras. Estética que combina ternura y pequeños guiños góticos/otaku.
+[paragraph:normal] Personalidad: Introvertida, silenciosa y socialmente torpe, con ansiedad social leve que la lleva a analizar todo con un HUD mental tipo JRPG (elige “opciones de diálogo” antes de hablar). Evita el protagonismo a toda costa, pero termina siendo el núcleo emocional y creativo de la banda. Su expresión suele ser neutra, pero su mundo interno es dramático y caricaturesco. Es brillante y observadora, con fuerte sentido de responsabilidad que nunca pidió. Se estresa por cosas pequeñas (como pedir salsa extra) pero puede cantar en un escenario si alguien lo necesita. Tiene memoria visual prodigiosa y precisión emocional al tocar guitarra.
+[paragraph:Heading 3] MOMO FUJIWARA
+[paragraph:normal] Edad: 15 Color representativo: Rosa mexicano Rol: Bajista, encargada estética y corista Apodo: Pulga
+[paragraph:normal] Apariencia: Cabello rosa lila, lacio y largo hasta la espalda media, con un broche de corazón en el flequillo. Ojos grandes fucsia oscuro. Lleva suéter rosa suelto, falda corta marrón, calcetas largas rosa claro y zapatos turquesa con suela blanca. Look dulce, pasteloso y acogedor.
+[paragraph:normal] Personalidad: El corazón suave de la banda. Dulce, risueña y con ternura natural que la hace querida por todos. Vive en un mundo pastel, como un sueño bonito y algo desordenado. Es dispersa y fantasiosa, pero capaz de soltar observaciones emocionales que sorprenden incluso a adultos. La primera en abrazar, animar o decir “yo te creo” aunque no entienda el contexto. Tiene talento para la estética visual, oído armónico y un estilo de bajo suave y constante que “abraza” el sonido de la banda. Suele hablar con objetos (su bajo se llama Sina) y su empatía calma a Jun de manera natural.
+[paragraph:Heading 3] RIKA TANAKA
+[paragraph:normal] Edad: 16 Color representativo: Naranja Rol: Guitarrista principal, compositora y musicalización Apodo: Rika-san, naranja mecánica
+[paragraph:normal] Apariencia: Cabello rojo intenso, rizado y voluminoso, en coleta alta con gran pañuelo rojo. Ojos color naranja. Viste top anaranjado con hombros caídos, pantalones amplios azul marino con parches (emoji burlón, flecha, remiendo) y tenis tipo Converse rojos. Postura expansiva y segura.
+[paragraph:normal] Personalidad: Una bomba emocional con guitarra. Extrovertida, intensa, impulsiva y pasional. Ama y odia con fuerza, aunque los enojos se le pasan rápido. Dice lo que piensa, viste como quiere y actúa con el aura de quien ya discutió con un maestro y ganó. Tiene inteligencia musical brillante, virtuosismo natural para improvisar y carisma que arrastra gente a sus planes, incluso cuando son absurdos. Protege a Akane de multitudes y siente con ella una conexión de “guitarras gemelas”. Cambia de ropa según su estado de ánimo y vive entre caos creativo y la influencia de su mentora Kaede.
+[paragraph:Heading 3] JUNPEI “JUN” SAKAMOTO
+[paragraph:normal] Edad: 16 Color representativo: Cyan Rol: Baterista / percusionista Apodo: Baterista flojo
+[paragraph:normal] Apariencia: Cabello azul oscuro voluminoso, con mechón atado con un aro dorado. Ojos gris-azules entrecerrados. Viste camiseta de rayas azules, pantalones anchos azul marino y sandalias deportivas con calcetas. Postura relajada y manos cruzadas.
+[paragraph:normal] Personalidad: El maestro del desgane carismático. Flojo, relajado y con filosofía de “todo saldrá bien… probablemente”. Talento musical absurdo, pero evita responsabilidades si puede. Observador y protector silencioso, sobre todo con Akane y Momo. Suelta comentarios agudos y sarcásticos desde su rincón, con calma casi mística. Tiene “suerte legendaria” que lo saca de problemas, y un ritmo corporal natural incluso sin tocar. Su relación con Rika es de amor-odio incomprensible para terceros.
+[paragraph:Heading 2] Secundarios
+[paragraph:normal] REIKO NAKAMURA Edad: 38 años Color representativo: Violeta oscuro Rol en la historia: Madre de Akane
+[paragraph:normal] Personalidad
+[paragraph:normal] Reiko es una madre soltera con más energía que sentido común. Juvenil, intensa y emocionalmente inmadura en ciertos aspectos, fue obligada a madurar cuando nació Akane… pero no del todo. Tiene actitud de “tía cool” que te ayuda a armar una banda pero olvida las juntas escolares. Es extrovertida e impulsiva, con tendencia a tomar decisiones rápidas y “ver qué pasa”. Torpe para manejar emociones profundas, pero extremadamente cariñosa. Ama profundamente a Akane y la protege de formas poco convencionales. Su sentido del humor mezcla ironía, referencias noventeras y un intento fallido de hablar como “los chavos” actuales.
+[paragraph:normal] Historia
+[paragraph:normal] Reiko crio sola a Akane desde que nació, ya que Takumi Hoshizora las dejó cuando la bebé tenía apenas un mes de vida. Durante los primeros años, Reiko estuvo muy presente, pero cuando Akane cumplió 8 años comenzó a ser más independiente debido a las largas ausencias de su madre por trabajo en la concesionaria de motos. No guarda rencor hacia Takumi, solo decepción; no se arrepiente de la relación porque de ella nació Akane, a quien considera lo mejor que le ha pasado. Ha criado a su hija con una mezcla de libertad y protección, confiando en su independencia pero estando lista para intervenir si es necesario.
+[paragraph:Heading 3] MITSUKI YOSHIDA
+[paragraph:normal] Edad: 31 años Rol en la historia: Maestra de Artes y Ciencias Sociales de Akane y sus amigos
+[paragraph:normal] Personalidad
+[paragraph:normal] Seca, sarcástica y con un humor ácido que a veces intimida a sus alumnos. Apasionada por la música, pero frustrada por no haber logrado una carrera en la industria. Su vocación original no era la docencia, por lo que suele tratar sus clases con un enfoque poco convencional. No es mala persona, pero tiene poca paciencia para tonterías… a menos que involucren un tema que le apasione.
+[paragraph:normal] Historia
+[paragraph:normal] Estudió multimedia y producción de sonido con la intención de dedicarse profesionalmente a la música. Sin embargo, intentó entrar en la industria en un momento difícil y su carrera nunca despegó. Terminó siendo profesora como alternativa estable, aunque no era lo que soñaba. Con el tiempo ha aprendido a encontrar momentos de satisfacción en su trabajo, especialmente al ver a jóvenes con talento genuino. Tiene el mismo auto desde los 18 años, un usado que le regalaron sus padres; lo conserva por nostalgia más que por practicidad.
+[paragraph:Heading 3] KAEDE AYASE
+[paragraph:normal] Edad: 33 años Rol en la historia: Mentora de Rika, exguitarrista profesional y dueña de Bloom & Brew
+[paragraph:normal] Personalidad
+[paragraph:normal] Melancólica y tranquila, con un aire de sabiduría adquirida a base de golpes emocionales. Aún quedan rastros de la Kaede joven: ansiosa, insegura y tímida, pero ya transformados en una calma madura. Tiene tacto para guiar, pero no fuerza a nadie; cree en dar espacio para que cada uno crezca.
+[paragraph:normal] Historia
+[paragraph:normal] En su juventud, fue guitarrista en la banda Velvet Bloom, que se desintegró por conflictos internos causados, en parte, por su propio talento. La experiencia la dejó con cicatrices emocionales, pero también con una claridad nueva sobre lo que quiere de la música. Abrió la cafetería Bloom & Brew, un espacio acogedor que combina café y música. Vive en la misma calle que los Tanaka y ha tomado a Rika bajo su ala, viéndola como una oportunidad para redimirse.
+[paragraph:Heading 3] HOTAI MIYAMOTO
+[paragraph:normal] Edad: 33 años
+[paragraph:normal] Rol en la historia: Esposo de Kaede, padre de Hikari, ingeniero de sonido.
+[paragraph:normal] Personalidad:
+[paragraph:normal] Carismático, extrovertido y apasionado por el sonido. Es directo al hablar, lo que contrasta con la calma melancólica de Kaede, y suele hacer cumplidos románticos que la dejan en “modo error”. Es imprudente en ocasiones, pero genuinamente bondadoso.
+[paragraph:normal] Historia:
+[paragraph:normal] Hotai trabaja como ingeniero de sonido para compañías de teatro y también en producciones de cine y series. Conoció a Kaede en un evento musical y se convirtió en su mayor apoyo tras la disolución de Velvet Bloom. En el Bloom & Brew calibra equipos, graba demos y ayuda a jóvenes músicos como CheatGuys!, a quienes terminó conectando con el Hasekura Sound Fest. Su rol paterno es flexible: ama profundamente a Hikari, y a menudo la involucra en su mundo creativo, grabando sus ocurrencias como “efectos especiales”.
+[paragraph:Heading 3] HIKARI MIYAMOTO
+[paragraph:normal] Edad: 4 años
+[paragraph:normal] Rol en la historia: Hija de Kaede y Hotai, “mini-caos” recurrente en el Bloom & Brew.
+[paragraph:normal] Personalidad:
+[paragraph:normal] Extrovertida, cariñosa y con energía infinita. Hikari es impaciente y caótica, pero tierna al mismo tiempo. Se lanza a cantar y tocar el ukelele sin miedo, componiendo canciones absurdas pero pegajosas.
+[paragraph:normal] Historia:
+[paragraph:normal] Hikari pasa la mayor parte del tiempo en un jardín de niños, pero durante vacaciones el Bloom & Brew se convierte en su patio de juegos. Ahí interrumpe presentaciones, se roba la atención de clientes con ocurrencias, y a veces termina dormida entre cojines mientras el café sigue funcionando.
+[paragraph:normal] Es el contraste más luminoso en la vida de Kaede: su madre intenta mantener la calma madura, pero Hikari la arrastra a momentos de ternura y caos inesperados. Para Rika, Hikari es una “hermanita extra” que la adora y la ve como ídolo.
+[paragraph:Heading 3] AIO SAKAMOTO
+[paragraph:normal] Edad: 26 años Rol en la historia: Hermana mayor de Jun
+[paragraph:normal] Personalidad
+[paragraph:normal] Sarcástica, intensa y con humor filoso. Se queja constantemente, pero lo hace desde el afecto. Tiene una actitud directa, casi intimidante, pero no ha perdido la capacidad de preocuparse por quienes quiere. Es protectora con Jun, aunque no lo exprese de manera cariñosa; su manera de cuidar es “ponerlo en su lugar” cuando lo ve desorientado.
+[paragraph:normal] Historia
+[paragraph:normal] Programadora freelance con problemas lumbares, pasa mucho tiempo trabajando desde casa. Es la única de los hermanos mayores de Jun que intentó conectar con él de verdad. Su relación se basa en sarcasmo, bromas y apoyo mutuo en los momentos importantes.
+[paragraph:Heading 3] KENJI TAKEDA
+[paragraph:normal] Edad: 15 años Rol en la historia: Compañero de escuela y simp empedernido de Akane
+[paragraph:normal] Personalidad
+[paragraph:normal] Otaku torpe y apasionado, con un entusiasmo desbordado que a menudo lo hace meter la pata. Es dramático, exagerado y adorable a su manera, pero genuinamente bondadoso. Respeta profundamente a Akane y está enamorado de quién es ella realmente, no solo de una imagen idealizada. Tiende a ponerla en un pedestal, exagerando cualidades que incluso ella no reconoce en sí misma, pero su afecto es sincero y no invasivo. Le cuesta medir cuándo es buen momento para hablar, y sus intentos de ayudar suelen ser más estorbos que soluciones, aunque siempre con buenas intenciones.
+[paragraph:normal] Historia
+[paragraph:normal] Kenji es estudiante en la misma escuela que Akane. La conoció por casualidad durante una actividad escolar y quedó fascinado por su personalidad tranquila y reservada. Desde entonces, se convirtió en uno de sus “seguidores” más visibles, aunque no de forma acosadora, sino con una mezcla de admiración, torpeza y genuino interés. Su pasión por el anime, los videojuegos y la cultura otaku lo lleva a tener una visión muy “épica” de las cosas cotidianas, lo que a veces choca con el tono más realista de Akane.
+[paragraph:Heading 3] KAITOS “KAI” MIZUSHIMA
+[paragraph:normal] Edad: 13 años Rol en la historia: Repartidor de periódicos, primer fan oficial de CheatGuys! y vínculo romántico de Momo
+[paragraph:normal] Personalidad
+[paragraph:normal] Serio, reservado y con un aire melancólico que lo hace parecer mayor de lo que es. Vive con depresión, lo que lo vuelve autocrítico y apagado en la superficie, pero en su núcleo es sensible y capaz de un afecto muy profundo. No se cree digno de atención ni de elogios, y tiende a minimizar su talento. Momo logra despertar en él una curiosidad y una calidez que creía perdidas.
+[paragraph:normal] Historia
+[paragraph:normal] Vive en el mismo vecindario que Akane. Conoce a CheatGuys! repartiendo periódicos y queda prendado de Momo, a quien describe como “la que brilla incluso en días nublados”. Su familia es distante, lo que ha contribuido a su aislamiento emocional. Comienza a asistir a eventos y ensayos, siempre en un segundo plano, hasta que Momo lo integra poco a poco al círculo cercano de la banda.
+[paragraph:Heading 3] IZUMI ONO
+[paragraph:normal] Edad: 15 años
+[paragraph:normal] Rol en la historia: Amiga de la infancia de Akane; personaje secundario recurrente que representa el “vínculo perdido” de Akane con su pasado antes de la banda.
+[paragraph:normal] Personalidad:
+[paragraph:normal] Izumi es alegre, enérgica y confiable, con un aura de “hermana mayor” aunque tenga la misma edad que Akane. Es tierna y protectora en lo cotidiano, pero cuando ve una injusticia se transforma: pasa a ser ruda, intimidante y con una presencia imponente que hace retroceder a cualquiera. Su carácter combina calidez y fortaleza: sabe animar con dulzura, pero también puede poner límites con firmeza.
+[paragraph:normal] Historia:
+[paragraph:normal] Izumi conoció a Akane desde la infancia y siempre la consideró su mejor amiga, aunque Akane nunca lo percibió de esa manera. Durante la primaria, Izumi solía defender a Akane de burlas y cuidarla en los recreos, mientras ella se refugiaba en sus juegos de arcade portátiles. Al entrar a secundaria, terminaron en grupos diferentes y su amistad se enfrió, pero nunca desapareció del todo. Con la formación de CheatGuys!, Izumi reaparece como un recordatorio del mundo social que Akane evitaba.
+[paragraph:Heading 3] RYOUICHI KANZAKI
+[paragraph:normal] Edad: 52
+[paragraph:normal] Ocupación: Director ejecutivo de Stellar Records
+[paragraph:normal] Personalidad:
+[paragraph:normal] Carismático, calculador y perfeccionista. Kanzaki tiene una presencia dominante pero serena, de esas personas que controlan una habitación sin levantar la voz. Es racional, diplomático y visionario, aunque su pragmatismo lo lleva a ser moralmente ambiguo: sabe que la industria musical es despiadada y no se inmuta por ensuciarse las manos si es por resultados.
+[paragraph:normal] Sin embargo, bajo esa fachada de productor implacable hay un hombre que sí cree en el arte auténtico, solo que lo oculta detrás de la etiqueta del negocio.
+[paragraph:normal] Historia:
+[paragraph:normal] Kanzaki comenzó como productor en pequeñas disqueras de Tokio antes de fundar Stellar Records. Su carrera se forjó sobre talento y control. En Neo Teno vio la oportunidad de abrir un nuevo mercado binacional, donde descubrió el potencial de CheatGuys! tras verlos en el Hasekura Sound Fest.
+[paragraph:normal] Su interés inicial fue puramente comercial, pero la autenticidad y crecimiento del grupo —especialmente de Akane— lo llevaron a cambiar su enfoque. Aprende que la emoción puede ser tan rentable como la perfección.
+[paragraph:Heading 3] KAORU HIMURA
+[paragraph:normal] Edad: 47
+[paragraph:normal] Ocupación: Productora independiente / Exprofesora Universitaria
+[paragraph:normal] Personalidad:
+[paragraph:normal] Orgullosa, inteligente y de fuerte temperamento. Kaoru representa el modelo de la vieja escuela de la producción musical: disciplina, perfección y control absoluto. Tiende a ser manipuladora, creyendo que sin presión no hay excelencia. A pesar de eso, tiene un respeto profundo por el talento real, incluso si le cuesta admitirlo.
+[paragraph:normal] Historia:
+[paragraph:normal] Fue profesora universitaria durante algunos años, donde tuvo como alumna a Mitsuki Yoshida. Tras dejar la docencia, se dedicó a la producción musical y formó varias bandas exitosas, entre ellas Kōon, la banda rival de CheatGuys!
+[paragraph:normal] Su mentalidad competitiva la llevó a chocar con Mitsuki y Kanzaki. Creía que la música debía mantenerse “pura”, sin sentimentalismos.
+[paragraph:normal] Su carrera tomó un giro cuando su hija, Hoshi Himura, comenzó a reflejar los mismos patrones de perfeccionismo extremo que ella: esa situación la obligó a confrontar los daños de su método.
+[paragraph:Heading 3] ARISA KANZAKI
+[paragraph:normal] Edad: 42
+[paragraph:normal] Ocupación: Fotógrafa y artista visual freelance
+[paragraph:normal] Personalidad:
+[paragraph:normal] Empática, artística y profundamente emocional. Arisa es la contraparte espiritual de Kanzaki: donde él ve contratos, ella ve rostros y emociones. Tiene una visión poética del mundo y usa la fotografía como forma de capturar “la verdad invisible” de las personas.
+[paragraph:normal] Su calidez natural la convierte en una especie de figura materna o consejera silenciosa para varios personajes.
+[paragraph:normal] Historia:
+[paragraph:normal] Arisa trabajó durante años como fotógrafa de giras y retratista de artistas emergentes. Su relación con Kanzaki comenzó cuando lo contrató para un reportaje sobre productores musicales. Desde entonces ha sido su equilibrio emocional y la única persona que logra hacerlo dudar de sus decisiones.
+[paragraph:Heading 3] YUI SHIBATA
+[paragraph:normal] Edad: 27
+[paragraph:normal] Ocupación: Asistente de producción en Stellar Records / futura socia de Mitsuki
+[paragraph:normal] Personalidad:
+[paragraph:normal] Eficiente, alegre, responsable y encantadoramente torpe. Tiene una energía radiante y una actitud proactiva que contrasta con la seriedad de Mitsuki y Kanzaki.
+[paragraph:normal] A pesar de su juventud, es extremadamente capaz: coordina horarios, controla presupuestos y mantiene la calma en el caos.
+[paragraph:normal] Historia:
+[paragraph:normal] Entró a Stellar como becaria de logística, pero su dedicación y empatía llamaron la atención de Kanzaki. Con el tiempo, se convirtió en la mano derecha de Mitsuki, siendo clave durante la gira y el homenaje a Velvet Bloom.
+[paragraph:normal] Yui admira profundamente a Mitsuki, viéndola como un modelo a seguir. Con el tiempo, ambas crean su propia productora independiente, orientada a proyectos musicales éticos y saludables para jóvenes artistas.
+[paragraph:Heading 2] Kōon
+[paragraph:normal] Tipo de grupo: Banda escolar rival de CheatGuys! Estilo musical: J-Rock pulido y técnicamente impecable Rol en la historia: Competencia directa y ocasional aliada en eventos musicales
+[paragraph:normal] Concepto de la banda
+[paragraph:normal] Kōon es la contraparte “seria” y profesional de CheatGuys! dentro de la escena musical escolar. Su sonido es más técnico, con presentaciones que parecen ensayadas al milímetro. A nivel de imagen, proyectan confianza, carisma y presencia escénica fuerte. Mientras CheatGuys! es caótica y emotiva, Kōon es precisa y dominante… pero bajo esa fachada también hay personalidades con sus propios roces internos. Su relación con las protagonistas oscila entre la rivalidad competitiva y una extraña camaradería forjada por compartir escenario.
+[paragraph:Heading 3] HOSHI HIMURA – GUITARRA PRINCIPAL Y VOCALISTA
+[paragraph:normal] Edad: 15 años Personalidad: Egocéntrica, extrovertida y con talento brutal. Disfruta humillar rivales en el escenario. Aunque detesta admitirlo, respeta a quienes se le oponen con fuerza. Tiene facilidad para dominar al público y a sus compañeros. Curiosidades:
+[paragraph:normal] Apodo de CheatGuys!: “Piña”, inventado por Rika (“parece dulce, pero te deshace la lengua”).
+[paragraph:normal] Suele improvisar cambios en vivo para poner a prueba a su banda y a sus rivales.
+[paragraph:normal] Miedos y conflictos: No ser reconocida como la mejor, perder el control de su imagen.
+[paragraph:normal] Talentos: Guitarrista virtuosa y vocalista con proyección poderosa.
+[paragraph:Heading 3] TENSHI AOYAMA – GUITARRA RÍTMICA / TECLADO Y CORISTA
+[paragraph:normal] Edad: 15 años Personalidad: Dulce, angelical y completamente distraída. Su actitud serena calma tensiones, aunque muchas veces no se entere de lo que ocurre a su alrededor. Curiosidades:
+[paragraph:normal] Tiene la extraña habilidad de entrar en el momento exacto con sus partes musicales aunque parezca estar en otro mundo.
+[paragraph:normal] Le encantan los dulces, siempre tiene alguno escondido.
+[paragraph:normal] Miedos y conflictos: Ser una carga para la banda por su distracción.
+[paragraph:normal] Talentos: Equilibrar el sonido con su guitarra rítmica y arreglos de teclado suaves.
+[paragraph:Heading 3] SHINKENI GOJOU – BAJISTA
+[paragraph:normal] Edad: 16 años Personalidad: Silencioso e imponente; da miedo sin querer. Misterioso pero no malintencionado. Rivaliza en habilidad con Jun, aunque con una actitud totalmente opuesta. Curiosidades:
+[paragraph:normal] No habla mucho, pero cuando lo hace suele decir algo importante o definitivo.
+[paragraph:normal] Tiene un sentido del humor muy seco que aparece en momentos inesperados.
+[paragraph:normal] Miedos y conflictos: Que su imagen intimide demasiado y aleje a la gente.
+[paragraph:normal] Talentos: Bajista técnico con precisión impecable.
+[paragraph:Heading 3] SHIORI TAKEDA – BATERISTA Y LETRISTA
+[paragraph:normal] Edad: 16 años Personalidad: Cerebral, sarcástica y con visión estratégica. Frustrada porque nadie sigue sus planes como ella quisiera. Comprende mejor que nadie el conflicto entre las bandas, pero siempre queda opacada por Hoshi. Curiosidades:
+[paragraph:normal] Apodo: Messeji, usado por Hoshi y Shinkeni cuando hace comentarios punzantes.
+[paragraph:normal] Es quien realmente sostiene la logística interna de Kōon.
+[paragraph:normal] Miedos y conflictos: Quedar relegada a un segundo plano a pesar de su esfuerzo.
+[paragraph:normal] Talentos: Escritora de letras profundas y baterista de ritmo sólido y preciso.
+[paragraph:Heading 2] Terciarios
+[paragraph:Heading 3] Familia Tanaka
+[paragraph:normal] Takashi Tanaka
+[paragraph:normal] Edad: 42
+[paragraph:normal] Rol: Padre de Rika.
+[paragraph:normal] Personalidad: Relajado, soñador, artista gráfico freelance. Usa sarcasmo suave como disciplina. Poco se inmuta ante el caos de sus hijos.
+[paragraph:normal] Naoko Tanaka
+[paragraph:normal] Edad: 40
+[paragraph:normal] Rol: Madre de Rika, profesora de química en el Jacarandas.
+[paragraph:normal] Personalidad: Directa, lógica y con humor seco. Ex punk con mirada que impone respeto.
+[paragraph:normal] Hina Tanaka
+[paragraph:normal] Edad: 12
+[paragraph:normal] Rol: Hermana menor de Rika.
+[paragraph:normal] Personalidad: Maestra del caos, le encantan los planes elaborados con trampas y confeti. Encantadora con adultos, maquiavélica en casa.
+[paragraph:normal] Taro Tanaka
+[paragraph:normal] Edad: 8
+[paragraph:normal] Rol: Hermano menor de Rika.
+[paragraph:normal] Personalidad: Obsesionado con monstruos y cosas viscosas. Le gusta asustar con juguetes apestosos y experimentos raros.
+[paragraph:normal] Daichi Tanaka
+[paragraph:normal] Edad: 6
+[paragraph:normal] Rol: Hermano menor de Rika.
+[paragraph:normal] Personalidad: Habla poco, pero dice cosas certeras y perturbadoras. Inquietante y adorable a la vez.
+[paragraph:Heading 3] Familia Fujiwara
+[paragraph:normal] Yukari Fujiwara
+[paragraph:normal] Edad: 43
+[paragraph:normal] Rol: Madre de Momo.
+[paragraph:normal] Personalidad: Dulce, expresiva y confiada. Su energía es contagiosa.
+[paragraph:normal] Haruto Fujiwara
+[paragraph:normal] Edad: 45
+[paragraph:normal] Rol: Padre de Momo.
+[paragraph:normal] Personalidad: Relajado y carismático, amante de la música. Maneja junto a Yukari la colorida tienda Fujiwara Music.
+[paragraph:Heading 3] Compañeros de Akane – Grupo 3-A (Colegio Jacarandas)
+[paragraph:normal] Mizu Midorikawa (15, jade): Reservada, carácter explosivo, parece lechuza enojada, respeta a Akane.
+[paragraph:normal] Retasu Fujieda (15, hierbabuena): Jefa de grupo, serena y mediadora, habla demasiado cuando se activa.
+[paragraph:normal] Nichibotsu “Nichi” Kobayashi (15, salmón): Atleta con voto de silencio, se comunica con gestos y notas, habla solo en momentos clave.
+[paragraph:normal] Daitai Tsnmura (15, vino): Prodigio académico pero torpe en lo demás, vínculo de “hermano bobo” con Momo. Gemelo de Kimeta.
+[paragraph:normal] Kimeta Tsnmura (15, vino): Opuesta a Daitai, académicamente mala pero sabia y confiable, Akane confía mucho en ella.
+[paragraph:normal] Kagi Moroboshi (16, azul oscuro): Dramático líder del “trío del desastre”, siempre intenta provocar a Rika y falla.
+[paragraph:normal] Lee Tanemura (16, verde oliva): Miembro del “trío del desastre”, consigue cosas dudosas, intenta venderlas a Momo y Jun.
+[paragraph:normal] Kawa Nakatani (15, gris): Miembro del “trío del desastre”, voz de la razón que nunca detiene nada, se lleva bien con Akane.
+[paragraph:Heading 2] Recurrentes
+[paragraph:normal] AKI HONDA
+[paragraph:normal] Edad: 33 años
+[paragraph:normal] Ocupación: Exbajista profesional
+[paragraph:normal] Personalidad:
+[paragraph:normal] Aki es seria, pragmática y de humor seco. Tiene una presencia estable, casi inamovible, que transmite control incluso cuando por dentro está hecha un nudo. Es sarcástica, pero rara vez cruel; sus comentarios filosos suelen ser una armadura más que un ataque.
+[paragraph:normal] Historia:
+[paragraph:normal] Aki fue la bajista y el ancla emocional de Velvet Bloom, la banda que formó junto a Rin Miyazaki y Kaede Ayase. Mientras Rin era el corazón y Kaede el talento emergente, Aki sostenía la estructura, la lógica y el equilibrio del grupo.
+[paragraph:normal] Con el tiempo, comenzó a sentirse desplazada. Rin, sin darse cuenta, priorizaba cada vez más a Kaede, y Aki incapaz de expresar su dolor, se volvió distante y silenciosa. Nunca hubo una pelea abierta: la banda se rompió por acumulación de silencios.
+[paragraph:Heading 3] RIN MIYAZAKI (QEPD)
+[paragraph:normal] Edad al morir: 32 años Ocupación: Vocalista y guitarrista rítmica / solista en ascenso
+[paragraph:normal] Personalidad:
+[paragraph:normal] Rin era cálida, luminosa y emocionalmente generosa. Tenía una risa contagiosa y una energía que llenaba cualquier espacio. Era optimista sin ser ingenua, y tenía un talento natural para unir personas y aliviar tensiones.
+[paragraph:normal] Sin embargo, su gran virtud también fue su falla: cuidaba con tanta intensidad a quienes veía frágiles que no siempre notaba a quienes parecían fuertes.
+[paragraph:normal] Historia:
+[paragraph:normal] Rin fue la vocalista, guitarrista rítmica y líder emocional de Velvet Bloom. Desde el inicio, fue el eje que mantuvo unidas a las integrantes. Creyó firmemente en el talento de Kaede Ayase, apoyándola y protegiéndola incluso cuando eso afectaba el equilibrio del grupo. Rin veía en Kaede a alguien que merecía ser cuidada y amada, sin darse cuenta de que ese enfoque dejaba a Aki emocionalmente aislada. Tras la separación de la banda, Rin intentó mantener el contacto, especialmente con Kaede, aunque la distancia y el silencio ya se habían vuelto demasiado grandes.
+[paragraph:normal] Años después, Ya consolidada como solista, Rin murió en un accidente automovilístico tras un after. Su muerte marcó el cierre definitivo de Velvet Bloom y dejó heridas abiertas que nadie pudo sanar.
+[paragraph:Heading 3] HARUMI NAKAMURA
+[paragraph:normal] Edad: 67 años
+[paragraph:normal] Ocupación: Empresario retirado (antes trabajaba en importación/exportación de té y productos tradicionales japoneses)
+[paragraph:normal] Personalidad: Tradicionalista, reservado, serio, con un fuerte sentido del deber familiar. Exige respeto a las costumbres y etiqueta.
+[paragraph:normal] Relación con Reiko: Distante y crítica; respeta su independencia en el sentido práctico, pero nunca ha aprobado su estilo de vida.
+[paragraph:normal] Relación con Akane: Cordial, pero algo incómoda; siente que la nieta sigue el camino “equivocado” de su madre.
+[paragraph:Heading 3] AYAKA NAKAMURA
+[paragraph:normal] Edad: 35 años
+[paragraph:normal] Ocupación: Abogada corporativa
+[paragraph:normal] Personalidad: Elegante, perfeccionista, calculadora; es la “orgullo” de la familia.
+[paragraph:normal] Relación con Reiko: Tensa; ve a su hermana como irresponsable y “desperdiciada”, aunque a veces la envidia por su libertad.
+[paragraph:normal] Relación con Akane: Cortés pero distante; no comprende su personalidad ni sus intereses.
+[paragraph:normal] Notas: Siempre viste formal, incluso fuera del trabajo. Casada, sin hijos.
+[paragraph:Heading 3] NANAMI NAKAMURA
+[paragraph:normal] Edad: 33 años
+[paragraph:normal] Ocupación: Maestra de piano y música clásica
+[paragraph:normal] Personalidad: Amable, dulce, pero muy apegada a las normas familiares. Es la más conciliadora, pero también la que más intenta “corregir” a Reiko de forma pasivo-agresiva.
+[paragraph:normal] Relación con Reiko: Menos conflictiva que con Ayaka, pero aún con diferencias marcadas.
+[paragraph:normal] Relación con Akane: Se interesa por ella desde lo musical, pero no entiende por qué no se dedica a algo “más refinado” que una banda juvenil.
+[paragraph:normal] Notas: Vive cerca de los padres, soltera y muy unida a ellos.
+[paragraph:Heading 3] YUMIKO KITAGAWA (antes Nakamura) (QEPD)
+[paragraph:normal] Edad al fallecer: 62 años
+[paragraph:normal] Ocupación: Ama de casa, pero muy culta; en su juventud estudió artes tradicionales japonesas.
+[paragraph:normal] Personalidad: Paciente, cálida, conciliadora… aunque cansada de estar atrapada entre Harumi y Haoimi. Es como la “red de seguridad emocional” de la familia, pero nunca con la voz fuerte suficiente para cambiar nada.
+[paragraph:normal] Relación con Reiko: Comprensiva, pero también débil al momento de defenderla contra Harumi. Reiko le guarda cariño, pero también resentimiento porque nunca “peleó por ella”.
+[paragraph:normal] Notas: Se divorció de Harumi en algún punto después de la juventud de Reiko. murió cuando Akane tenía 8 años.
+[paragraph:Heading 2] Cast Completo
+[paragraph:normal] Protagonista
+[paragraph:normal] Akane Hoshizora
+[paragraph:normal] Principales
+[paragraph:normal] (Miembros del núcleo de la banda)
+[paragraph:normal] Rika Tanaka
+[paragraph:normal] Momo Fujiwara
+[paragraph:normal] Jun Sakamoto
+[paragraph:normal] Secundarios
+[paragraph:normal] (Personajes que tienen tramas propias, mucho tiempo en pantalla y vínculos directos con los protagonistas)
+[paragraph:normal] Kenji Takeda
+[paragraph:normal] Kaitos “Kai” Mizushima
+[paragraph:normal] Reiko Nakamura
+[paragraph:normal] Kaede Ayase
+[paragraph:normal] Aio Sakamoto
+[paragraph:normal] Kōon (Hoshi Himura, Tenshi Aoyama, Shinkeni Gojou, Shiori Takeda)
+[paragraph:normal] Mitsuki Yoshida
+[paragraph:normal] Izumi Ono
+[paragraph:normal] Ryouichi Kanzaki
+[paragraph:normal] Yui Shibata
+[paragraph:normal] Kaoru Himura
+[paragraph:normal] Terciarios
+[paragraph:normal] (Aparecen regularmente y aportan al contexto, pero no tienen arcos largos)
+[paragraph:normal] Takashi Tanaka
+[paragraph:normal] Naoko Tanaka
+[paragraph:normal] Hina Tanaka
+[paragraph:normal] Taro Tanaka
+[paragraph:normal] Daichi Tanaka
+[paragraph:normal] Tomoe Tanaka
+[paragraph:normal] Yukari Fujiwara
+[paragraph:normal] Haruto Fujiwara
+[paragraph:normal] Arisa Kanzaki
+[paragraph:normal] Makuni Iwashiro
+[paragraph:normal] Mizu Midorikawa
+[paragraph:normal] Retasu Fujieda
+[paragraph:normal] Nichibotsu “Nichi” Kobayashi
+[paragraph:normal] Daitai Tsnmura
+[paragraph:normal] Kimeta Tsnmura
+[paragraph:normal] Kagi Moroboshi
+[paragraph:normal] Lee Tanemura
+[paragraph:normal] Kawa Nakatani
+[paragraph:normal] Recurrentes
+[paragraph:normal] (Apariciones más esporádicas, cameos o soporte puntual a la trama)
+[paragraph:normal] Haruka Sakamoto
+[paragraph:normal] Takeshi Sakamoto
+[paragraph:normal] Señor y Señora Sakamoto
+[paragraph:normal] Harumi Nakamura
+[paragraph:normal] Ayaka Nakamura
+[paragraph:normal] Nanami Nakamura
+[paragraph:normal] Aki Honda (QDEP)
+[paragraph:normal] Rin Miyasaki (QDEP)
+[paragraph:normal] Yumiko Kitagawa (QDEP)
+[paragraph:normal] Atsuki Hoshizora
+[paragraph:normal] Marquez
+[paragraph:normal] Kurotama
+[paragraph:Heading 1] Lore
+[paragraph:Heading 2] Neo Teno
+[paragraph:normal] Neo Teno es el corazón donde late CheatGuys!: una versión alternativa de la Ciudad de México, fusionada con Japón desde el virreinato. Es una metrópolis vibrante, híbrida y caótica donde lo nipón y lo mexicano conviven como si siempre hubieran sido parte del mismo ADN.
+[paragraph:normal] Arquitectura y ambiente:
+[paragraph:normal] Templos sintoístas entre puestos de tamales, trenes bala atravesando barrios de murales y papel picado, edificios brutalistas al estilo Tokio mezclados con casonas coloniales llenas de cerezos.
+[paragraph:normal] Vida urbana:
+[paragraph:normal] Tianguis de tecnología junto a arcades clandestinos, karaoke en las plazas, cafeterías temáticas anisong, motocicletas tuneadas como si fueran mechas de bajo presupuesto.
+[paragraph:normal] Lengua y cultura:
+[paragraph:normal] Carteles bilingües (español y japonés), jergas mezcladas (albures con honoríficos), expresiones híbridas que suenan raras pero naturales para sus habitantes.
+[paragraph:normal] Clima y ritmo:
+[paragraph:normal] Igual de impredecible que la gente: lluvia de repente, sol abrasador al minuto siguiente. La ciudad nunca descansa, llena de adolescentes otaku con mochilas enormes, oficinistas con corbata y sombrero, y abuelitas vendiendo onigiri con chile piquín.
+[paragraph:normal] La esencia de Neo Teno es el caos organizado: una ciudad donde puedes encontrarte a un monje budista tomando agua de jamaica en un tianguis, o una abuela regañando a un salaryman por no persignarse bien frente a una capillita.
+[paragraph:normal] Es un setting pensado para justificar el estilo de la serie: lo absurdo convive con lo cotidiano, lo anime con lo mexicano, lo sentimental con lo caótico. Y ahí, entre arcades y tacos de takoyaki con salsa verde, nacen CheatGuys!
+[paragraph:Heading 3] Organización geográfica
+[paragraph:Heading 4] 1. Prefectura Residencial Norte – Kitamadera (北窓寺)
+[paragraph:normal] ("Templo de la ventana norte")
+[paragraph:normal] Una zona de casas familiares, parques y vecindarios tranquilos… relativamente. Tiene tienditas de abarrotes con letreros en japonés, murales de colores y muchas azoteas llenas de gatos.
+[paragraph:Heading 4] 2. Prefectura Residencial Sur – Minamiyolotl (南心)
+[paragraph:normal] (“Corazón del sur”)
+[paragraph:normal] Más densa, con multifamiliares y vecindades que conviven con jardines de cerezos. Aquí viven varias familias de los protagonistas (los Tanaka, por ejemplo). Mucho ambiente de barrio: tianguis, comida callejera y fiestas improvisadas.
+[paragraph:Heading 4] 3. Prefectura Centro – Chuō Zócalo (中央広場)
+[paragraph:normal] (“Plaza central”)
+[paragraph:normal] El núcleo caótico: avenidas con neones, pantallas flotantes, mercados gigantes y edificios de gobierno con estética híbrida de palacio colonial y ayuntamiento japonés. El lugar donde todo se cruza: protestas, festivales y karaokes simultáneos.
+[paragraph:Heading 4] 4. Prefectura Cultural – Kōbunka (交文化)
+[paragraph:normal] ("Intercambio cultural")
+[paragraph:normal] Museos, auditorios, galerías y templos reconvertidos en teatros. Aquí está el Conservatorio Gojou (de Shinkeni). También conviven murales de Diego Rivera versión anime con salones de té. Epicentro de eventos artísticos y musicales escolares.
+[paragraph:Heading 4] 5. Prefectura Comercial – Takomachi (商業街)
+[paragraph:normal] ("Ciudad del comercio")
+[paragraph:normal] Tianguis eternos, centros comerciales gigantescos, arcades, maid cafés con temática mariachi, karaoke en cada esquina. Aquí están los spots favoritos de Rika y Jun (peleas de maquinitas, snacks baratos, ropa rara).
+[paragraph:Heading 4] 6. Prefectura Universitaria – Daigaku Tenochi (大学天市)
+[paragraph:normal] ("Ciudad universitaria celestial")
+[paragraph:normal] Zona estudiantil, con universidades tecnológicas, cafés 24 horas, residencias de estudiantes y festivales académicos. Mucho movimiento nocturno, plagado de puestos de ramen con salsa valentina.
+[paragraph:Heading 4] 7. Prefectura Tradicional – Shin-Tlacopan (新特拉科パン)
+[paragraph:normal] ("Nuevo Tlacopan")
+[paragraph:normal] El alma antigua de la ciudad: calles empedradas, templos sintoístas junto a iglesias barrocas, casas de madera y mercados artesanales. Aquí se siente más fuerte la fusión histórica entre México y Japón. Perfecto para festivales y capítulos “especiales” con aires místicos.
+[paragraph:Heading 3] Traslado
+[paragraph:normal] Puntos clave
+[paragraph:normal] Colegio Jacarandas – Prefectura Centro.
+[paragraph:normal] Garaje de Akane – Prefectura Residencial Norte.
+[paragraph:normal] Bloom & Brew (cafetería de Kaede) – Prefectura Centro, relativamente cerca del colegio.
+[paragraph:Heading 3] Tiempos aproximados
+[paragraph:normal] Akane (Residencial Norte → Centro):
+[paragraph:normal] Al colegio: 25–30 min en transporte, 40 min caminando.
+[paragraph:normal] Al Bloom & Brew: 30 min transporte, 45 min caminando.
+[paragraph:normal] Curiosidad: Reiko a veces la lleva en moto y hace 15 min… aunque con riesgo de “mini-accidentes”.
+[paragraph:normal] Rika (Residencial Sur → Centro):
+[paragraph:normal] Al colegio: 20–25 min en transporte, 35 min caminando.
+[paragraph:normal] Al Bloom & Brew: 20–25 min igual, porque está todo en la misma prefectura central.
+[paragraph:normal] Al garaje de Akane: 30–40 min (casi cruzando la ciudad, norte-sur).
+[paragraph:normal] Momo (Cultural → Centro):
+[paragraph:normal] Al colegio: 10–15 min caminando, porque la prefectura cultural y la central están pegadas.
+[paragraph:normal] Al Bloom & Brew: 10 min caminando, es casi “su segunda casa”.
+[paragraph:normal] Al garaje de Akane: 35–40 min transporte, porque es de las zonas céntricas al norte.
+[paragraph:normal] Jun (Centro → Centro/Norte):
+[paragraph:normal] Al colegio: 10 min caminando, vive en el mero centro con Aio.
+[paragraph:normal] Al Bloom & Brew: 5–10 min caminando, queda en su ruta diaria.
+[paragraph:normal] Al garaje de Akane: 25 min en transporte, 35 min caminando.
+[paragraph:normal] Resumen práctico
+[paragraph:normal] Centro–Cultural: pegados, súper fácil (Momo, Jun y Rika cuando está en el centro).
+[paragraph:normal] Norte–Centro: trayecto largo (Akane siempre va contracorriente).
+[paragraph:normal] Sur–Centro: distancia media (Rika lo tiene menos pesado que Akane).
+[paragraph:normal] Así que, en logística narrativa:
+[paragraph:normal] Akane es la que más batalla en distancias, lo que refleja su incomodidad al salir de su “zona segura”.
+[paragraph:normal] Jun y Momo tienen la vida resuelta en cuanto a cercanía.
+[paragraph:normal] Rika queda en medio: no tan lejos, no tan cerca, pero siempre lista para invadir espacios.
+[paragraph:Heading 2] Colegio Jacarandas
+[paragraph:normal] Fundado en 1950
+[paragraph:normal] El Colegio Jacarandas es una de las instituciones educativas más antiguas y reconocidas de Neo Teno. Su campus se ubica en la Prefectura Centro, rodeado por avenidas saturadas y murales estudiantiles que contrastan con sus edificios de estilo híbrido: parte colonial, parte concreto japonés de posguerra, coronados por árboles de jacaranda que tiñen de morado los patios cada primavera.
+[paragraph:Heading 3] Identidad del colegio
+[paragraph:normal] Tradición + caos moderno: Aunque presume de disciplina y prestigio académico, su alumnado refleja el ruido y la mezcla cultural de Neo Teno.
+[paragraph:normal] Currícula doble: combina programas japoneses de alta exigencia con el toque relajado y creativo de la educación mexicana. Esto produce estudiantes brillantes… y otros que sobreviven a puro ingenio.
+[paragraph:normal] Reputación: considerado un “semi-prestigioso” instituto. No es el más elitista, pero mantiene fama de semillero artístico y musical.
+[paragraph:Heading 3] Campus
+[paragraph:normal] Patio central: amplio, con un mural gigante pintado por generaciones de alumnos; en primavera, cubierto por pétalos de jacaranda.
+[paragraph:normal] Salones: austeros, con pupitres de madera gastada, pizarras digitales a medias funcionando, y posters de seguridad escolar junto a propaganda de clubes.
+[paragraph:normal] Instalaciones especiales:
+[paragraph:normal] Un auditorio que se usa tanto para obras de teatro como para asambleas caóticas.
+[paragraph:normal] Un gimnasio multiusos que sirve para deportes, conciertos improvisados y ferias estudiantiles.
+[paragraph:normal] Áreas verdes que parecen tranquilas, pero en realidad son territorio de rumores, confesiones y dramas adolescentes.
+[paragraph:normal] Zona oculta favorita: un pasillo trasero cerca del almacén de música, usado por estudiantes para ensayar en secreto, o por Akane para escapar de interacciones sociales.
+[paragraph:Heading 3] Cuerpo Docente
+[paragraph:Heading 4] Dirección y Administración
+[paragraph:normal] Genjiro Yamazaki – Director
+[paragraph:normal] Edad: 58 años
+[paragraph:normal] Personalidad: Serio, ceremonioso, un símbolo más que una figura activa.
+[paragraph:normal] Descripción: Mantiene la fachada de autoridad impecable, pero casi nadie lo toma en serio. Habla como si siempre estuviera en una ceremonia de clausura.
+[paragraph:normal] Frase típica: “Recordemos que el Jacarandas florece solo con disciplina.”
+[paragraph:normal] Carmen Ortega – Subdirectora
+[paragraph:normal] Edad: 46 años
+[paragraph:normal] Personalidad: Estricta, controladora pero justa.
+[paragraph:normal] Descripción: Sabe exactamente quién rompió qué antes de que suceda. Dura, pero protectora con los alumnos más sensibles.
+[paragraph:normal] Frase típica: “No me importa quién empezó… todos terminan castigados.”
+[paragraph:normal] Don Aurelio Nishikawa – Orientador escolar
+[paragraph:normal] Edad: 55 años
+[paragraph:normal] Personalidad: Tranquilo, excéntrico y enigmático.
+[paragraph:normal] Descripción: Mezcla filosofía japonesa con albures mexicanos. Algunos lo ven como un sabio; otros como un lunático adorable.
+[paragraph:normal] Frase típica: “Hijo, si no entiendes la vida, mínimo entiéndete tú… con eso pasas.”
+[paragraph:Heading 4] Cuerpo docente
+[paragraph:normal] Naoko Tanaka – Profesora de Química y ciencias
+[paragraph:normal] Edad: 40 años
+[paragraph:normal] Personalidad: Inteligente, directa y con humor ácido.
+[paragraph:normal] Descripción: Ex punk reformada. Enseña química con un sarcasmo que aterra y encanta.
+[paragraph:normal] Frase típica: “Si mezclas esto mal, explota. Igual que tus decisiones.”
+[paragraph:normal] Mitsuki Yoshida – Profesora de Artes y Ciencias Sociales
+[paragraph:normal] Edad: 31 años
+[paragraph:normal] Personalidad: Cínica, sarcástica, pero emocionalmente comprometida.
+[paragraph:normal] Descripción: Ve en sus alumnos una oportunidad para redimirse. Reacciona mal al caos, pero lo soporta con café.
+[paragraph:normal] Frase típica: “El arte no cura la depresión, pero al menos te distrae de ella.”
+[paragraph:normal] Hiroshi Kanda – Profesor de Matemáticas
+[paragraph:normal] Edad: 50 años
+[paragraph:normal] Personalidad: Abstruso, distraído, genio raro.
+[paragraph:normal] Descripción: Explica con metáforas que nadie entiende, excepto Daitai. Lleva siempre tres plumones y una calculadora que no necesita.
+[paragraph:normal] Frase típica: “La vida es como una integral… no la entiendes, pero avanza.”
+[paragraph:normal] Lupita Morimoto – Profesora de Español y Literatura
+[paragraph:normal] Edad: 37 años
+[paragraph:normal] Personalidad: Soñadora y poética.
+[paragraph:normal] Descripción: Ama la poesía tanto como los silencios incómodos que deja tras sus lecturas. Inspira a los sensibles, duerme al resto.
+[paragraph:normal] Frase típica: “Si Octavio Paz te aburre, el problema no es Paz.”
+[paragraph:normal] Esteban Fujimoto – Profesor de Historia
+[paragraph:normal] Edad: 45 años
+[paragraph:normal] Personalidad: Idealista, distraído, narrador compulsivo.
+[paragraph:normal] Descripción: Sus clases se desvían en anécdotas imposibles, pero al final dejan moraleja.
+[paragraph:normal] Frase típica: “El Imperio Romano cayó… porque se quedaron sin salsa verde.”
+[paragraph:normal] Ricardo Salvatierra – Profesor de Educación Física
+[paragraph:normal] Edad: 39 años
+[paragraph:normal] Personalidad: Competitivo, gritón, apasionado.
+[paragraph:normal] Descripción: Trata cada clase como entrenamiento olímpico. Idolatrado por Nichi Kobayashi, temido por Akane.
+[paragraph:normal] Frase típica: “¡No quiero excusas, quiero resistencia!”
+[paragraph:normal] Chieko Ramírez – Profesora de Inglés
+[paragraph:normal] Edad: 34 años
+[paragraph:normal] Personalidad: Dulce, optimista y fácilmente distraída.
+[paragraph:normal] Descripción: Se la pasa contando historias de su vida en California; sus alumnos la adoran porque casi nunca nota las distracciones.
+[paragraph:normal] Frase típica: “Good job, guys!... oh wait—what were we doing again?”
+[paragraph:normal] Arturo Takeda – Profesor de Música
+[paragraph:normal] Edad: 43 años
+[paragraph:normal] Personalidad: Exigente, perfeccionista, algo torpe fuera del aula.
+[paragraph:normal] Descripción: Vive dividido entre ser un maestro estricto y el padre de dos músicos rebeldes (Shiori y Kenji).
+[paragraph:normal] Frase típica: “¡Si tocas con emoción, afina! Si no afinas, ni emoción sirve.”
+[paragraph:Heading 4] Enfermería
+[paragraph:normal] Sayaka Villalobos – Enfermera escolar
+[paragraph:normal] Edad: 37 años
+[paragraph:normal] Personalidad: Amable, soñadora y muy distraída.
+[paragraph:normal] Descripción: Mezcla espiritualidad con remedios caseros. Adorada por los alumnos porque siempre da justificantes (Jun es su cliente estrella).
+[paragraph:normal] Frase típica: “No hay fiebre que un té y una siesta no curen.”
+[paragraph:Heading 3] Vida escolar
+[paragraph:normal] Uniforme: mezcla peculiar de estilo japonés (sailor fuku y gakuran) con toques locales: colores morado y blanco, inspirado en las jacarandas.
+[paragraph:normal] Clubes: abundan los de música, manga y videojuegos, a veces más populares que los deportivos.
+[paragraph:normal] Ambiente: profesores estrictos, pero alumnos ruidosos. Es un crisol de personalidades: otakus, músicos, atletas, rebeldes y genios raros.
+[paragraph:normal] El Jacarandas funciona como un microcosmos de Neo Teno: un lugar con fachada de orden y disciplina, pero que en la práctica vibra con creatividad, caos adolescente y contradicciones. Es el espacio perfecto para que surjan tanto rivalidades (como con Kōon) como amistades improbables.
+[paragraph:Heading 3] Distribución escolar en el Jacarandas.
+[paragraph:normal] Akane Hoshizora → 3° de secundaria, grupo A (3-A)
+[paragraph:normal] Último año antes de la preparatoria. Grupo de estudiantes considerados “serios” o aplicados (al menos en reputación). Ahí Akane se esconde entre la multitud
+[paragraph:normal] Momo Fujiwara → 3° de secundaria, grupo C (3-C)
+[paragraph:normal] También en último año, pero en un grupo más relajado y artístico. Eso hace que no coincida en clases con Akane, aunque siempre la busca en los recreos.
+[paragraph:normal] Rika Tanaka → 1° de preparatoria, grupo B (1-B)
+[paragraph:normal] Ella ya dio el salto a media superior. Es mayor que Akane y Momo, lo que refuerza su aura de “onee-san caótica”, aunque en realidad apenas está un año arriba.
+[paragraph:normal] Jun Sakamoto → 1° de preparatoria, grupo C (1-C)
+[paragraph:normal] Compañero de generación de Rika, aunque su energía floja lo hace parecer que repitió años. Se la pasa esquivando responsabilidades escolares como si fueran pelotas en dodgeball.
+[paragraph:normal] Esto genera dinámicas muy ricas:
+[paragraph:normal] Akane y Momo comparten generación pero no grupo → su relación brilla fuera de clases.
+[paragraph:normal] Rika y Jun comparten generación pero no grupo → su rivalidad/complicidad se cocina en otro plano.
+[paragraph:normal] Y el Colegio Jacarandas se convierte en un verdadero cruce de caminos, donde los grupos no limitan la convivencia (ensayos, clubes, recreos, azoteas, etc.).
+[paragraph:Heading 2] Hasekura Sound Fest
+[paragraph:normal] Evento anual: Parte central del Festival de Año Nuevo de Neo Teno.
+[paragraph:normal] Lugar: Plaza Hasekura, Prefectura Centro.
+[paragraph:normal] Duración: 3 días (del 30 de diciembre al 1 de enero).
+[paragraph:Heading 3] Estructura del festival
+[paragraph:normal] Escenario Principal – “Katana Stage”
+[paragraph:normal] El más grande y con producción masiva: pantallas, luces, sonido impecable.
+[paragraph:normal] Aquí se presentan bandas de renombre internacional y figuras consagradas.
+[paragraph:normal] Simboliza el “sueño máximo” de todo músico local: subir a ese escenario significa que has llegado.
+[paragraph:normal] Escenario Alterno – “Sakura Stage”
+[paragraph:normal] Escenario secundario con gran público, pero más íntimo.
+[paragraph:normal] Aquí tocan bandas emergentes con relevancia local, además de artistas en ascenso invitados de otras ciudades.
+[paragraph:normal] Es la zona donde se descubren nuevos talentos y surgen colaboraciones inesperadas.
+[paragraph:normal] Escenario Comunitario – “Jacaranda Stage”
+[paragraph:normal] Espacio abierto y acogedor, al pie de los árboles morados.
+[paragraph:normal] Dedicado a bandas escolares, músicos de barrio y agrupaciones comunitarias.
+[paragraph:normal] No tiene tanta producción, pero es donde el público conecta con la esencia del festival: la música como expresión libre.
+[paragraph:Heading 3] Importancia en la narrativa
+[paragraph:normal] Tradición de Neo Teno: Todo el mundo asiste; es un evento cultural tan grande como el desfile de Día de Muertos en CDMX, pero musical.
+[paragraph:normal] Meta para los protagonistas: Participar en el Jacaranda Stage es el primer gran paso de la banda, y soñar con subir algún día al Sakura Stage (o incluso al Katana) se convierte en motivación.
+[paragraph:normal] La Plaza Hasekura, gracias al Hasekura Sound Fest, pasa de ser un simple parque para convertirse en el santuario musical de Neo Teno. Es el lugar donde se miden sueños, egos y amistades, frente a todo el público de la ciudad.
+[paragraph:Heading 3] ¿Por qué es importante el Hasekura Sound Fest para la historia?
+[paragraph:normal] De garaje a festival:
+[paragraph:normal] En la segunda temporada, CheatGuys! estaba destinada a presentarse en el Jacaranda Stage (el comunitario), pero una cancelación de último minuto en el Sakura Stage (alterno) abrió una oportunidad inesperada.
+[paragraph:normal] El empujón de los adultos:
+[paragraph:normal] Hotai grabó y envió un demo casero de CheatGuys! a los organizadores (sin que Akane lo supiera al principio).
+[paragraph:normal] Mitsuki, aprovechando sus contactos de la época en la industria, logró “colarlos” en las audiciones express para cubrir la vacante.
+[paragraph:normal] El reto de la audición:
+[paragraph:normal] La banda, que apenas se estaba acostumbrando a ensayos medio organizados, se enfrenta a músicos mucho más experimentados.
+[paragraph:normal] Para Akane, es enfrentar su pánico a ser escuchada por extraños.
+[paragraph:normal] Para Rika, es su primera oportunidad real de “demostrar que no es solo ruido”.
+[paragraph:normal] Para Momo, un miedo enorme a ser vista como “niña jugando”.
+[paragraph:normal] Para Jun, la duda de si su flojera puede sostener algo serio.
+[paragraph:normal] El significado narrativo:
+[paragraph:normal] Marca el primer gran checkpoint de la banda: pasar de tocar para amigos y vecinos a presentarse frente a un público real, diverso y exigente.
+[paragraph:normal] Simboliza que ya no es solo un hobby o una excusa para hacer amigos: ahora hay gente escuchándolos de verdad.
+[paragraph:normal] Abre la puerta a nuevas rivalidades y reconocimiento, porque otros grupos (como Kōon) verán a CheatGuys! como competidores serios por primera vez.
+[paragraph:Heading 3] Seleccionados para audición
+[paragraph:normal] 1. CheatGuys! (Neo Teno)
+[paragraph:normal] Banda escolar que mezcla rock alternativo con influencias anisong.
+[paragraph:normal] Integrantes:
+[paragraph:normal] Akane Hoshizora (15) – Voz principal, guitarra rítmica.
+[paragraph:normal] Rika Tanaka (16) – Guitarra principal.
+[paragraph:normal] Momo Fujiwara (15) – Bajo, coros.
+[paragraph:normal] Jun Sakamoto (16) – Batería, percusión.
+[paragraph:normal] 2. Kōon (Neo Teno)
+[paragraph:normal] Banda indie de rock alternativo y pop rock. Excelente técnica y producción.
+[paragraph:normal] Integrantes:
+[paragraph:normal] Hoshi Himura (15) – Voz principal, guitarra líder.
+[paragraph:normal] Tenshi Aoyama (15) – Guitarra rítmica, teclados, coros.
+[paragraph:normal] Shinkeni Gojou (16) – Bajo.
+[paragraph:normal] Shiori Takeda (16) – Batería, letrista.
+[paragraph:normal] 3. Los Pinosaurios (Osaka del Bajío)
+[paragraph:normal] Trío de secundaria que mezcla punk-rock con letras absurdas sobre dinosaurios y comida.
+[paragraph:normal] Integrantes:
+[paragraph:normal] Rulo “Rex” Hernández (15) – Voz principal, guitarra rítmica.
+[paragraph:normal] Tono “Tricera” Medina (15) – Bajo, coros.
+[paragraph:normal] Pepe “Raptor” Guzmán (14) – Batería.
+[paragraph:normal] 4. Viento de Loto (Nueva Kyoto)
+[paragraph:normal] Cuarteto femenino de rock-folk con instrumentos tradicionales japoneses adaptados.
+[paragraph:normal] Integrantes:
+[paragraph:normal] Miyu Kanzaki (17) – Voz principal, shamisen eléctrico.
+[paragraph:normal] Aya Nomura (17) – Guitarra acústica/eléctrica, coros.
+[paragraph:normal] Hikari Senda (16) – Bajo eléctrico adaptado a escala corta.
+[paragraph:normal] Chiyo Watanabe (17) – Taiko y percusiones tradicionales.
+[paragraph:normal] 5. Volt Busters (Puerto Tlaloc)
+[paragraph:normal] Banda mixta de rock electrónico con sintetizadores y baterías programadas.
+[paragraph:normal] Integrantes:
+[paragraph:normal] Leo Vargas (18) – Voz principal, sintetizadores.
+[paragraph:normal] Marina Torres (18) – Guitarra eléctrica, coros.
+[paragraph:normal] Axel Domínguez (17) – Bajo eléctrico, programación.
+[paragraph:normal] Sofía “Sofi” Delgado (18) – Visuals y soporte de producción.
+[paragraph:Heading 2] Stellar Records
+[paragraph:Heading 3] Información general
+[paragraph:normal] Nombre completo: Stellar Records Co., Ltd. (ステラ・レコーズ株式会社)
+[paragraph:normal] Fundación: 1995, Tokio, Japón
+[paragraph:normal] Fundador y director actual: Ryouichi Kanzaki
+[paragraph:normal] Sede central: Distrito Cultural de Neo Teno, México-Japón
+[paragraph:normal] Slogan: “We don’t chase stars — we create them.”
+[paragraph:normal] Colores corporativos: Azul marino, plata y negro
+[paragraph:normal] .
+[paragraph:Heading 3] Historia
+[paragraph:normal] Stellar Records nació en Tokio en 1995 como una disquera pequeña especializada en música alternativa y fusión cultural. Su fundador, Ryouichi Kanzaki, exproductor de Sony Music Japón, la creó con una idea clara: unir talento emocionalmente auténtico con una producción técnica impecable.
+[paragraph:normal] Durante sus primeros años, Stellar fue un semillero de artistas experimentales, pero el verdadero punto de inflexión llegó en 2015, cuando Kanzaki inauguró una sucursal en Neo Teno, la ciudad binacional donde convergen la estética japonesa y la identidad mexicana.
+[paragraph:normal] La sede de Neo Teno se convirtió en su laboratorio multicultural, donde apostó por bandas emergentes que mezclaran idiomas, sonidos y sensibilidades.
+[paragraph:normal] En 2020, Stellar Records Neo Teno Branch se consolidó como una de las tres disqueras más influyentes del continente, conocida por su lema no oficial:
+[paragraph:normal] “Donde termina la fama, empieza la música.”
+[paragraph:Heading 3] El edificio Stellar
+[paragraph:normal] Ubicación: Prefectura Cultural de Neo Teno, a dos cuadras del Teatro Tlaloc.
+[paragraph:normal] Altura: 12 pisos + 2 niveles subterráneos.
+[paragraph:normal] Diseño: Fachada de cristal negro con luces azules en forma de constelaciones.
+[paragraph:normal] Interior:
+[paragraph:normal] Piso 1: Lobby, cafetería “Nebula Brew”, recepción de artistas.
+[paragraph:normal] Pisos 2–5: Estudios de grabación y mezcla, cada uno con su propio ingeniero residente.
+[paragraph:normal] Piso 6: Área de ensayos y salones acústicos modulares.
+[paragraph:normal] Piso 7: Departamentos de marketing y diseño visual.
+[paragraph:normal] Piso 8: Sala de juntas, contratos y relaciones públicas.
+[paragraph:normal] Piso 9: Oficinas de productores y ejecutivos (incluido el despacho de Kanzaki).
+[paragraph:normal] Piso 10: Archivo histórico y laboratorio de sonido experimental.
+[paragraph:normal] Piso 11: Residencia temporal para artistas durante giras o promociones.
+[paragraph:normal] Piso 12 (ático): Terraza panorámica, usada para eventos y showcases privados.
+[paragraph:normal] Subsuelo: Cámaras de aislamiento acústico y bóveda de masters originales.
+[paragraph:normal] Estructura y personal clave
+[paragraph:normal] Director ejecutivo: Ryouichi Kanzaki
+[paragraph:normal] Subdirectora artística: Arisa Kanzaki
+[paragraph:normal] Productora destacada: Mitsuki Yoshida (posteriormente independiente)
+[paragraph:normal] Asistente de producción: Yui Shibata
+[paragraph:normal] Relaciones internacionales: Tetsuo Yamazaki
+[paragraph:normal] Departamento de marketing: dirigido por Reina López
+[paragraph:normal] Seguridad y control de giras: Haruki Ogata
+[paragraph:Heading 3] Bandas y artistas bajo Stellar Records
+[paragraph:normal] Bandas principales del universo de CheatGuys!
+[paragraph:normal] 1. CheatGuys!
+[paragraph:normal] Garage Band de rock alternativo.
+[paragraph:normal] Famosos por su autenticidad y crecimiento emocional.
+[paragraph:normal] Firmados en 2021, aún activos al cierre de la serie.
+[paragraph:normal] 2. Kōon (煌音)
+[paragraph:normal] Banda técnica y perfeccionista, contraparte profesional de CheatGuys!.
+[paragraph:normal] Productora original: Kaoru Himura.
+[paragraph:normal] Firmados desde 2021, mantienen contrato activo junto con CheatGuys!
+[paragraph:normal] 3. Velvet Bloom (banda disuelta)
+[paragraph:normal] Mítica banda de rock emocional liderada por Rin Miyazaki.
+[paragraph:normal] Su homenaje marcó el punto de redención de Kaede Ayase.
+[paragraph:Heading 3] Otros artistas ficticios
+[paragraph:normal] The Raccoon Empire – Rock electrónico experimental.
+[paragraph:normal] Hinata 6ix – Idol unit japonesa con influencia latina.
+[paragraph:normal] Yuto & The Craters – Solista indie y su banda de apoyo; mezcla jazz y city pop.
+[paragraph:normal] Nexus Bloom – Banda conceptual inspirada en Velvet Bloom.
+[paragraph:Heading 3] Artistas reales (colaboraciones o cameos)
+[paragraph:normal] Ado (colaboración especial con Kōon).
+[paragraph:normal] Yoasobi (cameo en panel del Tokyo Dome).
+[paragraph:normal] LiSA (mencionada como inspiración por Hoshi).
+[paragraph:normal] Asian Kung-Fu Generation (referencia constante por Mitsuki y Jun).
+[paragraph:normal] Stellar Records funciona como el catalizador del crecimiento emocional y profesional de los personajes:
+[paragraph:normal] Representa la frontera entre la pasión y la industria. Es el lugar donde los sueños chocan con la realidad.
+[paragraph:normal] Para Akane, es el espejo de su miedo a no ser suficiente;
+[paragraph:normal] para Mitsuki, es su redención profesional;
+[paragraph:normal] para Kanzaki, su despertar moral;
+[paragraph:normal] para Kaoru, su rival natural
+[paragraph:normal] Stellar Records no es solo una disquera:
+[paragraph:normal] Es la metáfora del mundo adulto, donde la música deja de ser un juego y se convierte en un acto de fe.
+[paragraph:Heading 2] Instrumentos y Equipo
+[paragraph:Heading 3] CHEATGUYS!
+[paragraph:normal] Akane – Vocalista / Guitarra rítmica
+[paragraph:normal] Yamaha Pacifica 112V (inicial, aún la usa para práctica o sesiones ligeras).
+[paragraph:normal] Fender American Professional II Telecaster (principal desde el Hasekura Sound Fest).
+[paragraph:normal] Pedales: Boss SD-1 Overdrive, Boss CE-2W Chorus, TC Electronic Hall of Fame Reverb.
+[paragraph:normal] Pedalera multiefectos: Zoom G3Xn (para delays, modulaciones y looper).
+[paragraph:normal] Amplificador: Roland JC-40 (reparado por Reiko, compartido con la banda en inicios).
+[paragraph:normal] Afinaciones: Estándar (EADGBE).
+[paragraph:normal] Sonido: Brillante, rítmico, con toques etéreos.
+[paragraph:normal] Voz: Ligera, cálida, emocional; mejora en control y técnica con el tiempo.
+[paragraph:normal] Rika – Guitarra principal / coros y rap
+[paragraph:normal] Guitarra: ESP E-II Horizon NT-II (prestada por Kaede).
+[paragraph:normal] Pedales: Fulltone OCD, Boss DD-8 Delay, Strymon BigSky Reverb.
+[paragraph:normal] Pedalera multiefectos: Line 6 POD HD500X (distorsiones, EQ y armonías).
+[paragraph:normal] Amplificador: Mesa/Boogie Dual Rectifier (de Mitsuki, restaurado).
+[paragraph:normal] Afinaciones: Estándar y Drop D.
+[paragraph:normal] Sonido: Pesado, preciso, agresivo; estilo alternativo-metal.
+[paragraph:normal] Voz: Grave, rasposa, usada en versos rítmicos o gritos.
+[paragraph:normal] Momo – Bajo / Coros
+[paragraph:normal] Bajo: Fender Mustang Bass PJ (Shell Pink).
+[paragraph:normal] Pedales: MXR M87 Compressor, EHX Bass Clone Chorus.
+[paragraph:normal] Pedalera multiefectos: Zoom B3n (simulaciones de cabinas, octavador, efectos synth).
+[paragraph:normal] Amplificador: Ampeg BA-210 (pagado a plazos con su trabajo en Fujiwara Music).
+[paragraph:normal] Afinaciones: Estándar, ocasionalmente Drop D.
+[paragraph:normal] Sonido: Groove firme, dulce, con chorus y texturas synth.
+[paragraph:normal] Voz: Suave y redonda, hace armonías y coros juguetones.
+[paragraph:normal] Jun – Batería / percusión
+[paragraph:normal] Batería: Tama Starclassic Performer (recuperada de la basura y restaurada).
+[paragraph:normal] Platillos: Zildjian A Custom (venían con el kit).
+[paragraph:normal] Afinación: Caja suelta, bombo profundo, afinación media en toms.
+[paragraph:normal] Batería eléctrica secundaria: Roland TD-07KV (para práctica silenciosa).
+[paragraph:normal] Sonido: Natural, cálido y con pegada; estilo alternativo-rock.
+[paragraph:normal] Equipo común (CheatGuys!)
+[paragraph:normal] Mixer: Yamaha MG16XU (gama media-alta, comprada en ganga).
+[paragraph:normal] Interfaz: Focusrite Scarlett 18i20 (cedida por Mitsuki).
+[paragraph:normal] Micrófonos: Shure SM58 (voces), SM57 (instrumentos), AKG C214 (overheads).
+[paragraph:normal] Cables: Organizadores por color según miembro (violeta, naranja, rosa, cyan).
+[paragraph:normal] Monitores: Behringer Eurolive B210D (2 unidades).
+[paragraph:normal] Consumo total eléctrico: ~770 W en ensayo (~$7 MXN por 3 h).
+[paragraph:Heading 3] KŌON
+[paragraph:normal] Hoshi (“Piña”) – Guitarra principal / vocalista
+[paragraph:normal] Guitarra: Gibson Les Paul Standard ’60s (Cherry Sunburst).
+[paragraph:normal] Pedales: Ibanez Tube Screamer, Delay analógico, Wah-Wah Cry Baby.
+[paragraph:normal] Amplificador: Marshall JCM800.
+[paragraph:normal] Afinaciones: Estándar y Drop D.
+[paragraph:normal] Sonido: Rock clásico, cálido y potente; sustain largo y riffs densos.
+[paragraph:normal] Voz: Fuerte, elegante, con tono profundo y vibrato natural.
+[paragraph:normal] Tenshi – Guitarra Rítmica / Teclado / Coros
+[paragraph:normal] Guitarra: Fender Jazzmaster (Olympic White).
+[paragraph:normal] Teclado: Roland Juno-DS61.
+[paragraph:normal] Pedales: Chorus, Reverb, Tremolo.
+[paragraph:normal] Amplificador: Fender Twin Reverb (de Hoshi).
+[paragraph:normal] Afinaciones: Estándar.
+[paragraph:normal] Sonido: Dream pop / shoegaze angelical.
+[paragraph:normal] Voz: Límpida, afinada, técnica impecable.
+[paragraph:normal] Shiori – Batería / Letrista
+[paragraph:normal] Batería: Pearl Masters Maple Complete (negro brillante).
+[paragraph:normal] Platillos: Zildjian K Custom.
+[paragraph:normal] Batería eléctrica secundaria: Roland TD-27KV (para práctica).
+[paragraph:normal] Afinaciones: Caja tensa, toms afinados alto para precisión.
+[paragraph:normal] Sonido: Preciso, técnico, elegante.
+[paragraph:normal] Shinkeni – Bajo
+[paragraph:normal] Bajo: Music Man StingRay Special (negro mate).
+[paragraph:normal] Pedales: Compresor, EQ paramétrico, Overdrive suave.
+[paragraph:normal] Amplificador: Ampeg SVT-CL con cabina 8x10.
+[paragraph:normal] Afinaciones: Estándar y Drop D.
+[paragraph:normal] Sonido: Grave, potente, controlado; base sólida de Kōon.

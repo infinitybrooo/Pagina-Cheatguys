@@ -1,0 +1,228 @@
+[paragraph:Heading 1] Idea General
+[paragraph:Heading 2] Logline
+[paragraph:Normal] Una chica con ansiedad social forma una banda para dejar de estar sola, pero termina encontrando en otros tres inadaptados el ruido, la amistad y el valor que le faltaban para enfrentarse al mundo.
+[paragraph:Heading 2] Sinopsis
+[paragraph:Normal] Akane Hoshizora es una chica antisocial, amante de los videojuegos, la guitarra y su gato Kurotama. Al iniciar su último año de secundaria, se propone algo sencillo y aterrador: hacer amigos. Su lógica la lleva a una solución extraña pero efectiva (según ella): formar una banda de rock. Lo que no esperaba era que sus anuncios mal hechos atrajeran a un grupo de adolescentes excéntricos, intensos y completamente incompatibles.
+[paragraph:Normal] Ahora, con una guitarrista principal explosiva, un baterista flojo con suerte misteriosa, una bajista dispersa que vive en su propio mundo estético y una maestra frustrada que termina de manager, Akane deberá enfrentar ensayos caóticos, conciertos improvisados, enemigos escolares… y su peor miedo: existir en grupo.
+[paragraph:Heading 2] Argumento
+[paragraph:Normal] CheatGuys! es una comedia animada estilo cartoon con alma de anime, que mezcla humor absurdo, emociones reales y una estética del 2000 nostálgica. A lo largo de la serie, seguimos el crecimiento personal de Akane y su banda mientras luchan por hacerse un lugar en la escena musical underground de su ciudad fusionada entre México y Japón.
+[paragraph:Normal] Cada episodio explora un conflicto cotidiano con un giro caótico: desde buscar quién canta en la banda, hasta encontrar dinero para comprar equipo, o simplemente sobrevivir a un ensayo sin explotar emocionalmente. La serie juega con tropos de anime escolar, juegos, cultura pop y música, con una narrativa de coming-of-age sincera, pero siempre divertida.
+[paragraph:Normal] A través de su viaje, Akane aprenderá que ser parte de algo más grande, aunque la saque de su zona de confort, puede ser el mejor power-up que la vida le ofrece.
+[paragraph:Heading 1] Visión General
+[paragraph:Normal] CheatGuys! es una serie animada de comedia y slice of life con un enfoque fresco, caótico y profundamente humano sobre la adolescencia. Su narrativa abraza el absurdo, la música y el drama cotidiano desde una perspectiva honesta y descaradamente estilizada.
+[paragraph:Normal] La historia sigue a Akane Hoshizora, una adolescente introvertida con ansiedad social leve y nulas habilidades sociales, que por accidente termina siendo la fundadora y vocalista de una banda escolar. ¿El giro? Ella quiere todo menos ser el centro de atención… lo que la convierte, irónicamente, en el eje de una historia llena de caos, música y relaciones improbables.
+[paragraph:Heading 2] Estética visual
+[paragraph:Normal] La estética de CheatGuys! mezcla el lenguaje visual de las caricaturas occidentales tipo chibi con claras influencias del anime de los 2000s. La animación corre a 12 fotogramas por segundo, con un enfoque expresivo y cómico: poses exageradas, reacciones absurdas, cambios de estilo según el estado emocional, y momentos con estética de videojuego.
+[paragraph:Normal] Los colores son saturados y vibrantes, reflejando el mundo emocional e intenso de los adolescentes, mientras que el diseño de personajes apuesta por siluetas únicas y elementos que reflejan la personalidad de cada uno.
+[paragraph:Heading 2] Objetivo de la Serie
+[paragraph:Normal] El objetivo de CheatGuys! es mostrar la adolescencia desde una perspectiva diferente: una que abrace el caos, lo absurdo y lo torpe sin dejar de ser honesta. La serie se ríe de sí misma, de sus personajes y de sus clichés… pero nunca de sus emociones.
+[paragraph:Normal] Queremos retratar lo difícil y hermoso que es crecer cuando no encajas, cuando tus decisiones están mediadas por ansiedad, expectativas o simplemente flojera. Y lo hacemos desde los ojos de una protagonista que intenta con todas sus fuerzas no ser la protagonista, lo que crea una ironía constante y deliciosa.
+[paragraph:Heading 2] Temas centrales
+[paragraph:List Paragraph] Ansiedad social y estrategias de supervivencia (el “HUD” como metáfora).
+[paragraph:List Paragraph] Amistad como construcción torpe pero real: pertenecer sin encajar del todo.
+[paragraph:List Paragraph] Creatividad DIY: hacer arte con pocos recursos y mucha emoción.
+[paragraph:List Paragraph] Identidad adolescente: presión, primeras veces, vergüenza, y el derecho a fallar.
+[paragraph:Heading 2] Género y Tono
+[paragraph:Normal] Comedia absurda
+[paragraph:Normal] Slice of Life (rebanada de vida escolar)
+[paragraph:Normal] Musical escolar
+[paragraph:Normal] Parodia suave de anime y cultura pop
+[paragraph:Normal] Momentos de ternura, caos y verdad emocional
+[paragraph:Normal] El tono oscila entre lo hilarante y lo sincero. Aquí, el drama no viene de villanos ni grandes tragedias, sino de lo cotidiano: malentendidos, primeras veces, presión social, identidad, y la eterna pregunta de “¿qué demonios estoy haciendo con mi vida a los 15?”.
+[paragraph:Heading 1] Ficha técnica
+[paragraph:Normal] Título de la serie: CheatGuys! Género: Comedia, Slice of Life, Musical, Humor absurdo Formato: Serie para Web 2D, Target: Adolescentes y jóvenes (13+), fans de anime, música y humor meta.
+[paragraph:Heading 2] Estructura General
+[paragraph:Normal] Episodios por temporada: 20
+[paragraph:Normal] Duración de cada episodio: 11-14 minutos
+[paragraph:Normal] Temporadas planificadas: 3
+[paragraph:Normal] Duración del episodio piloto: 8 minutos
+[paragraph:Normal] Formato narrativo: Semi-Autoconclusivo con arcos de desarrollo ligero y progresivo
+[paragraph:Normal] Idioma original: Español Mexicano
+[paragraph:Normal] Canciones originales: En japonés, subtituladas (estilo anisong)
+[paragraph:Heading 2] Estilo y técnica de animación
+[paragraph:Normal] Animación 2D limitada (estilo cartoon chibi con influencias de anime)
+[paragraph:Normal] Tasa de fotogramas: 12 fps
+[paragraph:Normal] Estética visual: Colores saturados, diseño expresivo, cambios de estilo para humor/emoción
+[paragraph:Normal] Enfoque visual: Reacciones exageradas, cortes estilizados, elementos meta como HUDs y referencias pop
+[paragraph:Normal] .
+[paragraph:Heading 2] Doblaje y música
+[paragraph:List Paragraph] Doblaje original: Español Mexicano (con guiños a expresiones locales y fandom otaku)
+[paragraph:List Paragraph] Canciones: Interpretadas en japonés por el elenco, para reforzar la estética de banda escolar anime
+[paragraph:List Paragraph] Banda sonora: Mezcla de rock, synth pop y chiptune, con momentos instrumentales emocionales o absurdos
+[paragraph:List Paragraph] Producción musical: Canciones originales que mezclan rock escolar con anisong (estilo opening/ending de anime)
+[paragraph:Heading 2] Dirección Creativa
+[paragraph:Normal] Humor absurdo, referencias meta y diálogos rápidos
+[paragraph:Normal] Momentos tiernos y emocionales sin caer en la solemnidad
+[paragraph:Normal] Construcción de personajes a través de interacciones cotidianas
+[paragraph:Normal] Tema central: La adolescencia como un caos sincero, vista desde los ojos de alguien que no quiere brillar, pero lo hace sin querer.
+[paragraph:Heading 1] Ficha de Personajes
+[paragraph:Heading 2] Akane Hoshizora
+[paragraph:Normal] Curiosidades
+[paragraph:Normal] Su HUD mental se activa en situaciones sociales incómodas, simulando opciones de diálogo y consecuencias (muy al estilo JRPG).
+[paragraph:Normal] Llama a su madre de tres formas según su estado emocional: “Ma” (neutro), “Reiko” (molesta/seria) y “Mamá” (emocional/vulnerable).
+[paragraph:Normal] Aunque parece inexpresiva, en su mundo interior tiene reacciones dramáticas estilo anime chibi.
+[paragraph:Normal] Es fanática de los juegos de ritmo, especialmente los que tienen idols o bandas ficticias.
+[paragraph:Normal] Le gusta el té helado, los gatos (en especial su gato Kurotama), los mangas y el anime.
+[paragraph:Normal] Su lugar seguro es el garaje convertido en cuartel general de la banda, donde puede ser ella misma.
+[paragraph:Heading 1] Ficha de Personajes
+[paragraph:Heading 2] Rika Tanaka
+[paragraph:Normal] Curiosidades
+[paragraph:Normal] Su ropa cambia según su estado de ánimo. Tiene reglas personales como “no usar pantalones cuando está feliz” o “ropa rota si se siente filosófica”.
+[paragraph:Normal] Tiene tres hermanos menores (Hina, Taro y Daichi), a quienes adora y teme a partes iguales.
+[paragraph:Normal] Admira obsesivamente a Kaede Ayase, su vecina y mentora musical, a quien considera un ejemplo de lo que no debe arruinar.
+[paragraph:Normal] Su cuarto es un campo de guerra entre ropa, cables, partituras y slime (gracias a Taro).
+[paragraph:Normal] Es muy buena improvisando letras… aunque no siempre tienen sentido.
+[paragraph:Normal] Tiene una relación especial con Akane: la ve como su “guitarra gemela” y suele protegerla de las multitudes (gritando, claro).
+[paragraph:Heading 1] Ficha de Personajes
+[paragraph:Heading 2] Momo Fujiwara
+[paragraph:Normal] Es la más bajita del grupo, pero también la que da los abrazos más reconfortantes (sobre todo a Akane).
+[paragraph:Normal] Esta diagnosticada con TDA, aunque ella lo ve como algo positivo”.
+[paragraph:Normal] Es hija de Yukari y Haruto Fujiwara, dueños de una tienda de música muy colorida.
+[paragraph:Normal] Suele hablar con los objetos: su bajo se llama “Sina” y a veces le pide consejos.
+[paragraph:Normal] Su manera de estudiar es decorar sus apuntes como si fueran páginas de un diario kawaii… aunque eso no significa que los entienda.
+[paragraph:Normal] Tiene una conexión especial con Jun: le calma los nervios sin decir nada, y él la cuida como a una hermanita… aunque ella no se entere.
+[paragraph:Heading 1] Ficha de Personajes
+[paragraph:Heading 2] Jun Sakamoto
+[paragraph:Normal] Curiosidades
+[paragraph:Normal] Siempre tiene una paleta, gomita o snack misterioso en la mochila (nadie sabe de dónde los saca).
+[paragraph:Normal] Su lugar en el Garaje es “el sillón de Jun”, el cual defiende con una flojera pasivo-agresiva.
+[paragraph:Normal] Su hermana mayor es Aio Sakamoto, una programadora freelance con quien tiene una relación basada en sarcasmo y apoyo mutuo.
+[paragraph:Normal] A veces se duerme con los ojos abiertos, lo que causa sustos ocasionales.
+[paragraph:Normal] Fue el último en unirse a la banda, pero ahora no se imagina sin ella.
+[paragraph:Normal] Tiene una extraña relación Amor-Odio con Rika, aunque no se entiende cómo funcionan sin explotar.
+[paragraph:Heading 1] Ficha de Personajes
+[paragraph:Heading 2] Reiko Nakamura
+[paragraph:Normal] Curiosidades
+[paragraph:Normal] Tiene una motocicleta Honda CB750 de 1985, su “bebé” mecánica.
+[paragraph:Normal] Aprendió a manejar moto a los 13 años, enseñada por su abuelo Haoimi
+[paragraph:Normal] Sí dejaría que Akane se hiciera un tatuaje… pero solo hasta los 18.
+[paragraph:Normal] Sabe de algunos mangas que Akane lee, y hasta le ha pedido unos con su tarjeta. Le confiscó uno que consideraba demasiado subido de tono, pero solo porque ya lo había leído en su adolescencia.
+[paragraph:Normal] No es otaku, pero le gustan ciertas cosas de convenciones (y va con Akane para cuidarla y vigilar que nadie se pase de listo).
+[paragraph:Normal] La casa está llena de piezas de motos, herramientas y aparatos reparados.
+[paragraph:Heading 1] Ficha de Personajes
+[paragraph:Heading 2] Mitsuki Yoshida
+[paragraph:Heading 1] Ficha de Personajes
+[paragraph:Heading 2] Kenji Takeda
+[paragraph:Heading 1] Ficha de Personajes
+[paragraph:Heading 2] Kaede Ayase
+[paragraph:Heading 1] Universo
+[paragraph:Heading 2] Neo Teno y México Niponizado
+[paragraph:Normal] "Donde el mariachi y el manga conviven en hora pico."
+[paragraph:Normal] Neo Teno es una ciudad ficticia situada en el corazón del Valle de México, reemplazando a la Ciudad de México en esta versión alternativa del país. Se trata de una urbe vibrante, híbrida, colorida y caótica, nacida de un México que, desde la época del virreinato, tuvo una profunda conexión histórica con Japón.
+[paragraph:Normal] En esta línea temporal, la migración y colaboración entre ambas culturas se intensificó desde el siglo XVII, fusionando costumbres, arquitectura, idioma y tecnología. El resultado: una metrópolis multicultural y multicolor, donde puedes encontrar:
+[paragraph:Normal] Templos sintoístas entre puestos de tamales,
+[paragraph:Normal] Trenes bala pasando frente a mercados de artesanía,
+[paragraph:Normal] Pantallas LED flotantes que anuncian tacos y karaoke,
+[paragraph:Normal] Y una sociedad donde el uniforme escolar nipón convive con el albur mexicano.
+[paragraph:Normal] Estética urbana:
+[paragraph:Normal] Barrios densos y contrastantes, con zonas de concreto brutalista al estilo Tokio, junto a callejones con murales, cerezos y papel picado.
+[paragraph:Normal] Anuncios en español y japonés, entre jergas mezcladas y neones saturados.
+[paragraph:Normal] Arcades clandestinos, tianguis de tecnología, cafeterías temáticas, templos reciclados en escuelas, y motocicletas tuneadas como mechas de bajo presupuesto.
+[paragraph:Normal] Clima y ritmo de vida:
+[paragraph:Normal] Su clima es templado pero impredecible, igual que su gente.
+[paragraph:Normal] Las calles están llenas de adolescentes con mochilas otaku, oficinistas con corbata y sombrero, y abuelas que venden onigiris de cochinita Pibil.
+[paragraph:Heading 2] ¿Por qué fusionar Japón y México en CheatGuys!?
+[paragraph:Normal] La idea original de CheatGuys! nació como una respuesta creativa y emocional al encanto de series como Bocchi the Rock!: historias donde la ansiedad social, la música y la adolescencia se cruzan en formas sinceras, exageradas y adorables. Pero pronto, la necesidad de darle una voz propia a esta historia llevaría a una decisión más audaz: fusionar Japón con México, no solo como estética, sino como esencia.
+[paragraph:Heading 3] El estilo anime… pero con picante
+[paragraph:Normal] El anime permite exagerar emociones, representar estados internos como HUD mentales, usar metáforas visuales y abrazar lo absurdo sin perder lo emotivo. Pero el toque mexicano aporta algo igual de valioso: un caos encantador, una cultura saturada de colores, sonidos y emociones, donde todo parece un carnaval medio improvisado, pero lleno de corazón.
+[paragraph:Heading 2] Razones creativas detrás de la fusión
+[paragraph:Heading 3] Justificar el estilo visual y emocional
+[paragraph:Normal] La fusión permite que los personajes tengan reacciones tipo anime (caídas cómicas, fondos dramáticos, efectos visuales de emociones) sin sentirse "fuera de lugar", porque el mundo ya está construido con esa lógica híbrida. Un México niponizado hace que lo absurdo sea parte del entorno.
+[paragraph:Heading 3] Explorar la adolescencia desde otro ángulo
+[paragraph:Normal] México tiene una adolescencia intensa, ruidosa, llena de contradicciones y creatividad con pocos recursos, muy distinta al orden japonés… pero también con puntos en común. Mezclar ambos permite hablar de ansiedad, presión social y amistad de forma más universal, pero sin perder el sabor local
+[paragraph:Heading 3] Dar identidad propia a la serie
+[paragraph:Normal] No es solo una copia de anime. Es una historia que abraza lo mexicano: los tianguis, el ruido, los uniformes que nunca combinan, los papás que te apoyan a gritos, la creatividad desde la carencia… Pero también respeta lo japonés: la sensibilidad emocional, el amor por los detalles, la estética cuidadosa.
+[paragraph:Heading 3] Crear un espacio creíble para la música y la comedia
+[paragraph:Normal] Un México alternativo donde hay karaoke en las plazas, bandas escolares con estética J-Rock, y niñas otaku que fundan bandas sin querer, es el contexto perfecto para el caos adolescente con corazón que la serie quiere retratar.
+[paragraph:Heading 2] ¿En qué se diferencia CheatGuys! del anime?
+[paragraph:Normal] Aunque CheatGuys! toma como punto de partida la inspiración emocional de Bocchi the Rock! —una chica tímida que encuentra una salida en la música—, la serie no busca replicar su estilo ni su estructura. En cambio, se convierte en algo totalmente distinto al mezclar culturas, estéticas y tono narrativo.
+[paragraph:Normal] Diferencias clave:
+[paragraph:Normal] Culturalmente híbrida: Mientras Bocchi refleja una adolescencia japonesa con sus códigos sociales y silencios, CheatGuys! ocurre en un México niponizado lleno de ruido, color y contradicciones. El entorno es más caótico y expresivo, lo que influye directamente en el tipo de humor y relaciones.
+[paragraph:Normal] Tono más absurdo y visualmente expresivo: CheatGuys! se permite romper la lógica constantemente con gags visuales, humor físico, reacciones exageradas y un ritmo narrativo más cercano a un cartoon. Su estilo visual no busca el realismo emocional, sino la representación emocional explosiva.
+[paragraph:Normal] Una protagonista distinta: Akane no busca destacar, pero tampoco sueña con ser famosa como Bocchi. Ella solo quiere jugar videojuegos tranquila… y sin querer termina en una banda. Su motivación no es salir del cascarón, sino aprender a existir en un mundo que grita mientras ella susurra.
+[paragraph:Normal] Enfoque más coral y cotidiano: CheatGuys! no gira únicamente en torno al desarrollo de Akane. Cada personaje aporta un ángulo del caos adolescente, y los capítulos suelen ser más auto conclusivos, con énfasis en la comedia y los pequeños momentos emocionales dentro del desorden.
+[paragraph:Normal] CheatGuys! no intenta ser una "versión mexicana de Bocchi", sino una historia más caótica, colorida y emocionalmente honesta, que abraza la imperfección, el ruido y la rareza de crecer en un mundo que nunca deja de moverse.
+[paragraph:Heading 1] Episodios
+[paragraph:Heading 2] Primer Arco: “CheatStart!” (Episodios 1 al 10)
+[paragraph:Normal] Tema central: Empezar algo sin tener idea de cómo, pero con muchas ganas. Duración: 10 episodios (piloto + formación + primer evento) Objetivo narrativo: Presentar a los personajes principales, su dinámica absurda y torpe, consolidar la banda y preparar el escenario para su primer concierto. Arco emocional: De la soledad de Akane → al caos compartido → al primer paso como banda real.
+[paragraph:Normal] EP1 – CheatStart!
+[paragraph:List Paragraph] Punto de partida: Akane, sola y con ansiedad social, decide hacer una banda como excusa para tener amigos.
+[paragraph:List Paragraph] Disparador: Conoce a Rika, quien responde a su cartel.
+[paragraph:List Paragraph] Cambio emocional: Del aislamiento a la intrusión (¡Rika invadió su vida!).
+[paragraph:List Paragraph] Sinopsis: Akane entra a 3 año de secundaria con objetivo clave: hacer amigos antes de entrar a preparatoria, y en su lógica extraña crear una banda de Rock es la mejor manera... Lo que no sabía es que sus cartelitos mal acomodados iban a atraer a la chica más intensa, extrovertida y obsesiva.
+[paragraph:Normal] EP2 – CheatVoice!
+[paragraph:List Paragraph] Tema: La banda se forma oficialmente, pero los roles no están definidos.
+[paragraph:List Paragraph] Conflicto: Nadie quiere ser vocalista... menos Akane, pero todos saben que ella debe serlo.
+[paragraph:List Paragraph] Cambio emocional: Akane empieza a aceptar (a regañadientes) ser el centro.
+[paragraph:List Paragraph] Sinopsis: Después de algunas intervenciones por parte de Rika, la banda está oficialmente formada, solo que ahora hay un dilema, que roles va a tomar cada quién? Y quién iba a ser la vocalista? Akane se estaba replanteando su plan seriamente...
+[paragraph:Normal] EP3 – CheatGarage!
+[paragraph:List Paragraph] Tema: Necesitan un lugar para ensayar.
+[paragraph:List Paragraph] Conflicto: Akane no quiere ceder su refugio (el garaje).
+[paragraph:List Paragraph] Resolución: Se impone la lógica grupal: ahora es el cuartel de la banda.
+[paragraph:List Paragraph] Cambio emocional: Akane empieza a compartir su espacio íntimo.
+[paragraph:List Paragraph] Sinopsis: La banda necesita un lugar donde reunirse, y por más que buscan no logran encontrar un buen lugar, la cosa es que el lugar perfecto estaba dentro de la casa de Akane: su garaje, pero ella se guardó está información para que su espacio no se viera invadido...que pena que está con una banda que no conoce el término "privacidad"
+[paragraph:Normal] EP4 – CheatLeader!
+[paragraph:List Paragraph] Tema: El ensayo es un desastre sin liderazgo.
+[paragraph:List Paragraph] Conflicto: Rika se autoimpone como líder, pero no funciona.
+[paragraph:List Paragraph] Resolución: Jun y Momo maniobran para que Akane tome el rol sin saberlo.
+[paragraph:List Paragraph] Cambio emocional: Akane empieza a dirigir, aunque sea sin querer.
+[paragraph:List Paragraph] Sinopsis: El primer ensayo en conjunto... es un reverendo desastre, cada uno va por su lado y no hay quien dirija, entonces Rika decide nombrarse líder de la banda...Jun y Momo van a tener que lograr la forma de que sea Akane quien dirija la banda si no quieren morir entre terrible sufrimiento.
+[paragraph:Normal] EP5 – CheatGameBoy!
+[paragraph:List Paragraph] Tema: Conflicto interno entre Rika y Jun, afectando a Akane.
+[paragraph:List Paragraph] Elemento clave: Se rompe el GameBoy de Akane (su objeto emocional).
+[paragraph:List Paragraph] Resolución: Momo y Jun se unen para arreglarlo, mientras Rika entra en modo excusas.
+[paragraph:List Paragraph] Cambio emocional: Akane ve que el grupo se preocupa por ella.
+[paragraph:List Paragraph] Sinopsis: Rika y Jun comenzaron a discutir sobre las canciones y la camiseta de la banda (cosas de las que ya se había encargado Momo pero no le hacían caso por enana) y la discusión se salió de control y Rika tumba y rompe el GameBoy Color de Akane, por lo que Jun y Momo van a tener que buscar la forma de remplazarlo mientras Rika se queda en el garaje inventando cuánta excusa se le ocurra para que Akane no entre.
+[paragraph:Normal] EP6 – CheatMoney!
+[paragraph:List Paragraph] Tema: Necesitan conseguir dinero rápido para equipo.
+[paragraph:List Paragraph] Dinámica: Cada uno busca dinero de forma absurda (venta de dulces, mini-jobs, favores).
+[paragraph:List Paragraph] Cambio emocional: Primer esfuerzo colectivo. Empieza a formarse una complicidad.
+[paragraph:List Paragraph] Sinopsis: En una de las salidas al tianguis junto con Reiko, Akane encuentra equipo de audio bastante bueno a muy buen precio, casi una ganga, el problema...la banda está quebrada, así que cada miembro va a buscar la manera de conseguir dinero antes de que ese misterioso vendedor desaparezca o peor aún, que alguien con dinero les gane el equipo de audio.
+[paragraph:Normal] EP7 – CheatSimp!
+[paragraph:List Paragraph] Trama A: Rika y Momo hacen una presentación escolar suicida.
+[paragraph:List Paragraph] Trama B: Kenji conoce a Akane y nace su devoción absurda.
+[paragraph:List Paragraph] Cambio emocional: Se amplía el mundo y surgen consecuencias inesperadas (Kenji empieza a aparecer).
+[paragraph:List Paragraph] Sinopsis: El episodio se divide en 2. Rika y Momo están buscando la forma de promocionar la banda para su primera presentación (que se va a realizar en el Garaje) entonces realizan las dos una presentación improvisada en una operación suicida: los altavoces de la escuela. Paralelamente Kenji, un Otaku devoto tiene su primer encuentro con Akane quien se dirigía hacia el Arcade Clandestino de la escuela... Su diosa ahora estaba frente a sus ojos.
+[paragraph:Normal] EP8 – CheatSong!
+[paragraph:List Paragraph] Tema: Necesitan su primera canción original.
+[paragraph:List Paragraph] Conflicto: Akane decide escribirla, pero el bloqueo la consume.
+[paragraph:List Paragraph] Cambio emocional: Akane enfrenta su miedo a ser “escuchada”. Empieza a crear.
+[paragraph:List Paragraph] Sinopsis: La banda necesita su identidad, así que los chicos se reúnen para planear como va a ser su música y no tocar puros Covers... Akane en un acto de valentía (y presión social) propone escribir las canciones de la banda... ahora Akane tiene insomnio. Acompañemos el proceso creativo nocturno de una chica antisocial lleno de drama, auto desprecio cómico (y no tan cómico) crisis existenciales y gatos cobardes...
+[paragraph:Normal] EP9 – CheatMum!
+[paragraph:List Paragraph] Tema: Reiko intenta reconectar con su hija al notar que está agotada.
+[paragraph:List Paragraph] Conflicto: La madre no sabe cómo ayudar, pero intenta.
+[paragraph:List Paragraph] Cambio emocional: Reiko crece como madre y Akane se permite ser vulnerable.
+[paragraph:List Paragraph] Sinopsis: Después de la pequeña crisis que le dio a Akane, Reiko nota que su hija está con más presión de la que ve a menudo, así que trata de organizar un día divertido para tratar de conectar con ella, lo que iba a ser una salida divertida se convirtió en una pesadilla. Reiko por primera vez tiene que cubrir a Akane como la adulta que es.
+[paragraph:Normal] EP10 – Checkpoint!
+[paragraph:List Paragraph] Clímax del arco: Primer concierto de la banda.
+[paragraph:List Paragraph] Tensión: Nada sale como lo ensayaron, pero eso no impide que se diviertan.
+[paragraph:List Paragraph] Resultado: El caos funciona. La gente aplaude. La banda nace oficialmente.
+[paragraph:List Paragraph] Cambio emocional: Akane empieza aceptar que no necesita ser perfecta para tener compañía.
+[paragraph:List Paragraph] Sinopsis: La banda comienza a organizar su primera presentación... Varias personas del colegio y del vecindario están frente a la casa de Akane, será que está banda de adolescentes caóticos va a poder sobresalir? No todo tiene que salir perfecto...pero esa es la esencia de CheatGuys! 0 perfección, +100 de emoción!
+[paragraph:Normal] Cierre del Arco:
+[paragraph:Normal] Akane ya no está sola.
+[paragraph:Normal] La banda existe oficialmente y tiene nombre, espacio, estilo y canciones.
+[paragraph:Normal] El grupo ha pasado de extraños con objetivos distintos a un equipo desorganizado... pero funcional.
+[paragraph:Normal] El tono de la serie queda claro: divertido, humano, DIY, lleno de corazón, errores y caos.
+[paragraph:Heading 2] Panorama de Temporada 1 (Eps. 11–20)
+[paragraph:List Paragraph] Eps. 11–15: expansión del mundo (escuela/tienda/escena local), primeras rivalidades y reglas internas de la banda.
+[paragraph:List Paragraph] Eps. 16–20: preparación de evento mayor, crisis de identidad (quiénes son como banda) y cierre emocional: la amistad ya es real, aunque siga siendo un desastre.
+[paragraph:Heading 2] Temporada 2 (dirección general)
+[paragraph:List Paragraph] La banda enfrenta el ‘mundo real’: competencias, escena local, expectativas externas y comparaciones.
+[paragraph:List Paragraph] Akane aprende a sostener relaciones sin depender del ‘modo juego’; el HUD deja de ser control y se vuelve herramienta.
+[paragraph:List Paragraph] Más música original, más dinámicas familiares, y un antagonismo institucional (industria/escuela) que prueba la autenticidad del grupo.
+[paragraph:Heading 2] Temporada 3 (dirección general)
+[paragraph:List Paragraph] Cosecha y consecuencias: decisiones de futuro, separación/crecimiento y el miedo a perderse al graduar.
+[paragraph:List Paragraph] Cierre de arcos principales: Akane ya no forma banda para ‘tener amigos’; la banda existe porque se eligieron.
+[paragraph:List Paragraph] Final emocional: la música como memoria compartida (y la prueba de que sobrevivieron a la adolescencia).
+[paragraph:Heading 1] Producción
+[paragraph:Heading 2] Equipo actual (núcleo)
+[paragraph:List Paragraph] Guion, edición y dirección narrativa: Ramón Hernández (escritor/showrunner).
+[paragraph:List Paragraph] Dirección de arte, diseño de personajes, vestuario, renders, posters, storyboard/animatic: Ángel Hernández.
+[paragraph:Heading 2] Declaración de autor
+[paragraph:Normal] CheatGuys! nace de la necesidad de hablar de la adolescencia sin romantizarla: la soledad real, la vergüenza, las estrategias raras para sobrevivir y el alivio inmenso de encontrar a alguien que te entienda. La serie usa comedia absurda y lenguaje anime para decir algo simple: crecer es difícil, pero no tienes que hacerlo solo. La banda no es un sueño de fama; es una excusa para quedarse.
+[paragraph:Heading 2] Uso de Inteligencia Artificial para el desarrollo
+[paragraph:Normal] Se utilizó IA únicamente como herramienta de apoyo en procesos secundarios de desarrollo, incluyendo lluvia de ideas, organización y pulido editorial de materiales, apoyo de traducción/redacción en inglés, exploración visual no final, generación de prompts para concepts y mockups promocionales o de merchandising. El concepto, historia, personajes, dirección narrativa, estilo visual final y materiales autorales principales del proyecto son obra original de los creadores.
+[paragraph:Normal] Infinity Brothers Studio
+[paragraph:Normal] Contacto: (infinitybrooothers@outlook.com / +52 322 2216 6004 / @infinitybrooo)
+[paragraph:Normal] Material adicional disponible a solicitud: artes, moodboards, guiones, renders y paquetes de personajes.

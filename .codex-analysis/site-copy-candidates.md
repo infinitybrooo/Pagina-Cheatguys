@@ -1,0 +1,1163 @@
+- [biblia-produccion.html] ¿Quiénes somos?
+- [biblia-produccion.html] ¿Qué es CheatGuys!?
+- [biblia-produccion.html] Biblia de Producción
+- [biblia-produccion.html] Infinity Brothers
+- [biblia-produccion.html] Inicializando visor...
+- [biblia-produccion.html] CARGANDO_PÁGINA...
+- [biblia-produccion.html] [ ◀ ANTERIOR ]
+- [biblia-produccion.html] [ SIGUIENTE ▶ ]
+- [biblia-produccion.html] CheatGuys! is a series owned by Infinity Brothers Studios TM. All artwork, descriptions, documents, characters, music, and story are the property of the studio and are protected by copyright.
+- [biblia-produccion.html] Interactive components (including character chat simulations) utilize experimental AI for entertainment and narrative purposes only. Leaderboard submissions are stored locally for gameplay experience.
+- [biblia-produccion.html] CheatGuys! © 2026 Infinity Brothers Studios TM. All rights reserved
+- [biblia-produccion.html] Abrir/cerrar menu
+- [biblia-produccion.html] Menu principal
+- [biblia-produccion.html] Control de musica
+- [biblia-produccion.html] Activar o desactivar musica
+- [biblia-produccion.html] Musica ON/OFF
+- [biblia-produccion.html] Volumen de musica
+- [biblia-produccion.html] Control de Volumen
+- [biblia-produccion.html] Página del documento PDF
+- [biblia-produccion.html] Controles del visor PDF
+- [biblia-produccion.html] Página anterior
+- [biblia-produccion.html] Página siguiente
+- [biblia-produccion.html] Infinity Brothers Logo
+- [galeria.html] ¿Quiénes somos?
+- [galeria.html] ¿Qué es CheatGuys!?
+- [galeria.html] Biblia de Producción
+- [galeria.html] ARCHIVO_VISUAL // CHEATGUYS!
+- [galeria.html] VIOLETA // #8A2BE2
+- [galeria.html] “Esos bocetos todavía no estaban terminados…”
+- [galeria.html] CheatGuys! is a series owned by Infinity Brothers Studios TM. All artwork, descriptions, documents, characters, music, and story are the property of the studio and are protected by copyright.
+- [galeria.html] Interactive components (including character chat simulations) utilize experimental AI for entertainment and narrative purposes only. Leaderboard submissions are stored locally for gameplay experience.
+- [galeria.html] CheatGuys! © 2026 Infinity Brothers Studios TM. All rights reserved
+- [galeria.html] ESC: CLOSE // ← →: NAVIGATE // ORIGINAL_RENDER
+- [galeria.html] Abrir/cerrar menu
+- [galeria.html] Menu principal
+- [galeria.html] Control de musica
+- [galeria.html] Activar o desactivar musica
+- [galeria.html] Musica ON/OFF
+- [galeria.html] Volumen de musica
+- [galeria.html] Control de Volumen
+- [galeria.html] Información del archivo visual
+- [galeria.html] Seleccionar personaje del archivo
+- [galeria.html] Ver archivos de Akane
+- [galeria.html] Ver archivos de Rika
+- [galeria.html] Ver archivos de Momo
+- [galeria.html] Ver archivos de Jun
+- [galeria.html] Vestimenta anterior
+- [galeria.html] Carrusel de vestimentas; usa las flechas izquierda y derecha
+- [galeria.html] Vestimenta siguiente
+- [galeria.html] Turnaround anterior
+- [galeria.html] Carrusel de turnarounds; usa las flechas izquierda y derecha
+- [galeria.html] Turnaround siguiente
+- [galeria.html] Boceto anterior
+- [galeria.html] Carrusel de bocetos; usa las flechas izquierda y derecha
+- [galeria.html] Boceto siguiente
+- [galeria.html] Infinity Brothers Logo
+- [galeria.html] Cerrar visor de imagen
+- [galeria.html] Imagen anterior
+- [galeria.html] Imagen siguiente
+- [index.html] ¿Quiénes somos?
+- [index.html] ¿Qué es CheatGuys!?
+- [index.html] Biblia de Producción
+- [index.html] Infinity Brothers Studio
+- [index.html] Estás dentro del centro de operaciones secreto de CheatGuys!. 0 perfección, 100% emoción. Selecciona tu personaje para desplegar sus fichas tácticas, desplázate por el menú para revisar nuestro inventario de stickers o toca el póster de la banda si tienes las agallas para revelar los archivos prohibidos del Garaje.
+- [index.html] Official Pitch Bible
+- [index.html] Infinity Brothers on X
+- [index.html] TikTok Animatics
+- [index.html] WhatsApp Sticker Pack
+- [index.html] EQUIP: AKANE'S ANXIETY
+- [index.html] Discord Emotes
+- [index.html] Patreon Guild
+- [index.html] Mitsuki's Coffee
+- [index.html] PayPal Donations
+- [index.html] Akane: Noise I Can't Say Out Loud
+- [index.html] Rika: Volume First, Consequences Later
+- [index.html] Momo: Pink City Lights
+- [index.html] Jun: Sleepy Groove, Sharp Timing
+- [index.html] Send System Mail
+- [index.html] infinitybrooothers@outlook.com
+- [index.html] WhatsApp Business
+- [index.html] LIVE_TRANSMISSION // @INFINITYBROOO
+- [index.html] No se pudo cargar el feed manual.
+- [index.html] CheatGuys! is a series owned by Infinity Brothers Studios TM. All artwork, descriptions, documents, characters, music, and story are the property of the studio and are protected by copyright.
+- [index.html] Interactive components (including character chat simulations) utilize experimental AI for entertainment and narrative purposes only. Leaderboard submissions are stored locally for gameplay experience.
+- [index.html] CheatGuys! © 2026 Infinity Brothers Studios TM. All rights reserved
+- [index.html] [ RECOVERY_NODE_0xCG ]
+- [index.html] ¿Estas seguro? Algo puede explotar si lo haces... Luego no me vengas a llorar.
+- [index.html] Abrir/cerrar menu
+- [index.html] Menu principal
+- [index.html] Control de musica
+- [index.html] Activar o desactivar musica
+- [index.html] Musica ON/OFF
+- [index.html] Volumen de musica
+- [index.html] Control de Volumen
+- [index.html] Pantalla de inicio CheatGuys
+- [index.html] Inicio del videojuego
+- [index.html] Omitir la introduccion y continuar al lobby
+- [index.html] Continuar dialogo
+- [index.html] Retrato de Akane
+- [index.html] Continuar a la siguiente viñeta
+- [index.html] CheatGuys Official Logo
+- [index.html] Revisar poster secreto de CheatGuys
+- [index.html] CheatGuys Team
+- [index.html] Mensaje de bienvenida
+- [index.html] Seleccion de personaje
+- [index.html] Akane Hoshizora
+- [index.html] Momo Fujiwara
+- [index.html] Junpei Sakamoto
+- [index.html] Accesos rapidos
+- [index.html] Playlist de Akane
+- [index.html] Reproducir preview aleatorio de Akane
+- [index.html] Playlist de Rika
+- [index.html] Reproducir preview aleatorio de Rika
+- [index.html] Playlist de Momo
+- [index.html] Reproducir preview aleatorio de Momo
+- [index.html] Playlist de Jun
+- [index.html] Reproducir preview aleatorio de Jun
+- [index.html] Cerrar mixer y detener preview
+- [index.html] Portada del preview seleccionado
+- [index.html] Cerrar publicaciones de X
+- [index.html] Ver publicaciones recientes de X
+- [index.html] No presionar
+- [index.html] Infinity Brothers Logo
+- [index.html] Reiniciar secretamente la secuencia de introduccion
+- [index.html] Cancelar reinicio
+- [index.html] Compartir en WhatsApp
+- [index.html] Compartir en Facebook
+- [index.html] Compartir en X
+- [index.html] Compartir en Discord
+- [minijuego.html] ¿Quiénes somos?
+- [minijuego.html] ¿Qué es CheatGuys!?
+- [minijuego.html] Biblia de Producción
+- [minijuego.html] ¿Crees que puedas superar la máxima puntuación de la Demonio del Arcade?
+- [minijuego.html] ¡Inténtalo!... Si te atreves...
+- [minijuego.html] AKANE: 99,999
+- [minijuego.html] PUNTUACIÓN FINAL: 0
+- [minijuego.html] La Demonio del Arcade sigue invicta.
+- [minijuego.html] [ ¿OTRA FICHA? ]
+- [minijuego.html] Wow, no pense que llegarias hasta aqui, bien por ti supongo... lo que es tener demasiado tiempo libre...
+- [minijuego.html] SCORE: 99,999
+- [minijuego.html] Abrir/cerrar menu
+- [minijuego.html] Menu principal
+- [minijuego.html] Control de musica
+- [minijuego.html] Activar o desactivar musica
+- [minijuego.html] Musica ON/OFF
+- [minijuego.html] Volumen de musica
+- [minijuego.html] Control de Volumen
+- [minijuego.html] Volver al lobby
+- [minijuego.html] Akane, Demonio del Arcade
+- [minijuego.html] Datos de la partida
+- [minijuego.html] Selecciona un minijuego
+- [minijuego.html] Seleccionar Space Invaders
+- [minijuego.html] Space Invaders
+- [minijuego.html] Seleccionar Akane Maze
+- [minijuego.html] Pausar partida
+- [minijuego.html] Joystick de movimiento
+- [minijuego.html] Controles de Akane Maze
+- [minijuego.html] Cruceta de Akane Maze
+- [minijuego.html] Mover arriba
+- [minijuego.html] Mover izquierda
+- [minijuego.html] Mover derecha
+- [minijuego.html] Defeat - Rika
+- [minijuego.html] Estado de la partida
+- [minijuego.html] Resultado de victoria
+- [que-es-cheatguys.html] ¿Quiénes somos?
+- [que-es-cheatguys.html] ¿Qué es CheatGuys!?
+- [que-es-cheatguys.html] Biblia de Producción
+- [que-es-cheatguys.html] LORE_FILE_LOADED // CHAOS_LEVEL: 99%
+- [que-es-cheatguys.html] Una comedia animada sobre una chica con ansiedad social que intenta hacer amigos de la forma más lógica y menos lógica posible: formando una banda de rock.
+- [que-es-cheatguys.html] Akane Hoshizora solo quería sobrevivir su último año de secundaria, jugar videojuegos, tocar guitarra y no tener que hablar con demasiada gente.
+- [que-es-cheatguys.html] Su plan para hacer amigos salió demasiado bien: sus carteles mal hechos atrajeron a adolescentes intensos, raros y completamente incompatibles.
+- [que-es-cheatguys.html] Resultado: una banda, un garaje invadido, demasiadas emociones desbloqueadas y cero puntos en habilidades sociales.
+- [que-es-cheatguys.html] Comedia absurda, música, ansiedad adolescente y corazón DIY.
+- [que-es-cheatguys.html] Ensayos caóticos, reacciones exageradas, decisiones terribles y humor meta con alma de cartoon.
+- [que-es-cheatguys.html] Una banda que intenta sonar bien mientras aprende a convivir sin explotar emocionalmente.
+- [que-es-cheatguys.html] Estética 2000s, HUDs mentales, chiptune, J-Rock y caos mexicano con neones saturados.
+- [que-es-cheatguys.html] CheatGuys! habla de crecer cuando no encajas, fallar en público, hacer arte con pocos recursos y descubrir que la amistad no siempre se ve bonita.
+- [que-es-cheatguys.html] A veces suena desafinada, grita mucho, ocupa tu sillón favorito y aun así termina siendo justo lo que necesitabas.
+- [que-es-cheatguys.html] Donde el manga, el mariachi, el karaoke y los tianguis tecnológicos conviven en hora pico.
+- [que-es-cheatguys.html] La historia ocurre en una versión alternativa del Valle de México donde Japón y México se mezclaron hasta crear una ciudad multicolor, intensa y profundamente rara.
+- [que-es-cheatguys.html] Templos sintoístas junto a puestos de tamales.
+- [que-es-cheatguys.html] Trenes bala pasando frente a mercados de artesanías.
+- [que-es-cheatguys.html] Pantallas LED anunciando tacos, karaoke y bandas escolares.
+- [que-es-cheatguys.html] Arcades clandestinos con olor a fritura y gloria digital.
+- [que-es-cheatguys.html] Es una historia ruidosa, colorida y emocionalmente honesta sobre adolescentes raros tratando de funcionar juntos.
+- [que-es-cheatguys.html] Nadie es perfecto, nadie sabe muy bien qué está haciendo y aun así todos siguen tocando.
+- [que-es-cheatguys.html] 0 PERFECCIÓN. +100 EMOCIÓN.
+- [que-es-cheatguys.html] Abre una app de la banda y conversa directo desde el garaje de Neo Teno.
+- [que-es-cheatguys.html] ensayo_17: no hacer contacto visual.
+- [que-es-cheatguys.html] pendiente: bajar volumen mental.
+- [que-es-cheatguys.html] ado_playlist: locked.
+- [que-es-cheatguys.html] social battery: 12%
+- [que-es-cheatguys.html] Rika prometio no gritar. verificar.
+- [que-es-cheatguys.html] Akane Hoshizora
+- [que-es-cheatguys.html] CheatGuys! is a series owned by Infinity Brothers Studios TM. All artwork, descriptions, documents, characters, music, and story are the property of the studio and are protected by copyright.
+- [que-es-cheatguys.html] Interactive components (including character chat simulations) utilize experimental AI for entertainment and narrative purposes only. Leaderboard submissions are stored locally for gameplay experience.
+- [que-es-cheatguys.html] CheatGuys! © 2026 Infinity Brothers Studios TM. All rights reserved
+- [que-es-cheatguys.html] Abrir/cerrar menu
+- [que-es-cheatguys.html] Menu principal
+- [que-es-cheatguys.html] Control de musica
+- [que-es-cheatguys.html] Activar o desactivar musica
+- [que-es-cheatguys.html] Musica ON/OFF
+- [que-es-cheatguys.html] Volumen de musica
+- [que-es-cheatguys.html] Control de Volumen
+- [que-es-cheatguys.html] Accesos de seccion
+- [que-es-cheatguys.html] Equipo principal de CheatGuys!
+- [que-es-cheatguys.html] Akane tocando guitarra
+- [que-es-cheatguys.html] Banda de CheatGuys! en caos divertido
+- [que-es-cheatguys.html] Presentacion caotica de CheatGuys!
+- [que-es-cheatguys.html] Akane estilo chibi
+- [que-es-cheatguys.html] Laptop interactiva de Akane
+- [que-es-cheatguys.html] Cerrar ventana
+- [que-es-cheatguys.html] Escritorio de personajes
+- [que-es-cheatguys.html] Chat room de CheatGuys
+- [que-es-cheatguys.html] Mensaje para el personaje
+- [que-es-cheatguys.html] Escribe un mensaje...
+- [que-es-cheatguys.html] Infinity Brothers Logo
+- [que-es-cheatguys.html] Imagen de CheatGuys
+- [quienes-somos.html] ¿Quiénes somos?
+- [quienes-somos.html] ¿Qué es CheatGuys!?
+- [quienes-somos.html] Biblia de Producción
+- [quienes-somos.html] Infinity Brothers Studios es el laboratorio creativo detrás de CheatGuys!: un espacio donde avatares caóticos, narrativa visual y animación tradicional chocan para construir universos excéntricos con alma emocional propia.
+- [quienes-somos.html] Las mascotas del estudio operan desde el metaverso con distintos niveles de caos creativo.
+- [quienes-somos.html] La escritora compulsiva
+- [quienes-somos.html] Una flor cósmica excéntrica, impredecible y con una energía caótica desbordada.
+- [quienes-somos.html] Es la fuente mayor de ideas y la mente detrás de los conceptos más puros del estudio. Tiene un corazón enorme bajo sus capas de creatividad y locura.
+- [quienes-somos.html] El arquitecto del caos
+- [quienes-somos.html] Un agujero negro personificado en una sudadera viva: reservado, analítico y poco fan de las multitudes.
+- [quienes-somos.html] Convierte el caos de Sally en cimientos sólidos mediante worldbuilding, líneas de tiempo y escaletas narrativas.
+- [quienes-somos.html] La reina del desgane
+- [quienes-somos.html] Una nebulosa flotante y diseñadora de personajes oficial, con talento gráfico monumental y energía física cuestionable.
+- [quienes-somos.html] Tras su somnolencia mística vive una personalidad dulce, tierna y apasionada por ilustrar, diseñar y discutir sus ships favoritos.
+- [quienes-somos.html] Detrás de los avatares coloridos existe una estructura real: Infinity Brothers Studios somos dos hermanos originarios de Jalisco, México.
+- [quienes-somos.html] Nos mueve el poder de la narrativa visual y el lenguaje de la animación tradicional. Fundamos este espacio para convertirlo en la cuna de proyectos excéntricos, sorprendentes y con un alma emocional única para cada universo.
+- [quienes-somos.html] El lado humano del estudio: arte visual, escritura, continuidad y dirección creativa.
+- [quienes-somos.html] Director de Arte & Diseño Visual
+- [quienes-somos.html] Responsable del universo estético y la identidad visual de la productora.
+- [quienes-somos.html] Diseño de personajes y consistencia estilística en 2D.
+- [quienes-somos.html] Conceptos de fondos, turnarounds e ilustración promocional.
+- [quienes-somos.html] Showrunner & Lead Writer
+- [quienes-somos.html] Responsable de la arquitectura conceptual, el desarrollo literario y la continuidad de los proyectos.
+- [quienes-somos.html] Guiones cinematográficos, estructuras narrativas y biblias de producción.
+- [quienes-somos.html] Worldbuilding, backstory y mitologías internas de cada universo.
+- [quienes-somos.html] Infinity Brothers Studios combina diseño, guion, worldbuilding y una terquedad enorme por contar historias con identidad propia.
+- [quienes-somos.html] Si CheatGuys! suena raro, colorido y emocional, es porque el estudio también funciona así.
+- [quienes-somos.html] Historias infinitas. Mundos infinitos.
+- [quienes-somos.html] CheatGuys! is a series owned by Infinity Brothers Studios TM. All artwork, descriptions, documents, characters, music, and story are the property of the studio and are protected by copyright.
+- [quienes-somos.html] Interactive components (including character chat simulations) utilize experimental AI for entertainment and narrative purposes only. Leaderboard submissions are stored locally for gameplay experience.
+- [quienes-somos.html] CheatGuys! © 2026 Infinity Brothers Studios TM. All rights reserved
+- [quienes-somos.html] Abrir/cerrar menu
+- [quienes-somos.html] Menu principal
+- [quienes-somos.html] Control de musica
+- [quienes-somos.html] Activar o desactivar musica
+- [quienes-somos.html] Musica ON/OFF
+- [quienes-somos.html] Volumen de musica
+- [quienes-somos.html] Control de Volumen
+- [quienes-somos.html] Accesos de seccion
+- [quienes-somos.html] Mascotas de Infinity Brothers Studios
+- [quienes-somos.html] Sally Original, mascota del estudio
+- [quienes-somos.html] Orian Constellation, mascota del estudio
+- [quienes-somos.html] Infinity Andromeda, mascota del estudio
+- [quienes-somos.html] Avatar escritor de Infinity Brothers Studios
+- [quienes-somos.html] Angel Hernandez, director de arte
+- [quienes-somos.html] Ramon Hernandez, showrunner y lead writer
+- [quienes-somos.html] Infinity Brothers Logo
+- [quienes-somos.html] Imagen de Infinity Brothers Studios
+- [js/arcade-controller.js] space-invaders
+- [js/arcade-controller.js] bgMusicVictory
+- [js/arcade-controller.js] arcadeStartScreen
+- [js/arcade-controller.js] arcadeGameScreen
+- [js/arcade-controller.js] arcadeGameOverScreen
+- [js/arcade-controller.js] arcadeWinScreen
+- [js/arcade-controller.js] arcadePauseMenu
+- [js/arcade-controller.js] [data-arcade-overall-record]
+- [js/arcade-controller.js] is-akane-beaten
+- [js/arcade-controller.js] [data-arcade-game-record]
+- [js/arcade-controller.js] arcadeSelectedGameRecord
+- [js/arcade-controller.js] arcadeRecordStatus
+- [js/arcade-controller.js] akaneHighScore
+- [js/arcade-controller.js] [data-arcade-game]
+- [js/arcade-controller.js] aria-pressed
+- [js/arcade-controller.js] arcadeSelectedGame
+- [js/arcade-controller.js] arcadeSelectedGameName
+- [js/arcade-controller.js] arcadeSelectedMode
+- [js/arcade-controller.js] spaceInvadersCanvas
+- [js/arcade-controller.js] akaneMazeCanvas
+- [js/arcade-controller.js] [data-space-controls]
+- [js/arcade-controller.js] [data-maze-controls]
+- [js/arcade-controller.js] data-active-game
+- [js/arcade-controller.js] is-maze-sudden-death
+- [js/arcade-controller.js] livesDisplay
+- [js/arcade-controller.js] currentScore
+- [js/arcade-controller.js] newRecordBadge
+- [js/arcade-controller.js] arcadeStatusLine
+- [js/arcade-controller.js] is-maze-energy-pickup
+- [js/arcade-controller.js] is-maze-bonus-pickup
+- [js/arcade-controller.js] is-maze-ghost-eaten
+- [js/arcade-controller.js] is-maze-line-combo
+- [js/arcade-controller.js] is-maze-death
+- [js/arcade-controller.js] bgMusicSuddenDeath
+- [js/arcade-controller.js] finalScoreText
+- [js/arcade-controller.js] arcadeGameOverCopy
+- [js/arcade-controller.js] arcadeGameOverMode
+- [js/arcade-controller.js] Akane ya vio tu record. Ahora intentara recuperarlo.
+- [js/arcade-controller.js] La Demonio del Arcade sigue invicta.
+- [js/arcade-controller.js] bgMusicGameOver
+- [js/arcade-controller.js] No se pudo cargar AKANE MAZE. Recarga la pagina para intentarlo de nuevo.
+- [js/arcade-controller.js] bgMusicPacman
+- [js/arcade-controller.js] bgMusicArcade
+- [js/arcade-controller.js] [data-maze-direction]
+- [js/arcade-controller.js] pointercancel
+- [js/arcade-controller.js] pointerleave
+- [js/arcade-controller.js] cheatguys:arcade-record
+- [js/arcade-controller.js] visibilitychange
+- [js/arcade-pacman.js] rgba(0,255,255,0.06)
+- [js/arcade-pacman.js] rgba(255, 105, 180, 0.08)
+- [js/arcade-pacman.js] rgba(3,0,8,0.78)
+- [js/arcade-pacman.js] 24px VT323, monospace
+- [js/arcade-pacman.js] 20px VT323, monospace
+- [js/arcade-records.js] cheatguys.arcade.records.v1
+- [js/arcade-records.js] space-invaders
+- [js/arcade-records.js] cheatguys:arcade-record
+- [js/audio-global.js] cgMasterVolume
+- [js/audio-global.js] cgMusicEnabled
+- [js/audio-global.js] aria-pressed
+- [js/audio-global.js] musicToggleBtn
+- [js/audio-global.js] pageVolumeSlider
+- [js/audio-global.js] bgMusicStart
+- [js/audio-global.js] button, a, [role='button']
+- [js/audio-global.js] aria-disabled
+- [js/biblia-produccion.js] Inicializando visor...
+- [js/biblia-produccion.js] Leyendo documento...
+- [js/biblia-produccion.js] Cargando páginas...
+- [js/biblia-produccion.js] Acceso concedido...
+- [js/biblia-produccion.js] loadingMessage
+- [js/biblia-produccion.js] openBibleButton
+- [js/biblia-produccion.js] pdfViewerWindow
+- [js/biblia-produccion.js] pageRenderStatus
+- [js/biblia-produccion.js] previousPageButton
+- [js/biblia-produccion.js] nextPageButton
+- [js/biblia-produccion.js] zoomOutButton
+- [js/biblia-produccion.js] zoomInButton
+- [js/biblia-produccion.js] fullscreenButton
+- [js/biblia-produccion.js] No se pudo cargar PDF.js.
+- [js/biblia-produccion.js] No se pudo cancelar el render anterior.
+- [js/biblia-produccion.js] No se pudo abrir el archivo. Puedes descargar el PDF mientras tanto.
+- [js/biblia-produccion.js] CARGANDO_PÁGINA...
+- [js/biblia-produccion.js] RenderingCancelledException
+- [js/biblia-produccion.js] ERROR_AL_CARGAR_PÁGINA
+- [js/biblia-produccion.js] is-fullscreen-fallback
+- [js/biblia-produccion.js] bible-fallback-fullscreen
+- [js/biblia-produccion.js] fullscreenchange
+- [js/cg-config.js] galeria.html
+- [js/cg-config.js] minijuego.html
+- [js/cg-config.js] biblia-produccion.html
+- [js/cg-config.js] /.netlify/functions/chat
+- [js/cg-config.js] cheatguys.startIntroSeen.v2
+- [js/cg-config.js] cheatguys.startWindowSeen.v1
+- [js/cg-config.js] cgMasterVolume
+- [js/cg-config.js] cgMusicEnabled
+- [js/cg-diagnostics.js] Algo fallo en Infinity OS. Intenta de nuevo.
+- [js/galeria-logic.js] (prefers-reduced-motion: reduce)
+- [js/galeria-logic.js] Akane Hoshizora
+- [js/galeria-logic.js] VIOLETA // #8A2BE2
+- [js/galeria-logic.js] Esos bocetos todavía no estaban terminados…
+- [js/galeria-logic.js] No abras el archivo que dice outfit_final_final.
+- [js/galeria-logic.js] ¿Era necesario verme desde todos los ángulos?
+- [js/galeria-logic.js] NARANJA // #FF4500
+- [js/galeria-logic.js] ¡Abre el outfit cuatro! Ese tiene presencia.
+- [js/galeria-logic.js] La pose también cuenta como argumento.
+- [js/galeria-logic.js] Ese trazo necesitaba más energía. Y naranja.
+- [js/galeria-logic.js] Momo Fujiwara
+- [js/galeria-logic.js] ROSA // #FF69B4
+- [js/galeria-logic.js] Guardé algunos con nombres bonitos.
+- [js/galeria-logic.js] Este directorio combina sorprendentemente bien.
+- [js/galeria-logic.js] Giré despacito para que no se mareara el archivo.
+- [js/galeria-logic.js] Jun Sakamoto
+- [js/galeria-logic.js] CIAN // #00BFFF
+- [js/galeria-logic.js] Hay tres casi iguales. No preguntes.
+- [js/galeria-logic.js] Sí, son distintos. Técnicamente.
+- [js/galeria-logic.js] La rotación terminó. Yo no.
+- [js/galeria-logic.js] .gallery-main
+- [js/galeria-logic.js] .char-select-btn
+- [js/galeria-logic.js] aria-pressed
+- [js/galeria-logic.js] .char-select-state
+- [js/galeria-logic.js] archiveCharacterName
+- [js/galeria-logic.js] archiveColor
+- [js/galeria-logic.js] archiveFileCount
+- [js/galeria-logic.js] archiveStatus
+- [js/galeria-logic.js] galleryMicrodialog
+- [js/galeria-logic.js] .carousel-window
+- [js/galeria-logic.js] gallery-glitch-in
+- [js/galeria-logic.js] gallery-file-card
+- [js/galeria-logic.js] gallery-file-preview
+- [js/galeria-logic.js] gallery-file-metadata
+- [js/galeria-logic.js] .carousel-arrow
+- [js/galeria-logic.js] pointercancel
+- [js/galeria-logic.js] aria-current
+- [js/galeria-logic.js] galleryModal
+- [js/galeria-logic.js] .gallery-modal-close
+- [js/galeria-logic.js] .gallery-modal-prev
+- [js/galeria-logic.js] .gallery-modal-next
+- [js/galeria-logic.js] gallery-modal-open
+- [js/galeria-logic.js] galleryModalImg
+- [js/galeria-logic.js] .gallery-modal-figure
+- [js/galeria-logic.js] galleryModalCharacter
+- [js/galeria-logic.js] galleryModalFile
+- [js/galeria-logic.js] galleryModalCategory
+- [js/galeria-logic.js] galleryModalCounter
+- [js/galeria-logic.js] button:not([disabled])
+- [js/galeria-logic.js] IntersectionObserver
+- [js/galeria-logic.js] visibilitychange
+- [js/i18n.js] cgLanguageMode
+- [js/i18n.js] ¿Quiénes somos?
+- [js/i18n.js] What is CheatGuys!?
+- [js/i18n.js] ¿Qué es CheatGuys!?
+- [js/i18n.js] Production Bible
+- [js/i18n.js] Biblia de Producción
+- [js/i18n.js] Music ON/OFF
+- [js/i18n.js] Música ON/OFF
+- [js/i18n.js] Turn music on or off
+- [js/i18n.js] Activar o desactivar música
+- [js/i18n.js] Menú principal
+- [js/i18n.js] Open/close menu
+- [js/i18n.js] Abrir/cerrar menú
+- [js/i18n.js] CheatGuys! is a series owned by Infinity Brothers Studios TM. All artwork, descriptions, documents, characters, music, and story are the property of the studio and are protected by copyright.
+- [js/i18n.js] CheatGuys! es una serie propiedad de Infinity Brothers Studios TM. Todo el arte, descripciones, documentos, personajes, música e historia pertenecen al estudio y están protegidos por derechos de autor.
+- [js/i18n.js] Interactive components (including character chat simulations) utilize experimental AI for entertainment and narrative purposes only. Leaderboard submissions are stored locally for gameplay experience.
+- [js/i18n.js] Los componentes interactivos, incluidas las simulaciones de chat con personajes, usan IA experimental solo con fines narrativos y de entretenimiento. Los registros de puntuación se guardan localmente para la experiencia de juego.
+- [js/i18n.js] CheatGuys! © 2026 Infinity Brothers Studios TM. All rights reserved
+- [js/i18n.js] CheatGuys! © 2026 Infinity Brothers Studios TM. Todos los derechos reservados
+- [js/i18n.js] CheatGuys! - Multiplayer Lobby
+- [js/i18n.js] CheatGuys! - Lobby Multijugador
+- [js/i18n.js] ENTRADA: TECLADO / TÁCTIL
+- [js/i18n.js] ALERTA_DE_INTRUSO // NÚCLEO_CREATIVO
+- [js/i18n.js] Estás dentro del centro de operaciones secreto de CheatGuys!. 0 perfección, 100% emoción. Selecciona tu personaje para desplegar sus fichas tácticas, desplázate por el menú para revisar nuestro inventario de stickers o toca el póster de la banda si tienes las agallas para revelar los archivos prohibidos del Garaje.
+- [js/i18n.js] Official Pitch Bible
+- [js/i18n.js] Biblia oficial de presentación
+- [js/i18n.js] Infinity Brothers on X
+- [js/i18n.js] Infinity Brothers en X
+- [js/i18n.js] TikTok Animatics
+- [js/i18n.js] Animatics en TikTok
+- [js/i18n.js] WhatsApp Sticker Pack
+- [js/i18n.js] Paquete de stickers para WhatsApp
+- [js/i18n.js] EQUIP: AKANE'S ANXIETY
+- [js/i18n.js] Discord Emotes
+- [js/i18n.js] Emotes de Discord
+- [js/i18n.js] Patreon Guild
+- [js/i18n.js] Gremio de Patreon
+- [js/i18n.js] Mitsuki's Coffee
+- [js/i18n.js] Café de Mitsuki
+- [js/i18n.js] PayPal Donations
+- [js/i18n.js] Donaciones por PayPal
+- [js/i18n.js] Akane: Noise I Can't Say Out Loud
+- [js/i18n.js] Akane: Ruido que no puedo decir en voz alta
+- [js/i18n.js] Rika: Volume First, Consequences Later
+- [js/i18n.js] Rika: Volumen primero, consecuencias después
+- [js/i18n.js] Momo: Pink City Lights
+- [js/i18n.js] Momo: Luces rosas de ciudad
+- [js/i18n.js] Jun: Sleepy Groove, Sharp Timing
+- [js/i18n.js] Jun: Ritmo somnoliento, precisión afilada
+- [js/i18n.js] Send System Mail
+- [js/i18n.js] Enviar correo del sistema
+- [js/i18n.js] WhatsApp Business
+- [js/i18n.js] LIVE_TRANSMISSION // @INFINITYBROOO
+- [js/i18n.js] TRANSMISION_EN_VIVO // @INFINITYBROOO
+- [js/i18n.js] No se pudo cargar el feed manual.
+- [js/i18n.js] SEÑAL_X/TWITTER // SINCRONIA_MANUAL
+- [js/i18n.js] Omitir la introduccion y continuar al lobby
+- [js/i18n.js] Omitir la introducción y continuar al lobby
+- [js/i18n.js] Reiniciar secretamente la secuencia de introduccion
+- [js/i18n.js] Reiniciar secretamente la secuencia de introducción
+- [js/i18n.js] Cancelar reinicio
+- [js/i18n.js] ¿Estas seguro? Algo puede explotar si lo haces... Luego no me vengas a llorar.
+- [js/i18n.js] ¿QUIÉNES SOMOS?
+- [js/i18n.js] Infinity Brothers Studios es el laboratorio creativo detrás de CheatGuys!: un espacio donde avatares caóticos, narrativa visual y animación tradicional chocan para construir universos excéntricos con alma emocional propia.
+- [js/i18n.js] El ecosistema meta
+- [js/i18n.js] Las mascotas del estudio operan desde el metaverso con distintos niveles de caos creativo.
+- [js/i18n.js] La escritora compulsiva
+- [js/i18n.js] Una flor cósmica excéntrica, impredecible y con una energía caótica desbordada.
+- [js/i18n.js] Es la fuente mayor de ideas y la mente detrás de los conceptos más puros del estudio. Tiene un corazón enorme bajo sus capas de creatividad y locura.
+- [js/i18n.js] El arquitecto del caos
+- [js/i18n.js] Un agujero negro personificado en una sudadera viva: reservado, analítico y poco fan de las multitudes.
+- [js/i18n.js] Convierte el caos de Sally en cimientos sólidos mediante worldbuilding, líneas de tiempo y escaletas narrativas.
+- [js/i18n.js] Convierte el caos de Sally en cimientos sólidos mediante construcción de mundos, líneas de tiempo y escaletas narrativas.
+- [js/i18n.js] La reina del desgane
+- [js/i18n.js] Una nebulosa flotante y diseñadora de personajes oficial, con talento gráfico monumental y energía física cuestionable.
+- [js/i18n.js] Tras su somnolencia mística vive una personalidad dulce, tierna y apasionada por ilustrar, diseñar y discutir sus ships favoritos.
+- [js/i18n.js] Las personas detrás del estudio
+- [js/i18n.js] Detrás de los avatares coloridos existe una estructura real: Infinity Brothers Studios somos dos hermanos originarios de Jalisco, México.
+- [js/i18n.js] Nos mueve el poder de la narrativa visual y el lenguaje de la animación tradicional. Fundamos este espacio para convertirlo en la cuna de proyectos excéntricos, sorprendentes y con un alma emocional única para cada universo.
+- [js/i18n.js] Roles de producción
+- [js/i18n.js] El lado humano del estudio: arte visual, escritura, continuidad y dirección creativa.
+- [js/i18n.js] Director de Arte & Diseño Visual
+- [js/i18n.js] Director de Arte y Diseño Visual
+- [js/i18n.js] Responsable del universo estético y la identidad visual de la productora.
+- [js/i18n.js] Diseño de personajes y consistencia estilística en 2D.
+- [js/i18n.js] Conceptos de fondos, turnarounds e ilustración promocional.
+- [js/i18n.js] Conceptos de fondos, hojas de giro e ilustración promocional.
+- [js/i18n.js] Showrunner & Lead Writer
+- [js/i18n.js] Showrunner y Guionista Principal
+- [js/i18n.js] Responsable de la arquitectura conceptual, el desarrollo literario y la continuidad de los proyectos.
+- [js/i18n.js] Guiones cinematográficos, estructuras narrativas y biblias de producción.
+- [js/i18n.js] Worldbuilding, backstory y mitologías internas de cada universo.
+- [js/i18n.js] Construcción de mundos, trasfondo y mitologías internas de cada universo.
+- [js/i18n.js] Un estudio pequeño con hambre de universo.
+- [js/i18n.js] Infinity Brothers Studios combina diseño, guion, worldbuilding y una terquedad enorme por contar historias con identidad propia.
+- [js/i18n.js] Infinity Brothers Studios combina diseño, guion, construcción de mundos y una terquedad enorme por contar historias con identidad propia.
+- [js/i18n.js] Si CheatGuys! suena raro, colorido y emocional, es porque el estudio también funciona así.
+- [js/i18n.js] Historias infinitas. Mundos infinitos.
+- [js/i18n.js] ¿QUÉ ES CHEATGUYS!?
+- [js/i18n.js] Una comedia animada sobre una chica con ansiedad social que intenta hacer amigos de la forma más lógica y menos lógica posible: formando una banda de rock.
+- [js/i18n.js] Premisa desbloqueada
+- [js/i18n.js] Akane Hoshizora solo quería sobrevivir su último año de secundaria, jugar videojuegos, tocar guitarra y no tener que hablar con demasiada gente.
+- [js/i18n.js] Su plan para hacer amigos salió demasiado bien: sus carteles mal hechos atrajeron a adolescentes intensos, raros y completamente incompatibles.
+- [js/i18n.js] Resultado: una banda, un garaje invadido, demasiadas emociones desbloqueadas y cero puntos en habilidades sociales.
+- [js/i18n.js] La fórmula CheatGuys!
+- [js/i18n.js] Comedia absurda, música, ansiedad adolescente y corazón DIY.
+- [js/i18n.js] Comedia absurda, música, ansiedad adolescente y corazón hazlo-tú-mismo.
+- [js/i18n.js] Comedia absurda
+- [js/i18n.js] Ensayos caóticos, reacciones exageradas, decisiones terribles y humor meta con alma de cartoon.
+- [js/i18n.js] Ensayos caóticos, reacciones exageradas, decisiones terribles y humor meta con alma de caricatura.
+- [js/i18n.js] Banda escolar
+- [js/i18n.js] Una banda que intenta sonar bien mientras aprende a convivir sin explotar emocionalmente.
+- [js/i18n.js] Anime con picante
+- [js/i18n.js] Estética 2000s, HUDs mentales, chiptune, J-Rock y caos mexicano con neones saturados.
+- [js/i18n.js] Estética dosmilera, interfaces mentales, chiptune, J-Rock y caos mexicano con neones saturados.
+- [js/i18n.js] Una amistad mal calibrada
+- [js/i18n.js] CheatGuys! habla de crecer cuando no encajas, fallar en público, hacer arte con pocos recursos y descubrir que la amistad no siempre se ve bonita.
+- [js/i18n.js] A veces suena desafinada, grita mucho, ocupa tu sillón favorito y aun así termina siendo justo lo que necesitabas.
+- [js/i18n.js] Neo Teno: el mapa del desastre
+- [js/i18n.js] Donde el manga, el mariachi, el karaoke y los tianguis tecnológicos conviven en hora pico.
+- [js/i18n.js] México niponizado
+- [js/i18n.js] La historia ocurre en una versión alternativa del Valle de México donde Japón y México se mezclaron hasta crear una ciudad multicolor, intensa y profundamente rara.
+- [js/i18n.js] Templos sintoístas junto a puestos de tamales.
+- [js/i18n.js] Trenes bala pasando frente a mercados de artesanías.
+- [js/i18n.js] Pantallas LED anunciando tacos, karaoke y bandas escolares.
+- [js/i18n.js] Arcades clandestinos con olor a fritura y gloria digital.
+- [js/i18n.js] No es otro anime de banda.
+- [js/i18n.js] Es una historia ruidosa, colorida y emocionalmente honesta sobre adolescentes raros tratando de funcionar juntos.
+- [js/i18n.js] Nadie es perfecto, nadie sabe muy bien qué está haciendo y aun así todos siguen tocando.
+- [js/i18n.js] 0 PERFECCIÓN. +100 EMOCIÓN.
+- [js/i18n.js] Laptop de Akane
+- [js/i18n.js] Abre una app de la banda y conversa directo desde el garaje de Neo Teno.
+- [js/i18n.js] Escribe un mensaje...
+- [js/i18n.js] ARCHIVO_VISUAL // CHEATGUYS!
+- [js/i18n.js] Esos bocetos todavía no estaban terminados…
+- [js/i18n.js] BIBLIA DE PRODUCCIÓN
+- [js/i18n.js] Inicializando visor...
+- [js/i18n.js] [ ◀ ANTERIOR ]
+- [js/i18n.js] [ SIGUIENTE ▶ ]
+- [js/i18n.js] ¿Crees que puedas superar la máxima puntuación de la Demonio del Arcade? ¡Inténtalo!... Si te atreves...
+- [js/i18n.js] NUEVO RÉCORD
+- [js/i18n.js] Joystick de movimiento
+- [js/i18n.js] Cruceta de movimiento
+- [js/i18n.js] Cruceta de Akane Maze
+- [js/i18n.js] Mover izquierda
+- [js/i18n.js] Mover derecha
+- [js/i18n.js] Mover arriba
+- [js/i18n.js] PUNTUACIÓN FINAL: 0
+- [js/i18n.js] La Demonio del Arcade sigue invicta.
+- [js/i18n.js] [ ¿OTRA FICHA? ]
+- [js/i18n.js] Wow, no pense que llegarias hasta aqui, bien por ti supongo... lo que es tener demasiado tiempo libre...
+- [js/i18n.js] Wow, no pensé que llegarías hasta aquí, bien por ti supongo... lo que es tener demasiado tiempo libre...
+- [js/i18n.js] Abrir/cerrar menu
+- [js/i18n.js] Menu principal
+- [js/i18n.js] Control de musica
+- [js/i18n.js] Music control
+- [js/i18n.js] Control de música
+- [js/i18n.js] Musica ON/OFF
+- [js/i18n.js] Activar o desactivar musica
+- [js/i18n.js] Interactive components, including character chat simulations, use experimental AI only for narrative and entertainment purposes. Leaderboard submissions are stored locally for gameplay.
+- [js/i18n.js] CheatGuys! - ¿Qué es CheatGuys!?
+- [js/i18n.js] CheatGuys! - What is CheatGuys!?
+- [js/i18n.js] CheatGuys! - ¿Quiénes Somos?
+- [js/i18n.js] CheatGuys! - Who Are We?
+- [js/i18n.js] CheatGuys! - Galería
+- [js/i18n.js] CheatGuys! - Gallery
+- [js/i18n.js] CheatGuys! - Minijuegos
+- [js/i18n.js] CheatGuys! - Minigames
+- [js/i18n.js] CheatGuys! - Biblia de Producción
+- [js/i18n.js] CheatGuys! - Production Bible
+- [js/i18n.js] You are inside CheatGuys!' secret operations center. 0 perfection, 100% emotion. Select a character to deploy their tactical files, scroll through the menu to check our sticker inventory, or tap the band poster if you have the guts to reveal the forbidden Garage archives.
+- [js/i18n.js] The manual feed could not be loaded.
+- [js/i18n.js] Skip the introduction and continue to the lobby
+- [js/i18n.js] Secretly restart the intro sequence
+- [js/i18n.js] Cancel reset
+- [js/i18n.js] Are you sure? Something might explode if you do this... Do not come crying to me later.
+- [js/i18n.js] Infinity Brothers Studios is the creative lab behind CheatGuys!: a place where chaotic avatars, visual storytelling, and traditional animation collide to build eccentric universes with their own emotional soul.
+- [js/i18n.js] The Meta Ecosystem
+- [js/i18n.js] The studio mascots operate from the metaverse with different levels of creative chaos.
+- [js/i18n.js] The Compulsive Writer
+- [js/i18n.js] An eccentric, unpredictable cosmic flower with overflowing chaotic energy.
+- [js/i18n.js] She is the studio's biggest source of ideas and the mind behind its purest concepts. Beneath her layers of creativity and madness, she has a huge heart.
+- [js/i18n.js] The Architect of Chaos
+- [js/i18n.js] A black hole personified in a living hoodie: reserved, analytical, and not a fan of crowds.
+- [js/i18n.js] He turns Sally's chaos into solid foundations through worldbuilding, timelines, and story outlines.
+- [js/i18n.js] The Queen of Low Energy
+- [js/i18n.js] A floating nebula and official character designer with monumental visual talent and questionable physical energy.
+- [js/i18n.js] Behind her mystical sleepiness lives a sweet, gentle personality passionate about illustration, design, and debating her favorite ships.
+- [js/i18n.js] The People Behind the Studio
+- [js/i18n.js] Behind the colorful avatars is a real structure: Infinity Brothers Studios is made up of two brothers from Jalisco, Mexico.
+- [js/i18n.js] We are driven by the power of visual storytelling and the language of traditional animation. We founded this space to become the cradle of eccentric, surprising projects, each with a unique emotional soul.
+- [js/i18n.js] Production Roles
+- [js/i18n.js] The human side of the studio: visual art, writing, continuity, and creative direction.
+- [js/i18n.js] Art Director & Visual Designer
+- [js/i18n.js] Responsible for the studio's aesthetic universe and visual identity.
+- [js/i18n.js] Character design and 2D style consistency.
+- [js/i18n.js] Background concepts, turnarounds, and promotional illustration.
+- [js/i18n.js] Responsible for conceptual architecture, literary development, and project continuity.
+- [js/i18n.js] Screenplays, narrative structures, and production bibles.
+- [js/i18n.js] Worldbuilding, backstory, and internal mythologies for each universe.
+- [js/i18n.js] A small studio hungry for universes.
+- [js/i18n.js] Infinity Brothers Studios combines design, writing, worldbuilding, and a stubborn drive to tell stories with their own identity.
+- [js/i18n.js] If CheatGuys! sounds weird, colorful, and emotional, it is because the studio works that way too.
+- [js/i18n.js] Infinite stories. Infinite worlds.
+- [js/i18n.js] WHAT IS CHEATGUYS!?
+- [js/i18n.js] An animated comedy about a girl with social anxiety who tries to make friends in the most logical and least logical way possible: by forming a rock band.
+- [js/i18n.js] Premise Unlocked
+- [js/i18n.js] Akane Hoshizora only wanted to survive her last year of middle school, play videogames, play guitar, and avoid talking to too many people.
+- [js/i18n.js] Her plan to make friends worked too well: her badly made posters attracted intense, weird, completely incompatible teenagers.
+- [js/i18n.js] Result: a band, an invaded garage, too many unlocked emotions, and zero points in social skills.
+- [js/i18n.js] The CheatGuys! Formula
+- [js/i18n.js] Absurd comedy, music, teenage anxiety, and a DIY heart.
+- [js/i18n.js] Absurd Comedy
+- [js/i18n.js] Chaotic rehearsals, exaggerated reactions, terrible decisions, and meta humor with a cartoon soul.
+- [js/i18n.js] A band trying to sound good while learning how to coexist without emotionally exploding.
+- [js/i18n.js] Anime With Spice
+- [js/i18n.js] 2000s aesthetics, mental HUDs, chiptune, J-Rock, and Mexican chaos under saturated neon.
+- [js/i18n.js] A Badly Calibrated Friendship
+- [js/i18n.js] CheatGuys! is about growing up when you do not fit in, failing in public, making art with few resources, and discovering that friendship does not always look pretty.
+- [js/i18n.js] Sometimes it sounds out of tune, screams too much, takes your favorite chair, and still becomes exactly what you needed.
+- [js/i18n.js] Neo Teno: The Disaster Map
+- [js/i18n.js] Where manga, mariachi, karaoke, and tech flea markets coexist at rush hour.
+- [js/i18n.js] Japanized Mexico
+- [js/i18n.js] The story takes place in an alternate Valley of Mexico where Japan and Mexico blended into a multicolor, intense, deeply strange city.
+- [js/i18n.js] Shinto shrines beside tamale stands.
+- [js/i18n.js] Bullet trains passing in front of artisan markets.
+- [js/i18n.js] LED screens advertising tacos, karaoke, and school bands.
+- [js/i18n.js] Underground arcades smelling of fried snacks and digital glory.
+- [js/i18n.js] It is not another band anime.
+- [js/i18n.js] It is a loud, colorful, emotionally honest story about weird teenagers trying to function together.
+- [js/i18n.js] No one is perfect, no one really knows what they are doing, and still everyone keeps playing.
+- [js/i18n.js] 0 PERFECTION. +100 EMOTION.
+- [js/i18n.js] Akane's Laptop
+- [js/i18n.js] Open a band app and chat directly from the Neo Teno garage.
+- [js/i18n.js] Write a message...
+- [js/i18n.js] ensayo_17: no hacer contacto visual.
+- [js/i18n.js] rehearsal_17: do not make eye contact.
+- [js/i18n.js] pendiente: bajar volumen mental.
+- [js/i18n.js] pending: lower mental volume.
+- [js/i18n.js] Rika prometio no gritar. verificar.
+- [js/i18n.js] Rika promised not to scream. verify.
+- [js/i18n.js] VISUAL_ARCHIVE // CHEATGUYS!
+- [js/i18n.js] Those sketches were not finished yet...
+- [js/i18n.js] Initializing viewer...
+- [js/i18n.js] [ ◀ PREVIOUS ]
+- [js/i18n.js] Do you think you can beat the Arcade Demon's high score? Try it!... If you dare...
+- [js/i18n.js] Movement joystick
+- [js/i18n.js] Movement D-pad
+- [js/i18n.js] Akane Maze D-pad
+- [js/i18n.js] The Arcade Demon remains undefeated.
+- [js/i18n.js] [ ANOTHER_TOKEN? ]
+- [js/i18n.js] Wow, I did not think you would make it this far. Good for you, I guess... that is what too much free time does...
+- [js/i18n.js] Infinity brothers sigue trabajando! CheatGuys sigue en produccion y preparacion de promocionales y otras cosas raras. Sigan la cuenta para seguir viendo este extrano grupo. #CheatGuys #OC #Pixelatl #Ideatoon
+- [js/i18n.js] Infinity Brothers keeps working! CheatGuys is still in production and preparing promos and other strange things. Follow the account to keep seeing this odd group. #CheatGuys #OC #Pixelatl #Ideatoon
+- [js/i18n.js] Esto apenas es el medio tiempo! Nos vemos en noviembre en el festival @Pixelatl para presentar la version mas solida y caotica de nuestro proyecto. Felicidades a los seleccionados! Conoce el lobby oficial: cheatguysinfinity.netlify.app
+- [js/i18n.js] This is only halftime! See you in November at the @Pixelatl festival to present the strongest and most chaotic version of our project. Congratulations to the selected projects! Visit the official lobby: cheatguysinfinity.netlify.app
+- [js/i18n.js] A alguien mas le ha pasado? Pobrecita Akane. CheatGuys! #Ideatoon2026 #Pixelatl
+- [js/i18n.js] Has this happened to anyone else? Poor Akane. CheatGuys! #Ideatoon2026 #Pixelatl
+- [js/i18n.js] Fundadora, Vocalista Principal y Guitarra Rítmica (Lvl. 15)
+- [js/i18n.js] Founder, Lead Vocalist, and Rhythm Guitarist (Lvl. 15)
+- [js/i18n.js] Guitarra Principal, Compositora y Musicalización (Lvl. 16)
+- [js/i18n.js] Lead Guitarist, Composer, and Music Direction (Lvl. 16)
+- [js/i18n.js] Bajista, Encargada Estética y Corista (Lvl. 15)
+- [js/i18n.js] Bassist, Visual Style Lead, and Backing Vocalist (Lvl. 15)
+- [js/i18n.js] Baterista y Percusionista (Lvl. 16)
+- [js/i18n.js] Drummer and Percussionist (Lvl. 16)
+- [js/i18n.js] Akane no quería ser protagonista de nada.
+- [js/i18n.js] Akane never wanted to be the protagonist of anything.
+- [js/i18n.js] Es introvertida, silenciosa y socialmente torpe; su ansiedad convierte cualquier interacción en un menú de opciones tipo videojuego, con consecuencias que su cerebro exagera al 300%.
+- [js/i18n.js] She is introverted, quiet, and socially awkward; her anxiety turns every interaction into a videogame-style choice menu, with consequences her brain exaggerates by 300%.
+- [js/i18n.js] Detrás de su expresión neutral vive una mente brillante, observadora y creativa. Se estresa por pedir salsa extra, pero puede cantar en un escenario si alguien importante la necesita. Es el núcleo emocional de CheatGuys!, aunque ella siga intentando pasar desapercibida.
+- [js/i18n.js] Behind her neutral expression lives a brilliant, observant, creative mind. She panics over asking for extra salsa, but she can sing onstage if someone important needs her. She is the emotional core of CheatGuys!, even while she keeps trying to go unnoticed.
+- [js/i18n.js] Canta con una profundidad enorme cuando se siente segura.
+- [js/i18n.js] She sings with enormous depth when she feels safe.
+- [js/i18n.js] Toca guitarra rítmica con precisión emocional.
+- [js/i18n.js] She plays rhythm guitar with emotional precision.
+- [js/i18n.js] Tiene los puntajes más altos del arcade del colegio bajo seudónimo.
+- [js/i18n.js] She holds the school's highest arcade scores under a pseudonym.
+- [js/i18n.js] Su lugar seguro es el garaje convertido en cuartel de la banda.
+- [js/i18n.js] Her safe place is the garage turned into the band's headquarters.
+- [js/i18n.js] Rika es una bomba emocional con guitarra.
+- [js/i18n.js] Rika is an emotional bomb with a guitar.
+- [js/i18n.js] Extrovertida, intensa, impulsiva y profundamente pasional; vive en volumen alto y no tiene filtro, ni ganas de conseguir uno.
+- [js/i18n.js] Extroverted, intense, impulsive, and deeply passionate; she lives at full volume and has no filter, or any interest in getting one.
+- [js/i18n.js] Su caos viene con talento real: toca de oído, improvisa riffs únicos y arrastra a la gente a sus ideas aunque tengan la estabilidad de una mesa con tres patas. Con Akane funciona como escudo, motor y guitarra gemela, normalmente gritando.
+- [js/i18n.js] Her chaos comes with real talent: she plays by ear, improvises unique riffs, and drags people into ideas with the stability of a three-legged table. For Akane, she acts as shield, engine, and twin guitar, usually while yelling.
+- [js/i18n.js] Virtuosa de la guitarra eléctrica e instinto escénico natural.
+- [js/i18n.js] Electric guitar virtuoso with natural stage instincts.
+- [js/i18n.js] Compone desde la emoción pura, sin pedir permiso.
+- [js/i18n.js] She composes from pure emotion, without asking permission.
+- [js/i18n.js] Admira a Kaede Ayase y teme no estar a la altura.
+- [js/i18n.js] She admires Kaede Ayase and fears not being good enough.
+- [js/i18n.js] Su ropa cambia según su estado de ánimo.
+- [js/i18n.js] Her clothes change with her mood.
+- [js/i18n.js] Momo es el corazón dulce y risueño de CheatGuys!.
+- [js/i18n.js] Momo is the sweet, giggly heart of CheatGuys!.
+- [js/i18n.js] Pequeña, estética y con alma de algodón de azúcar, vive entre colores, accesorios, ideas bonitas y distracciones que llegan sin avisar.
+- [js/i18n.js] Tiny, stylish, and cotton-candy-hearted, she lives among colors, accessories, pretty ideas, and distractions that arrive without warning.
+- [js/i18n.js] Puede parecer perdida, pero lee emociones con una precisión que nadie le enseñó. Su bajo no busca aplastar la canción: la abraza. Es la primera en dar apoyo, llorar con alguien o decir “yo te creo” aunque no sepa de qué están hablando.
+- [js/i18n.js] She may seem lost, but she reads emotions with a precision no one taught her. Her bass does not try to crush the song: it hugs it. She is the first to offer support, cry with someone, or say "I believe you" even when she does not know what is going on.
+- [js/i18n.js] Su bajo se llama Sina y a veces le pide consejos.
+- [js/i18n.js] Her bass is named Sina, and sometimes she asks it for advice.
+- [js/i18n.js] Tiene oído armónico y detecta disonancias con facilidad.
+- [js/i18n.js] She has harmonic hearing and detects dissonance easily.
+- [js/i18n.js] Ayuda a definir el estilo visual de la banda.
+- [js/i18n.js] She helps define the band's visual style.
+- [js/i18n.js] Calma a Jun y reconforta a Akane casi sin intentarlo.
+- [js/i18n.js] She calms Jun and comforts Akane almost without trying.
+- [js/i18n.js] Jun es el rey del desgane carismático.
+- [js/i18n.js] Jun is the king of charismatic laziness.
+- [js/i18n.js] Relajado, sarcástico y con vibra de “todo saldrá bien... probablemente”, evita cualquier cosa que huela a responsabilidad, pero su talento musical roza lo absurdo.
+- [js/i18n.js] Relaxed, sarcastic, and radiating "everything will be fine... probably," he avoids anything that smells like responsibility, but his musical talent is almost absurd.
+- [js/i18n.js] Cuida a sus amigos desde la esquina, con comentarios secos y una calma casi mística. Parece operar en ahorro de energía, hasta que la banda realmente lo necesita y aparece el baterista preciso, intuitivo y sospechosamente afortunado.
+- [js/i18n.js] He watches over his friends from the corner, with dry comments and an almost mystical calm. He seems to run on power-saving mode, until the band truly needs him and the precise, intuitive, suspiciously lucky drummer appears.
+- [js/i18n.js] Escucha una canción una vez y suele recordarla.
+- [js/i18n.js] He hears a song once and usually remembers it.
+- [js/i18n.js] Tiene ritmo natural incluso caminando.
+- [js/i18n.js] He has natural rhythm, even while walking.
+- [js/i18n.js] Defiende “el sillón de Jun” con flojera pasivo-agresiva.
+- [js/i18n.js] He defends "Jun's couch" with passive-aggressive laziness.
+- [js/i18n.js] Siempre trae un snack misterioso en la mochila.
+- [js/i18n.js] He always carries a mysterious snack in his backpack.
+- [js/i18n.js] Conceptos iniciales y pruebas de estilo para los personajes. Antes de definir las personalidades finales, el caos reinaba en los bocetos de Neo Teno. Se puede apreciar la búsqueda de esa estética 'anime 2000s'.
+- [js/i18n.js] Early concepts and style tests for the characters. Before the final personalities were defined, chaos ruled the Neo Teno sketches. You can see the search for that '2000s anime' aesthetic.
+- [js/i18n.js] El origen de 'La Demonio del Arcade'. Nótese la falta de su HUD característico y un estilo ligeramente más genérico antes de inyectarle toda su ansiedad gótico-otaku.
+- [js/i18n.js] The origin of 'The Arcade Demon.' Notice the missing signature HUD and a slightly more generic style before all her gothic-otaku anxiety was injected.
+- [js/i18n.js] Arte promocional descartado. El estudio decidió que la vibra no encajaba con el lore actual, o quizá Aio Sakamoto accidentalmente borró los archivos de la campaña mientras formateaba el servidor.
+- [js/i18n.js] Discarded promotional art. The studio decided the vibe did not fit the current lore, or maybe Aio Sakamoto accidentally deleted the campaign files while formatting the server.
+- [js/i18n.js] El HUD mental de Akane superando el límite de procesamiento. Esto ocurre generalmente cuando Kenji respira muy fuerte cerca de ella o cuando le toca hablar en público.
+- [js/i18n.js] Akane's mental HUD exceeding its processing limit. This usually happens when Kenji breathes too loudly near her or when she has to speak in public.
+- [js/i18n.js] Akane canalizando su diva virtual interior. Un easter egg recurrente en sus streams clandestinos de juegos de ritmo a las 3 AM.
+- [js/i18n.js] Akane channeling her inner virtual diva. A recurring easter egg in her secret 3 AM rhythm game streams.
+- [js/i18n.js] Exploración de estilo emulando vibras de sci-fi vintage. Probablemente un dibujo que hizo Kenji en clase de matemáticas soñando con Akane pilotando un mecha.
+- [js/i18n.js] A style exploration emulating vintage sci-fi vibes. Probably something Kenji drew in math class while dreaming of Akane piloting a mecha.
+- [js/i18n.js] Calidad: -100. Humor: +1000. Arte puro resultante del cansancio de los animadores a las 4 AM con exceso de cafeína. No hacer contacto visual directo.
+- [js/i18n.js] Quality: -100. Humor: +1000. Pure art born from animator exhaustion at 4 AM with too much caffeine. Do not make direct eye contact.
+- [js/i18n.js] Una mirada a lo que podría ser... o quizás solo un sueño febril inducido por las locas teorías sobre ships de Love en los pasillos de Infinity Brothers.
+- [js/i18n.js] A look at what could be... or maybe just a fever dream caused by Love's wild shipping theories in the Infinity Brothers hallways.
+- [js/i18n.js] Renders para el festival de Año Nuevo. Momo se ve increíble con ese peinado y Akane está usando su abanico para esconder que está procesando tres crisis existenciales al mismo tiempo. Estética 10/10, estabilidad mental 0/10.
+- [js/i18n.js] New Year festival renders. Momo looks incredible with that hairstyle, and Akane is using her fan to hide that she is processing three existential crises at the same time. Aesthetic 10/10, mental stability 0/10.
+- [js/i18n.js] POV: Intentaste hablarle a Akane sobre tus planes de Telcel y Rika apareció de la nada dispuesta a morderte la yugular. Momo está modo tiesa y Jun guardando energía para el ensayo. Un día normal en el Colegio Jacarandas.
+- [js/i18n.js] POV: You tried to talk to Akane about your Telcel plans and Rika appeared out of nowhere ready to bite your jugular. Momo is frozen and Jun is saving energy for rehearsal. A normal day at Jacarandas School.
+- [js/i18n.js] El camión coreano vs. La Demonio del Arcade. Archivo ultra secreto que los creadores hicieron a las 4 AM después de tres tazas de mate soluble. No pregunten por el lore de esto, es un meme y ya está, no nos metan en un Isekai todavía.
+- [js/i18n.js] The Korean truck vs. The Arcade Demon. An ultra-secret file the creators made at 4 AM after three cups of instant mate. Do not ask about the lore here, it is just a meme, do not throw us into an isekai yet.
+- [js/i18n.js] La foto de portada que costó tres peleas, un bajeo desafinado y que Jun se despertara de su siesta mística. Los cuatro incompatibles favoritos de Neo Teno listos para romperla... o para romper la maquinita del arcade, lo que pase primero.
+- [js/i18n.js] The cover photo that cost three fights, an out-of-tune bassline, and Jun waking up from his mystical nap. Neo Teno's four favorite incompatible teens are ready to crush it... or break the arcade cabinet, whichever happens first.
+- [js/i18n.js] El momento exacto donde el HUD JRPG de Akane tiró un pantallazo azul en vivo. Ese signo de exclamación significa que está a dos segundos de salir corriendo del escenario o de vomitar, lo que pase primero.
+- [js/i18n.js] The exact moment Akane's JRPG HUD blue-screened live. That exclamation mark means she is two seconds away from running offstage or throwing up, whichever happens first.
+- [js/i18n.js] ¡Milagro en Neo Teno! Akane tocando la guitarra sin estar temblando como licuadora descompuesta. Se rumorea que para lograr este arte, los animadores tuvieron que prometerle que nadie la vería a los ojos durante tres días.
+- [js/i18n.js] Miracle in Neo Teno! Akane playing guitar without shaking like a broken blender. Rumor says the animators had to promise no one would look her in the eyes for three days to make this art happen.
+- [js/i18n.js] ¡Te dije que no lo presionaras, niño baboso!
+- [js/i18n.js] I told you not to press it, you little brat!
+- [js/i18n.js] Bueno, ya que estás aquí puedes compartir la página para que más personas lo vean, así tu curiosidad sirve de algo...
+- [js/i18n.js] Well, since you are here, you can share the page so more people see it. That way your curiosity is useful for something...
+- [js/i18n.js] ¡Copiado para Discord! Pégalo en tu chat.
+- [js/i18n.js] Copied for Discord! Paste it in your chat.
+- [js/i18n.js] No se pudo copiar. Intenta manualmente.
+- [js/i18n.js] Could not copy. Try manually.
+- [js/i18n.js] [data-cg-i18n-control]
+- [js/i18n.js] .cg-language-label
+- [js/i18n.js] [data-cg-lang]
+- [js/i18n.js] aria-pressed
+- [js/i18n.js] cg:languagechange
+- [js/i18n.js] cg-sidebar-language
+- [js/i18n.js] cg-language-options
+- [js/i18n.js] .cg-sidebar-audio
+- [js/i18n.js] characterData
+- [js/laptop-logic.js] /.netlify/functions/chat
+- [js/laptop-logic.js] Akane Hoshizora
+- [js/laptop-logic.js] H-Hola... seleccionaste mi app... creo que eso cuenta como iniciar dialogo.
+- [js/laptop-logic.js] QUE ONDA. Soy Rika. Habla rapido antes de que la laptop explote.
+- [js/laptop-logic.js] Momo Fujiwara
+- [js/laptop-logic.js] Holi holi, soy Momo. Sina tambien esta leyendo contigo.
+- [js/laptop-logic.js] Junpei Sakamoto
+- [js/laptop-logic.js] hey... soy jun. escribe algo si quieres, supongo.
+- [js/laptop-logic.js] laptop-garage
+- [js/laptop-logic.js] laptopDesktop
+- [js/laptop-logic.js] laptopChatRoom
+- [js/laptop-logic.js] #laptop-garage .laptop-screen
+- [js/laptop-logic.js] laptopMobileWindowClose
+- [js/laptop-logic.js] [data-laptop-character]
+- [js/laptop-logic.js] laptopCloseChat
+- [js/laptop-logic.js] chatCharacterAvatar
+- [js/laptop-logic.js] chatCharacterName
+- [js/laptop-logic.js] chatCharacterStatus
+- [js/laptop-logic.js] chat-history
+- [js/laptop-logic.js] laptopChatForm
+- [js/laptop-logic.js] chatSendButton
+- [js/laptop-logic.js] chat-message-avatar
+- [js/laptop-logic.js] chat-message-row bot laptop-typing-row
+- [js/laptop-logic.js] chat-bubble laptop-typing-bubble
+- [js/laptop-logic.js] loading-icons-wrapper laptop-loading-icons
+- [js/laptop-logic.js] laptop-typing-text
+- [js/laptop-logic.js] Personaje no permitido.
+- [js/laptop-logic.js] (max-width: 620px)
+- [js/laptop-logic.js] --laptop-mobile-scale
+- [js/laptop-logic.js] --laptop-mobile-height
+- [js/laptop-logic.js] is-mobile-program-open
+- [js/laptop-logic.js] laptop-program-lock
+- [js/laptop-logic.js] La senal con Neo Teno se saturo. Dale otro intento en unos segundos.
+- [js/laptop-logic.js] Content-Type
+- [js/laptop-logic.js] application/json
+- [js/laptop-logic.js] Fallo la respuesta del chat.
+- [js/laptop-logic.js] No se pudo conectar con el chat.
+- [js/laptop-logic.js] button, a, input, textarea, select, [role='button']
+- [js/lobby-data.js] Fundadora, Vocalista Principal y Guitarra Rítmica (Lvl. 15)
+- [js/lobby-data.js] COLOR: VIOLETA APODO: LA DEMONIO DEL ARCADE BUILD: HUD_SOCIAL_JRPG Akane no quería ser protagonista de nada. Es introvertida, silenciosa y socialmente torpe; su ansiedad convierte cualquier interacción en un menú de opciones tipo videojuego, con consecuencias que su cerebro exagera al 300%. Detrás de su expresión neutral vive una mente brillante, observadora y creativa. Se estresa por pedir salsa extra, pero puede cantar en un escenario si alguien importante la necesita. Es el núcleo emocional de CheatGuys!, aunque ella siga intentando pasar desapercibida. Canta con una profundidad enorme cuando se siente segura. Toca guitarra rítmica con precisión emocional. Tiene los puntajes más altos del arcade del colegio bajo seudónimo. Su lugar seguro es el garaje convertido en cuartel de la banda.
+- [js/lobby-data.js] Guitarra Principal, Compositora y Musicalización (Lvl. 16)
+- [js/lobby-data.js] COLOR: NARANJA APODOS: MANDARINA / TERROR TANAKA BUILD: VOLUME_MAX Rika es una bomba emocional con guitarra. Extrovertida, intensa, impulsiva y profundamente pasional; vive en volumen alto y no tiene filtro, ni ganas de conseguir uno. Su caos viene con talento real: toca de oído, improvisa riffs únicos y arrastra a la gente a sus ideas aunque tengan la estabilidad de una mesa con tres patas. Con Akane funciona como escudo, motor y guitarra gemela, normalmente gritando. Virtuosa de la guitarra eléctrica e instinto escénico natural. Compone desde la emoción pura, sin pedir permiso. Admira a Kaede Ayase y teme no estar a la altura. Su ropa cambia según su estado de ánimo.
+- [js/lobby-data.js] Bajista, Encargada Estética y Corista (Lvl. 15)
+- [js/lobby-data.js] COLOR: ROSA MEXICANO APODO: PULGA BUILD: SOFT_BASS_HEALER Momo es el corazón dulce y risueño de CheatGuys!. Pequeña, estética y con alma de algodón de azúcar, vive entre colores, accesorios, ideas bonitas y distracciones que llegan sin avisar. Puede parecer perdida, pero lee emociones con una precisión que nadie le enseñó. Su bajo no busca aplastar la canción: la abraza. Es la primera en dar apoyo, llorar con alguien o decir “yo te creo” aunque no sepa de qué están hablando. Su bajo se llama Sina y a veces le pide consejos. Tiene oído armónico y detecta disonancias con facilidad. Ayuda a definir el estilo visual de la banda. Calma a Jun y reconforta a Akane casi sin intentarlo.
+- [js/lobby-data.js] Baterista y Percusionista (Lvl. 16)
+- [js/lobby-data.js] COLOR: CIAN APODO: MONJE DEL RAMEN BUILD: LUCKY_SLEEP_MODE Jun es el rey del desgane carismático. Relajado, sarcástico y con vibra de “todo saldrá bien... probablemente”, evita cualquier cosa que huela a responsabilidad, pero su talento musical roza lo absurdo. Cuida a sus amigos desde la esquina, con comentarios secos y una calma casi mística. Parece operar en ahorro de energía, hasta que la banda realmente lo necesita y aparece el baterista preciso, intuitivo y sospechosamente afortunado. Escucha una canción una vez y suele recordarla. Tiene ritmo natural incluso caminando. Defiende “el sillón de Jun” con flojera pasivo-agresiva. Siempre trae un snack misterioso en la mochila.
+- [js/lobby-data.js] DISEÑOS_BETA_NEO_TENO.jpg
+- [js/lobby-data.js] [ ARCHIVO 001 ] Conceptos iniciales y pruebas de estilo para los personajes. Antes de definir las personalidades finales, el caos reinaba en los bocetos de Neo Teno. Se puede apreciar la búsqueda de esa estética 'anime 2000s'.
+- [js/lobby-data.js] AKANE_PROTO_V1.jpg
+- [js/lobby-data.js] [ ARCHIVO 002 ] El origen de 'La Demonio del Arcade'. Nótese la falta de su HUD característico y un estilo ligeramente más genérico antes de inyectarle toda su ansiedad gótico-otaku.
+- [js/lobby-data.js] DESCARTADO_NAVIDAD.png
+- [js/lobby-data.js] [ ARCHIVO 003 ] Arte promocional descartado. El estudio decidió que la vibra no encajaba con el lore actual, o quizá Aio Sakamoto accidentalmente borró los archivos de la campaña mientras formateaba el servidor.
+- [js/lobby-data.js] AKANE_SYSTEM_CRASH.jpg
+- [js/lobby-data.js] [ ARCHIVO 004 ] El HUD mental de Akane superando el límite de procesamiento. Esto ocurre generalmente cuando Kenji respira muy fuerte cerca de ella o cuando le toca hablar en público.
+- [js/lobby-data.js] SKIN_DIVA_VIRTUAL.png
+- [js/lobby-data.js] [ ARCHIVO 005 ] Akane canalizando su diva virtual interior. Un easter egg recurrente en sus streams clandestinos de juegos de ritmo a las 3 AM.
+- [js/lobby-data.js] PROTO_MECHA_VINTAGE.png
+- [js/lobby-data.js] [ ARCHIVO 006 ] Exploración de estilo emulando vibras de sci-fi vintage. Probablemente un dibujo que hizo Kenji en clase de matemáticas soñando con Akane pilotando un mecha.
+- [js/lobby-data.js] ADEFECIA_4AM.jpg
+- [js/lobby-data.js] [ ARCHIVO 007 ] Calidad: -100. Humor: +1000. Arte puro resultante del cansancio de los animadores a las 4 AM con exceso de cafeína. No hacer contacto visual directo.
+- [js/lobby-data.js] VISION_FUTURO.png
+- [js/lobby-data.js] [ ARCHIVO 008 ] Una mirada a lo que podría ser... o quizás solo un sueño febril inducido por las locas teorías sobre ships de Love en los pasillos de Infinity Brothers.
+- [js/lobby-data.js] NEO_TENO_KIMONOS.jpg
+- [js/lobby-data.js] [ ARCHIVO 009 ] Renders para el festival de Año Nuevo. Momo se ve increíble con ese peinado y Akane está usando su abanico para esconder que está procesando tres crisis existenciales al mismo tiempo. Estética 10/10, estabilidad mental 0/10.
+- [js/lobby-data.js] RIKA_ATTACK_PROTECT.jpg
+- [js/lobby-data.js] [ ARCHIVO 010 ] POV: Intentaste hablarle a Akane sobre tus planes de Telcel y Rika apareció de la nada dispuesta a morderte la yugular. Momo está modo tiesa y Jun guardando energía para el ensayo. Un día normal en el Colegio Jacarandas.
+- [js/lobby-data.js] AKANE_TRUCK_ISEKAI.jpg
+- [js/lobby-data.js] [ ARCHIVO 011 ] El camión coreano vs. La Demonio del Arcade. Archivo ultra secreto que los creadores hicieron a las 4 AM después de tres tazas de mate soluble. No pregunten por el lore de esto, es un meme y ya está, no nos metan en un Isekai todavía.
+- [js/lobby-data.js] CHEATGUYS_ARCADE_LOBBY.jpg
+- [js/lobby-data.js] [ ARCHIVO 012 ] La foto de portada que costó tres peleas, un bajeo desafinado y que Jun se despertara de su siesta mística. Los cuatro incompatibles favoritos de Neo Teno listos para romperla... o para romper la maquinita del arcade, lo que pase primero.
+- [js/lobby-data.js] STAGE_ANXIETY_SPOTLIGHT.jpg
+- [js/lobby-data.js] [ ARCHIVO 013 ] El momento exacto donde el HUD JRPG de Akane tiró un pantallazo azul en vivo. Ese signo de exclamación significa que está a dos segundos de salir corriendo del escenario o de vomitar, lo que pase primero.
+- [js/lobby-data.js] AKANE_SOLO_GUITAR.jpg
+- [js/lobby-data.js] [ ARCHIVO 014 ] ¡Milagro en Neo Teno! Akane tocando la guitarra sin estar temblando como licuadora descompuesta. Se rumorea que para lograr este arte, los animadores tuvieron que prometerle que nadie la vería a los ojos durante tres días.
+- [js/lobby-logic.js] Clock Clairo - Bags Clairo - Sofia beabadoobee - Glue Song beabadoobee - The Perfect Pair Rex Orange County - Sunflower Phoebe Bridgers - Scott Street Phoebe Bridgers - Motion Sickness The Marías - Cariño Men I Trust - Show Me How Weyes Blood - Andromeda Mitski - First Love / Late Spring The Cranberries - Dreams `), rika: crearPlaylistDesdeTexto(` Queen - Stone Cold Crazy David Bowie - Rebel Rebel The Rolling Stones - Paint It, Black Led Zeppelin - Immigrant Song Black Sabbath - Paranoid Deep Purple - Highway Star The Who - Baba O
+- [js/lobby-logic.js] m Paranoid Yeah Yeah Yeahs - Maps Yeah Yeah Yeahs - Heads Will Roll The White Stripes - Seven Nation Army The White Stripes - Fell in Love with a Girl The Strokes - Reptilia The Strokes - Last Nite Arctic Monkeys - Brianstorm Arctic Monkeys - R U Mine? Franz Ferdinand - Take Me Out The Killers - Mr. Brightside Muse - Hysteria Muse - Plug In Baby Paramore - Misery Business Paramore - That
+- [js/lobby-logic.js] m in Love Tomoko Aran - Midnight Pretenders Momoko Kikuchi - Adventure Yurie Kokubu - Just a Joke Minako Yoshida - Town Miho Nakayama - You
+- [js/lobby-logic.js] Star Kaoru Akimoto - Dress Down Hikaru Utada - First Love Hikaru Utada - Flavor Of Life -Ballad Version- Aimer - Kataomoi Aimer - Ref:rain aimyon - Marigold YUI - CHE.R.RY YUI - Good-bye days Kana Nishino - Darling Kana Nishino - Best Friend eill - SPOTLIGHT iri - Sparkle Yuika - Sukidakara Ryokuoushoku Shakai - Mela! Ikimonogakari - Kimi ga Iru Shiina Ringo - Marunouchi Sadistic Taylor Swift - Lover Taylor Swift - Enchanted (Taylor
+- [js/lobby-logic.js] s Version) Taylor Swift - You Belong With Me (Taylor
+- [js/lobby-logic.js] ); const data = charData[charId]; if (!data) { if (CG_LOG) CG_LOG.error("LOBBY", "CG-LOBBY-001", "Ficha no disponible.", { charId }); showToast("SYSTEM: Ficha no disponible por ahora."); return; } document.getElementById(
+- [js/lobby-logic.js] ).innerHTML = data.name +
+- [js/lobby-logic.js] cursor-blink
+- [js/lobby-logic.js] ; document.getElementById(
+- [js/lobby-logic.js] ).innerText = data.role; document.getElementById(
+- [js/lobby-logic.js] ).innerHTML = data.desc; document.getElementById(
+- [js/lobby-logic.js] ).style.borderBottomColor = data.color; document.getElementById(
+- [js/lobby-logic.js] ).src = getResponsiveAssetUrl(data.imgUrl); applyActiveLanguage(document.getElementById(
+- [js/lobby-logic.js] ).style.display =
+- [js/lobby-logic.js] ; document.body.style.overflow =
+- [js/lobby-logic.js] ; setFloatingUiHidden(true); } }); } function closeModal(e, id) { if (e && e.target.id !== id) return; if (window.CGOverlay) { window.CGOverlay.close(id); } else { document.getElementById(id).style.display =
+- [js/lobby-logic.js] ; actualizarUiFlotantePorOverlays(); } // Volver al lobby al cerrar ficha AudioManager.resumeLobby(); } // --- SISTEMA EASTER EGG --- let clicsConsecutivos = 0; let ultimoClicTiempo = 0; const TIEMPO_MAXIMO = 1500; let toastTimeout; function showToast(message) { const toast = document.getElementById(
+- [js/lobby-logic.js] ); toast.innerText = translateUiText(message); toast.classList.add(
+- [js/lobby-logic.js] ); clearTimeout(toastTimeout); toastTimeout = setTimeout(() => { toast.classList.remove(
+- [js/lobby-logic.js] ); }, 2500); } window.showToast = showToast; function registrarClic() { const tiempoActual = new Date().getTime(); if (tiempoActual - ultimoClicTiempo <= TIEMPO_MAXIMO) { clicsConsecutivos++; } else { clicsConsecutivos = 1; } ultimoClicTiempo = tiempoActual; if (clicsConsecutivos === 1) showToast("SYSTEM: Acceso restringido..."); else if (clicsConsecutivos === 2) showToast("Estás a 2 pasos de revelar los archivos clasificados..."); else if (clicsConsecutivos === 3) showToast("Estás a 1 paso de revelar los archivos clasificados..."); else if (clicsConsecutivos === 4) { document.getElementById(
+- [js/lobby-logic.js] ).classList.remove(
+- [js/lobby-logic.js] ); clicsConsecutivos = 0; iniciarSecuenciaArchivosSecretos(); } } const secretData = window.CGLobbyData?.secrets || []; function iniciarSecuenciaArchivosSecretos() { showLoadingScreen(() => { AudioManager.playBg(
+- [js/lobby-logic.js] ); const list = document.getElementById(
+- [js/lobby-logic.js] ); list.innerHTML =
+- [js/lobby-logic.js] ; secretData.forEach((file, index) => { const item = document.createElement(
+- [js/lobby-logic.js] ); item.className =
+- [js/lobby-logic.js] ; item.addEventListener("click", () => viewSecretFile(index)); item.innerHTML = ` IMG ${file.name} `; list.appendChild(item); }); document.getElementById(
+- [js/lobby-logic.js] ; applyActiveLanguage(document.getElementById(
+- [js/lobby-logic.js] ; setFloatingUiHidden(true); } }); } function closeSecretModal(e) { if (e && e.target.id !==
+- [js/lobby-logic.js] ) return; if (window.CGOverlay) { window.CGOverlay.close("secretModal"); } else { document.getElementById(
+- [js/lobby-logic.js] ; actualizarUiFlotantePorOverlays(); } AudioManager.resumeLobby(); } function viewSecretFile(i) { const data = secretData[i]; document.getElementById(
+- [js/lobby-logic.js] ).src = getResponsiveAssetUrl(data.url); document.getElementById(
+- [js/lobby-logic.js] )); } function backToSecretList() { document.getElementById(
+- [js/lobby-start.js] cheatguys.startWindowSeen.v1
+- [js/lobby-start.js] globalLoader
+- [js/lobby-start.js] pressStartBtn
+- [js/lobby-start.js] start-window-active
+- [js/lobby-start.js] Fallback hacia el lobby.
+- [js/lobby-start.js] SYSTEM: Función 'Patreon Guild' Coming Soon...
+- [js/mitsuki-secret.js] ¡Rompí la página de CheatGuys! por andar de curioso. Escanea el código o entra al arcade aquí:
+- [js/mitsuki-secret.js] ¡Te dije que no lo presionaras, niño baboso!
+- [js/mitsuki-secret.js] Bueno, ya que estás aquí puedes compartir la página para que más personas lo vean, así tu curiosidad sirve de algo...
+- [js/mitsuki-secret.js] (max-width: 768px)
+- [js/mitsuki-secret.js] mitsukiOverlay
+- [js/mitsuki-secret.js] mitsukiContinueBtn
+- [js/mitsuki-secret.js] mitsukiIllustration
+- [js/mitsuki-secret.js] mitsukiStepCounter
+- [js/mitsuki-secret.js] mitsukiShareButtons
+- [js/mitsuki-secret.js] mitsukiShareWA
+- [js/mitsuki-secret.js] mitsukiShareFB
+- [js/mitsuki-secret.js] mitsukiShareX
+- [js/mitsuki-secret.js] mitsukiShareDC
+- [js/mitsuki-secret.js] ¡Copiado para Discord! Pégalo en tu chat.
+- [js/mitsuki-secret.js] No se pudo copiar. Intenta manualmente.
+- [js/que-es-cheatguys.js] infoScrollMeter
+- [js/que-es-cheatguys.js] .cg-info-reveal
+- [js/que-es-cheatguys.js] IntersectionObserver
+- [js/que-es-cheatguys.js] .info-image-card
+- [js/que-es-cheatguys.js] infoImageModal
+- [js/que-es-cheatguys.js] infoImageModalImg
+- [js/que-es-cheatguys.js] infoImageModalTitle
+- [js/que-es-cheatguys.js] .info-modal-close
+- [js/script.js] arcadeContainer
+- [js/script.js] arcadeStartScreen
+- [js/script.js] arcadeGameScreen
+- [js/script.js] arcadeGameOverScreen
+- [js/script.js] arcadeWinScreen
+- [js/script.js] spaceInvadersCanvas
+- [js/script.js] minijuego.html
+- [js/script.js] bgMusicArcade
+- [js/script.js] bgMusicPacman
+- [js/script.js] bgMusicSuddenDeath
+- [js/script.js] bgMusicGameOver
+- [js/script.js] bgMusicVictory
+- [js/script.js] custom-akane.png
+- [js/script.js] custom-jun.png
+- [js/script.js] custom-momo.png
+- [js/script.js] custom-rika.png
+- [js/script.js] custom-nave-roja-hoshi.png
+- [js/script.js] boss-mini.png
+- [js/script.js] boss-full.png
+- [js/script.js] boss-mini-anxiety-sheet.png
+- [js/script.js] boss-full-anxiety-sheet.png
+- [js/script.js] ufo-gold.png
+- [js/script.js] power-double.png
+- [js/script.js] power-shield.png
+- [js/script.js] power-slow.png
+- [js/script.js] power-pierce.png
+- [js/script.js] power-heart.png
+- [js/script.js] power-invincible.png
+- [js/script.js] tractor-beam-sheet.png
+- [js/script.js] challenge-target.png
+- [js/script.js] bullet-player.png
+- [js/script.js] bullet-pierce.png
+- [js/script.js] bullet-enemy-orange.png
+- [js/script.js] bullet-enemy-purple.png
+- [js/script.js] shield-ring.png
+- [js/script.js] invincible-aura.png
+- [js/script.js] powerInvincible
+- [js/script.js] pageVolumeSlider
+- [js/script.js] arcadeShootSfx
+- [js/script.js] globalLoader
+- [js/script.js] arcadeStatusLine
+- [js/script.js] arcadePauseMenu
+- [js/script.js] [data-arcade-action].is-pressed
+- [js/script.js] newRecordBadge
+- [js/script.js] finalScoreText
+- [js/script.js] arcadeGameOverMode
+- [js/script.js] arcadeGameOverCopy
+- [js/script.js] Akane ya vio tu record. Ahora intentara recuperarlo.
+- [js/script.js] La Demonio del Arcade sigue invicta.
+- [js/script.js] visibilitychange
+- [js/script.js] PERFECT BONUS!
+- [js/script.js] [data-arcade-joystick]
+- [js/script.js] .arcade-joystick-knob
+- [js/script.js] translate(-50%, -50%)
+- [js/script.js] [data-arcade-action]
+- [js/script.js] pointercancel
+- [js/script.js] lostpointercapture
+- [js/script.js] pointerrawupdate
+- [js/script.js] pointerleave
+- [js/script.js] orientationchange
+- [js/script.js] currentScore
+- [js/script.js] livesDisplay
+- [js/script.js] heart-icon sudden-death-heart
+- [js/script.js] hue-rotate(180deg) saturate(1.8) drop-shadow(0 0 6px #ff1b4b)
+- [js/script.js] toque de borde
+- [js/script.js] challengeTarget
+- [js/script.js] bossFullAnxiety
+- [js/script.js] bossMiniAnxiety
+- [js/script.js] rgba(0,0,0,0.72)
+- [js/script.js] rgba(255,255,255,0.45)
+- [js/script.js] rgba(255,255,255,0.5)
+- [js/script.js] rgba(0,0,0,0.65)
+- [js/script.js] rgba(138, 43, 226, 0.12)
+- [js/script.js] rgba(0,0,0,0.66)
+- [js/script.js] bold 10px VT323, monospace
+- [js/script.js] rgba(0, 0, 0, 0.72)
+- [js/script.js] bold 23px VT323, monospace
+- [js/script.js] rgba(255, 46, 93, 0.28)
+- [js/script.js] bold 20px VT323, monospace
+- [js/script.js] ⚠ SUDDEN DEATH ⚠
+- [js/script.js] invincibleAura
+- [js/script.js] bulletPierce
+- [js/script.js] bulletPlayer
+- [js/script.js] bulletEnemyPurple
+- [js/script.js] bulletEnemyOrange
+- [js/script.js] rgba(0, 0, 0, 0.62)
+- [js/script.js] bold 24px VT323, monospace
+- [js/script.js] bold 48px VT323, monospace
+- [js/script.sprites-backup-20260706-124849.js] arcadeContainer
+- [js/script.sprites-backup-20260706-124849.js] arcadeStartScreen
+- [js/script.sprites-backup-20260706-124849.js] arcadeGameScreen
+- [js/script.sprites-backup-20260706-124849.js] arcadeGameOverScreen
+- [js/script.sprites-backup-20260706-124849.js] arcadeWinScreen
+- [js/script.sprites-backup-20260706-124849.js] spaceInvadersCanvas
+- [js/script.sprites-backup-20260706-124849.js] minijuego.html
+- [js/script.sprites-backup-20260706-124849.js] bgMusicArcade
+- [js/script.sprites-backup-20260706-124849.js] bgMusicSuddenDeath
+- [js/script.sprites-backup-20260706-124849.js] bgMusicGameOver
+- [js/script.sprites-backup-20260706-124849.js] pageVolumeSlider
+- [js/script.sprites-backup-20260706-124849.js] arcadeShootSfx
+- [js/script.sprites-backup-20260706-124849.js] globalLoader
+- [js/script.sprites-backup-20260706-124849.js] arcadeStatusLine
+- [js/script.sprites-backup-20260706-124849.js] [data-arcade-action].is-pressed
+- [js/script.sprites-backup-20260706-124849.js] finalScoreText
+- [js/script.sprites-backup-20260706-124849.js] [data-arcade-joystick]
+- [js/script.sprites-backup-20260706-124849.js] .arcade-joystick-knob
+- [js/script.sprites-backup-20260706-124849.js] translate(-50%, -50%)
+- [js/script.sprites-backup-20260706-124849.js] [data-arcade-action]
+- [js/script.sprites-backup-20260706-124849.js] pointercancel
+- [js/script.sprites-backup-20260706-124849.js] lostpointercapture
+- [js/script.sprites-backup-20260706-124849.js] pointerrawupdate
+- [js/script.sprites-backup-20260706-124849.js] pointerleave
+- [js/script.sprites-backup-20260706-124849.js] currentScore
+- [js/script.sprites-backup-20260706-124849.js] livesDisplay
+- [js/script.sprites-backup-20260706-124849.js] heart-icon sudden-death-heart
+- [js/script.sprites-backup-20260706-124849.js] hue-rotate(180deg) saturate(1.8) drop-shadow(0 0 6px #ff1b4b)
+- [js/script.sprites-backup-20260706-124849.js] toque de borde
+- [js/script.sprites-backup-20260706-124849.js] rgba(0,0,0,0.72)
+- [js/script.sprites-backup-20260706-124849.js] rgba(138, 43, 226, 0.12)
+- [js/script.sprites-backup-20260706-124849.js] rgba(0,0,0,0.66)
+- [js/script.sprites-backup-20260706-124849.js] bold 10px VT323, monospace
+- [js/script.sprites-backup-20260706-124849.js] rgba(0, 0, 0, 0.72)
+- [js/script.sprites-backup-20260706-124849.js] bold 23px VT323, monospace
+- [js/script.sprites-backup-20260706-124849.js] bold 20px VT323, monospace
+- [js/script.sprites-backup-20260706-124849.js] ⚠ SUDDEN DEATH ⚠
+- [js/start-intro-novel.js] cheatguys.startIntroSeen.v2
+- [js/start-intro-novel.js] panic-leader
+- [js/start-intro-novel.js] El Pánico de la Líder
+- [js/start-intro-novel.js] ¡¿C-Cierra la ventana! ¡Espera! ¡No veas nada todavía! A-A la página le faltan retoques en el código y mi barra de estamina social está en cero...
+- [js/start-intro-novel.js] Akane entrando en pánico
+- [js/start-intro-novel.js] min(88%, 610px)
+- [js/start-intro-novel.js] min(94%, 600px)
+- [js/start-intro-novel.js] La Patada Punk
+- [js/start-intro-novel.js] ¡Ignoren a la chica morada ansiosa! ¡Bienvenidos al centro de operaciones de CheatGuys! Aquí van a encontrar el lore real, los diseños y toda la música que nos costó sudor y sangre!
+- [js/start-intro-novel.js] Rika interrumpiendo la introducción
+- [js/start-intro-novel.js] min(76%, 500px)
+- [js/start-intro-novel.js] min(82%, 500px)
+- [js/start-intro-novel.js] sabotage-attempt
+- [js/start-intro-novel.js] El Intento de Boicot
+- [js/start-intro-novel.js] ¡N-No es seguro! Rika, la base de datos está atada con alambres... Por favor, regresen… en… en unas tres semanas...
+- [js/start-intro-novel.js] Akane intentando detener la bienvenida
+- [js/start-intro-novel.js] min(78%, 520px)
+- [js/start-intro-novel.js] min(84%, 520px)
+- [js/start-intro-novel.js] pastel-invasion
+- [js/start-intro-novel.js] Invasión Pastel
+- [js/start-intro-novel.js] ¡Siii! Y no olviden que pueden revisar nuestra galería de arte interactiva, chismosear los secretos de la banda y platicar con nosotras en tiempo real desde la laptop de Akane. ¡Sean amables con ella! ✨💖
+- [js/start-intro-novel.js] Momo presentando las funciones de la página
+- [js/start-intro-novel.js] min(84%, 560px)
+- [js/start-intro-novel.js] min(88%, 560px)
+- [js/start-intro-novel.js] pastel-sparkles
+- [js/start-intro-novel.js] reality-check
+- [js/start-intro-novel.js] El Toque de Realidad
+- [js/start-intro-novel.js] somos pobres
+- [js/start-intro-novel.js] Ya que están aquí... abajo están los links para tirar el paro. Pueden compartir el garaje con sus amigos, viciarse un rato en el minijuego de arcade o, si les sobra algo de platita, somos pobres
+- [js/start-intro-novel.js] TEXTO_INCOMPLETO_EN_GUION: confirmar cierre de la viñeta 5.
+- [js/start-intro-novel.js] Jun señalando los links de apoyo
+- [js/start-intro-novel.js] El Ultimátum
+- [js/start-intro-novel.js] ¡Así que exploren todo lo que quieran, exploren lo que no deben y ayúdennos a hacer ruido en Neo Teno! 🎸🔥
+- [js/start-intro-novel.js] Jun junto al grupo
+- [js/start-intro-novel.js] min(44%, 330px)
+- [js/start-intro-novel.js] min(52%, 330px)
+- [js/start-intro-novel.js] Momo junto al grupo
+- [js/start-intro-novel.js] min(48%, 350px)
+- [js/start-intro-novel.js] min(54%, 350px)
+- [js/start-intro-novel.js] Rika junto al grupo
+- [js/start-intro-novel.js] min(62%, 470px)
+- [js/start-intro-novel.js] min(72%, 470px)
+- [js/start-intro-novel.js] concert-flash
+- [js/start-intro-novel.js] mental-collapse
+- [js/start-intro-novel.js] El Colapso Mental
+- [js/start-intro-novel.js] ¡AAAAH! ¡DEMASIADA INTERACCIÓN SOCIAL NO PROGRAMADAAAA! EROOOOOORRR-1!
+- [js/start-intro-novel.js] PUNTUACION_INCOMPLETA_EN_GUION: confirmar cierre de la viñeta 7.
+- [js/start-intro-novel.js] Akane colapsando con distorsión visual
+- [js/start-intro-novel.js] min(98%, 760px)
+- [js/start-intro-novel.js] min(102%, 680px)
+- [js/start-intro-novel.js] persistent-glitch
+- [js/start-intro-novel.js] anxious-overload
+- [js/start-intro-novel.js] Pantalla de Error y Reinicio
+- [js/start-intro-novel.js] FATAL_ERROR: ANXIOUS_OVERLOAD_999% ***
+- [js/start-intro-novel.js] infinity-os-bsod
+- [js/start-intro-novel.js] Un error fatal ha ocurrido en la interfaz del grupo. El proceso Akane.exe dejó de responder debido a una interacción social no programada en el entorno web.
+- [js/start-intro-novel.js] Si esta es la primera vez que ve esta pantalla de error, es probable que a Jun se le haya zafado una baqueta, Rika haya roto otra cuerda de la guitarra, o Momo se haya distraído viendo algo color pastel.
+- [js/start-intro-novel.js] Presione cualquier botón de los controles para estabilizar el HUD de Akane.
+- [js/start-intro-novel.js] Por favor, espere a que el amplificador del garaje deje de hacer interferencia.
+- [js/start-intro-novel.js] Iniciando protocolo de emergencia: Ir por un café al Bloom & Brew.
+- [js/start-intro-novel.js] Reiniciando el entorno gráfico de Neo Teno...
+- [js/start-intro-novel.js] Código de error: 0xCHEATGUYS_ARCADE_CRASH
+- [js/start-intro-novel.js] startIntroOverlay
+- [js/start-intro-novel.js] startIntroScreen
+- [js/start-intro-novel.js] startIntroTitle
+- [js/start-intro-novel.js] startIntroCounter
+- [js/start-intro-novel.js] startIntroSkipBtn
+- [js/start-intro-novel.js] startIntroScene
+- [js/start-intro-novel.js] startIntroVisual
+- [js/start-intro-novel.js] startIntroSprites
+- [js/start-intro-novel.js] startIntroEffects
+- [js/start-intro-novel.js] startIntroDialogueBox
+- [js/start-intro-novel.js] startIntroPortrait
+- [js/start-intro-novel.js] startIntroSpeaker
+- [js/start-intro-novel.js] startIntroText
+- [js/start-intro-novel.js] startIntroContinueBtn
+- [js/start-intro-novel.js] startIntroBsod
+- [js/start-intro-novel.js] (max-width: 768px)
+- [js/start-intro-novel.js] --intro-sprite-x
+- [js/start-intro-novel.js] --intro-sprite-y
+- [js/start-intro-novel.js] --intro-sprite-position
+- [js/start-intro-novel.js] --intro-sprite-size
+- [js/start-intro-novel.js] min(80%, 640px)
+- [js/start-intro-novel.js] --intro-sprite-layer
+- [js/start-intro-novel.js] start-intro-effects
+- [js/start-intro-novel.js] has-scene-glitch
+- [js/start-intro-novel.js] is-disintegrating
+- [js/start-intro-novel.js] pixel-disintegrate
+- [js/start-intro-novel.js] is-fading-black
+- [js/start-intro-novel.js] radial-gradient(circle at 50% 34%, rgba(255, 0, 118, 0.18), transparent 34%), linear-gradient(rgba(5, 0, 10, 0.18), rgba(5, 0, 10, 0.76))
+- [js/start-intro-novel.js] ${scene.background}
+- [js/start-intro-novel.js] start-intro-bsod-brand
+- [js/start-intro-novel.js] INFINITY OS // CHEATGUYS! CRASH REPORT
+- [js/start-intro-novel.js] start-intro-bsod-title
+- [js/start-intro-novel.js] start-intro-bsod-copy
+- [js/start-intro-novel.js] start-intro-bsod-list
+- [js/start-intro-novel.js] start-intro-bsod-restart
+- [js/start-intro-novel.js] start-intro-bsod-code
+- [js/start-intro-novel.js] loadedmetadata
+- [js/start-intro-novel.js] durationchange
+- [js/start-intro-novel.js] La novela activo el fallback.
+- [js/start-intro-novel.js] No se pudo abrir el overlay de introduccion.
+- [js/start-intro-novel.js] Te_lo_dije_xD
+- [js/start-intro-novel.js] No se pudo abrir el BSOD de recuperacion.
+- [js/start-intro-novel.js] footerIntroResetBtn
+- [js/start-intro-novel.js] footerIntroConfirmAccept
+- [js/start-intro-novel.js] footerIntroConfirm
+- [js/start-intro-novel.js] footerIntroConfirmCancel
+- [js/start-intro-novel.js] footerIntroConfirmClose
+- [js/ui-global.js] overlay-open
+- [js/ui-global.js] button:not([disabled])
+- [js/ui-global.js] input:not([disabled])
+- [js/ui-global.js] select:not([disabled])
+- [js/ui-global.js] textarea:not([disabled])
+- [js/ui-global.js] [tabindex]:not([tabindex='-1'])
+- [js/ui-global.js] mitsukiOverlay
+- [js/ui-global.js] arcadeContainer
+- [js/ui-global.js] galleryModal
+- [js/ui-global.js] infoImageModal
+- [js/ui-global.js] (max-width: 768px)
+- [js/ui-global.js] sidebarToggle
+- [js/ui-global.js] aria-expanded
+- [js/ui-global.js] sidebar-open
