@@ -63,6 +63,10 @@
         }
     }
 
+    function suppressNativeTouch(event) {
+        event.preventDefault();
+    }
+
     function updateRecords() {
         const snapshot = records?.get() || {
             overall: { score: 0 },
@@ -290,6 +294,14 @@
         document.querySelectorAll("[data-arcade-game]").forEach((option) => {
             option.addEventListener("click", () => updateSelection(option.dataset.arcadeGame));
         });
+        const mazeControls = document.querySelector("[data-maze-controls]");
+        if (mazeControls) {
+            ["contextmenu", "selectstart", "dragstart"].forEach((eventName) => {
+                mazeControls.addEventListener(eventName, suppressNativeTouch);
+            });
+            mazeControls.addEventListener("touchstart", suppressNativeTouch, { passive: false });
+        }
+
         document.querySelectorAll("[data-maze-direction]").forEach((button) => {
             const direction = button.dataset.mazeDirection;
             const chooseDirection = (event) => {
@@ -306,6 +318,8 @@
             button.addEventListener("pointerup", release);
             button.addEventListener("pointercancel", release);
             button.addEventListener("pointerleave", release);
+            button.addEventListener("pointerout", release);
+            button.addEventListener("lostpointercapture", release);
         });
 
         const requestedGame = new URLSearchParams(window.location.search).get("game");
