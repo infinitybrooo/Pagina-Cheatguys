@@ -642,7 +642,7 @@
 .box-support { border-top: 6px solid var(--gold-color); }
 .box-music   { border-top: 6px solid var(--momo-color); }
 .box-contact { border-top: 6px solid var(--jun-color); }
-.section-title { font-family: var(--font-pixel); font-size: 18px; color: #fff; margin-top: 0; margin-bottom: 10px; text-align: left; text-transform: uppercase; border-bottom: 2px dashed rgba(255,255,255,0.3); padding-bottom: 7px; }
+.section-title { font-family: var(--font-pixel); font-size: 18px; line-height: 1.15; color: #fff; margin-top: 0; margin-bottom: 10px; text-align: left; text-transform: uppercase; border-bottom: 2px dashed rgba(255,255,255,0.3); padding-bottom: 7px; overflow-wrap: anywhere; }
 .cursor-blink { animation: blinker 1s cubic-bezier(1, 0, 0, 1) infinite; }
 
 /* Buttons */
