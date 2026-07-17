@@ -93,7 +93,7 @@
             characters: ["momo", "akane"],
             speaker: "MOMO",
             portrait: PORTRAITS.momo,
-            dialogue: "¡Siii! Y no olviden que pueden revisar nuestra galería de arte interactiva, chismosear los secretos de la banda y platicar con nosotras en tiempo real desde la laptop de Akane. ¡Sean amables con ella! ✨💖",
+            dialogue: "¡Siii! Y no olviden que pueden revisar nuestra galería de arte interactiva, chismosear los secretos de la banda y platicar con nosotras en tiempo real desde Akanebook. ¡Sean amables con ella! ✨💖",
             background: null,
             sprites: [{ src: NOVEL_IMAGES.momoPastel, mobileSrc: NOVEL_IMAGES.momoPastelMobile, alt: "Momo presentando las funciones de la página", position: "51% 58%", mobilePosition: "51% 58%", size: "min(84%, 560px)", mobileSize: "min(88%, 560px)", entrance: "float" }],
             effects: ["pastel-sparkles"]
@@ -143,7 +143,7 @@
             type: "bsod",
             title: "Pantalla de Error y Reinicio",
             characters: [],
-            speaker: "INFINITY OS",
+            speaker: "InfinityOS",
             dialogue: "FATAL_ERROR: ANXIOUS_OVERLOAD_999% ***",
             background: "infinity-os-bsod",
             sprites: [],
@@ -283,7 +283,7 @@
         elements.startIntroScene.hidden = false;
         elements.startIntroBsod.hidden = true;
         elements.startIntroScreen.classList.remove("is-bsod", "is-fading-black");
-        elements.startIntroTitle.textContent = "INFINITY_OS // STARTUP_STORY";
+        elements.startIntroTitle.textContent = "InfinityOS // STARTUP_STORY";
         elements.startIntroCounter.textContent = `TAB ${String(sceneIndex + 1).padStart(2, "0")}/08`;
         elements.startIntroSpeaker.textContent = scene.speaker;
         elements.startIntroText.textContent = scene.dialogue;
@@ -325,7 +325,7 @@
         elements.startIntroBsod.hidden = false;
         elements.startIntroScreen.classList.remove("has-scene-glitch");
         elements.startIntroScreen.classList.add("is-bsod");
-        elements.startIntroTitle.textContent = options.windowTitle || "INFINITY_OS // STARTUP_STORY";
+        elements.startIntroTitle.textContent = options.windowTitle || "InfinityOS // STARTUP_STORY";
         elements.startIntroCounter.textContent = "FATAL 08/08";
         if (!elements.startIntroSkipBtn.hidden) {
             elements.startIntroSkipBtn.focus({ preventScroll: true });
@@ -334,7 +334,7 @@
         }
         elements.startIntroBsod.replaceChildren();
 
-        appendBsodText(elements.startIntroBsod, "div", "start-intro-bsod-brand", "INFINITY OS // CHEATGUYS! CRASH REPORT");
+        appendBsodText(elements.startIntroBsod, "div", "start-intro-bsod-brand", "InfinityOS // CHEATGUYS! CRASH REPORT");
         appendBsodText(elements.startIntroBsod, "h2", "start-intro-bsod-title", scene.bsod.headline);
         scene.bsod.paragraphs.forEach((text) => appendBsodText(elements.startIntroBsod, "p", "start-intro-bsod-copy", text));
 

@@ -26,7 +26,7 @@
             fullName: "Rika Tanaka",
             icon: "assets/icons/icon-rika.webp",
             loaderClass: "ld-rika",
-            greeting: "¡QUÉ ONDA! Habla rápido antes de que esta laptop se rinda."
+            greeting: "¡QUÉ ONDA! Habla rápido antes de que esta Akanebook se rinda."
         },
         momo: {
             name: "Momo",

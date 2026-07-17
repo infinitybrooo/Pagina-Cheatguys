@@ -6,7 +6,7 @@
 
     const config = {
         systemName: "CheatGuys!",
-        osName: "Infinity OS",
+        osName: "InfinityOS",
         routes: {
             home: "index.html",
             gallery: "galeria.html",

@@ -39,7 +39,7 @@
         console.error(getPrefix(moduleName), safeCode, details || publicMessage);
         return {
             code: safeCode,
-            message: publicMessage || "Algo fallo en Infinity OS. Intenta de nuevo."
+            message: publicMessage || "Algo fallo en InfinityOS. Intenta de nuevo."
         };
     }
 

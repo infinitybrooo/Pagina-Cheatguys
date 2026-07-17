@@ -55,7 +55,7 @@ test("garage mixer muestra diez lineas EQ con el acento de cada personaje", asyn
     await page.locator("#pressStartBtn").click();
     await expect(page.locator(".profile-container")).toBeVisible();
 
-    await expect(page.locator("#mixerWindowTitle")).toHaveText("INFINITY OS // GARAGE_MIXER");
+    await expect(page.locator("#mixerWindowTitle")).toHaveText("InfinityOS // GARAGE_MIXER");
     await expect(page.locator("#mixerVisualizer .mixer-eq-line")).toHaveCount(10);
 
     const expectedAccents = {
