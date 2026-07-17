@@ -18,6 +18,7 @@
         storageKeys: {
             startIntroSeen: "cheatguys.startIntroSeen.v2",
             startWindowSeenSession: "cheatguys.startWindowSeen.v1",
+            cookieNoticeSeen: "cheatguys.cookieNoticeSeen.v1",
             masterVolume: "cgMasterVolume",
             musicEnabled: "cgMusicEnabled"
         },

@@ -72,6 +72,10 @@
         history.scrollTop = history.scrollHeight;
     }
 
+    function translateInterfaceText(text) {
+        return window.CGLanguage?.translate?.(text) || text;
+    }
+
     function createMessageBubble(text, type, character) {
         const row = document.createElement("div");
         row.className = `chat-message-row ${type}`;
@@ -136,7 +140,7 @@
 
         const text = document.createElement("span");
         text.className = "laptop-typing-text";
-        text.textContent = `${character.name} esta escribiendo...`;
+        text.textContent = translateInterfaceText(`${character.name} esta escribiendo...`);
 
         bubble.appendChild(loader);
         bubble.appendChild(text);
@@ -167,7 +171,7 @@
         els.chatAvatar.src = character.icon;
         els.chatAvatar.alt = character.fullName;
         els.chatName.textContent = character.fullName;
-        els.chatStatus.textContent = "ONLINE // CHAT-ROOM";
+        els.chatStatus.textContent = translateInterfaceText("ONLINE // CHAT-ROOM");
         els.history.innerHTML = "";
         chatHistory = [];
         setMode("chat", els);
@@ -244,7 +248,7 @@
         const message = els.input.value.trim();
         if (!message) return;
         if (message.length > MAX_MESSAGE_LENGTH) {
-            appendMessage(els.history, `Mensaje demasiado largo. Maximo ${MAX_MESSAGE_LENGTH} caracteres.`, "bot");
+            appendMessage(els.history, translateInterfaceText(`Mensaje demasiado largo. Maximo ${MAX_MESSAGE_LENGTH} caracteres.`), "bot");
             return;
         }
 

@@ -190,7 +190,6 @@
     align-items: center;
     justify-content: center;
     font-family: 'VT323', monospace;
-    font-size: 18px;
     line-height: 1;
     color: #05000a;
     background: var(--neon-cyan);
@@ -2904,6 +2903,10 @@ body.gallery-modal-open {
     color: var(--character-accent);
     font-family: var(--font-terminal);
     font-size: 22px;
+}
+
+.gallery-modal-figure:not(.is-loading) .gallery-modal-loader {
+    display: none;
 }
 
 .gallery-modal-img {

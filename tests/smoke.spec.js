@@ -149,6 +149,29 @@ test("PRESS START aparece solo en la primera entrada de cada sesion", async ({ p
     await expect(page.locator("#pressStartBtn")).toBeVisible();
 });
 
+test("aviso falso de cookies aparece al llegar al lobby y descarga el poster", async ({ page }) => {
+    await preparePage(page);
+    await page.addInitScript(() => {
+        window.localStorage.removeItem("cheatguys.cookieNoticeSeen.v1");
+    });
+    await page.goto("/index.html");
+    await expect(page.locator("#cookieNotice")).toBeHidden();
+    await page.locator("#pressStartBtn").click();
+    await expect(page.locator("body")).toHaveClass(/page-loaded/);
+    await expect(page.locator("#cookieNotice")).toHaveAttribute("aria-hidden", "false");
+    await expect(page.locator("#cookieNoticeTitle")).toContainText("AVISO_DE_COOKIES // SECURITY_LAYER");
+    await expect(page.locator(".cookie-notice-img")).toHaveAttribute("src", "assets/branding/cookies/rika_cookie.png");
+
+    const downloadPromise = page.waitForEvent("download");
+    await page.locator("[data-cg-cookie-download]").click();
+    const download = await downloadPromise;
+    expect(download.suggestedFilename()).toBe("CheatGuys_poster_firmado.png");
+    await expect(page.locator("#cookieNotice")).toBeHidden();
+
+    await page.reload();
+    await expect(page.locator("#cookieNotice")).toBeHidden();
+});
+
 test("la novela de Mitsuki sigue independiente despues del nuevo inicio", async ({ page }) => {
     await preparePage(page);
     await page.goto("/index.html");
