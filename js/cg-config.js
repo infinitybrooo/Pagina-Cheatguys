@@ -13,7 +13,8 @@
             arcade: "minijuego.html",
             productionBible: "biblia-produccion.html",
             pdf: "assets/pdf/pitch-bible.pdf",
-            chatFunction: "/.netlify/functions/chat"
+            chatFunction: "/.netlify/functions/chat",
+            itunesPreviewFunction: "/.netlify/functions/itunes-preview"
         },
         storageKeys: {
             startIntroSeen: "cheatguys.startIntroSeen.v2",

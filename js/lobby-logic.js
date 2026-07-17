@@ -403,15 +403,31 @@ Bomba Estéreo - Fuego
             });
         }
 
-        async function searchItunesTrack(apiUrl, signal) {
+        async function requestMixerPreviewProxy(term, signal) {
+            const route = CG_CONFIG.routes?.itunesPreviewFunction || "/.netlify/functions/itunes-preview";
+            const response = await fetch(`${route}?term=${encodeURIComponent(term)}`, {
+                signal,
+                headers: { Accept: "application/json" }
+            });
+            if (!response.ok) throw new Error(`Proxy iTunes respondio ${response.status}`);
+            return await response.json();
+        }
+
+        async function searchItunesTrack(apiUrl, term, signal) {
+            // En producción se usa el proxy same-origin para evitar CORS/CSP. Los accesos
+            // directos quedan como respaldo local o ante una función no disponible.
+            try {
+                return await requestMixerPreviewProxy(term, signal);
+            } catch (error) {
+                if (error.name === "AbortError") throw error;
+            }
+
             const fetchRequest = (async () => {
                 const response = await fetch(apiUrl, { signal, headers: { Accept: "application/json" } });
                 if (!response.ok) throw new Error(`iTunes respondió ${response.status}`);
                 return await response.json();
             })();
 
-            // El endpoint histórico puede bloquear CORS. Se conserva el fetch solicitado y se
-            // ejecuta su fallback JSONP oficial en paralelo para no agotar el gesto de usuario.
             return Promise.any([
                 fetchRequest,
                 requestItunesJsonp(apiUrl, signal)
@@ -471,7 +487,7 @@ Bomba Estéreo - Fuego
             mixerRequestController = new AbortController();
 
             try {
-                const data = await searchItunesTrack(apiUrl, mixerRequestController.signal);
+                const data = await searchItunesTrack(apiUrl, `${cancion.track} ${cancion.artist}`, mixerRequestController.signal);
                 if (currentRequestId !== mixerRequestId) return;
 
                 const result = Array.isArray(data.results)

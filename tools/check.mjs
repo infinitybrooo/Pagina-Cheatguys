@@ -23,6 +23,7 @@ const requiredFiles = [
     "js/laptop-logic.js",
     "js/biblia-produccion.js",
     "netlify/functions/chat.js",
+    "netlify/functions/itunes-preview.js",
     "assets/pdf/pitch-bible.pdf"
 ];
 
@@ -41,7 +42,8 @@ const jsFiles = [
     "js/laptop-logic.js",
     "js/biblia-produccion.js",
     "js/script.js",
-    "netlify/functions/chat.js"
+    "netlify/functions/chat.js",
+    "netlify/functions/itunes-preview.js"
 ];
 
 const errors = [];

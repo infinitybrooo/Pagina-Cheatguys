@@ -51,6 +51,21 @@ test("index carga, PRESS START existe y el menu lateral funciona", async ({ page
 
 test("garage mixer muestra diez lineas EQ con el acento de cada personaje", async ({ page }) => {
     const audit = await preparePage(page);
+    await page.route("**/.netlify/functions/itunes-preview?**", async (route) => {
+        await route.fulfill({
+            contentType: "application/json",
+            body: JSON.stringify({
+                resultCount: 1,
+                results: [{
+                    artistName: "CheatGuys Test",
+                    trackName: "Preview Smoke",
+                    previewUrl: "data:audio/wav;base64,UklGRnQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YVAAAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgA==",
+                    artworkUrl100: "assets/branding/favicon.webp",
+                    trackViewUrl: "https://music.apple.com/"
+                }]
+            })
+        });
+    });
     await page.goto("/index.html");
     await page.locator("#pressStartBtn").click();
     await expect(page.locator(".profile-container")).toBeVisible();
