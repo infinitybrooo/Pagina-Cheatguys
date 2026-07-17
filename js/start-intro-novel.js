@@ -541,6 +541,7 @@
 
         const reloadAfterLoader = () => {
             resetSeen();
+            window.CG?.cookieNotice?.reset?.();
             window.CGLobbyStart?.resetStartWindowSession?.();
             const reload = () => window.location.reload();
             if (window.CGLobbyStart?.showLoadingScreen) {

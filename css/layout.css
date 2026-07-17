@@ -3,20 +3,22 @@
    ========================================= */
 
 body {
-    background-color: #1a0033;
-    background-image: 
-        linear-gradient(rgba(138, 43, 226, 0.15) 3px, transparent 3px),
-        linear-gradient(90deg, rgba(138, 43, 226, 0.15) 3px, transparent 3px),
-        linear-gradient(to bottom, #05000a 0%, #05000a 20%, #0e001c 20%, #0e001c 40%, #17002e 40%, #17002e 60%, #1f0040 60%, #1f0040 80%, #280052 80%, #280052 100%);
-    background-size: 24px 24px, 24px 24px, 100% 100%;
-    background-attachment: fixed;
+    background-color: var(--crt-bg);
+    background-image:
+        radial-gradient(circle at 50% -10%, rgba(255, 61, 242, 0.16), transparent 32rem),
+        radial-gradient(circle at 12% 18%, rgba(0, 255, 255, 0.09), transparent 20rem),
+        linear-gradient(rgba(138, 43, 226, 0.13) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(138, 43, 226, 0.12) 2px, transparent 2px),
+        linear-gradient(to bottom, #05000a 0%, #0b0017 42%, #16002d 100%);
+    background-size: auto, auto, 24px 24px, 24px 24px, 100% 100%;
+    background-attachment: scroll;
     color: #ffffff;
     font-family: var(--font-body);
     text-align: center;
     padding: 40px 20px;
     margin: 0;
     overflow-x: hidden;
-    animation: grid-breathe 8s ease-in-out infinite;
+    animation: none;
 }
 
 html {
@@ -25,9 +27,12 @@ html {
 
 body::before {
     content: ""; position: fixed; top: 0; left: 0; bottom: 0; right: 0;
-    background-image: url('../assets/backgrounds/fondo-akane.webp');
-    background-size: cover; background-position: center; opacity: 0.15; z-index: 1; pointer-events: none;
+    background-image:
+        linear-gradient(to bottom, rgba(5,0,10,0.18), rgba(5,0,10,0.64)),
+        url('../assets/backgrounds/fondo-akane.webp');
+    background-size: cover; background-position: center; opacity: 0.16; z-index: 1; pointer-events: none;
     animation: bg-drift 14s ease-in-out infinite;
+    will-change: transform;
 }
 
 @media (max-width: 768px) {
@@ -38,7 +43,16 @@ body::before {
 
 body::after {
     content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%); background-size: 100% 4px; z-index: 999; pointer-events: none;
+    background:
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%),
+        linear-gradient(90deg, rgba(255, 61, 242, 0.035), transparent 18%, transparent 82%, rgba(0, 255, 255, 0.035));
+    background-size: 100% 4px, auto; z-index: 999; pointer-events: none;
+}
+
+@media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+    body {
+        animation: grid-breathe 14s steps(8, end) infinite;
+    }
 }
 
 /* General Containers */
@@ -113,6 +127,13 @@ body::after {
     body::before {
         animation: none;
         transform: none;
+        opacity: 0.11;
+        will-change: auto;
+    }
+
+    body::after {
+        background-size: 100% 6px, auto;
+        opacity: 0.72;
     }
 
     .profile-container {

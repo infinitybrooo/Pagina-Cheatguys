@@ -36,6 +36,10 @@
                 error: "assets/audio/later/colapso_akane.mp3"
             }
         },
+        cookieNotice: {
+            storageKey: "cheatguys.cookieNoticeSeen.v1",
+            seenDurationMs: 48 * 60 * 60 * 1000
+        },
         sfx: {
             uiButton: "assets/audio/later/botones.wav",
             laptop: "assets/audio/later/laptop_akane.mp3",

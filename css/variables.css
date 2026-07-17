@@ -22,4 +22,20 @@
     --discord-color: #5865F2;
     --gold-color: #FFD700;
     --neon-cyan: #00FFFF;
+    --neon-magenta: #FF3DF2;
+    --neon-lime: #8BFFDC;
+    --crt-bg: #05000a;
+    --crt-panel: rgba(9, 5, 20, 0.9);
+    --crt-panel-strong: rgba(5, 0, 10, 0.96);
+    --crt-border: rgba(255, 255, 255, 0.86);
+    --crt-border-soft: rgba(255, 255, 255, 0.24);
+    --crt-text-muted: #d8cfea;
+    --crt-shadow-hard: 8px 8px 0 rgba(0, 0, 0, 0.86);
+    --crt-shadow-glow: 0 0 18px rgba(0, 255, 255, 0.22), inset 0 0 18px rgba(255, 105, 180, 0.08);
+    --crt-scanline-soft: linear-gradient(rgba(255,255,255,0.035) 50%, rgba(0,0,0,0.14) 50%);
+    --crt-grid-cyan: linear-gradient(rgba(0, 255, 255, 0.045) 2px, transparent 2px);
+    --crt-grid-pink: linear-gradient(90deg, rgba(255, 105, 180, 0.04) 2px, transparent 2px);
+    --mobile-shadow-hard: 5px 5px 0 rgba(0, 0, 0, 0.82);
+    --motion-fast: 0.14s ease;
+    --motion-medium: 0.28s ease;
 }

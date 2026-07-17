@@ -16,7 +16,7 @@ body.bible-page {
         linear-gradient(90deg, rgba(255, 43, 214, 0.07) 2px, transparent 2px),
         #09000f;
     background-size: auto, auto, 28px 28px, 28px 28px, auto;
-    background-attachment: fixed;
+    background-attachment: scroll;
 }
 
 body.bible-page::before {
@@ -626,5 +626,40 @@ body.bible-fallback-fullscreen {
     .bible-loading-bar span {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
+    }
+}
+
+/* Arcade CRT 2.0 bible viewer polish */
+.infinity-window,
+.bible-file-icon,
+#pdfCanvas {
+    box-shadow: var(--crt-shadow-hard), 0 0 18px rgba(139, 77, 255, 0.28);
+}
+
+.bible-viewer-controls button,
+.bible-viewer-controls a,
+.infinity-action-button {
+    min-height: 44px;
+    touch-action: manipulation;
+}
+
+@media (max-width: 620px) {
+    body.bible-page::before {
+        background-size: 100% 6px;
+        opacity: 0.72;
+    }
+
+    .infinity-window::after,
+    .bible-loading-mark span {
+        animation: none !important;
+    }
+
+    .infinity-action-button:hover,
+    .infinity-action-button:focus-visible,
+    .bible-viewer-controls button:hover,
+    .bible-viewer-controls button:focus-visible,
+    .bible-viewer-controls a:hover,
+    .bible-viewer-controls a:focus-visible {
+        transform: none;
     }
 }

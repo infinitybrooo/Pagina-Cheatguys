@@ -629,3 +629,23 @@
     .start-intro-sprite { transform: translate(-50%, -50%); }
     .start-intro-sprites.is-disintegrating { opacity: 0.72; }
 }
+
+/* AkaneBook solid chrome: keep VN windows away from pink/cyan title gradients. */
+.start-intro-header {
+    color: #ffffff;
+    background: #4c001b;
+    border-bottom: 3px solid #ff0044;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.start-intro-vn-screen.is-bsod .start-intro-header {
+    background: #00336f;
+    border-bottom-color: #8fc9ff;
+}
+
+.start-intro-confirm-titlebar {
+    color: #ffffff;
+    background: #4c001b;
+    border-bottom-color: #ff0044;
+    text-shadow: 2px 2px 0 #000;
+}

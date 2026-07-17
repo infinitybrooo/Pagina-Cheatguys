@@ -7,9 +7,9 @@
     <title>CheatGuys! - Multiplayer Lobby</title>
     <link rel="icon" type="image/png" href="assets/branding/favicon.webp">
     <link rel="stylesheet" href="css/fonts.css?v=ea679c4af9d0">
-    <link rel="stylesheet" href="css/style.css?v=93b205550f14">
-    <link rel="stylesheet" href="css/start-intro-novel.css?v=3408b48585ea">
-    <link rel="stylesheet" href="css/galeria.css?v=d312ba57b397">
+    <link rel="stylesheet" href="css/style.css?v=830e3724544d">
+    <link rel="stylesheet" href="css/start-intro-novel.css?v=6dd48facbdf5">
+    <link rel="stylesheet" href="css/galeria.css?v=8acee4a488e6">
 
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website">
@@ -112,7 +112,7 @@
             </div>
         </section>
         <section class="start-title-panel" aria-label="Inicio del videojuego">
-            <video class="start-bg-video" src="assets/start-window/loop-fondo-clean.mp4" autoplay muted loop playsinline preload="auto"></video>
+            <video class="start-bg-video" src="assets/start-window/loop-fondo-clean.mp4" autoplay muted loop playsinline preload="metadata" poster="assets/branding/mobile/logo-cheatguys.webp"></video>
             <div class="start-title-content">
                 <div class="start-window-titlebar" aria-hidden="true">
                     <span>CHEATGUYS_START.EXE</span>
@@ -211,10 +211,15 @@
             </a>
         </div>
         <p class="subtitle">Infinity Brothers Studio</p>
+        <div class="akane-os-statusbar animate-in delay-2" aria-hidden="true">
+            <span>AKANEBOOK_OS // GARAGE_SESSION</span>
+            <span>BAT: 03%</span>
+            <span>WIFI: NEON_TENO</span>
+        </div>
 
         <div class="home-hero-split">
             <button class="bottom-art-container animate-in delay-2" type="button" data-cg-secret-trigger aria-label="Revisar poster secreto de CheatGuys">
-                <img loading="lazy" src="assets/characters/mobile/lineup-team.webp" alt="CheatGuys Team" class="bottom-art" decoding="async">
+                <img loading="eager" fetchpriority="high" src="assets/characters/mobile/lineup-team.webp" alt="CheatGuys Team" class="bottom-art" decoding="async">
                 <span class="bottom-art-tag">SECRET_GARAGE_ARCHIVES.WEBP</span>
             </button>
 
@@ -222,6 +227,13 @@
                 <h1>ALERTA_DE_INTRUSO // NÚCLEO_CREATIVO <span class="cursor-blink">█</span></h1>
                 <p>Entraste al garaje operativo de CheatGuys!: 0 perfección, +100 emoción. Elige personaje para abrir sus fichas, revisa stickers, música y archivos prohibidos, o toca el póster si quieres que Akane pierda tres puntos de estabilidad social.</p>
             </section>
+
+            <div class="akane-chaos-notes" aria-hidden="true">
+                <span class="akane-note note-purple">NO_BORRAR_FINAL_v17</span>
+                <span class="akane-note note-pink">MOMO_STICKER_LAYER</span>
+                <span class="akane-note note-orange">RIKA_SUBIO_VOL_200%</span>
+                <span class="akane-note note-blue">JUN_BACKUP_OK</span>
+            </div>
         </div>
 
         <section class="character-arcade-frame animate-in delay-4" aria-label="Seleccion de personaje">
@@ -240,9 +252,21 @@
             <a href="#merchant" class="quick-scroll-btn">[ SHOP ]</a>
             <a href="#sound-test" class="quick-scroll-btn">[ SOUND ]</a>
         </nav>
+
+        <div class="akane-terminal-card animate-in delay-6" aria-hidden="true">
+            <div class="akane-terminal-title">CRASH_NOTES.TXT</div>
+            <p>00:13 // Akane renombro el archivo otra vez.</p>
+            <p>00:17 // Rika dijo que no era bug si sonaba bien.</p>
+            <p>00:21 // Mitsuki detecto cafe insuficiente.</p>
+        </div>
     </div>
 
     <div class="links-container">
+        <div class="links-note links-note-top animate-in delay-1" role="note" aria-label="Nota de sistema de Akane">
+            <span>AKANE_NOTE_07</span>
+            <strong>Ordené los cajones en una sola pila. Si algo se ve estable, fue accidente controlado.</strong>
+        </div>
+
         <div id="system-files" class="menu-box box-main animate-in delay-2">
             <div class="section-title">SYSTEM_FILES <span class="cursor-blink">█</span></div>
             <a href="biblia-produccion.html" class="link-btn btn-pitch"><img loading="lazy" src="assets/social/pitch.webp" class="icon-img" alt="Pitch" decoding="async"><div class="text-container"><span class="btn-title">Official Pitch Bible</span><span class="btn-subtitle">READ_PRODUCTION_DECK.EXE</span></div></a>
@@ -261,6 +285,11 @@
             <a href="#" class="link-btn btn-patreon"><span class="icon">🧡</span><div class="text-container"><span class="btn-title">Patreon Guild</span><span class="btn-subtitle">COMING_SOON.EXE</span></div></a>
             <a href="https://buymeacoffee.com/infinitybrooo" target="_blank" rel="noopener noreferrer" class="link-btn btn-kofi"><img loading="lazy" src="assets/social/Buy-Coffee.webp" class="icon-img" alt="Coffee" decoding="async"><div class="text-container"><span class="btn-title">Mitsuki's Coffee</span><span class="btn-subtitle">BUY_HER_A_COFFEE_FOR_THE_TEACHER</span></div></a>
             <a href="https://www.paypal.me/infinitybrooo" target="_blank" rel="noopener noreferrer" class="link-btn btn-paypal"><img loading="lazy" src="assets/social/Paypal.webp" class="icon-img" alt="PayPal" decoding="async"><div class="text-container"><span class="btn-title">PayPal Donations</span><span class="btn-subtitle">SUPPORT_INDIE_ANIMATION</span></div></a>
+        </div>
+
+        <div class="links-note links-note-mid animate-in delay-4" role="note" aria-label="Nota de mantenimiento del lobby">
+            <span>GARAGE_MARGIN_FIX</span>
+            <strong>Rika pidió más volumen. Yo solo aumenté el ancho para que no se caiga el piso visual.</strong>
         </div>
 
         <div id="sound-test" class="menu-box box-music animate-in delay-5">
@@ -292,6 +321,15 @@
             <a href="mailto:infinitybrooothers@outlook.com" class="link-btn btn-mail"><img loading="lazy" src="assets/icons/mail-icon.png" class="icon-img" alt="Mail" decoding="async"><div class="text-container"><span class="btn-title">Send System Mail</span><span class="btn-subtitle">infinitybrooothers@outlook.com</span></div></a>
             <a href="https://wa.me/qr/U2HZ5TMRR4I4G1" target="_blank" rel="noopener noreferrer" class="link-btn btn-whatsapp"><img loading="lazy" src="assets/social/whatsapp.webp" class="icon-img" alt="WhatsApp" decoding="async"><div class="text-container"><span class="btn-title">WhatsApp Business</span><span class="btn-subtitle">DIRECT_CHAT_WITH_STUDIO</span></div></a>
         </div>
+
+        <div class="links-note links-note-bottom animate-in delay-6" role="note" aria-label="Nota secreta del footer">
+            <span>FOOTER_RECOVERY_RULE</span>
+            <strong>El botón de recuperación ahora olvida cookies e intro. Mitsuki dijo que eso cuenta como mantenimiento.</strong>
+        </div>
+    </div>
+
+    <div class="x-feed-mobile-launch animate-in delay-6">
+        <button type="button" class="btn-preview-mixer x-feed-launch-btn" data-cg-x-feed-open aria-label="Ver publicaciones recientes de X">[ OPEN_X_FEED ]</button>
     </div>
 
     <section id="mixerWindow" class="mixer-window" role="dialog" aria-modal="false" aria-labelledby="mixerWindowTitle" aria-hidden="true" hidden>
@@ -326,7 +364,7 @@
         <footer class="mixer-footer">PREVIEW PROVIDED COURTESY OF ITUNES // STREAM_ONLY</footer>
     </section>
 
-    <aside id="xFeedWindow" class="x-feed-window" role="dialog" aria-modal="false" aria-labelledby="xFeedWindowTitle" aria-hidden="false">
+    <aside id="xFeedWindow" class="x-feed-window" role="dialog" aria-modal="false" aria-labelledby="xFeedWindowTitle" aria-hidden="true">
         <header class="x-feed-titlebar">
             <span id="xFeedWindowTitle">INFINITY OS // X_FEED</span>
             <button type="button" class="mixer-close x-feed-close" data-cg-x-feed-close aria-label="Cerrar publicaciones de X">[X]</button>
@@ -345,10 +383,6 @@
         </div>
         <footer class="mixer-footer" data-cg-x-feed-updated>X/TWITTER SIGNAL // MANUAL_SYNC</footer>
     </aside>
-
-    <div class="x-feed-mobile-launch animate-in delay-6">
-        <button type="button" class="btn-preview-mixer x-feed-launch-btn" data-cg-x-feed-open aria-label="Ver publicaciones recientes de X">[ OPEN_X_FEED ]</button>
-    </div>
 
     <aside id="cookieNotice" class="cookie-notice-window" role="dialog" aria-modal="false" aria-labelledby="cookieNoticeTitle" aria-describedby="cookieNoticeText" aria-hidden="true" hidden tabindex="-1">
         <header class="cookie-notice-header">
@@ -412,6 +446,21 @@
         <div class="modal-box" onclick="event.stopPropagation()">
             <div class="modal-header"><h2 class="modal-title" style="color: #ffaaac;">SECRET_ARCHIVES_MENU <span class="cursor-blink">█</span></h2><button class="close-btn" onclick="closeSecretModal()">[X]</button></div>
             <div class="secret-body">
+                <div class="secret-folder-view" id="secretFolderView">
+                    <div class="secret-explorer-sidebar" aria-hidden="true">
+                        <strong>FILE_AND_FOLDER_TASKS</strong>
+                        <span>OPEN_SELECTED_FOLDER</span>
+                        <span>SCAN_HIDDEN_IMAGES</span>
+                        <strong>OTHER_PLACES</strong>
+                        <span>AKANEBOOK_OS</span>
+                        <span>GARAGE_SESSION</span>
+                    </div>
+                    <button type="button" class="secret-folder-card" data-cg-secret-folder-open aria-label="Abrir carpeta SECRET_GARAGE_ARCHIVES">
+                        <span class="secret-folder-icon" aria-hidden="true"></span>
+                        <span class="secret-folder-name">SECRET_GARAGE_ARCHIVES</span>
+                        <span class="secret-folder-meta">CLASSIFIED_IMG_CACHE // CLICK_TO_OPEN</span>
+                    </button>
+                </div>
                 <div class="file-list" id="secretFileList"></div>
                 <div class="secret-viewer" id="secretViewer"><div class="secret-viewer-header"><button class="btn-back" data-cg-secret-back>[ < VOLVER_A_LISTA ]</button></div>
                 <img loading="lazy" id="secretViewerImg" src="" class="secret-img-large glitch-effect" decoding="async"><div class="secret-lore-text" id="secretViewerDesc"></div></div>
@@ -454,16 +503,16 @@
     <!-- =========================================
          SISTEMA LÓGICO UNIFICADO (JAVASCRIPT)
          ========================================= -->
-    <script src="js/cg-config.js?v=2bf522c52973"></script>
+    <script src="js/cg-config.js?v=39fe63901730"></script>
     <script src="js/cg-diagnostics.js?v=dc102595914c"></script>
     <script src="js/audio-global.js?v=2a0805216008"></script>
     <script src="js/ui-global.js?v=11fa6703ae2b"></script>
-    <script src="js/i18n.js?v=6888861f1640"></script>
-    <script src="js/start-intro-novel.js?v=b17d46999dae"></script>
+    <script src="js/i18n.js?v=b62379d9b178"></script>
+    <script src="js/start-intro-novel.js?v=76b1cc09a2b4"></script>
     <script src="js/lobby-start.js?v=109ce590c12d"></script>
-    <script src="js/cookie-notice.js?v=119664c2d59b"></script>
+    <script src="js/cookie-notice.js?v=f7f769a14673"></script>
     <script src="js/lobby-data.js?v=7baff8eb7a55"></script>
-    <script src="js/lobby-logic.js?v=9922b374cc0e"></script>
+    <script src="js/lobby-logic.js?v=cc84b98ed6cd"></script>
     <script src="js/mitsuki-secret.js?v=e68e18a49ce5"></script>
     <script>
         (() => {

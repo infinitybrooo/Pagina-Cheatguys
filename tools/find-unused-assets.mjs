@@ -10,6 +10,7 @@ const assetExtensions = new Set([".png", ".jpg", ".jpeg", ".webp", ".avif", ".sv
 const ignoredDirs = new Set(["node_modules", ".git", "trash", "test-results", "playwright-report"]);
 const sourceText = [];
 const assets = [];
+const dynamicAssetReferences = [];
 
 function walk(dir, visitor) {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
@@ -34,7 +35,21 @@ walk(root, (absolute) => {
     }
 });
 
-const haystack = sourceText.join("\n");
+for (const character of ["akane", "rika", "momo", "jun"]) {
+    for (const [category, prefix, numbers] of [
+        ["clothes", "Clothes", character === "akane" ? [1, 2, 3, 4, 5, 6] : character === "jun" ? [1, 2, 3, 4] : [1, 2, 3, 4, 5]],
+        ["thurn", "Thurn", character === "momo" || character === "akane" ? [1, 2, 3, 4] : [1, 2, 3]],
+        ["sketch", "Sketch", character === "akane" ? [1, 2, 3, 4, 5, 7] : [1, 2, 3, 4, 5]]
+    ]) {
+        void category;
+        for (const number of numbers) {
+            dynamicAssetReferences.push(`assets/images/gallery/${character}/${prefix}-${character}-${number}.webp`);
+            dynamicAssetReferences.push(`assets/images/gallery/${character}/thumbs/${prefix}-${character}-${number}.webp`);
+        }
+    }
+}
+
+const haystack = [...sourceText, ...dynamicAssetReferences].join("\n");
 const candidates = assets.filter((asset) => {
     const basename = asset.split("/").pop();
     return !haystack.includes(asset) && !haystack.includes(basename);

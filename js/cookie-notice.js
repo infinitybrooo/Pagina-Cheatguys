@@ -5,7 +5,8 @@
     "use strict";
 
     const CONFIG = window.CG_CONFIG || {};
-    const STORAGE_KEY = CONFIG.storageKeys?.cookieNoticeSeen || "cheatguys.cookieNoticeSeen.v1";
+    const STORAGE_KEY = CONFIG.cookieNotice?.storageKey || CONFIG.storageKeys?.cookieNoticeSeen || "cheatguys.cookieNoticeSeen.v1";
+    const SEEN_DURATION_MS = CONFIG.cookieNotice?.seenDurationMs || CONFIG.startIntro?.seenDurationMs || 48 * 60 * 60 * 1000;
     const MAX_WAIT_MS = 45000;
 
     let shown = false;
@@ -13,17 +14,35 @@
     let timeoutId = null;
     let lastFocus = null;
 
-    function hasSeenNotice() {
+    function safeReadTimestamp() {
         try {
-            return window.localStorage.getItem(STORAGE_KEY) === "1";
+            const value = window.localStorage.getItem(STORAGE_KEY);
+            if (value === "1") {
+                const migrated = Date.now();
+                window.localStorage.setItem(STORAGE_KEY, String(migrated));
+                return migrated;
+            }
+            const timestamp = Number(value);
+            return Number.isFinite(timestamp) && timestamp > 0 ? timestamp : null;
         } catch (_) {
-            return false;
+            return null;
         }
+    }
+
+    function shouldShowNotice() {
+        const timestamp = safeReadTimestamp();
+        if (!timestamp) return true;
+        const elapsed = Date.now() - timestamp;
+        return elapsed < 0 || elapsed >= SEEN_DURATION_MS;
+    }
+
+    function hasRecentNotice() {
+        return !shouldShowNotice();
     }
 
     function rememberNotice() {
         try {
-            window.localStorage.setItem(STORAGE_KEY, "1");
+            window.localStorage.setItem(STORAGE_KEY, String(Date.now()));
         } catch (_) {
             // El aviso sigue siendo descartable aunque localStorage este bloqueado.
         }
@@ -65,7 +84,7 @@
 
     function showNotice() {
         const { windowEl, closeButton } = getElements();
-        if (!windowEl || shown || hasSeenNotice()) return;
+        if (!windowEl || shown || hasRecentNotice()) return;
 
         shown = true;
         cleanupWaiters();
@@ -95,7 +114,7 @@
     }
 
     function maybeShowNotice() {
-        if (shown || hasSeenNotice()) {
+        if (shown || hasRecentNotice()) {
             cleanupWaiters();
             return;
         }
@@ -106,7 +125,7 @@
     }
 
     function waitForLobby() {
-        if (hasSeenNotice()) return;
+        if (hasRecentNotice()) return;
 
         maybeShowNotice();
         if (shown) return;
@@ -150,6 +169,8 @@
                 // Solo es una ayuda para pruebas locales.
             }
         },
-        storageKey: STORAGE_KEY
+        shouldShow: shouldShowNotice,
+        storageKey: STORAGE_KEY,
+        seenDurationMs: SEEN_DURATION_MS
     });
 })();

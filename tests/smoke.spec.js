@@ -123,6 +123,8 @@ test("fichas de personajes y archivos secretos abren y cierran con Escape", asyn
         await secretTrigger.click();
     }
     await expect(page.locator("#secretModal")).toHaveAttribute("aria-hidden", "false");
+    await expect(page.locator("[data-cg-secret-folder-open]")).toBeVisible();
+    await page.locator("[data-cg-secret-folder-open]").click();
     await expect(page.locator("#secretFileList .file-item").first()).toBeVisible();
     await page.locator("#secretFileList .file-item").first().click();
     await expect(page.locator("#secretViewer")).toBeVisible();
@@ -167,9 +169,25 @@ test("aviso falso de cookies aparece al llegar al lobby y descarga el poster", a
     const download = await downloadPromise;
     expect(download.suggestedFilename()).toBe("CheatGuys_poster_firmado.png");
     await expect(page.locator("#cookieNotice")).toBeHidden();
+    await expect.poll(() => page.evaluate(() => Number(window.localStorage.getItem("cheatguys.cookieNoticeSeen.v1")))).toBeGreaterThan(0);
 
     await page.reload();
     await expect(page.locator("#cookieNotice")).toBeHidden();
+
+    await page.evaluate(() => {
+        window.localStorage.setItem("cheatguys.cookieNoticeSeen.v1", String(Date.now() - (49 * 60 * 60 * 1000)));
+    });
+    await page.reload();
+    await expect(page.locator("#cookieNotice")).toHaveAttribute("aria-hidden", "false");
+    await page.locator("[data-cg-cookie-close]").click();
+    await expect(page.locator("#cookieNotice")).toBeHidden();
+
+    await page.evaluate(() => {
+        window.localStorage.setItem("cheatguys.cookieNoticeSeen.v1", "1");
+    });
+    await page.reload();
+    await expect(page.locator("#cookieNotice")).toBeHidden();
+    await expect.poll(() => page.evaluate(() => window.localStorage.getItem("cheatguys.cookieNoticeSeen.v1"))).not.toBe("1");
 });
 
 test("la novela de Mitsuki sigue independiente despues del nuevo inicio", async ({ page }) => {

@@ -4,7 +4,7 @@
 
 :root {
     --neon-cyan: #00FFFF;
-    --neon-magenta: #FF69B4;
+    --neon-magenta: #FF3DF2;
     --gallery-bg: #05000a;
     --panel-bg: rgba(10, 5, 20, 0.92);
     --sidebar-width-open: 250px;
@@ -407,7 +407,7 @@ body.gallery-page {
         linear-gradient(90deg, rgba(138, 43, 226, 0.15) 3px, transparent 3px),
         linear-gradient(to bottom, #05000a 0%, #05000a 22%, #0e001c 22%, #0e001c 44%, #17002e 44%, #17002e 66%, #1f0040 66%, #1f0040 100%);
     background-size: 24px 24px, 24px 24px, 100% 100%;
-    background-attachment: fixed;
+    background-attachment: scroll;
 }
 
 body.gallery-page[data-character="akane"] {
@@ -2108,6 +2108,120 @@ body.gallery-modal-open {
     max-width: calc(1240px - var(--sidebar-width-open));
 }
 
+/* =========================================
+   AKANEBOOK FILE EXPLORER - shared sidebar overdrive
+   ========================================= */
+
+.cg-sidebar {
+    border-right-width: 4px;
+    background:
+        radial-gradient(circle at 8% 7%, rgba(255, 43, 214, 0.26), transparent 22%),
+        radial-gradient(circle at 95% 32%, rgba(139, 77, 255, 0.22), transparent 30%),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 7px),
+        linear-gradient(rgba(var(--sidebar-purple-rgb),0.08) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(var(--sidebar-magenta-rgb),0.06) 2px, transparent 2px),
+        #06050e;
+    background-size: auto, auto, auto, 22px 22px, 22px 22px, auto;
+}
+
+.cg-sidebar-header {
+    padding-top: 8px;
+}
+
+.cg-sidebar-header::before {
+    content: "AKANEBOOK_NAV";
+    transform: rotate(-1deg);
+}
+
+.cg-sidebar-header::after {
+    content: "C:/Users/Akane/Desktop/CheatGuys";
+    display: block;
+    width: calc(100% - 8px);
+    margin: 10px auto 0;
+    padding: 5px 7px;
+    overflow: hidden;
+    color: var(--neon-lime, #8bffdc);
+    background: rgba(0, 0, 0, 0.54);
+    border: 2px dashed rgba(139, 255, 220, 0.36);
+    box-shadow: inset 0 0 12px rgba(139, 255, 220, 0.08);
+    font-family: var(--font-terminal);
+    font-size: 16px;
+    line-height: 1;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cg-sidebar-link {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.cg-sidebar-link::before {
+    content: "";
+    position: absolute;
+    inset: 5px auto 5px 5px;
+    width: 3px;
+    background: linear-gradient(var(--neon-magenta), var(--neon-cyan));
+    opacity: 0.45;
+    box-shadow: 0 0 10px rgba(var(--sidebar-magenta-rgb), 0.42);
+}
+
+.cg-sidebar-label::before {
+    content: "FILE_0" counter(nav-file) ".EXE";
+    display: block;
+    margin-bottom: 2px;
+    color: var(--neon-lime, #8bffdc);
+    font-family: var(--font-terminal);
+    font-size: 12px;
+    line-height: 1;
+    opacity: 0.78;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.cg-sidebar {
+    counter-reset: nav-file;
+}
+
+.cg-sidebar-link {
+    counter-increment: nav-file;
+}
+
+.cg-sidebar-link:hover .cg-sidebar-label::before,
+.cg-sidebar-link.active .cg-sidebar-label::before {
+    color: #05000a;
+    text-shadow: none;
+}
+
+.cg-sidebar-audio {
+    position: relative;
+}
+
+.cg-sidebar-audio::after {
+    content: "AUDIO_DRIVER // unstable but charming";
+    grid-column: 1 / -1;
+    color: rgba(255, 255, 255, 0.72);
+    font-family: var(--font-terminal);
+    font-size: 13px;
+    line-height: 1;
+}
+
+@media (max-width: 520px), (max-height: 820px) {
+    .cg-sidebar-header::after {
+        margin-top: 7px;
+        font-size: 13px;
+    }
+
+    .cg-sidebar-label::before {
+        font-size: 10px;
+    }
+
+    .cg-sidebar-audio::after {
+        font-size: 11px;
+    }
+}
+
 /* Consola principal */
 .gallery-header {
     width: min(100%, 1080px);
@@ -3291,4 +3405,100 @@ body.gallery-modal-open {
     .gallery-file-card.is-active:hover {
         transform: translate(-50%, -50%) translateZ(70px);
     }
+}
+
+/* Arcade CRT 2.0 gallery performance overrides */
+body.gallery-page {
+    background-image:
+        radial-gradient(circle at 50% -12%, rgba(255, 61, 242, 0.14), transparent 31rem),
+        radial-gradient(circle at 12% 18%, rgba(0, 255, 255, 0.08), transparent 22rem),
+        linear-gradient(rgba(138, 43, 226, 0.12) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(138, 43, 226, 0.11) 2px, transparent 2px),
+        linear-gradient(to bottom, #05000a 0%, #0d0019 48%, #15002b 100%);
+    background-size: auto, auto, 24px 24px, 24px 24px, auto;
+}
+
+.gallery-modal,
+.info-image-modal {
+    backdrop-filter: none;
+}
+
+.carousel-window,
+.gallery-file-card,
+.gallery-modal-box,
+.archive-console,
+.carousel-section {
+    box-shadow: var(--crt-shadow-hard), 0 0 18px var(--character-shadow);
+}
+
+@media (max-width: 620px) {
+    body.gallery-page::before {
+        opacity: 0.09;
+    }
+
+    body.gallery-page::after {
+        background-size: 100% 6px;
+        opacity: 0.72;
+    }
+
+    .carousel-window::before {
+        display: none;
+    }
+
+    .gallery-file-card {
+        transition-duration: 0.28s;
+        will-change: auto;
+    }
+
+    .gallery-file-preview img {
+        transition: opacity 0.12s ease;
+    }
+}
+
+/* AkaneBook solid chrome for gallery windows. */
+.gallery-header,
+.archive-console,
+.carousel-section,
+.carousel-window,
+.gallery-modal-box {
+    border-radius: 5px;
+}
+
+.gallery-kicker {
+    color: #ffffff;
+    background: #5b22b8;
+    border-color: #ffffff;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.archive-console-title,
+.carousel-module-header,
+.gallery-modal-header {
+    color: #ffffff;
+    background: #5b22b8;
+    background-image: none;
+    border-bottom-color: rgba(255, 255, 255, 0.9);
+    text-shadow: 2px 2px 0 #000;
+}
+
+.category-clothes .carousel-module-header {
+    background: #5b22b8;
+}
+
+.category-thurn .carousel-module-header {
+    background: #9a3900;
+}
+
+.category-sketch .carousel-module-header {
+    background: #8f2367;
+}
+
+.gallery-modal-header {
+    background: #102b36;
+    border-bottom-color: var(--neon-cyan);
+}
+
+.gallery-modal-context {
+    background: rgba(0, 0, 0, 0.58);
+    border-bottom-color: rgba(255, 255, 255, 0.2);
 }

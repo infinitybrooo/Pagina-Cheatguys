@@ -32,7 +32,7 @@ body.cheatguys-info-page {
         linear-gradient(90deg, rgba(138, 43, 226, 0.14) 3px, transparent 3px),
         linear-gradient(to bottom, #05000a 0%, #0e001c 38%, #180033 70%, #05000a 100%);
     background-size: auto, auto, 24px 24px, 24px 24px, auto;
-    background-attachment: fixed;
+    background-attachment: scroll;
 }
 
 body.cheatguys-info-page::before {
@@ -1684,5 +1684,56 @@ body.laptop-program-lock {
     .info-image-card::after {
         animation: none !important;
         transform: none;
+    }
+}
+
+/* Arcade CRT 2.0 info-page performance pass */
+body.cheatguys-info-page::before {
+    background-image:
+        linear-gradient(to bottom, rgba(5,0,10,0.08), rgba(5,0,10,0.44)),
+        url('../assets/backgrounds/fondo-akane.webp');
+}
+
+.info-image-modal {
+    backdrop-filter: none;
+}
+
+.info-copy-card,
+.info-feature-card,
+.info-chaos-copy,
+.info-final-copy,
+.info-image-card,
+.pixel-laptop {
+    box-shadow: var(--crt-shadow-hard), 0 0 18px rgba(0, 255, 255, 0.18);
+}
+
+@media (max-width: 620px) {
+    body.cheatguys-info-page::before {
+        opacity: 0.08;
+        background-image:
+            linear-gradient(to bottom, rgba(5,0,10,0.08), rgba(5,0,10,0.5)),
+            url('../assets/backgrounds/mobile/fondo-akane.webp');
+    }
+
+    body.cheatguys-info-page::after {
+        background-size: 100% 6px;
+        opacity: 0.72;
+    }
+
+    .info-image-card::after,
+    .laptop-screen::after,
+    .laptop-mini-eq span {
+        animation: none !important;
+    }
+
+    .info-feature-card:hover,
+    .info-btn:hover,
+    .laptop-app-icon:hover,
+    .laptop-app-icon:focus-visible {
+        transform: none;
+    }
+
+    .pixel-laptop {
+        filter: drop-shadow(7px 9px 0 rgba(0, 0, 0, 0.58));
     }
 }

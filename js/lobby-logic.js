@@ -695,15 +695,6 @@ Bomba Estéreo - Fuego
             const elements = getXFeedElements();
             if (!elements.window) return;
 
-            const mobile = isXFeedMobileMode();
-            if (!mobile) {
-                elements.window.classList.remove("is-open");
-                elements.window.setAttribute("aria-hidden", "false");
-                elements.window.inert = false;
-                window.setTimeout(loadXFeedPosts, 900);
-                return;
-            }
-
             const isOpen = elements.window.classList.contains("is-open");
             elements.window.setAttribute("aria-hidden", String(!isOpen));
             elements.window.inert = !isOpen;
@@ -716,7 +707,7 @@ Bomba Estéreo - Fuego
             xFeedState.lastTrigger = document.activeElement;
             loadXFeedPosts();
 
-            if (window.CGOverlay && isXFeedMobileMode()) {
+            if (window.CGOverlay) {
                 window.CGOverlay.open("xFeedWindow", {
                     mode: "class",
                     openClass: "is-open",
@@ -735,7 +726,7 @@ Bomba Estéreo - Fuego
 
         function closeXFeedWindow() {
             const elements = getXFeedElements();
-            if (!elements.window || !isXFeedMobileMode()) return;
+            if (!elements.window) return;
 
             if (window.CGOverlay) {
                 window.CGOverlay.close("xFeedWindow", { returnFocus: xFeedState.lastTrigger });
@@ -799,6 +790,10 @@ Bomba Estéreo - Fuego
             document.querySelectorAll("[data-cg-secret-back]").forEach((button) => {
                 button.addEventListener("click", backToSecretList);
             });
+
+            document.querySelectorAll("[data-cg-secret-folder-open]").forEach((button) => {
+                button.addEventListener("click", openSecretFolder);
+            });
         }
 
         // --- FUNCIÓN GLOBAL DE PANTALLA DE CARGA ---
@@ -828,6 +823,7 @@ Bomba Estéreo - Fuego
                 document.getElementById('modalRole').innerText = data.role;
                 document.getElementById('modalDesc').innerHTML = data.desc;
                 document.getElementById('modalHeader').style.borderBottomColor = data.color;
+                document.getElementById('modalHeader').style.setProperty('background-color', data.color);
                 document.getElementById('modalImg').src = getResponsiveAssetUrl(data.imgUrl);
                 applyActiveLanguage(document.getElementById('charModal'));
                 if (window.CGOverlay) {
@@ -883,19 +879,54 @@ Bomba Estéreo - Fuego
 
         const secretData = window.CGLobbyData?.secrets || [];
 
+        function setSecretArchiveState(state) {
+            const folder = document.getElementById('secretFolderView');
+            const list = document.getElementById('secretFileList');
+            const viewer = document.getElementById('secretViewer');
+
+            if (folder) folder.style.display = state === 'folder' ? 'grid' : 'none';
+            if (list) list.style.display = state === 'list' ? 'grid' : 'none';
+            if (viewer) viewer.style.display = state === 'viewer' ? 'flex' : 'none';
+        }
+
+        function openSecretFolder() {
+            setSecretArchiveState('list');
+            applyActiveLanguage(document.getElementById('secretModal'));
+        }
+
         function iniciarSecuenciaArchivosSecretos() {
             showLoadingScreen(() => {
                 AudioManager.playBg('bgMusicSecret');
                 const list = document.getElementById('secretFileList'); list.innerHTML = '';
                 secretData.forEach((file, index) => {
-                    const item = document.createElement('div');
+                    const item = document.createElement('button');
                     item.className = 'file-item';
+                    item.type = 'button';
+                    item.setAttribute('aria-label', `Abrir archivo secreto ${file.name}`);
                     item.addEventListener("click", () => viewSecretFile(index));
-                    item.innerHTML = `<span class="file-icon">IMG</span><span class="file-name">${file.name}</span>`;
+
+                    const thumbShell = document.createElement('span');
+                    thumbShell.className = 'file-thumb-shell';
+
+                    const photoIcon = document.createElement('span');
+                    photoIcon.className = 'file-photo-icon';
+                    photoIcon.setAttribute('aria-hidden', 'true');
+                    thumbShell.appendChild(photoIcon);
+
+                    const meta = document.createElement('span');
+                    meta.className = 'file-meta';
+                    const icon = document.createElement('span');
+                    icon.className = 'file-icon';
+                    icon.textContent = `PHOTO_${String(file.id).padStart(2, '0')}`;
+                    const name = document.createElement('span');
+                    name.className = 'file-name';
+                    name.textContent = file.name;
+                    meta.append(icon, name);
+
+                    item.append(thumbShell, meta);
                     list.appendChild(item);
                 });
-                document.getElementById('secretFileList').style.display = 'flex'; 
-                document.getElementById('secretViewer').style.display = 'none';
+                setSecretArchiveState('folder');
                 applyActiveLanguage(document.getElementById('secretModal'));
                 if (window.CGOverlay) {
                     window.CGOverlay.open("secretModal", {
@@ -924,5 +955,14 @@ Bomba Estéreo - Fuego
             }
             AudioManager.resumeLobby();
         }
-        function viewSecretFile(i) { const data = secretData[i]; document.getElementById('secretFileList').style.display = 'none'; document.getElementById('secretViewerImg').src = getResponsiveAssetUrl(data.url); document.getElementById('secretViewerDesc').innerHTML = data.desc; document.getElementById('secretViewer').style.display = 'flex'; applyActiveLanguage(document.getElementById('secretViewer')); }
-        function backToSecretList() { document.getElementById('secretViewer').style.display = 'none'; document.getElementById('secretFileList').style.display = 'flex'; applyActiveLanguage(document.getElementById('secretModal')); }
+        function viewSecretFile(i) {
+            const data = secretData[i];
+            setSecretArchiveState('viewer');
+            document.getElementById('secretViewerImg').src = getResponsiveAssetUrl(data.url);
+            document.getElementById('secretViewerDesc').innerHTML = data.desc;
+            applyActiveLanguage(document.getElementById('secretViewer'));
+        }
+        function backToSecretList() {
+            setSecretArchiveState('list');
+            applyActiveLanguage(document.getElementById('secretModal'));
+        }
