@@ -7,7 +7,6 @@ export default [
       "node_modules/**",
       "docs/**",
       "assets/**",
-      "js/vendor/**",
       "**/*.sprites-backup-*.js"
     ]
   },
