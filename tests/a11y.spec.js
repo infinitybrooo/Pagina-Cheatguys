@@ -42,3 +42,11 @@ test("minijuego selector no tiene violaciones axe serias", async ({ page }) => {
     await expect(page.locator("#arcadeStartScreen")).toHaveClass(/active/);
     await expectNoSeriousViolations(page, "minijuego selector");
 });
+
+test("PERSONALITY_MATCH abierto no tiene violaciones axe serias", async ({ page }) => {
+    await preparePage(page);
+    await page.goto("/que-es-cheatguys.html");
+    await page.locator("#personalityMatchStart").click();
+    await expect(page.locator("#personalityMatchModal")).toHaveAttribute("aria-hidden", "false");
+    await expectNoSeriousViolations(page, "personality match modal");
+});

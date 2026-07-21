@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/variables.css?v=0138b1cb7168">
     <link rel="stylesheet" href="css/galeria.css?v=884bf782506f">
     <link rel="stylesheet" href="css/que-es-cheatguys.css?v=15a5d3963b8b">
+    <link rel="stylesheet" href="css/personality-match.css?v=934e44a9b819">
 </head>
 <body class="notranslate cheatguys-info-page">
 
@@ -199,6 +200,20 @@
             </article>
         </section>
 
+        <section id="personality-match" class="info-section personality-match-launch cg-info-reveal" aria-labelledby="personalityMatchLaunchTitle">
+            <div class="personality-match-launch-copy">
+                <img class="personality-match-launch-logo" src="assets/branding/mobile/logo-cheatguys.webp" alt="CheatGuys!" loading="lazy" decoding="async">
+                <p class="personality-match-system-line">InfinityOS // DIAGNOSTIC_MODULE_07</p>
+                <h2 id="personalityMatchLaunchTitle">PERSONALITY_MATCH.EXE</h2>
+                <p>&iquest;Con qu&eacute; miembro de CheatGuys! compartes build?</p>
+                <button id="personalityMatchStart" class="personality-match-primary-button" type="button">[ INICIAR DIAGN&Oacute;STICO ]</button>
+            </div>
+            <div class="personality-match-launch-hud" aria-hidden="true">
+                <span>AKN</span><span>RIK</span><span>MOM</span><span>JUN</span>
+                <strong>BUILD_SCAN // READY</strong>
+            </div>
+        </section>
+
         <section id="laptop-garage" class="laptop-garage cg-info-reveal" aria-labelledby="laptopGarageTitle" data-mode="desktop">
             <div class="laptop-copy">
                 <p class="info-system-line">InfinityOS // DIRECTORY_06A: AKANEBOOK_REMOTE_CHAT</p>
@@ -324,12 +339,104 @@
         </div>
     </div>
 
+    <div id="personalityMatchModal" class="personality-match-modal" aria-hidden="true" hidden>
+        <div id="personalityMatchDialog" class="personality-match-window" role="dialog" aria-modal="true" aria-labelledby="personalityMatchTitle" aria-describedby="personalityMatchDescription" tabindex="-1">
+            <header class="personality-match-window-header">
+                <img class="personality-match-window-logo" src="assets/branding/mobile/logo-cheatguys.webp" alt="CheatGuys!" loading="lazy" decoding="async">
+                <div>
+                    <span>InfinityOS // PERSONALITY MATCH</span>
+                    <h2 id="personalityMatchTitle">PERSONALITY_MATCH.EXE</h2>
+                </div>
+                <button id="personalityMatchClose" class="personality-match-close" type="button" aria-label="Cerrar test de personalidad">[X]</button>
+            </header>
+
+            <div class="personality-match-window-body">
+                <p id="personalityMatchDescription" class="personality-match-sr-only">Test de personalidad de CheatGuys! con siete preguntas.</p>
+
+                <section id="personalityMatchQuiz" class="personality-match-quiz" aria-label="Preguntas del test de personalidad">
+                    <div class="personality-match-progress-row">
+                        <p id="personalityMatchProgress" class="personality-match-progress" aria-live="polite">PREGUNTA 1 / 7</p>
+                        <div class="personality-match-progress-track" aria-hidden="true"><span id="personalityMatchProgressBar"></span></div>
+                    </div>
+                    <h3 id="personalityMatchQuestion"></h3>
+                    <div id="personalityMatchAnswers" class="personality-match-answers"></div>
+                    <div class="personality-match-quiz-actions">
+                        <button id="personalityMatchBack" class="personality-match-secondary-button" type="button">[ VOLVER ]</button>
+                    </div>
+                </section>
+
+                <section id="personalityMatchResult" class="personality-match-result" aria-label="Resultado del test de personalidad" hidden>
+                    <div class="personality-match-result-hero">
+                        <div class="personality-match-portrait-frame">
+                            <img id="personalityMatchPortrait" alt="" decoding="async">
+                            <div id="personalityMatchPortraitFallback" class="personality-match-portrait-fallback" aria-hidden="true">
+                                <span>CG!</span>
+                            </div>
+                        </div>
+                        <div class="personality-match-result-copy">
+                            <p class="personality-match-result-kicker">TU MATCH PRINCIPAL</p>
+                            <div class="personality-match-result-chip">
+                                <img id="personalityMatchIcon" alt="" decoding="async">
+                                <span id="personalityMatchIconLabel"></span>
+                            </div>
+                            <h3 id="personalityMatchResultTitle"></h3>
+                            <p id="personalityMatchPercent" class="personality-match-percent"></p>
+                            <p id="personalityMatchBuild" class="personality-match-build"></p>
+                            <p id="personalityMatchResultDescription" class="personality-match-description"></p>
+                        </div>
+                    </div>
+
+                    <div class="personality-match-data-grid" aria-label="Datos de build">
+                        <div><span>RASGO PRINCIPAL</span><strong id="personalityMatchTrait"></strong></div>
+                        <div><span>MODO SOCIAL</span><strong id="personalityMatchSocial"></strong></div>
+                        <div><span>BONIFICACI&Oacute;N</span><strong id="personalityMatchBonus"></strong></div>
+                        <div><span>DEBUFF</span><strong id="personalityMatchDebuff"></strong></div>
+                    </div>
+
+                    <blockquote id="personalityMatchCardText" class="personality-match-card-text"></blockquote>
+
+                    <div class="personality-match-compatibility">
+                        <h4>DIAGN&Oacute;STICO DE RASGOS</h4>
+                        <div id="personalityMatchBars" class="personality-match-bars"></div>
+                    </div>
+
+                    <div class="personality-match-result-actions">
+                        <button id="personalityMatchRestart" class="personality-match-secondary-button" type="button">[ REPETIR PRUEBA ]</button>
+                        <button id="personalityMatchDownload" class="personality-match-primary-button" type="button">[ DESCARGAR TARJETA ]</button>
+                    </div>
+
+                    <div class="personality-match-share-panel" aria-labelledby="personalityMatchShareTitle">
+                        <h4 id="personalityMatchShareTitle">COMPARTIR RESULTADO</h4>
+                        <div class="personality-match-share-actions">
+                            <button id="personalityMatchNativeShare" class="personality-match-share-native" type="button">[ COMPARTIR TARJETA ]</button>
+                            <a id="personalityMatchShareWA" href="#" target="_blank" rel="noopener noreferrer" class="personality-match-social-btn">
+                                <img loading="lazy" src="assets/share/icon-share-wa.webp" alt="Compartir resultado en WhatsApp" decoding="async">
+                            </a>
+                            <a id="personalityMatchShareFB" href="#" target="_blank" rel="noopener noreferrer" class="personality-match-social-btn">
+                                <img loading="lazy" src="assets/share/icon-share-fb.webp" alt="Compartir resultado en Facebook" decoding="async">
+                            </a>
+                            <a id="personalityMatchShareX" href="#" target="_blank" rel="noopener noreferrer" class="personality-match-social-btn">
+                                <img loading="lazy" src="assets/share/icon-share-x.webp" alt="Compartir resultado en X" decoding="async">
+                            </a>
+                            <a id="personalityMatchShareDC" href="https://discord.com/channels/@me" target="_blank" rel="noopener noreferrer" class="personality-match-social-btn">
+                                <img loading="lazy" src="assets/share/icon-share-dc.webp" alt="Compartir resultado en Discord" decoding="async">
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <p id="personalityMatchToast" class="personality-match-toast" role="status" aria-live="polite" hidden></p>
+        </div>
+    </div>
+
     <script src="js/cg-config.js?v=7602e507c18a"></script>
     <script src="js/cg-diagnostics.js?v=cb06ac23d491"></script>
     <script src="js/audio-global.js?v=2a0805216008"></script>
     <script src="js/ui-global.js?v=11fa6703ae2b"></script>
-    <script src="js/i18n.js?v=5a838cb5fac6"></script>
+    <script src="js/i18n.js?v=82cf2795c067"></script>
     <script src="js/que-es-cheatguys.js?v=0aad342f0238"></script>
+    <script src="js/vendor/html2canvas.min.js?v=e87e55079432"></script>
+    <script src="js/personality-match.js?v=02a2ec3e0f14"></script>
     <script src="js/laptop-logic.js?v=55f05d7279ec"></script>
     <script>
         (() => {
